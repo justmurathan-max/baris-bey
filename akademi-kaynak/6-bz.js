@@ -52,7 +52,7 @@ VIEWS.merkez.genel=()=>{
   const rs=OFFS.filter(o=>o.end&&df(o.end)<=90).sort((a,b)=>a.end-b.end),inv=OFFS.filter(o=>o.st==='davet');
   const right=h('div',{class:'st'},
     pn('Yaklaşan yenilemeler',null,rs.length?h('ul',{class:'ls'},rs.map(o=>h('li',null,h('div',{class:'t'},h('b',null,o.n),h('span',null,'Bitiş '+ddy(o.end))),chip(df(o.end)<=30?'crit':'wait','clock',df(o.end)+' gün')))):empty('90 gün içinde yenileme yok')),
-    pn('Bekleyen davetler',null,inv.length?h('ul',{class:'ls'},inv.map(o=>h('li',null,h('span',{class:'li-i'},ic('mail')),h('div',{class:'t'},h('b',null,o.n),h('span',null,'Gönderildi '+ago(o.inv))),btn('btn-g btn-xs','Yeniden gönder',()=>{o.inv=new Date(T0);toast('Davet yeniden gönderildi.');rerender();})))):empty('Bekleyen davet yok')),
+    pn('Bekleyen davetler',null,inv.length?h('ul',{class:'ls'},inv.map(o=>h('li',null,h('span',{class:'li-i'},ic('mail')),h('div',{class:'t'},h('b',null,o.n),h('span',null,'Gönderildi '+ago(o.inv))),btn('btn-g btn-xs','Yeniden gönder',()=>{if(realM()){resendReal(o);return;}o.inv=new Date(T0);toast('Davet yeniden gönderildi.');rerender();})))):empty('Bekleyen davet yok')),
     pn('Sertifika doğrula',null,verifyBox()));
   root.append(h('div',{class:'g2'},left,right));
   return root;
@@ -80,21 +80,24 @@ function openOffice(id){
     h('div',{class:'p-kv',style:'margin-top:0'},[[o.cons,'Aktif danışman'],[o.ses,'Son 30 gün oturum'],['%'+o.comp,'Eğitim tamamlama'],[o.cert,'Sertifika']].map(([v,l])=>h('div',null,h('b',null,String(v)),h('span',null,l)))),
     h('div',{class:'lockn'},ic('lock'),'Mentorun özel 1-5 puanları ve notları yalnız o ofisin mentoru ve brokerı içindir; merkezde görünmez.')));
   const foot=[];
-  if(o.st==='davet')foot.push(btn('btn-k btn-s',[ic('mail'),'Daveti yeniden gönder'],()=>{o.inv=new Date(T0);closeDrawer();toast('Davet yeniden gönderildi.');rerender();}));
-  else foot.push(btn('btn-o btn-s',[ic('refresh'),'Üyeliği bir yıl uzat'],()=>{o.end=plus(o.end,365);if(o.id==='kdk')OFF.end=o.end;closeDrawer();toast(o.n+' üyeliği '+ddy(o.end)+' tarihine uzatıldı.');rerender();}));
+  if(o.st==='davet')foot.push(btn('btn-k btn-s',[ic('mail'),'Daveti yeniden gönder'],()=>{if(realM()){closeDrawer();resendReal(o);return;}o.inv=new Date(T0);closeDrawer();toast('Davet yeniden gönderildi.');rerender();}));
+  else foot.push(btn('btn-o btn-s',[ic('refresh'),'Üyeliği bir yıl uzat'],()=>{if(realM()){closeDrawer();extendReal(o);return;}o.end=plus(o.end,365);if(o.id==='kdk')OFF.end=o.end;closeDrawer();toast(o.n+' üyeliği '+ddy(o.end)+' tarihine uzatıldı.');rerender();}));
   drawer({t:o.n,s:o.st==='davet'?'Davet '+ago(o.inv)+' gönderildi.':'Aktif üyelik',body,foot});
 }
 function openNewOffice(){
-  const v={n:'',city:'İstanbul',tier:'1–25',start:iso(T0),br:'',mn:'',self:false};
+  const v={n:'',city:'İstanbul',tier:'1–25',start:iso(T0),br:'',brn:'',mn:'',mnn:'',self:false};let busy=false;
   const body=h('div',{class:'st'},
     h('div',{class:'fld'},h('label',{for:'noN'},'Ofis adı'),h('input',{id:'noN',type:'text',placeholder:'RE/MAX ...',autofocus:true,oninput:e=>{v.n=e.target.value;}})),
     h('div',{class:'fr'},h('div',{class:'fld'},h('label',{for:'noC'},'Şehir'),h('input',{id:'noC',type:'text',value:v.city,oninput:e=>{v.city=e.target.value;}})),h('div',{class:'fld'},h('label',{for:'noT'},'Kademe'),sel('noT',TIERS.map(x=>[x,x+' danışman']),v.tier,x=>{v.tier=x;}))),
     h('div',{class:'fld'},h('label',{for:'noS'},'Üyelik başlangıcı'),h('input',{id:'noS',type:'date',value:v.start,onchange:e=>{v.start=e.target.value;}}),h('span',{class:'hint'},'Satış görüşme, sözleşme ve ödemeyle yapılır; üyelik 12 ay sürer.')),
-    h('div',{class:'fld'},h('label',{for:'noB'},'Broker e-postası'),h('input',{id:'noB',type:'email',placeholder:'broker@ofis.com',oninput:e=>{v.br=e.target.value;}})),
-    h('div',{class:'fld'},h('label',{for:'noM'},'Mentor e-postası'),h('input',{id:'noM',type:'email',placeholder:'mentor@ofis.com',oninput:e=>{v.mn=e.target.value;}}),h('label',{class:'oc',style:'margin-top:4px'},h('input',{type:'checkbox',onchange:e=>{v.self=e.target.checked;$('#noM').disabled=v.self;}}),h('span',{class:'t'},h('b',null,'Mentor görevini broker üstlenecek'),h('span',null,'Broker iki rolü tek panelden yönetir.')))));
+    h('div',{class:'fr'},h('div',{class:'fld'},h('label',{for:'noBn'},'Broker adı soyadı'),h('input',{id:'noBn',type:'text',autocomplete:'off',oninput:e=>{v.brn=e.target.value;}})),h('div',{class:'fld'},h('label',{for:'noB'},'Broker e-postası'),h('input',{id:'noB',type:'email',placeholder:'broker@ofis.com',oninput:e=>{v.br=e.target.value;}}))),
+    h('div',{class:'fr'},h('div',{class:'fld'},h('label',{for:'noMn'},'Mentor adı soyadı'),h('input',{id:'noMn',type:'text',autocomplete:'off',oninput:e=>{v.mnn=e.target.value;}})),h('div',{class:'fld'},h('label',{for:'noM'},'Mentor e-postası'),h('input',{id:'noM',type:'email',placeholder:'mentor@ofis.com',oninput:e=>{v.mn=e.target.value;}}))),
+    h('div',{class:'fld'},h('label',{class:'oc',style:'margin-top:4px'},h('input',{type:'checkbox',onchange:e=>{v.self=e.target.checked;$('#noM').disabled=v.self;$('#noMn').disabled=v.self;}}),h('span',{class:'t'},h('b',null,'Mentor görevini broker üstlenecek'),h('span',null,'Broker iki rolü tek panelden yönetir.')))));
   drawer({t:'Yeni ofis aç',s:'Üyelik açılınca broker ve mentora davet e-postası gider.',body,foot:[btn('btn-o','Vazgeç',closeDrawer),btn('btn-k','Üyeliği aç ve davet gönder',()=>{
     if(v.n.trim().length<3){toast('Ofis adını yazın.');$('#noN').focus();return;}
     if(!/^\S+@\S+\.\S+$/.test(v.br)){toast('Broker e-postasını yazın.');$('#noB').focus();return;}
+    if(!v.self&&v.mn.trim()&&!/^\S+@\S+\.\S+$/.test(v.mn.trim())){toast('Mentor e-postasını kontrol edin.');$('#noM').focus();return;}
+    if(realM()){if(busy)return;busy=true;const b=$('#dr .dr-f .btn-k');if(b){b.disabled=true;b.textContent='Açılıyor…';}createOfficeReal(v).then(ok=>{busy=false;if(b){b.disabled=false;b.textContent='Üyeliği aç ve davet gönder';}if(ok){closeDrawer();if(S.page==='ofisler')rerender();else go('ofisler');}});return;}
     const s=fromIso(v.start||iso(T0));
     OFFS.push({id:'o'+Date.now().toString(36),n:v.n.trim(),city:v.city.trim()||'—',br:null,mn:null,tier:v.tier,cons:0,start:s,end:plus(s,365),ses:0,st:'davet',comp:0,cert:0,inv:new Date(T0)});
     closeDrawer();toast('Üyelik açıldı; davetler gönderildi.');if(S.page==='ofisler')rerender();else go('ofisler');})]});
@@ -108,7 +111,7 @@ VIEWS.merkez.uyelikler=()=>{
       return h('tr',null,h('td',null,h('b',null,o.n)),h('td',{'data-l':'Kademe'},o.tier),h('td',{'data-l':'Başlangıç'},dnum(o.start)),h('td',{'data-l':'Bitiş'},dnum(o.end)),
         h('td',{'data-l':'Kalan'},chip(n<=30?'crit':n<=60?'wait':'ln','clock',n+' gün')),
         h('td',{'data-l':'Hatırlatma',class:'sm'},sent.length?sent.map(x=>x+' gün').join(', ')+' gönderildi':'Henüz yok'),
-        h('td',{class:'r'},btn(n<=60?'btn-k btn-xs':'btn-g btn-xs','Yenile',()=>confirmBox('Üyelik yenilensin mi?',o.n+' üyeliği bir yıl uzar. İkinci yıl avantajı ve kademe değişikliği yenileme görüşmesinde belirlenir.','Yenile',()=>{o.end=plus(o.end,365);if(o.id==='kdk')OFF.end=o.end;toast(o.n+' yenilendi.');rerender();}))));}))))));
+        h('td',{class:'r'},btn(n<=60?'btn-k btn-xs':'btn-g btn-xs','Yenile',()=>confirmBox('Üyelik yenilensin mi?',o.n+' üyeliği bir yıl uzar. İkinci yıl avantajı ve kademe değişikliği yenileme görüşmesinde belirlenir.','Yenile',()=>{if(realM()){extendReal(o);return;}o.end=plus(o.end,365);if(o.id==='kdk')OFF.end=o.end;toast(o.n+' yenilendi.');rerender();}))));}))))));
   root.append(h('div',{class:'lockn',style:'margin-top:14px'},ic('card'),'Online ödeme şimdilik yok; satış görüşme, sözleşme ve ödemeyle yapılır. Altyapı ileride online satışa açılabilir.'));
   return root;
 };

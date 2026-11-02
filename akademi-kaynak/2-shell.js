@@ -151,7 +151,7 @@ function shell(){
   $('#nav').replaceChildren(...NAV[r].map(([k,l,i])=>{const cur=S.page===k||(k==='egitimler'&&S.page==='egitim');const a=h('a',{href:'#'+r+'/'+k,'aria-current':cur?'page':null},ic(i),l);const n=badge(k);if(n)a.append(h('span',{class:'n','aria-label':n+' bekleyen'},String(n)));return a;}));
   $('#meBtn').replaceChildren(h('span',{class:'av k'},ini(me.n)),h('span',{class:'t'},h('b',null,me.n),h('span',null,roleLabel())),ic('down'));
   $('#crumb').replaceChildren(h('span',{class:'nw'},r==='merkez'?'Akademi merkezi':offName()));
-  const bn=$('#demoBn');if(bn){bn.hidden=!ME;if(ME)fill(bn,h('b',null,'Örnek veriler. '),'Girişiniz gerçek; panellerdeki kişi, oturum ve rakamlar şimdilik örnek. Gerçek kayıtlar bir sonraki adımda bağlanacak.');}
+  const bn=$('#demoBn');if(bn){bn.hidden=!ME;if(ME)fill(bn,h('b',null,'Örnek veriler. '),ME.role==='merkez'?'Ofisler ve üyelikler gerçek kayıtlardan geliyor; sertifika, güvenlik ve klasik erişim sayfaları şimdilik örnek.':'Girişiniz gerçek; panellerdeki kişi, oturum ve rakamlar şimdilik örnek. Gerçek kayıtlar bir sonraki adımda bağlanacak.');}
   const tr=$('#tbR');tr.replaceChildren();
   if(r==='mentor')tr.append(btn('btn-o btn-s',[ic('spark'),'Barış AI'],()=>go('ai')));
   if(r==='merkez'&&S.page!=='ofisler')tr.append(btn('btn-k btn-s',[ic('plus'),'Yeni ofis aç'],()=>openNewOffice()));
@@ -240,7 +240,7 @@ document.addEventListener('keydown',e=>{
   if(document.body.classList.contains('nav-on'))document.body.classList.remove('nav-on');
 });
 let tT=null;
-function toast(msg){const t=$('#toast');t.replaceChildren(ic('tick'),h('span',null,msg));t.classList.add('on');clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('on'),3400);}
+function toast(msg,ms){const t=$('#toast');t.replaceChildren(ic('tick'),h('span',null,msg));t.classList.add('on');clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('on'),ms||3400);}
 const tip=$('#tip');
 document.addEventListener('pointerover',e=>{const t=e.target.closest&&e.target.closest('[data-tip]');if(!t){tip.classList.remove('on');return;}tip.textContent=t.dataset.tip;tip.classList.add('on');posTip(e);});
 document.addEventListener('pointermove',e=>{if(tip.classList.contains('on'))posTip(e);});

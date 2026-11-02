@@ -71,8 +71,80 @@ async function boot(){
     CUR='';
   }
   if(session&&session.user){
-    if(await enterReal(session.user)){const want=CUR.split('/')[0];nav(NAV[want]&&roleOk(want)?CUR:ROLE_HOME[ME.role]);}
+    if(await enterReal(session.user)){if(ME.role==='merkez')await loadMerkez();const want=CUR.split('/')[0];nav(NAV[want]&&roleOk(want)?CUR:ROLE_HOME[ME.role]);}
   }else if(authHash){showLogin();lgMsg(fail||'Giriş tamamlanamadı. Yeni bağlantı isteyin.','er');}
   else route();
   SB.auth.onAuthStateChange(ev=>{if(ev==='SIGNED_OUT'&&ME){ME=null;closeAllLayers();nav('');}});
+}
+
+/* =================== MERKEZ: GERÇEK OFİSLER =================== */
+const realM=()=>!!(SB&&ME&&ME.role==='merkez');
+const addYear=d=>{const x=new Date(d);x.setFullYear(x.getFullYear()+1);return x;};
+
+// Ofisleri ve sayılarını veritabanından alıp merkez ekranlarının kullandığı listeye koyar.
+async function loadMerkez(){
+  if(!realM())return false;
+  const [o,pr,inv,co,ce,ru]=await Promise.all([
+    SB.from('offices').select('id,name,city,tier,status,membership_start,membership_end,invited_at,created_at').order('created_at'),
+    SB.from('profiles').select('office_id,role,full_name,email').not('office_id','is',null),
+    SB.from('invitations').select('office_id,email,role,full_name'),
+    SB.from('consultants').select('office_id').is('left_on',null),
+    SB.from('certificates').select('office_id').is('revoked_at',null),
+    SB.from('runs').select('office_id,days').neq('status','iptal')
+  ]).catch(e=>[{error:e}]);
+  if(!ru||[o,pr,inv,co,ce,ru].some(r=>r.error)){toast('Ofis bilgileri alınamadı. Sayfayı yenileyin.',6000);return false;}
+  const from=iso(plus(T0,-30)),to=iso(T0),cnt=(rows,id)=>rows.filter(r=>r.office_id===id).length,nm=x=>x?(x.full_name||x.email):null;
+  const list=o.data.map(r=>{
+    const staff=pr.data.filter(p=>p.office_id===r.id),invs=inv.data.filter(i=>i.office_id===r.id);
+    const b=staff.find(p=>p.role==='broker')||invs.find(i=>i.role==='broker'),m=staff.find(p=>p.role==='mentor')||invs.find(i=>i.role==='mentor');
+    const ses=ru.data.filter(x=>x.office_id===r.id).reduce((a,x)=>a+(x.days||[]).filter(d=>d>=from&&d<=to).length,0);
+    return{id:r.id,n:r.name,city:r.city||'—',br:nm(b),mn:nm(m),tier:r.tier||'1–25',cons:cnt(co.data,r.id),
+      start:r.membership_start?fromIso(r.membership_start):null,end:r.membership_end?fromIso(r.membership_end):null,
+      ses,st:r.status==='aktif'?'aktif':r.status==='pasif'?'pasif':'davet',comp:0,cert:cnt(ce.data,r.id),inv:new Date(r.invited_at||r.created_at)};
+  });
+  OFFS.splice(0,OFFS.length,...list);
+  return true;
+}
+
+async function inviteCall(body){
+  try{const{data,error}=await SB.functions.invoke('davet',{body});return error?{err:error}:(data||{results:[]});}
+  catch(e){return{err:e};}
+}
+function inviteMsg(r,lead){
+  const L=lead?lead+' ':'';
+  if(r.err)return L+'Davet gönderilemedi; biraz sonra yeniden deneyin.';
+  const R=r.results||[];
+  if(!R.length)return L+'Gönderilecek bekleyen davet yok.';
+  if(R.every(x=>x.ok))return L+(R.length>1?'Davet e-postaları gönderildi.':'Davet e-postası gönderildi.');
+  const k=R.filter(x=>x.reason==='kayitli').map(x=>x.email);
+  if(k.length)return L+k.join(', ')+' adresiyle zaten bir hesap var; davet gönderilmedi.';
+  if(R.some(x=>x.reason==='gecersiz'))return L+'Geçersiz e-posta adresi var.';
+  if(R.some(x=>x.reason==='limit'))return L+'E-posta gönderim sınırına takıldı; biraz sonra yeniden gönderin.';
+  return L+'Davet kaydedildi ama e-posta gönderilemedi. Mail servisi bağlanınca "Daveti yeniden gönder"le tekrar deneyin.';
+}
+
+async function createOfficeReal(v){
+  const s=v.start||iso(T0);
+  const ins=await SB.from('offices').insert({name:v.n.trim(),city:v.city.trim()||null,tier:v.tier,status:'davet',
+    membership_start:s,membership_end:iso(addYear(fromIso(s))),invited_at:new Date().toISOString()}).select('id').single();
+  if(ins.error){toast('Ofis açılamadı. Bilgileri kontrol edip tekrar deneyin.',6000);return false;}
+  const invites=[{email:v.br.trim(),role:'broker',full_name:v.brn.trim()}];
+  if(!v.self&&v.mn.trim())invites.push({email:v.mn.trim(),role:'mentor',full_name:v.mnn.trim()});
+  const r=await inviteCall({office_id:ins.data.id,invites});
+  await loadMerkez();
+  toast(inviteMsg(r,'Üyelik açıldı.'),r.results&&r.results.every(x=>x.ok)?4000:9000);
+  return true;
+}
+async function resendReal(o){
+  toast('Davet gönderiliyor…');
+  const r=await inviteCall({office_id:o.id,resend:true});
+  await loadMerkez();rerender();
+  toast(inviteMsg(r,''),r.results&&r.results.length&&r.results.every(x=>x.ok)?4000:9000);
+}
+async function extendReal(o){
+  const end=iso(addYear(o.end||T0));
+  const{error}=await SB.from('offices').update({membership_end:end}).eq('id',o.id);
+  if(error){toast('Üyelik uzatılamadı.');return;}
+  await loadMerkez();rerender();
+  toast(o.n+' üyeliği '+ddy(fromIso(end))+' tarihine uzatıldı.');
 }
