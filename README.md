@@ -24,3 +24,13 @@ python3 akademi-kaynak/build.py
 ## Yayın
 
 Vercel'de projenin kök klasörü (Root Directory) `site` olmalı; derleme komutu yok. `main` dalına gelen her değişiklik yayına çıkar.
+
+## Veritabanı
+
+Supabase (Frankfurt). Şema `supabase/migrations/` içindeki göç dosyalarında; sırayla çalıştırılır.
+
+- Roller: merkez, broker, mentor. Danışmanların hesabı yok.
+- Her ofis kaydı `office_id` taşır; satır kurallarıyla ofisler birbirini göremez. Merkez hepsini okur, mentorun özel puanlarını göremez.
+- Giriş yalnız davetle: kullanıcı oluşunca profili `invitations` tablosundaki davetten açılır.
+- Yeni tablolar Data API'ye kendiliğinden açılmaz; her göç kendi tablosunun yetkisini ve satır kurallarını vermeli.
+- Bu depo herkese açık: anahtar, şifre ve kişisel veri buraya konmaz. Gizli anahtarlar Vercel'in ortam değişkenlerinde durur.
