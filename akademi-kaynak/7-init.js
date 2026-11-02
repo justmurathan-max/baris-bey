@@ -14,5 +14,5 @@ document.addEventListener('click',e=>{
   if(href.charAt(0)==='#'){e.preventDefault();nav(href.slice(1));return;}
   if(window.__EMBED&&/^index\.html/.test(href)){e.preventDefault();try{parent.postMessage({ak:'close',to:href.split('#')[1]||''},'*');}catch(err){}}
 });
-route();
+boot();
 })();

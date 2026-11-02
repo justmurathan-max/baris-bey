@@ -77,10 +77,10 @@
   <div class="lg-b">
     <form class="lg-f" id="lgForm" autocomplete="on" novalidate>
       <h2>Akademiye giriş</h2>
-      <p>Hesabınız davetle açılır. Davet e-postasındaki adresle girin.</p>
-      <div class="fld"><label for="lgMail">E-posta</label><input id="lgMail" type="email" placeholder="ad@ofisiniz.com" autocomplete="username"></div>
-      <div class="fld"><label for="lgPass">Şifre</label><input id="lgPass" type="password" placeholder="Şifreniz" autocomplete="current-password"></div>
-      <button class="btn btn-k" type="submit">Giriş yap</button>
+      <p>Hesabınız davetle açılır. Davet e-postasındaki adresi yazın; giriş bağlantısını e-postanıza gönderelim.</p>
+      <div class="fld"><label for="lgMail">E-posta</label><input id="lgMail" type="email" placeholder="ad@ofisiniz.com" autocomplete="email" inputmode="email"></div>
+      <button class="btn btn-k" type="submit" id="lgBtn">Giriş bağlantısı gönder</button>
+      <p class="lg-msg" id="lgMsg" role="status" aria-live="polite" hidden></p>
       <div class="lg-demo" id="lgDemo"><span>Önizleme için bir rolle girin</span></div>
     </form>
   </div>
@@ -103,6 +103,7 @@
       <div class="crumb" id="crumb"></div>
       <div class="tb-r" id="tbR"></div>
     </header>
+    <div class="demo-bn" id="demoBn" hidden></div>
     <main class="pg" id="pg" tabindex="-1"></main>
   </div>
 </div>
@@ -115,6 +116,7 @@
 <div class="tip" id="tip" role="tooltip"></div>
 <div id="pr" aria-hidden="true"></div>
 
+<script src="js/supabase.js"></script>
 <script>/*__BOOT__*/</script>
 <script>
 /*JS*/

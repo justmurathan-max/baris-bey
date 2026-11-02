@@ -103,9 +103,11 @@ const NAV={
   merkez:[['genel','Genel bakış','home'],['ofisler','Ofisler','building'],['uyelikler','Üyelikler','card'],['egitimler','Eğitimler ve belgeler','book'],['sertifikalar','Sertifikalar','award'],['klasik','Klasik erişimler','key'],['guvenlik','Güvenlik','shield']]
 };
 const S={role:null,page:null,arg:null,asBroker:false};
+let SB=null,ME=null;
 const VIEWS={mentor:{},broker:{},merkez:{}};
-const meUser=()=>S.role==='mentor'?(S.asBroker?PPL.broker:PPL.mentor):PPL[S.role]||PPL.mentor;
-const roleLabel=()=>S.role==='mentor'?(S.asBroker?'Broker, mentor görevinde':'Mentor'):PPL[S.role].r;
+const meUser=()=>ME?{n:ME.name,r:ROLE_NAME[ME.role]}:S.role==='mentor'?(S.asBroker?PPL.broker:PPL.mentor):PPL[S.role]||PPL.mentor;
+const roleLabel=()=>S.role==='mentor'?(S.asBroker?'Broker, mentor görevinde':'Mentor'):ME?ROLE_NAME[S.role]:PPL[S.role].r;
+const offName=()=>ME&&ME.office||OFF.n;
 const canComment=()=>S.role==='broker'||S.asBroker;
 let CUR=window.__START!=null?String(window.__START):location.hash.replace(/^#\/?/,'');
 function nav(x){
@@ -119,8 +121,10 @@ function go(page,arg){nav(S.role+'/'+page+(arg?'/'+encodeURIComponent(arg):''));
 function route(){
   const p=CUR.split('/');
   closeAllLayers();
-  if(!NAV[p[0]]){showLogin();return;}
+  if(!NAV[p[0]]){if(ME){nav(ROLE_HOME[ME.role]);return;}showLogin();return;}
+  if(ME&&!roleOk(p[0])){nav(ROLE_HOME[ME.role]);return;}
   if(p[0]!=='mentor')S.asBroker=false;
+  else if(ME&&ME.role==='broker')S.asBroker=true;
   S.role=p[0];S.page=VIEWS[p[0]][p[1]]?p[1]:NAV[p[0]][0][0];S.arg=p[2]?decodeURIComponent(p[2]):null;
   $('#login').hidden=true;$('#app').hidden=false;document.body.classList.remove('nav-on');
   document.title=(navLabel()||'Akademi')+' | Masterclass Akademi';
@@ -140,13 +144,14 @@ function shell(){
   const org=$('#org');org.replaceChildren();
   if(r==='merkez')org.append(h('b',null,'Akademi merkezi'),h('span',null,OFFS.filter(o=>o.st==='aktif').length+' aktif ofis'));
   else{
-    org.append(h('b',null,OFF.n),h('span',null,r==='broker'?'Broker paneli':(S.asBroker?'Broker, mentor görevinde':'Mentor paneli')));
+    org.append(h('b',null,offName()),h('span',null,r==='broker'?'Broker paneli':(S.asBroker?'Broker, mentor görevinde':'Mentor paneli')));
     if(r==='broker')org.append(btn('btn-ow btn-xs',[ic('swap'),'Mentor görevini üstlen'],()=>{S.asBroker=true;nav('mentor/panel');}));
     if(r==='mentor'&&S.asBroker)org.append(btn('btn-ow btn-xs',[ic('swap'),'Broker paneline dön'],()=>{S.asBroker=false;nav('broker/ozet');}));
   }
   $('#nav').replaceChildren(...NAV[r].map(([k,l,i])=>{const cur=S.page===k||(k==='egitimler'&&S.page==='egitim');const a=h('a',{href:'#'+r+'/'+k,'aria-current':cur?'page':null},ic(i),l);const n=badge(k);if(n)a.append(h('span',{class:'n','aria-label':n+' bekleyen'},String(n)));return a;}));
   $('#meBtn').replaceChildren(h('span',{class:'av k'},ini(me.n)),h('span',{class:'t'},h('b',null,me.n),h('span',null,roleLabel())),ic('down'));
-  $('#crumb').replaceChildren(h('span',{class:'nw'},r==='merkez'?'Akademi merkezi':OFF.n));
+  $('#crumb').replaceChildren(h('span',{class:'nw'},r==='merkez'?'Akademi merkezi':offName()));
+  const bn=$('#demoBn');if(bn){bn.hidden=!ME;if(ME)fill(bn,h('b',null,'Örnek veriler. '),'Girişiniz gerçek; panellerdeki kişi, oturum ve rakamlar şimdilik örnek. Gerçek kayıtlar bir sonraki adımda bağlanacak.');}
   const tr=$('#tbR');tr.replaceChildren();
   if(r==='mentor')tr.append(btn('btn-o btn-s',[ic('spark'),'Barış AI'],()=>go('ai')));
   if(r==='merkez'&&S.page!=='ofisler')tr.append(btn('btn-k btn-s',[ic('plus'),'Yeni ofis aç'],()=>openNewOffice()));
@@ -159,6 +164,7 @@ function openBell(a){
   popup(a,[h('div',{class:'pop-h'},'Bildirimler')].concat(L.length?L.map(n=>h('button',{type:'button',role:'menuitem',onclick:()=>{closePop();n.on();}},h('span',{class:'li-i '+(n.cls||'')},ic(n.ic)),h('span',{class:'t'},n.t,h('span',null,n.s)))):[h('div',{class:'pop-h',style:'padding:6px 10px 12px;font-weight:500'},'Yeni bildirim yok.')]),{right:true});
 }
 function openMe(a){
+  if(ME){popup(a,[h('div',{class:'pop-h'},ME.email),h('a',{href:'index.html',role:'menuitem'},ic('ext'),'Siteye dön'),h('button',{type:'button',role:'menuitem',onclick:()=>{closePop();signOutReal();}},ic('out'),'Çıkış yap')],{dk:true,up:true});return;}
   const roles=[['mentor','Mentor',PPL.mentor.n],['broker','Broker',PPL.broker.n],['merkez','Merkez yöneticisi',PPL.merkez.n]];
   popup(a,[h('div',{class:'pop-h'},'Önizleme rolü')].concat(roles.map(([k,l,n])=>h('button',{type:'button',role:'menuitem','aria-current':String(S.role===k&&!(k==='mentor'&&S.asBroker)),onclick:()=>{closePop();S.asBroker=false;nav(k+'/'+NAV[k][0][0]);}},h('span',{class:'av s k'},ini(n)),h('span',{class:'t'},l,h('span',null,n)),S.role===k&&!(k==='mentor'&&S.asBroker)?ic('tick'):null)),[h('hr'),h('a',{href:'index.html',role:'menuitem'},ic('ext'),'Siteye dön'),h('button',{type:'button',role:'menuitem',onclick:()=>{closePop();nav('');}},ic('out'),'Çıkış yap')]),{dk:true,up:true});
 }
@@ -171,7 +177,7 @@ function showLogin(){
     [['mentor','Mentor',PPL.mentor.n+', '+OFF.n,'users'],['broker','Broker',PPL.broker.n+', aynı ofis','building'],['merkez','Merkez yöneticisi',PPL.merkez.n+', bütün ofisler','shield']].forEach(([k,l,s,i])=>dm.append(h('button',{class:'rb',type:'button',onclick:()=>{S.asBroker=false;nav(k+'/'+NAV[k][0][0]);}},h('span',{class:'ri'},ic(i)),h('span',{class:'t'},h('b',null,l+' olarak gir'),h('span',null,s)),ic('chev'))));
   }
 }
-$('#lgForm').addEventListener('submit',e=>{e.preventDefault();const m=$('#lgMail').value.toLocaleLowerCase('tr');const r=/broker/.test(m)?'broker':/merkez|akademi/.test(m)?'merkez':'mentor';S.asBroker=false;nav(r+'/'+NAV[r][0][0]);});
+$('#lgForm').addEventListener('submit',e=>{e.preventDefault();if(SB){sendLink($('#lgMail').value.trim());return;}const m=$('#lgMail').value.toLocaleLowerCase('tr');const r=/broker/.test(m)?'broker':/merkez|akademi/.test(m)?'merkez':'mentor';S.asBroker=false;nav(r+'/'+NAV[r][0][0]);});
 
 /* =================== KATMANLAR =================== */
 let lastFocus=null,drOpen=false,mdOpen=false,sesOpen=false,popEl=null;

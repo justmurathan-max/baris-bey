@@ -708,6 +708,7 @@ button{cursor:pointer}
 .fld input:focus,.fld select:focus,.fld textarea:focus{border-color:#000;box-shadow:0 0 0 3px rgba(0,0,0,.07)}
 .dlg form{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
 .dlg form .btn{width:100%;margin-top:4px}
+.dlg>.btn{display:flex;width:100%;margin-top:4px}
 .done{padding:18px;border-radius:18px;background:var(--g0);display:grid;gap:6px}
 .done b{font:600 16px/1.3 var(--fb)}
 .done p{margin:0;color:var(--mu);font-size:15px;line-height:1.5}
@@ -1439,12 +1440,8 @@ body.sys-on .sys{display:block}
   <div class="dlg" role="dialog" aria-modal="true" aria-labelledby="ml-t">
     <button class="x" type="button" aria-label="Kapat"><svg aria-hidden="true"><use href="#i-x"/></svg></button>
     <h3 id="ml-t">Akademiye giriş</h3>
-    <p>Davet e-postasındaki adresinizle girin. Merkez yöneticisi, broker ve mentor aynı yerden girer. Önizlemede herhangi bir bilgiyle girebilirsiniz.</p>
-    <form id="loginForm">
-      <div class="fld"><label for="lg-mail">E-posta</label><input id="lg-mail" type="email" placeholder="ad@ofis.com"></div>
-      <div class="fld"><label for="lg-pass">Şifre</label><input id="lg-pass" type="password" placeholder="Şifreniz"></div>
-      <button class="btn btn-k" type="submit">Giriş yap</button>
-    </form>
+    <p>Merkez yöneticisi, broker ve mentor aynı yerden girer. Davet e-postasındaki adresinizi yazın; şifre yok, giriş bağlantısı e-postanıza gelir.</p>
+    <a class="btn btn-k" id="loginGo" href="akademi.html">Giriş ekranına git</a>
     <p class="lg-n">Danışmanlara ayrı hesap açılmaz; eğitimler mentor eşliğinde grup oturumunda izlenir.</p>
     <div class="sys"><b>Arka planda</b>Üyelik ofise bağlıdır. Üyelik bitince broker ve mentor girişleri kapanır, geçmiş kayıtlar saklanır. Ofisler birbirinin verisini göremez.</div>
   </div>
@@ -1697,7 +1694,6 @@ function closeModal(m,noFocus){
 $$('.md').forEach(function(m){m.addEventListener('click',function(e){if(e.target===m||e.target.closest('.x'))closeModal(m);});});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){$$('.md').forEach(function(m){if(!m.hidden)closeModal(m);});closeMenus(null);if(!mnav.hidden)setMnav(false);if(!langMenu.hidden)langMenu.hidden=true;}});
 $$('form[data-demo]').forEach(function(f){f.addEventListener('submit',function(e){e.preventDefault();if(!f.checkValidity()){f.reportValidity();return;}f.hidden=true;var d=f.parentElement.querySelector('.done,.done-inline');if(d)d.hidden=false;});});
-$('#loginForm').addEventListener('submit',function(e){e.preventDefault();var m=($('#lg-mail').value||'').toLocaleLowerCase('tr');var r=/broker/.test(m)?'broker':(/merkez|akademi/.test(m)?'merkez':'mentor');location.href='akademi.html#'+r+'/'+({mentor:'panel',broker:'ozet',merkez:'genel'})[r];});
 
 /* ---------- Program ve ürün pencereleri ---------- */
 var PROGS={

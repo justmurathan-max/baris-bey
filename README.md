@@ -8,6 +8,7 @@ Barış Kılıçarslan'ın tanıtım sitesi ve giriş sonrası Masterclass Akade
   - `index.html`: tanıtım sitesi.
   - `akademi.html`: giriş sonrası akademi (mentor, broker ve merkez panelleri). Elle düzenlenmez; `akademi-kaynak/` içinden üretilir.
   - `img/`: görseller.
+  - `js/supabase.js`: Supabase'in tarayıcı kütüphanesi (2.118.0), npm'den olduğu gibi.
   - `vercel.json`, `robots.txt`: taslağı arama motorlarına kapatır.
 - `akademi-kaynak/`: akademinin parçaları.
   - `a.html` iskelet, `a.css` stiller, `1-core.js` … `7-init.js` uygulama.
@@ -31,6 +32,7 @@ Supabase (Frankfurt). Şema `supabase/migrations/` içindeki göç dosyalarında
 
 - Roller: merkez, broker, mentor. Danışmanların hesabı yok.
 - Her ofis kaydı `office_id` taşır; satır kurallarıyla ofisler birbirini göremez. Merkez hepsini okur, mentorun özel puanlarını göremez.
-- Giriş yalnız davetle: kullanıcı oluşunca profili `invitations` tablosundaki davetten açılır.
+- Giriş yalnız davetle: kullanıcı oluşunca profili `invitations` tablosundaki davetten açılır. Şifre yok; akademinin giriş ekranı e-postaya giriş bağlantısı gönderir (`akademi-kaynak/6-supabase.js`).
+- Akademideki anahtar Supabase'in yayınlanabilir (publishable) anahtarıdır; tarayıcıda durması için yapılmıştır. Gizli (secret) anahtar asla depoya konmaz.
 - Yeni tablolar Data API'ye kendiliğinden açılmaz; her göç kendi tablosunun yetkisini ve satır kurallarını vermeli.
 - Bu depo herkese açık: anahtar, şifre ve kişisel veri buraya konmaz. Gizli anahtarlar Vercel'in ortam değişkenlerinde durur.

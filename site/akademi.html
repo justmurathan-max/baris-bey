@@ -81,6 +81,12 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .lg-f>p{margin:-8px 0 0;color:var(--mu);font-size:14.5px}
 .lg-demo{display:grid;gap:8px;padding-top:18px;border-top:1px solid var(--line)}
 .lg-demo>span{font:600 13px/1.3 var(--fb);color:var(--mu)}
+.lg-f>p.lg-msg{margin:-4px 0 0;padding:12px 14px;border-radius:12px;font:500 14px/1.45 var(--fb);background:var(--stone);color:var(--tx)}
+.lg-f>p.lg-msg.ok{background:var(--okB);color:var(--okT)}
+.lg-f>p.lg-msg.er{background:var(--critB);color:var(--critT)}
+.lg-f .btn:disabled{opacity:.6;cursor:wait}
+.demo-bn{margin:12px clamp(16px,3vw,40px) 0;max-width:1300px;padding:10px 14px;border-radius:12px;background:var(--warnB);color:var(--warnT);font:500 13.5px/1.45 var(--fb)}
+.demo-bn b{font-weight:700}
 .rb{display:flex;align-items:center;gap:14px;width:100%;padding:12px 14px;border-radius:14px;border:1.5px solid var(--line);background:#fff;text-align:left;transition:border-color .15s,background-color .15s}
 .rb:hover{border-color:#000}
 .rb .t{display:grid;gap:2px;flex:1;min-width:0}
@@ -905,10 +911,10 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
   <div class="lg-b">
     <form class="lg-f" id="lgForm" autocomplete="on" novalidate>
       <h2>Akademiye giriş</h2>
-      <p>Hesabınız davetle açılır. Davet e-postasındaki adresle girin.</p>
-      <div class="fld"><label for="lgMail">E-posta</label><input id="lgMail" type="email" placeholder="ad@ofisiniz.com" autocomplete="username"></div>
-      <div class="fld"><label for="lgPass">Şifre</label><input id="lgPass" type="password" placeholder="Şifreniz" autocomplete="current-password"></div>
-      <button class="btn btn-k" type="submit">Giriş yap</button>
+      <p>Hesabınız davetle açılır. Davet e-postasındaki adresi yazın; giriş bağlantısını e-postanıza gönderelim.</p>
+      <div class="fld"><label for="lgMail">E-posta</label><input id="lgMail" type="email" placeholder="ad@ofisiniz.com" autocomplete="email" inputmode="email"></div>
+      <button class="btn btn-k" type="submit" id="lgBtn">Giriş bağlantısı gönder</button>
+      <p class="lg-msg" id="lgMsg" role="status" aria-live="polite" hidden></p>
       <div class="lg-demo" id="lgDemo"><span>Önizleme için bir rolle girin</span></div>
     </form>
   </div>
@@ -931,6 +937,7 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
       <div class="crumb" id="crumb"></div>
       <div class="tb-r" id="tbR"></div>
     </header>
+    <div class="demo-bn" id="demoBn" hidden></div>
     <main class="pg" id="pg" tabindex="-1"></main>
   </div>
 </div>
@@ -943,6 +950,7 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 <div class="tip" id="tip" role="tooltip"></div>
 <div id="pr" aria-hidden="true"></div>
 
+<script src="js/supabase.js"></script>
 <script>/*__BOOT__*/</script>
 <script>
 'use strict';
@@ -1296,9 +1304,11 @@ const NAV={
   merkez:[['genel','Genel bakış','home'],['ofisler','Ofisler','building'],['uyelikler','Üyelikler','card'],['egitimler','Eğitimler ve belgeler','book'],['sertifikalar','Sertifikalar','award'],['klasik','Klasik erişimler','key'],['guvenlik','Güvenlik','shield']]
 };
 const S={role:null,page:null,arg:null,asBroker:false};
+let SB=null,ME=null;
 const VIEWS={mentor:{},broker:{},merkez:{}};
-const meUser=()=>S.role==='mentor'?(S.asBroker?PPL.broker:PPL.mentor):PPL[S.role]||PPL.mentor;
-const roleLabel=()=>S.role==='mentor'?(S.asBroker?'Broker, mentor görevinde':'Mentor'):PPL[S.role].r;
+const meUser=()=>ME?{n:ME.name,r:ROLE_NAME[ME.role]}:S.role==='mentor'?(S.asBroker?PPL.broker:PPL.mentor):PPL[S.role]||PPL.mentor;
+const roleLabel=()=>S.role==='mentor'?(S.asBroker?'Broker, mentor görevinde':'Mentor'):ME?ROLE_NAME[S.role]:PPL[S.role].r;
+const offName=()=>ME&&ME.office||OFF.n;
 const canComment=()=>S.role==='broker'||S.asBroker;
 let CUR=window.__START!=null?String(window.__START):location.hash.replace(/^#\/?/,'');
 function nav(x){
@@ -1312,8 +1322,10 @@ function go(page,arg){nav(S.role+'/'+page+(arg?'/'+encodeURIComponent(arg):''));
 function route(){
   const p=CUR.split('/');
   closeAllLayers();
-  if(!NAV[p[0]]){showLogin();return;}
+  if(!NAV[p[0]]){if(ME){nav(ROLE_HOME[ME.role]);return;}showLogin();return;}
+  if(ME&&!roleOk(p[0])){nav(ROLE_HOME[ME.role]);return;}
   if(p[0]!=='mentor')S.asBroker=false;
+  else if(ME&&ME.role==='broker')S.asBroker=true;
   S.role=p[0];S.page=VIEWS[p[0]][p[1]]?p[1]:NAV[p[0]][0][0];S.arg=p[2]?decodeURIComponent(p[2]):null;
   $('#login').hidden=true;$('#app').hidden=false;document.body.classList.remove('nav-on');
   document.title=(navLabel()||'Akademi')+' | Masterclass Akademi';
@@ -1333,13 +1345,14 @@ function shell(){
   const org=$('#org');org.replaceChildren();
   if(r==='merkez')org.append(h('b',null,'Akademi merkezi'),h('span',null,OFFS.filter(o=>o.st==='aktif').length+' aktif ofis'));
   else{
-    org.append(h('b',null,OFF.n),h('span',null,r==='broker'?'Broker paneli':(S.asBroker?'Broker, mentor görevinde':'Mentor paneli')));
+    org.append(h('b',null,offName()),h('span',null,r==='broker'?'Broker paneli':(S.asBroker?'Broker, mentor görevinde':'Mentor paneli')));
     if(r==='broker')org.append(btn('btn-ow btn-xs',[ic('swap'),'Mentor görevini üstlen'],()=>{S.asBroker=true;nav('mentor/panel');}));
     if(r==='mentor'&&S.asBroker)org.append(btn('btn-ow btn-xs',[ic('swap'),'Broker paneline dön'],()=>{S.asBroker=false;nav('broker/ozet');}));
   }
   $('#nav').replaceChildren(...NAV[r].map(([k,l,i])=>{const cur=S.page===k||(k==='egitimler'&&S.page==='egitim');const a=h('a',{href:'#'+r+'/'+k,'aria-current':cur?'page':null},ic(i),l);const n=badge(k);if(n)a.append(h('span',{class:'n','aria-label':n+' bekleyen'},String(n)));return a;}));
   $('#meBtn').replaceChildren(h('span',{class:'av k'},ini(me.n)),h('span',{class:'t'},h('b',null,me.n),h('span',null,roleLabel())),ic('down'));
-  $('#crumb').replaceChildren(h('span',{class:'nw'},r==='merkez'?'Akademi merkezi':OFF.n));
+  $('#crumb').replaceChildren(h('span',{class:'nw'},r==='merkez'?'Akademi merkezi':offName()));
+  const bn=$('#demoBn');if(bn){bn.hidden=!ME;if(ME)fill(bn,h('b',null,'Örnek veriler. '),'Girişiniz gerçek; panellerdeki kişi, oturum ve rakamlar şimdilik örnek. Gerçek kayıtlar bir sonraki adımda bağlanacak.');}
   const tr=$('#tbR');tr.replaceChildren();
   if(r==='mentor')tr.append(btn('btn-o btn-s',[ic('spark'),'Barış AI'],()=>go('ai')));
   if(r==='merkez'&&S.page!=='ofisler')tr.append(btn('btn-k btn-s',[ic('plus'),'Yeni ofis aç'],()=>openNewOffice()));
@@ -1352,6 +1365,7 @@ function openBell(a){
   popup(a,[h('div',{class:'pop-h'},'Bildirimler')].concat(L.length?L.map(n=>h('button',{type:'button',role:'menuitem',onclick:()=>{closePop();n.on();}},h('span',{class:'li-i '+(n.cls||'')},ic(n.ic)),h('span',{class:'t'},n.t,h('span',null,n.s)))):[h('div',{class:'pop-h',style:'padding:6px 10px 12px;font-weight:500'},'Yeni bildirim yok.')]),{right:true});
 }
 function openMe(a){
+  if(ME){popup(a,[h('div',{class:'pop-h'},ME.email),h('a',{href:'index.html',role:'menuitem'},ic('ext'),'Siteye dön'),h('button',{type:'button',role:'menuitem',onclick:()=>{closePop();signOutReal();}},ic('out'),'Çıkış yap')],{dk:true,up:true});return;}
   const roles=[['mentor','Mentor',PPL.mentor.n],['broker','Broker',PPL.broker.n],['merkez','Merkez yöneticisi',PPL.merkez.n]];
   popup(a,[h('div',{class:'pop-h'},'Önizleme rolü')].concat(roles.map(([k,l,n])=>h('button',{type:'button',role:'menuitem','aria-current':String(S.role===k&&!(k==='mentor'&&S.asBroker)),onclick:()=>{closePop();S.asBroker=false;nav(k+'/'+NAV[k][0][0]);}},h('span',{class:'av s k'},ini(n)),h('span',{class:'t'},l,h('span',null,n)),S.role===k&&!(k==='mentor'&&S.asBroker)?ic('tick'):null)),[h('hr'),h('a',{href:'index.html',role:'menuitem'},ic('ext'),'Siteye dön'),h('button',{type:'button',role:'menuitem',onclick:()=>{closePop();nav('');}},ic('out'),'Çıkış yap')]),{dk:true,up:true});
 }
@@ -1364,7 +1378,7 @@ function showLogin(){
     [['mentor','Mentor',PPL.mentor.n+', '+OFF.n,'users'],['broker','Broker',PPL.broker.n+', aynı ofis','building'],['merkez','Merkez yöneticisi',PPL.merkez.n+', bütün ofisler','shield']].forEach(([k,l,s,i])=>dm.append(h('button',{class:'rb',type:'button',onclick:()=>{S.asBroker=false;nav(k+'/'+NAV[k][0][0]);}},h('span',{class:'ri'},ic(i)),h('span',{class:'t'},h('b',null,l+' olarak gir'),h('span',null,s)),ic('chev'))));
   }
 }
-$('#lgForm').addEventListener('submit',e=>{e.preventDefault();const m=$('#lgMail').value.toLocaleLowerCase('tr');const r=/broker/.test(m)?'broker':/merkez|akademi/.test(m)?'merkez':'mentor';S.asBroker=false;nav(r+'/'+NAV[r][0][0]);});
+$('#lgForm').addEventListener('submit',e=>{e.preventDefault();if(SB){sendLink($('#lgMail').value.trim());return;}const m=$('#lgMail').value.toLocaleLowerCase('tr');const r=/broker/.test(m)?'broker':/merkez|akademi/.test(m)?'merkez':'mentor';S.asBroker=false;nav(r+'/'+NAV[r][0][0]);});
 
 /* =================== KATMANLAR =================== */
 let lastFocus=null,drOpen=false,mdOpen=false,sesOpen=false,popEl=null;
@@ -2559,6 +2573,84 @@ VIEWS.merkez.guvenlik=()=>{
   return root;
 };
 
+/* =================== GİRİŞ: SUPABASE =================== */
+// Yayınlanabilir anahtar tarayıcıda durmak için yapılmıştır, gizli değildir; veriyi satır kuralları korur.
+// Gizli anahtar (secret) asla buraya ya da depoya konmaz.
+const SB_URL='https://xjbqesljonbbduldeesd.supabase.co';
+const SB_KEY='sb_publishable_VaavFE-aieVC-vJJ7AA-Mg_k5RNSJNq';
+const ROLE_HOME={merkez:'merkez/genel',broker:'broker/ozet',mentor:'mentor/panel'};
+const ROLE_NAME={merkez:'Merkez yöneticisi',broker:'Broker',mentor:'Mentor'};
+const roleOk=r=>!ME||r===ME.role||(ME.role==='broker'&&r==='mentor');
+
+function lgMsg(t,k){const m=$('#lgMsg');if(!m)return;m.hidden=!t;m.className='lg-msg'+(k?' '+k:'');m.textContent=t||'';}
+function lgBusy(b){const x=$('#lgBtn');if(!x)return;x.disabled=b;x.textContent=b?'Gönderiliyor…':'Giriş bağlantısı gönder';}
+
+async function sendLink(mail){
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)){lgMsg('Geçerli bir e-posta adresi yazın.','er');$('#lgMail').focus();return;}
+  lgBusy(true);lgMsg('');
+  let error=null;
+  try{({error}=await SB.auth.signInWithOtp({email:mail,options:{shouldCreateUser:false,emailRedirectTo:location.origin+location.pathname}}));}
+  catch(e){error=e||{};}
+  lgBusy(false);
+  const code=error&&error.code||'',msg=error&&error.message||'';
+  // Hesabı olmayan adres için de aynı cevap: kimin kayıtlı olduğu bu ekrandan anlaşılmasın.
+  if(!error||code==='otp_disabled'||code==='signup_disabled'||/signups? not allowed/i.test(msg))
+    lgMsg('Bu adres akademide kayıtlıysa giriş bağlantısı birkaç dakika içinde e-postanıza gelir. Gelmezse davet e-postasındaki adresi yazdığınızdan emin olun.','ok');
+  else if(error.status===429||/rate limit|security purposes/i.test(msg))
+    lgMsg('Kısa sürede çok fazla bağlantı istendi. Birkaç dakika sonra tekrar deneyin.','er');
+  else lgMsg('Bağlantı gönderilemedi. Biraz sonra tekrar deneyin.','er');
+}
+
+async function enterReal(user){
+  let p=null,off=null,err=null;
+  try{
+    const r=await SB.from('profiles').select('role,office_id,full_name,email,active').eq('id',user.id).maybeSingle();
+    p=r.data;err=r.error;
+    if(!err&&p&&p.office_id){const o=await SB.from('offices').select('name,status,membership_end').eq('id',p.office_id).maybeSingle();off=o.data;err=o.error;}
+  }catch(e){err=e;}
+  if(err){ME=null;showLogin();lgMsg('Hesap bilgileri alınamadı. Bağlantınızı kontrol edip sayfayı yenileyin.','er');return false;}
+  const inactive=!p||!p.active;
+  const closed=!inactive&&p.role!=='merkez'&&(!off||off.status==='pasif'||(off.membership_end&&new Date(off.membership_end+'T23:59:59')<new Date()));
+  if(inactive||closed){
+    try{await SB.auth.signOut();}catch(e){}
+    ME=null;showLogin();
+    lgMsg(inactive?'Bu hesap akademide etkin değil. Merkez yöneticisiyle görüşün.':'Ofisinizin akademi üyeliği etkin değil. Merkez yöneticisiyle görüşün.','er');
+    return false;
+  }
+  ME={id:user.id,role:p.role,name:p.full_name||user.email,email:user.email,office:off&&off.name||null};
+  return true;
+}
+
+async function signOutReal(){
+  const sb=SB;ME=null;closeAllLayers();
+  try{if(sb)await sb.auth.signOut();}catch(e){}
+  nav('');lgMsg('Çıkış yaptınız.','ok');
+}
+
+async function boot(){
+  if(!window.supabase||!window.supabase.createClient){route();return;}
+  const hash=location.hash,authHash=/(^|[#&])(access_token|error|error_description)=/.test(hash);
+  if(authHash){$('#app').hidden=true;$('#login').hidden=false;}
+  try{SB=window.supabase.createClient(SB_URL,SB_KEY,{auth:{flowType:'implicit',detectSessionInUrl:true,persistSession:true,autoRefreshToken:true}});}
+  catch(e){SB=null;route();return;}
+  let session=null;
+  try{({data:{session}}=await SB.auth.getSession());}catch(e){}
+  let fail='';
+  if(authHash){
+    const q=new URLSearchParams(hash.replace(/^#\/?/,''));
+    if(q.get('error'))fail=/expired|invalid/i.test((q.get('error_code')||'')+' '+(q.get('error_description')||''))
+      ?'Giriş bağlantısının süresi dolmuş ya da daha önce kullanılmış. Yeni bağlantı isteyin.'
+      :'Giriş tamamlanamadı. Yeni bağlantı isteyin.';
+    try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}
+    CUR='';
+  }
+  if(session&&session.user){
+    if(await enterReal(session.user)){const want=CUR.split('/')[0];nav(NAV[want]&&roleOk(want)?CUR:ROLE_HOME[ME.role]);}
+  }else if(authHash){showLogin();lgMsg(fail||'Giriş tamamlanamadı. Yeni bağlantı isteyin.','er');}
+  else route();
+  SB.auth.onAuthStateChange(ev=>{if(ev==='SIGNED_OUT'&&ME){ME=null;closeAllLayers();nav('');}});
+}
+
 /* =================== BAŞLAT =================== */
 $('#meBtn').addEventListener('click',e=>openMe(e.currentTarget));
 $('#menuBtn').addEventListener('click',()=>document.body.classList.toggle('nav-on'));
@@ -2574,7 +2666,7 @@ document.addEventListener('click',e=>{
   if(href.charAt(0)==='#'){e.preventDefault();nav(href.slice(1));return;}
   if(window.__EMBED&&/^index\.html/.test(href)){e.preventDefault();try{parent.postMessage({ak:'close',to:href.split('#')[1]||''},'*');}catch(err){}}
 });
-route();
+boot();
 })();
 
 </script>
