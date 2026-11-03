@@ -304,6 +304,15 @@ function qr(seed){
   const p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.setAttribute('fill','#111');s.append(bg,p);return s;
 }
 const VURL='bariskilicarslan.com/dogrula';
+function qrNode(no){
+  if(!no||typeof window.qrcode!=='function')return qr(no||'taslak');
+  let q;try{q=window.qrcode(0,'M');q.addData('https://'+VURL+'/'+no);q.make();}catch(e){return qr(no);}
+  const n=q.getModuleCount();let d='';
+  for(let y=0;y<n;y++)for(let x=0;x<n;x++)if(q.isDark(y,x))d+='M'+x+' '+y+'h1v1h-1z';
+  const s=document.createElementNS(NS,'svg');s.setAttribute('viewBox','-1 -1 '+(n+2)+' '+(n+2));s.setAttribute('aria-hidden','true');s.setAttribute('shape-rendering','crispEdges');
+  const bg=document.createElementNS(NS,'rect');bg.setAttribute('x','-1');bg.setAttribute('y','-1');bg.setAttribute('width',String(n+2));bg.setAttribute('height',String(n+2));bg.setAttribute('fill','#fff');
+  const p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.setAttribute('fill','#111');s.append(bg,p);return s;
+}
 function certNode(x){
   const c=COM[x.c]||{n:x.name||'Ad Soyad'},ty=x.ty,t=x.tr?TRM[x.tr]:null;
   const body={kat:'adlı danışmanın aşağıdaki eğitimin oturumlarına katıldığını ve koçluk çalışmasını tamamladığını onaylar.',bas:'adlı danışmanın aşağıdaki eğitimin uygulamalarını yaptığını ve mentor onayıyla başarıyla tamamladığını onaylar.',mc:'adlı danışmanın Masterclass Akademi’nin ana eğitimlerini ve uygulamalarını tamamladığını onaylar.'}[ty];
@@ -318,7 +327,7 @@ function certNode(x){
     h('div',{class:'ctn'},t?t.t:MCSET.size+' ana eğitim ve uygulamaları'),
     h('div',{class:'cd'},(x.d?ddy(x.d):'Tarih')+', '+OFF.n),
     h('div',{class:'cs'},[['Barış Kılıçarslan','Eğitmen'],[PPL.mentor.n,'Mentor'],[PPL.broker.n,'Broker']].map(([n,r])=>h('div',{class:'sig'},h('i',null,n),h('span',null,r))))
-  ),h('div',{class:'cv'},qr(x.no||'taslak'),h('div',null,'Sertifika no',h('b',null,x.no||'Üretilince verilir'),VURL))]);
+  ),h('div',{class:'cv'},qrNode(x.no),h('div',null,'Sertifika no',h('b',null,x.no||'Üretilince verilir'),VURL))]);
   return el;
 }
 function openCert(x,sample){

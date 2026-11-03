@@ -1,5 +1,23 @@
 {
   "headers": [
-    { "source": "/(.*)", "headers": [ { "key": "X-Robots-Tag", "value": "noindex, nofollow" } ] }
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/dogrula/:no",
+      "destination": "/dogrula.html"
+    },
+    {
+      "source": "/dogrula",
+      "destination": "/dogrula.html"
+    }
   ]
 }

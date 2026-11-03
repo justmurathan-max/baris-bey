@@ -184,18 +184,19 @@ function openNewTraining(){
 const OTHERCERT=[{no:'MA-26-00188',n:'Gökhan Arslan',o:'RE/MAX Örnek Ofis Çankaya',tr:'iu',ty:'bas',d:D(-64)},{no:'MA-26-00203',n:'Sevgi Kara',o:'RE/MAX Örnek Ofis Bornova',tr:'pa',ty:'kat',d:D(-51)},{no:'MA-26-00247',n:'Onur Çelik',o:'RE/MAX Örnek Ofis Muratpaşa',tr:'kb',ty:'kat',d:D(-22)}];
 function findCert(no){
   no=no.trim().toLocaleUpperCase('tr');
+  if(realM())return MCERT.find(c=>c.no===no)||null;
   const x=CERT.find(c=>c.no===no);if(x)return{n:COM[x.c].n,o:OFF.n,tr:x.tr,ty:x.ty,d:x.d,no:x.no};
   return OTHERCERT.find(c=>c.no===no)||null;
 }
 function verifyBox(){
   const out=h('div');
   const inp=h('input',{class:'inp',type:'text',placeholder:'Örnek: '+(CERT[0]?CERT[0].no:'MA-26-00311'),'aria-label':'Sertifika numarası'});
-  return h('div',{class:'st-s'},h('form',{style:'display:flex;gap:8px',onsubmit:e=>{e.preventDefault();const r=findCert(inp.value);out.replaceChildren(r?h('div',{class:'vr'},h('b',null,'Geçerli sertifika'),h('dl',{class:'kv'},h('dt',null,'Ad soyad'),h('dd',null,r.n),h('dt',null,'Tür'),h('dd',null,CT[r.ty]),h('dt',null,'Eğitim'),h('dd',null,r.tr?TRM[r.tr].t:'Masterclass Akademi'),h('dt',null,'Ofis'),h('dd',null,r.o),h('dt',null,'Tarih'),h('dd',null,ddy(r.d)))):h('div',{class:'vr no'},h('b',null,'Bu numarayla sertifika bulunamadı'),h('span',{class:'sm'},'Numarayı kontrol edin. Doğrulama sayfası herkese açıktır: '+VURL)));}},inp,h('button',{class:'btn btn-k btn-s',type:'submit'},'Doğrula')),out);
+  return h('div',{class:'st-s'},h('form',{style:'display:flex;gap:8px',onsubmit:e=>{e.preventDefault();const r=findCert(inp.value);out.replaceChildren(r?h('div',{class:'vr'+(r.rev?' no':'')},h('b',null,r.rev?'Bu sertifika iptal edilmiş':'Geçerli sertifika'),h('dl',{class:'kv'},h('dt',null,'Ad soyad'),h('dd',null,r.n),h('dt',null,'Tür'),h('dd',null,CT[r.ty]),h('dt',null,'Eğitim'),h('dd',null,r.tr?TRM[r.tr].t:'Masterclass Akademi'),h('dt',null,'Ofis'),h('dd',null,r.o),h('dt',null,'Tarih'),h('dd',null,ddy(r.d)))):h('div',{class:'vr no'},h('b',null,'Bu numarayla sertifika bulunamadı'),h('span',{class:'sm'},'Numarayı kontrol edin. Doğrulama sayfası herkese açıktır: '+VURL)));}},inp,h('button',{class:'btn btn-k btn-s',type:'submit'},'Doğrula')),out);
 }
 VIEWS.merkez.sertifikalar=()=>{
   const root=h('div');
   root.append(ph('Sertifikalar','Bütün ofislerin sertifikaları. Her sertifika numaralıdır; QR ya da numarayla herkes doğrulayabilir.'));
-  const all=CERT.map(x=>({no:x.no,n:COM[x.c].n,o:OFF.n,tr:x.tr,ty:x.ty,d:x.d})).concat(OTHERCERT).sort((a,b)=>b.d-a.d);
+  const all=(realM()?MCERT.slice():CERT.map(x=>({no:x.no,n:COM[x.c]?COM[x.c].n:(x.hn||'—'),o:OFF.n,tr:x.tr,ty:x.ty,d:x.d})).concat(OTHERCERT)).sort((a,b)=>b.d-a.d);
   root.append(h('div',{class:'g2'},
     h('section',{class:'pn'},h('div',{class:'pn-h'},h('h2',null,'Sertifika kaydı',h('span',{class:'c'},String(all.length)))),h('div',{class:'tw'},h('table',{class:'tbl rsp'},h('thead',null,h('tr',null,['Numara','Ad soyad','Ofis','Tür','Tarih'].map(x=>h('th',null,x)))),
       h('tbody',null,all.map(x=>h('tr',null,h('td',{class:'num'},h('b',null,x.no)),h('td',{'data-l':'Ad'},x.n),h('td',{'data-l':'Ofis'},x.o.replace('RE/MAX Örnek Ofis ','')),h('td',{'data-l':'Tür'},chip(x.ty==='kat'?'ln':'gilt','award',CT[x.ty].replace(' Sertifikası',''))),h('td',{'data-l':'Tarih'},dnum(x.d)))))))),

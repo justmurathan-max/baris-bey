@@ -238,6 +238,7 @@ const OFFS=[
 const TIERS=['1–25','26–75','76–99','100+'];
 const MAT={};TR.forEach(t=>{const full=['iu','pa','au'].includes(t.id),half=['kb','dfi'].includes(t.id);MAT[t.id]={vim:1,ext:full?1:0,pdf:[full||half?1:0,full?1:0,full?1:0],live:1};});
 const NEWTR=[];
+const MCERT=[];
 const REQS=[
   {id:'q1',at:D(-1),kind:'kurumsal',name:'Ece Yalın',company:'Örnek Holding',phone:'0532 000 00 01',topic:'Satış',size:'21-80 kişi',message:'Mart ayında İstanbul’da yarım günlük eğitim',status:'yeni'},
   {id:'q2',at:D(-2),kind:'ofis',name:'Kerem Aksoy',company:'RE/MAX Örnek Ofis Moda',city:'İstanbul',phone:'0532 000 00 02',size:'26–75',status:'yeni'},

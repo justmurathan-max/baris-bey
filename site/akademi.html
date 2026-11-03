@@ -951,6 +951,7 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 <div id="pr" aria-hidden="true"></div>
 
 <script src="js/supabase.js"></script>
+<script src="js/qr.js"></script>
 <script>/*__BOOT__*/</script>
 <script>
 'use strict';
@@ -1193,6 +1194,7 @@ const OFFS=[
 const TIERS=['1–25','26–75','76–99','100+'];
 const MAT={};TR.forEach(t=>{const full=['iu','pa','au'].includes(t.id),half=['kb','dfi'].includes(t.id);MAT[t.id]={vim:1,ext:full?1:0,pdf:[full||half?1:0,full?1:0,full?1:0],live:1};});
 const NEWTR=[];
+const MCERT=[];
 const REQS=[
   {id:'q1',at:D(-1),kind:'kurumsal',name:'Ece Yalın',company:'Örnek Holding',phone:'0532 000 00 01',topic:'Satış',size:'21-80 kişi',message:'Mart ayında İstanbul’da yarım günlük eğitim',status:'yeni'},
   {id:'q2',at:D(-2),kind:'ofis',name:'Kerem Aksoy',company:'RE/MAX Örnek Ofis Moda',city:'İstanbul',phone:'0532 000 00 02',size:'26–75',status:'yeni'},
@@ -1512,6 +1514,15 @@ function qr(seed){
   const p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.setAttribute('fill','#111');s.append(bg,p);return s;
 }
 const VURL='bariskilicarslan.com/dogrula';
+function qrNode(no){
+  if(!no||typeof window.qrcode!=='function')return qr(no||'taslak');
+  let q;try{q=window.qrcode(0,'M');q.addData('https://'+VURL+'/'+no);q.make();}catch(e){return qr(no);}
+  const n=q.getModuleCount();let d='';
+  for(let y=0;y<n;y++)for(let x=0;x<n;x++)if(q.isDark(y,x))d+='M'+x+' '+y+'h1v1h-1z';
+  const s=document.createElementNS(NS,'svg');s.setAttribute('viewBox','-1 -1 '+(n+2)+' '+(n+2));s.setAttribute('aria-hidden','true');s.setAttribute('shape-rendering','crispEdges');
+  const bg=document.createElementNS(NS,'rect');bg.setAttribute('x','-1');bg.setAttribute('y','-1');bg.setAttribute('width',String(n+2));bg.setAttribute('height',String(n+2));bg.setAttribute('fill','#fff');
+  const p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.setAttribute('fill','#111');s.append(bg,p);return s;
+}
 function certNode(x){
   const c=COM[x.c]||{n:x.name||'Ad Soyad'},ty=x.ty,t=x.tr?TRM[x.tr]:null;
   const body={kat:'adlı danışmanın aşağıdaki eğitimin oturumlarına katıldığını ve koçluk çalışmasını tamamladığını onaylar.',bas:'adlı danışmanın aşağıdaki eğitimin uygulamalarını yaptığını ve mentor onayıyla başarıyla tamamladığını onaylar.',mc:'adlı danışmanın Masterclass Akademi’nin ana eğitimlerini ve uygulamalarını tamamladığını onaylar.'}[ty];
@@ -1526,7 +1537,7 @@ function certNode(x){
     h('div',{class:'ctn'},t?t.t:MCSET.size+' ana eğitim ve uygulamaları'),
     h('div',{class:'cd'},(x.d?ddy(x.d):'Tarih')+', '+OFF.n),
     h('div',{class:'cs'},[['Barış Kılıçarslan','Eğitmen'],[PPL.mentor.n,'Mentor'],[PPL.broker.n,'Broker']].map(([n,r])=>h('div',{class:'sig'},h('i',null,n),h('span',null,r))))
-  ),h('div',{class:'cv'},qr(x.no||'taslak'),h('div',null,'Sertifika no',h('b',null,x.no||'Üretilince verilir'),VURL))]);
+  ),h('div',{class:'cv'},qrNode(x.no),h('div',null,'Sertifika no',h('b',null,x.no||'Üretilince verilir'),VURL))]);
   return el;
 }
 function openCert(x,sample){
@@ -2563,18 +2574,19 @@ function openNewTraining(){
 const OTHERCERT=[{no:'MA-26-00188',n:'Gökhan Arslan',o:'RE/MAX Örnek Ofis Çankaya',tr:'iu',ty:'bas',d:D(-64)},{no:'MA-26-00203',n:'Sevgi Kara',o:'RE/MAX Örnek Ofis Bornova',tr:'pa',ty:'kat',d:D(-51)},{no:'MA-26-00247',n:'Onur Çelik',o:'RE/MAX Örnek Ofis Muratpaşa',tr:'kb',ty:'kat',d:D(-22)}];
 function findCert(no){
   no=no.trim().toLocaleUpperCase('tr');
+  if(realM())return MCERT.find(c=>c.no===no)||null;
   const x=CERT.find(c=>c.no===no);if(x)return{n:COM[x.c].n,o:OFF.n,tr:x.tr,ty:x.ty,d:x.d,no:x.no};
   return OTHERCERT.find(c=>c.no===no)||null;
 }
 function verifyBox(){
   const out=h('div');
   const inp=h('input',{class:'inp',type:'text',placeholder:'Örnek: '+(CERT[0]?CERT[0].no:'MA-26-00311'),'aria-label':'Sertifika numarası'});
-  return h('div',{class:'st-s'},h('form',{style:'display:flex;gap:8px',onsubmit:e=>{e.preventDefault();const r=findCert(inp.value);out.replaceChildren(r?h('div',{class:'vr'},h('b',null,'Geçerli sertifika'),h('dl',{class:'kv'},h('dt',null,'Ad soyad'),h('dd',null,r.n),h('dt',null,'Tür'),h('dd',null,CT[r.ty]),h('dt',null,'Eğitim'),h('dd',null,r.tr?TRM[r.tr].t:'Masterclass Akademi'),h('dt',null,'Ofis'),h('dd',null,r.o),h('dt',null,'Tarih'),h('dd',null,ddy(r.d)))):h('div',{class:'vr no'},h('b',null,'Bu numarayla sertifika bulunamadı'),h('span',{class:'sm'},'Numarayı kontrol edin. Doğrulama sayfası herkese açıktır: '+VURL)));}},inp,h('button',{class:'btn btn-k btn-s',type:'submit'},'Doğrula')),out);
+  return h('div',{class:'st-s'},h('form',{style:'display:flex;gap:8px',onsubmit:e=>{e.preventDefault();const r=findCert(inp.value);out.replaceChildren(r?h('div',{class:'vr'+(r.rev?' no':'')},h('b',null,r.rev?'Bu sertifika iptal edilmiş':'Geçerli sertifika'),h('dl',{class:'kv'},h('dt',null,'Ad soyad'),h('dd',null,r.n),h('dt',null,'Tür'),h('dd',null,CT[r.ty]),h('dt',null,'Eğitim'),h('dd',null,r.tr?TRM[r.tr].t:'Masterclass Akademi'),h('dt',null,'Ofis'),h('dd',null,r.o),h('dt',null,'Tarih'),h('dd',null,ddy(r.d)))):h('div',{class:'vr no'},h('b',null,'Bu numarayla sertifika bulunamadı'),h('span',{class:'sm'},'Numarayı kontrol edin. Doğrulama sayfası herkese açıktır: '+VURL)));}},inp,h('button',{class:'btn btn-k btn-s',type:'submit'},'Doğrula')),out);
 }
 VIEWS.merkez.sertifikalar=()=>{
   const root=h('div');
   root.append(ph('Sertifikalar','Bütün ofislerin sertifikaları. Her sertifika numaralıdır; QR ya da numarayla herkes doğrulayabilir.'));
-  const all=CERT.map(x=>({no:x.no,n:COM[x.c].n,o:OFF.n,tr:x.tr,ty:x.ty,d:x.d})).concat(OTHERCERT).sort((a,b)=>b.d-a.d);
+  const all=(realM()?MCERT.slice():CERT.map(x=>({no:x.no,n:COM[x.c]?COM[x.c].n:(x.hn||'—'),o:OFF.n,tr:x.tr,ty:x.ty,d:x.d})).concat(OTHERCERT)).sort((a,b)=>b.d-a.d);
   root.append(h('div',{class:'g2'},
     h('section',{class:'pn'},h('div',{class:'pn-h'},h('h2',null,'Sertifika kaydı',h('span',{class:'c'},String(all.length)))),h('div',{class:'tw'},h('table',{class:'tbl rsp'},h('thead',null,h('tr',null,['Numara','Ad soyad','Ofis','Tür','Tarih'].map(x=>h('th',null,x)))),
       h('tbody',null,all.map(x=>h('tr',null,h('td',{class:'num'},h('b',null,x.no)),h('td',{'data-l':'Ad'},x.n),h('td',{'data-l':'Ofis'},x.o.replace('RE/MAX Örnek Ofis ','')),h('td',{'data-l':'Tür'},chip(x.ty==='kat'?'ln':'gilt','award',CT[x.ty].replace(' Sertifikası',''))),h('td',{'data-l':'Tarih'},dnum(x.d)))))))),
@@ -2698,12 +2710,12 @@ async function loadMerkez(){
     SB.from('profiles').select('office_id,role,full_name,email').not('office_id','is',null),
     SB.from('invitations').select('office_id,email,role,full_name'),
     SB.from('consultants').select('office_id').is('left_on',null),
-    SB.from('certificates').select('office_id').is('revoked_at',null),
+    SB.from('certificates').select('no,holder_name,office_id,training_id,kind,issued_on,revoked_at'),
     SB.from('runs').select('office_id,days').neq('status','iptal'),
     SB.from('site_requests').select('*').order('created_at',{ascending:false}).limit(300)
   ]).catch(e=>[{error:e}]);
   if(!rq||[o,pr,inv,co,ce,ru,rq].some(r=>r.error)){toast('Ofis bilgileri alınamadı. Sayfayı yenileyin.',6000);return false;}
-  const from=iso(plus(T0,-30)),to=iso(T0),cnt=(rows,id)=>rows.filter(r=>r.office_id===id).length,nm=x=>x?(x.full_name||x.email):null;
+  const from=iso(plus(T0,-30)),to=iso(T0),cnt=(rows,id)=>rows.filter(r=>r.office_id===id&&!r.revoked_at).length,nm=x=>x?(x.full_name||x.email):null;
   const list=o.data.map(r=>{
     const staff=pr.data.filter(p=>p.office_id===r.id),invs=inv.data.filter(i=>i.office_id===r.id);
     const b=staff.find(p=>p.role==='broker')||invs.find(i=>i.role==='broker'),m=staff.find(p=>p.role==='mentor')||invs.find(i=>i.role==='mentor');
@@ -2713,6 +2725,8 @@ async function loadMerkez(){
       ses,st:r.status==='aktif'?'aktif':r.status==='pasif'?'pasif':'davet',comp:0,cert:cnt(ce.data,r.id),inv:new Date(r.invited_at||r.created_at)};
   });
   OFFS.splice(0,OFFS.length,...list);
+  const onm=id=>{const x=o.data.find(r=>r.id===id);return x?x.name:'—';};
+  MCERT.splice(0,MCERT.length,...ce.data.map(x=>({no:x.no,n:x.holder_name,o:onm(x.office_id),tr:x.training_id,ty:x.kind,d:fromIso(x.issued_on),rev:!!x.revoked_at})));
   REQS.splice(0,REQS.length,...rq.data.map(x=>{const m=x.meta||{};return{id:x.id,at:new Date(x.created_at),kind:x.kind,name:x.full_name,company:x.company,city:x.city,phone:x.phone,email:x.email,message:x.message,topic:m.topic,size:m.size,mode:m.mode,status:x.status};}));
   return true;
 }
