@@ -236,6 +236,17 @@ const SCN={
     ac:[['Ev güzel, beğendim ama eşimle konuşup size dönerim.'],['Açıkçası fiyat biraz zorluyor, eşim de oradan soracak.','Anlıyorum ama acele etmek istemiyoruz.'],['Yarın akşam eşimle birlikte bir kez daha bakabilir miyiz?','Biz yine de bir düşünelim.'],['Tamam, yarın görüşelim.']]}
 };
 const PV={sc:'komisyon',msgs:[],turn:0,busy:false,score:null};
+// Gerçek girişte Claude'a bağlı fonksiyon denenir; anahtar yoksa ya da hata olursa sabit akış sürer.
+let AI_OFF=false;
+async function aiCall(action){
+  if(!SB||!ME||AI_OFF)return null;
+  const sc=SCN[PV.sc];
+  try{
+    const{data,error}=await SB.functions.invoke('baris-ai',{body:{action,scenario:{ad:sc.ad,kisi:sc.kisi,egitim:TRM[sc.tr].t,bolum:sc.bol,ornek:sc.ornek},messages:PV.msgs.map(m=>({w:m.w,t:m.t}))}});
+    if(error){if(error.context&&error.context.status===503)AI_OFF=true;return null;}
+    return data||null;
+  }catch(e){return null;}
+}
 function pvStart(k){PV.sc=k;PV.msgs=[{w:'ai',t:SCN[k].ac[0][0]}];PV.turn=1;PV.busy=false;PV.score=null;}
 pvStart('komisyon');
 function evalProva(){
@@ -254,7 +265,9 @@ function chatBox(onEnd){
   const sc=SCN[PV.sc];
   const msgs=h('div',{class:'msgs','aria-live':'polite'});
   const inp=h('input',{class:'inp',type:'text',maxlength:'500',placeholder:'Grubun cevabını yazın','aria-label':'Grubun cevabı'});
-  const endB=btn('btn-o btn-s','Bitir ve puanla',()=>{PV.score=evalProva();drawMsgs();updB();});
+  const endB=btn('btn-o btn-s','Bitir ve puanla',()=>{
+    if(SB&&ME&&!AI_OFF){PV.busy=true;updB();aiCall('score').then(r=>{PV.busy=false;PV.score=r&&typeof r.p==='number'?{p:r.p,g:(r.g||[]).slice(0,2),d:(r.d||[]).slice(0,2),ornek:r.ornek||''}:evalProva();drawMsgs();updB();});return;}
+    PV.score=evalProva();drawMsgs();updB();});
   const sendB=h('button',{class:'btn btn-k btn-s',type:'submit','aria-label':'Gönder'},ic('send'));
   const updB=()=>{const mine=PV.msgs.filter(m=>m.w==='me').length;endB.disabled=PV.busy||mine<2||!!PV.score;inp.disabled=PV.busy||!!PV.score;sendB.disabled=PV.busy||!!PV.score;};
   function drawMsgs(){msgs.replaceChildren();
@@ -262,11 +275,14 @@ function chatBox(onEnd){
     if(PV.busy)msgs.append(h('div',{class:'msg ai'},h('span',{class:'msg-l'},sc.kisi+', müşteri'),h('div',{class:'bub typing','aria-label':'Yazıyor'},h('i'),h('i'),h('i'))));
     if(PV.score){const s=PV.score;msgs.append(h('div',{class:'score'},h('div',{class:'score-t'},h('span',{class:'score-n'},String(s.p)),h('div',null,h('b',null,'Barış AI değerlendirmesi'),h('div',{class:'sm',style:'color:var(--mud)'},'100 üzerinden, grubun cevaplarına göre'))),
       s.g.length?h('div',null,h('h4',null,'Güçlü yanlar'),h('ul',null,s.g.map(x=>h('li',null,x)))):null,s.d.length?h('div',null,h('h4',null,'Geliştirilecekler'),h('ul',null,s.d.map(x=>h('li',null,x)))):null,
-      h('div',{class:'q'},'“'+sc.ornek+'”',h('small',{style:'color:var(--mud)'},'Bir dahaki sefere denenebilecek cümle')),h('div',{class:'sm',style:'color:var(--mud)'},'İlgili bölüm: '+sc.bol)));}
+      h('div',{class:'q'},'“'+(s.ornek||sc.ornek)+'”',h('small',{style:'color:var(--mud)'},'Bir dahaki sefere denenebilecek cümle')),h('div',{class:'sm',style:'color:var(--mud)'},'İlgili bölüm: '+sc.bol)));}
     msgs.scrollTop=msgs.scrollHeight;}
   const form=h('form',{class:'cmp',onsubmit:e=>{e.preventDefault();const v=inp.value.trim();if(!v||PV.busy||PV.score)return;inp.value='';PV.msgs.push({w:'me',t:v});PV.busy=true;drawMsgs();updB();
     const asked=/\?/.test(v),step=sc.ac[Math.min(PV.turn,sc.ac.length-1)];
-    setTimeout(()=>{PV.msgs.push({w:'ai',t:step.length>1?(asked?step[0]:step[1]):step[0]});PV.turn++;PV.busy=false;drawMsgs();updB();if(!PV.score)inp.focus();},900+Math.random()*500);}},inp,sendB);
+    const fallback=()=>{PV.msgs.push({w:'ai',t:step.length>1?(asked?step[0]:step[1]):step[0]});PV.turn++;};
+    const finish=()=>{PV.busy=false;drawMsgs();updB();if(!PV.score)inp.focus();};
+    if(SB&&ME&&!AI_OFF)aiCall('reply').then(r=>{if(r&&r.text){PV.msgs.push({w:'ai',t:r.text});PV.turn++;}else fallback();finish();});
+    else setTimeout(()=>{fallback();finish();},900+Math.random()*500);}},inp,sendB);
   const head=h('div',{class:'chat-h'},h('span',{class:'li-i ink'},ic('spark')),h('div',{class:'t'},h('b',null,sc.ad),h('span',null,'Barış AI müşteriyi oynar; grup cevabı birlikte kurar, mentor yazar.')),btn('btn-g btn-xs',[ic('refresh'),'Yeni prova'],()=>{pvStart(PV.sc);onEnd();}));
   drawMsgs();updB();
   return h('section',{class:'pn chat'},head,msgs,h('div',{style:'display:flex;gap:8px;align-items:center;padding:0 14px'},h('span',{class:'sm mu',style:'flex:1;padding-top:10px'},'En az iki cevaptan sonra puanlayın.'),h('div',{style:'padding-top:10px'},endB)),form);
