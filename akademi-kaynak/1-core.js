@@ -1,5 +1,7 @@
 'use strict';
 (()=>{
+/* Gerçek giriş durumu (Supabase): en başta tanımlı, örnek veri üretilirken de okunabilsin */
+let SB=null,ME=null;
 /* =================== YARDIMCILAR =================== */
 const $=(s,r=document)=>r.querySelector(s);
 const $$=(s,r=document)=>[...r.querySelectorAll(s)];
@@ -209,7 +211,7 @@ const BIZ={ayse:[14,5,3,1],mert:[12,4,2,1],elif:[9,3,1,0],burak:[6,1,0,0],zeynep
 /* ---------- Sertifikalar ---------- */
 const CT={kat:'Katılım Sertifikası',bas:'Başarı Sertifikası',mc:'Masterclass Akademi Sertifikası'};
 let CNO=311;
-const newNo=()=>'MA-'+String(T0.getFullYear()).slice(2)+'-'+String(CNO++).padStart(5,'0');
+const newNo=()=>realO()?certNo():'MA-'+String(T0.getFullYear()).slice(2)+'-'+String(CNO++).padStart(5,'0');
 const CERT=[];
 ['selin','emre','deniz','okan','gizem','kaan'].forEach(c=>CERT.push({no:newNo(),c,run:'r5',tr:'au',ty:'kat',d:plus(lastDay(RM('r5')),1)}));
 ['selin','emre','okan'].forEach(c=>CERT.push({no:newNo(),c,run:'r5',tr:'au',ty:'bas',d:plus(lastDay(RM('r5')),24)}));

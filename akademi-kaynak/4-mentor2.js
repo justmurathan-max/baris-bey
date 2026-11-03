@@ -10,6 +10,7 @@ function suggest(g){
   return TR.filter(t=>!taken.has(t.id)).map(t=>({t,p:groupNeed(g,t.id)})).filter(x=>x.p!=null).sort((a,b)=>b.p-a.p);
 }
 function vIhtiyac(ro){
+  if(ihG!=='all'&&!GRM[ihG])ihG=(GR[1]||GR[0]||{id:'all'}).id;
   const root=h('div');
   root.append(ph('İhtiyaç analizi','Her eğitim için yaklaşık on kısa başlık. Siz puanlarsınız, sistem ihtiyacı gösterir, kararı siz verirsiniz.',ro?[]:[btn('btn-k btn-s',[ic('gauge'),'Değerlendirme yap'],()=>openAssess({g:ihG==='all'?null:ihG}))]));
   root.append(h('div',{class:'bar-row'},seg([...GR.map(g=>[g.id,g.n,inG(g.id).length]),['all','Tüm ofis']],ihG,k=>{ihG=k;rerender();},'Grup'),

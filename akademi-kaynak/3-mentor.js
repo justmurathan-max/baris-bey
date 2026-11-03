@@ -209,7 +209,7 @@ function openSes(id,i){
 }
 function openPlan(pre={}){
   const tel=pre.tel;
-  let tr=pre.tr||(tel?RM(tel.run).tr:'iu'),g=pre.g||(tel?COM[tel.c].g:'b'),tpl=pre.tpl||'iki',d1=iso(wd(7)),d2=iso(nwd(fromIso(d1)));
+  let tr=pre.tr||(tel?RM(tel.run).tr:'iu'),g=pre.g||(tel?COM[tel.c].g:(GRM.b?'b':(GR[1]||GR[0]||{}).id)),tpl=pre.tpl||'iki',d1=iso(wd(7)),d2=iso(nwd(fromIso(d1)));
   const body=h('div',{class:'st'});
   const draw=()=>{const p=prevPct(tr);fill(body,
     tel?h('div',{class:'q'},'Telafi: '+COM[tel.c].n+', '+TRM[tr].t+' '+(tel.day+1)+'. gün bölümleri.',h('small',null,'Danışman telafiyi sizinle ya da başka bir grubun oturumunda izler.')):null,
@@ -223,7 +223,7 @@ function openPlan(pre={}){
   drawer({t:tel?'Telafi planla':'Oturum planla',s:tel?null:'Eğitimler arasında zorunlu sıra yok; ihtiyaca göre seçin.',body,foot:[btn('btn-o','Vazgeç',closeDrawer),btn('btn-k','Takvime ekle',()=>{
     if(!d1||(tpl==='iki'&&!d2))return;
     const days=[fromIso(d1)];if(tpl==='iki')days.push(fromIso(d2));
-    const r={id:'r'+(RUNNO++),tr,g:tel?COM[tel.c].g:g,days,tpl:tel?'yarim':tpl,st:'plan',dd:0,mem:tel?[tel.c]:inG(g).map(c=>c.id),tel:!!tel,telDay:tel?tel.day:null};
+    const r={id:realO()?uuid():'r'+(RUNNO++),tr,g:tel?COM[tel.c].g:g,days,tpl:tel?'yarim':tpl,st:'plan',dd:0,mem:tel?[tel.c]:inG(g).map(c=>c.id),tel:!!tel,telDay:tel?tel.day:null};
     if(!r.mem.length){toast('Bu grupta aktif danışman yok.');return;}
     RUNS.push(r);if(tel)TELAFI[tel.run+':'+tel.c+':'+tel.day]=r.id;
     calY=days[0].getFullYear();calM=days[0].getMonth();
@@ -261,12 +261,12 @@ function vDanismanlar(ro){
   return root;
 }
 function addRow(){
-  let g='y';
+  let g=GRM.y?'y':(GR[GR.length-1]||{}).id;
   const inp=h('input',{class:'inp',type:'text',placeholder:'Ad soyad',maxlength:'60','aria-label':'Yeni danışmanın adı soyadı',autocomplete:'off'});
   const s=sel(null,GR.map(x=>[x.id,x.n]),g,v=>{g=v;});s.className='inp';s.style.cssText='width:auto;min-width:170px';s.setAttribute('aria-label','Grup');
   return h('form',{class:'pn',style:'display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 12px 12px 16px;margin-bottom:18px',onsubmit:e=>{e.preventDefault();
       const n=inp.value.trim().replace(/\s+/g,' ');if(n.length<3||!/\s/.test(n)){inp.classList.add('shake');inp.focus();setTimeout(()=>inp.classList.remove('shake'),400);toast('Ad ve soyadı birlikte yazın.');return;}
-      const id='c'+Date.now().toString(36);const c={id,n,g,since:new Date(T0),left:null};CO.push(c);COM[id]=c;BIZ[id]=[0,0,0,0];dnF=g;toast(n+', '+GRM[g].n+' grubuna eklendi.');rerender();}},
+      if(!GRM[g]){toast('Önce bir grup seçin.');return;}const id=nid('c');const c={id,n,g,since:new Date(T0),left:null};CO.push(c);COM[id]=c;BIZ[id]=[0,0,0,0];dnF=g;toast(n+', '+GRM[g].n+' grubuna eklendi.');rerender();}},
     h('span',{class:'li-i'},ic('plus')),h('div',{style:'flex:1;min-width:200px'},inp),s,h('button',{class:'btn btn-k btn-s',type:'submit'},'Danışman ekle'));
 }
 function actChip(r,c){

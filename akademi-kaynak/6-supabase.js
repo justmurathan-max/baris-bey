@@ -43,7 +43,7 @@ async function enterReal(user){
     lgMsg(inactive?'Bu hesap akademide etkin değil. Merkez yöneticisiyle görüşün.':'Ofisinizin akademi üyeliği etkin değil. Merkez yöneticisiyle görüşün.','er');
     return false;
   }
-  ME={id:user.id,role:p.role,name:p.full_name||user.email,email:user.email,office:off&&off.name||null};
+  ME={id:user.id,role:p.role,name:p.full_name||user.email,email:user.email,office:off&&off.name||null,officeId:p.office_id||null,dataOk:false};
   return true;
 }
 
@@ -71,14 +71,14 @@ async function boot(){
     CUR='';
   }
   if(session&&session.user){
-    if(await enterReal(session.user)){if(ME.role==='merkez')await loadMerkez();const want=CUR.split('/')[0];nav(NAV[want]&&roleOk(want)?CUR:ROLE_HOME[ME.role]);}
+    if(await enterReal(session.user)){if(ME.role==='merkez')await loadMerkez();else await loadOffice().catch(()=>false);const want=CUR.split('/')[0];nav(NAV[want]&&roleOk(want)?CUR:ROLE_HOME[ME.role]);}
   }else if(authHash){showLogin();lgMsg(fail||'Giriş tamamlanamadı. Yeni bağlantı isteyin.','er');}
   else route();
   SB.auth.onAuthStateChange(ev=>{if(ev==='SIGNED_OUT'&&ME){ME=null;closeAllLayers();nav('');}});
 }
 
 /* =================== MERKEZ: GERÇEK OFİSLER =================== */
-const realM=()=>!!(SB&&ME&&ME.role==='merkez');
+function realM(){return !!(SB&&ME&&ME.role==='merkez');}
 const addYear=d=>{const x=new Date(d);x.setFullYear(x.getFullYear()+1);return x;};
 
 // Ofisleri ve sayılarını veritabanından alıp merkez ekranlarının kullandığı listeye koyar.

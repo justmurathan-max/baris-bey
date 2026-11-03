@@ -103,7 +103,6 @@ const NAV={
   merkez:[['genel','Genel bakış','home'],['ofisler','Ofisler','building'],['uyelikler','Üyelikler','card'],['egitimler','Eğitimler ve belgeler','book'],['sertifikalar','Sertifikalar','award'],['klasik','Klasik erişimler','key'],['guvenlik','Güvenlik','shield']]
 };
 const S={role:null,page:null,arg:null,asBroker:false};
-let SB=null,ME=null;
 const VIEWS={mentor:{},broker:{},merkez:{}};
 const meUser=()=>ME?{n:ME.name,r:ROLE_NAME[ME.role]}:S.role==='mentor'?(S.asBroker?PPL.broker:PPL.mentor):PPL[S.role]||PPL.mentor;
 const roleLabel=()=>S.role==='mentor'?(S.asBroker?'Broker, mentor görevinde':'Mentor'):ME?ROLE_NAME[S.role]:PPL[S.role].r;
@@ -136,6 +135,7 @@ function render(top){
   let v;try{v=VIEWS[S.role][S.page](S.arg);}catch(e){console.error(e);v=h('div',{class:'empty'},h('b',null,'Bu sayfa açılamadı'),String(e.message||e));}
   $('#pg').replaceChildren(v);shell();
   if(top){window.scrollTo(0,0);$('#pg').focus({preventScroll:true});}else window.scrollTo(0,y);
+  scheduleSync();
 }
 const rerender=()=>render(false);
 function shell(){
@@ -151,7 +151,7 @@ function shell(){
   $('#nav').replaceChildren(...NAV[r].map(([k,l,i])=>{const cur=S.page===k||(k==='egitimler'&&S.page==='egitim');const a=h('a',{href:'#'+r+'/'+k,'aria-current':cur?'page':null},ic(i),l);const n=badge(k);if(n)a.append(h('span',{class:'n','aria-label':n+' bekleyen'},String(n)));return a;}));
   $('#meBtn').replaceChildren(h('span',{class:'av k'},ini(me.n)),h('span',{class:'t'},h('b',null,me.n),h('span',null,roleLabel())),ic('down'));
   $('#crumb').replaceChildren(h('span',{class:'nw'},r==='merkez'?'Akademi merkezi':offName()));
-  const bn=$('#demoBn');if(bn){bn.hidden=!ME;if(ME)fill(bn,h('b',null,'Örnek veriler. '),ME.role==='merkez'?'Ofisler ve üyelikler gerçek kayıtlardan geliyor; sertifika, güvenlik ve klasik erişim sayfaları şimdilik örnek.':'Girişiniz gerçek; panellerdeki kişi, oturum ve rakamlar şimdilik örnek. Gerçek kayıtlar bir sonraki adımda bağlanacak.');}
+  const bn=$('#demoBn');if(bn){bn.hidden=!ME||(ME.role!=='merkez'&&ME.dataOk);if(ME&&ME.role!=='merkez'&&!ME.dataOk)fill(bn,h('b',null,'Ofis verileri alınamadı. '),'Bağlantınızı kontrol edip sayfayı yenileyin; bu hâlde yapılan değişiklikler kaydedilmez.');else if(ME)fill(bn,h('b',null,'Örnek veriler. '),ME.role==='merkez'?'Ofisler ve üyelikler gerçek kayıtlardan geliyor; sertifika, güvenlik ve klasik erişim sayfaları şimdilik örnek.':'Girişiniz gerçek; panellerdeki kişi, oturum ve rakamlar şimdilik örnek. Gerçek kayıtlar bir sonraki adımda bağlanacak.');}
   const tr=$('#tbR');tr.replaceChildren();
   if(r==='mentor')tr.append(btn('btn-o btn-s',[ic('spark'),'Barış AI'],()=>go('ai')));
   if(r==='merkez'&&S.page!=='ofisler')tr.append(btn('btn-k btn-s',[ic('plus'),'Yeni ofis aç'],()=>openNewOffice()));
