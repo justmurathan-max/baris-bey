@@ -80,6 +80,7 @@ function notifs(){
   }
   const L=renewSoon().map(o=>({ic:'card',cls:df(o.end)<=30?'crit':'wait',t:o.n+': '+df(o.end)+' gün kaldı',s:'Bitiş '+ddy(o.end),on:()=>go('uyelikler')}));
   OFFS.filter(o=>o.st==='davet').forEach(o=>L.push({ic:'mail',cls:'',t:'Davet bekleniyor: '+o.n,s:'Gönderildi '+ago(o.inv),on:()=>openOffice(o.id)}));
+  const nq=REQS.filter(r=>r.status==='yeni').length;if(nq)L.push({ic:'mail',cls:'wait',t:nq+' yeni başvuru',s:'Siteden gelen formlar',on:()=>go('basvurular')});
   const miss=TR.filter(t=>MAT[t.id].pdf.some(x=>!x)).length;
   const VS=TR.map(vidStat),vm=VS.reduce((x,v)=>x+v.miss.length,0),vp=VS.reduce((x,v)=>x+v.priv,0);
   if(vm||vp)L.push({ic:'video',cls:'',t:vm?vm+' bölümün videosu Vimeo’da yok':vp+' video gizlilik ayarı bekliyor',s:vm&&vp?vp+' video da Vimeo’da özel; ayar değişince oynar':(vm?'Eğitimler ve belgelerde listelendi':'Vimeo’da özel; ayar değişince sitede oynar'),on:()=>go('egitimler')});
@@ -87,6 +88,7 @@ function notifs(){
   return L;
 }
 function badge(k){
+  if(S.role==='merkez'&&k==='basvurular')return REQS.filter(r=>r.status==='yeni').length;
   if(S.role==='mentor'){
     if(k==='gorevler'){const n=new Set(lateList().map(x=>x.c));RUNS.filter(r=>r.st==='done').forEach(r=>r.mem.forEach(c=>{if(!COM[c].left&&attAll(r,c)&&!coachOk(r,c))n.add(c);}));return n.size;}
     if(k==='sertifikalar')return readyCerts().length;
@@ -100,7 +102,7 @@ function badge(k){
 const NAV={
   mentor:[['panel','Panel','home'],['egitimler','Eğitimler','book'],['takvim','Takvim','cal'],['danismanlar','Danışmanlar','users'],['ihtiyac','İhtiyaç analizi','gauge'],['gorevler','Görev takibi','check'],['sertifikalar','Sertifikalar','award'],['raporlar','Gelişim raporları','doc'],['ai','Barış AI','spark']],
   broker:[['ozet','Ofis özeti','home'],['takvim','Takvim','cal'],['danismanlar','Danışmanlar','users'],['ihtiyac','İhtiyaç analizi','gauge'],['raporlar','Gelişim raporları','doc'],['sertifikalar','Sertifikalar','award'],['uyelik','Üyelik','card']],
-  merkez:[['genel','Genel bakış','home'],['ofisler','Ofisler','building'],['uyelikler','Üyelikler','card'],['egitimler','Eğitimler ve belgeler','book'],['sertifikalar','Sertifikalar','award'],['klasik','Klasik erişimler','key'],['guvenlik','Güvenlik','shield']]
+  merkez:[['genel','Genel bakış','home'],['ofisler','Ofisler','building'],['uyelikler','Üyelikler','card'],['egitimler','Eğitimler ve belgeler','book'],['sertifikalar','Sertifikalar','award'],['klasik','Klasik erişimler','key'],['guvenlik','Güvenlik','shield'],['basvurular','Başvurular','mail']]
 };
 const S={role:null,page:null,arg:null,asBroker:false};
 const VIEWS={mentor:{},broker:{},merkez:{}};

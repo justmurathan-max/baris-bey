@@ -1193,6 +1193,11 @@ const OFFS=[
 const TIERS=['1–25','26–75','76–99','100+'];
 const MAT={};TR.forEach(t=>{const full=['iu','pa','au'].includes(t.id),half=['kb','dfi'].includes(t.id);MAT[t.id]={vim:1,ext:full?1:0,pdf:[full||half?1:0,full?1:0,full?1:0],live:1};});
 const NEWTR=[];
+const REQS=[
+  {id:'q1',at:D(-1),kind:'kurumsal',name:'Ece Yalın',company:'Örnek Holding',phone:'0532 000 00 01',topic:'Satış',size:'21-80 kişi',message:'Mart ayında İstanbul’da yarım günlük eğitim',status:'yeni'},
+  {id:'q2',at:D(-2),kind:'ofis',name:'Kerem Aksoy',company:'RE/MAX Örnek Ofis Moda',city:'İstanbul',phone:'0532 000 00 02',size:'26–75',status:'yeni'},
+  {id:'q3',at:D(-6),kind:'bulten',email:'ornek@ornek.com',status:'islendi'}
+];
 const LEGACY=[{t:'Eski sitedeki kullanıcı ve satın alma listesi alındı',d:0},{t:'Test kullanıcılarıyla yeni erişim doğrulandı',d:0},{t:'Bütün eski kullanıcılara yeni erişim açıldı',d:0},{t:'Eski sistem kapatıldı',d:0}];
 const SEC={dl:true,conc:1,iso:true,priv:true};
 const DEV=[
@@ -1283,6 +1288,7 @@ function notifs(){
   }
   const L=renewSoon().map(o=>({ic:'card',cls:df(o.end)<=30?'crit':'wait',t:o.n+': '+df(o.end)+' gün kaldı',s:'Bitiş '+ddy(o.end),on:()=>go('uyelikler')}));
   OFFS.filter(o=>o.st==='davet').forEach(o=>L.push({ic:'mail',cls:'',t:'Davet bekleniyor: '+o.n,s:'Gönderildi '+ago(o.inv),on:()=>openOffice(o.id)}));
+  const nq=REQS.filter(r=>r.status==='yeni').length;if(nq)L.push({ic:'mail',cls:'wait',t:nq+' yeni başvuru',s:'Siteden gelen formlar',on:()=>go('basvurular')});
   const miss=TR.filter(t=>MAT[t.id].pdf.some(x=>!x)).length;
   const VS=TR.map(vidStat),vm=VS.reduce((x,v)=>x+v.miss.length,0),vp=VS.reduce((x,v)=>x+v.priv,0);
   if(vm||vp)L.push({ic:'video',cls:'',t:vm?vm+' bölümün videosu Vimeo’da yok':vp+' video gizlilik ayarı bekliyor',s:vm&&vp?vp+' video da Vimeo’da özel; ayar değişince oynar':(vm?'Eğitimler ve belgelerde listelendi':'Vimeo’da özel; ayar değişince sitede oynar'),on:()=>go('egitimler')});
@@ -1290,6 +1296,7 @@ function notifs(){
   return L;
 }
 function badge(k){
+  if(S.role==='merkez'&&k==='basvurular')return REQS.filter(r=>r.status==='yeni').length;
   if(S.role==='mentor'){
     if(k==='gorevler'){const n=new Set(lateList().map(x=>x.c));RUNS.filter(r=>r.st==='done').forEach(r=>r.mem.forEach(c=>{if(!COM[c].left&&attAll(r,c)&&!coachOk(r,c))n.add(c);}));return n.size;}
     if(k==='sertifikalar')return readyCerts().length;
@@ -1303,7 +1310,7 @@ function badge(k){
 const NAV={
   mentor:[['panel','Panel','home'],['egitimler','Eğitimler','book'],['takvim','Takvim','cal'],['danismanlar','Danışmanlar','users'],['ihtiyac','İhtiyaç analizi','gauge'],['gorevler','Görev takibi','check'],['sertifikalar','Sertifikalar','award'],['raporlar','Gelişim raporları','doc'],['ai','Barış AI','spark']],
   broker:[['ozet','Ofis özeti','home'],['takvim','Takvim','cal'],['danismanlar','Danışmanlar','users'],['ihtiyac','İhtiyaç analizi','gauge'],['raporlar','Gelişim raporları','doc'],['sertifikalar','Sertifikalar','award'],['uyelik','Üyelik','card']],
-  merkez:[['genel','Genel bakış','home'],['ofisler','Ofisler','building'],['uyelikler','Üyelikler','card'],['egitimler','Eğitimler ve belgeler','book'],['sertifikalar','Sertifikalar','award'],['klasik','Klasik erişimler','key'],['guvenlik','Güvenlik','shield']]
+  merkez:[['genel','Genel bakış','home'],['ofisler','Ofisler','building'],['uyelikler','Üyelikler','card'],['egitimler','Eğitimler ve belgeler','book'],['sertifikalar','Sertifikalar','award'],['klasik','Klasik erişimler','key'],['guvenlik','Güvenlik','shield'],['basvurular','Başvurular','mail']]
 };
 const S={role:null,page:null,arg:null,asBroker:false};
 const VIEWS={mentor:{},broker:{},merkez:{}};
@@ -2474,6 +2481,28 @@ function openNewOffice(){
     OFFS.push({id:'o'+Date.now().toString(36),n:v.n.trim(),city:v.city.trim()||'—',br:null,mn:null,tier:v.tier,cons:0,start:s,end:plus(s,365),ses:0,st:'davet',comp:0,cert:0,inv:new Date(T0)});
     closeDrawer();toast('Üyelik açıldı; davetler gönderildi.');if(S.page==='ofisler')rerender();else go('ofisler');})]});
 }
+const RQK={kurumsal:'Kurumsal teklif',ofis:'Ofis başvurusu',davetiye:'Davetiye',bulten:'Bülten',etkinlik:'Etkinlik',iletisim:'İletişim'};
+let rqF='yeni';
+VIEWS.merkez.basvurular=()=>{
+  const root=h('div'),cnt=k=>REQS.filter(r=>r.status===k).length;
+  root.append(ph('Başvurular','Siteden gelen kurumsal teklif, ofis başvurusu, davetiye ve bülten kayıtları. Dönüş yaptıklarınızı işlendi olarak işaretleyin.'));
+  root.append(h('div',{class:'bar-row'},seg([['yeni','Yeni',cnt('yeni')],['islendi','İşlendi',cnt('islendi')],['hepsi','Hepsi',REQS.length]],rqF,k=>{rqF=k;rerender();},'Durum')));
+  const L=REQS.filter(r=>rqF==='hepsi'||r.status===rqF);
+  if(!L.length){root.append(h('section',{class:'pn'},empty(rqF==='yeni'?'Yeni başvuru yok':'Kayıt yok')));return root;}
+  const tb=h('tbody',null,L.map(r=>h('tr',null,
+    h('td',{'data-l':'Tarih'},dnum(r.at)),
+    h('td',{'data-l':'Tür'},RQK[r.kind]||r.kind),
+    h('td',null,h('div',{class:'t'},h('b',null,r.name||r.email||'—'),r.company?h('span',{class:'sm mu',style:'display:block'},r.company+(r.city?', '+r.city:'')):null)),
+    h('td',{'data-l':'İletişim'},[r.phone,r.email].filter(Boolean).join(' · ')||'—'),
+    h('td',{'data-l':'Ayrıntı',class:'sm'},[r.topic,r.size,r.mode,r.message].filter(Boolean).join(' · ')||'—'),
+    h('td',{class:'r'},r.status==='yeni'?btn('btn-k btn-xs','İşlendi',()=>setReq(r,'islendi')):btn('btn-g btn-xs','Yeniye al',()=>setReq(r,'yeni'))))));
+  root.append(h('section',{class:'pn'},h('div',{class:'tw'},h('table',{class:'tbl rsp'},h('thead',null,h('tr',null,['Tarih','Tür','Kişi','İletişim','Ayrıntı',''].map(x=>h('th',null,x)))),tb))));
+  return root;
+};
+async function setReq(r,st){
+  if(realM()){const{error}=await SB.from('site_requests').update({status:st}).eq('id',r.id);if(error){toast('Güncellenemedi; tekrar deneyin.');return;}}
+  r.status=st;toast(st==='islendi'?'İşlendi olarak işaretlendi.':'Yeni olarak işaretlendi.');rerender();
+}
 VIEWS.merkez.uyelikler=()=>{
   const root=h('div');
   root.append(ph('Üyelikler','12 aylık ofis üyelikleri. Bitişten 90, 60 ve 30 gün önce broker ve mentora hatırlatma gider.'));
@@ -2664,15 +2693,16 @@ const addYear=d=>{const x=new Date(d);x.setFullYear(x.getFullYear()+1);return x;
 // Ofisleri ve sayılarını veritabanından alıp merkez ekranlarının kullandığı listeye koyar.
 async function loadMerkez(){
   if(!realM())return false;
-  const [o,pr,inv,co,ce,ru]=await Promise.all([
+  const [o,pr,inv,co,ce,ru,rq]=await Promise.all([
     SB.from('offices').select('id,name,city,tier,status,membership_start,membership_end,invited_at,created_at').order('created_at'),
     SB.from('profiles').select('office_id,role,full_name,email').not('office_id','is',null),
     SB.from('invitations').select('office_id,email,role,full_name'),
     SB.from('consultants').select('office_id').is('left_on',null),
     SB.from('certificates').select('office_id').is('revoked_at',null),
-    SB.from('runs').select('office_id,days').neq('status','iptal')
+    SB.from('runs').select('office_id,days').neq('status','iptal'),
+    SB.from('site_requests').select('*').order('created_at',{ascending:false}).limit(300)
   ]).catch(e=>[{error:e}]);
-  if(!ru||[o,pr,inv,co,ce,ru].some(r=>r.error)){toast('Ofis bilgileri alınamadı. Sayfayı yenileyin.',6000);return false;}
+  if(!rq||[o,pr,inv,co,ce,ru,rq].some(r=>r.error)){toast('Ofis bilgileri alınamadı. Sayfayı yenileyin.',6000);return false;}
   const from=iso(plus(T0,-30)),to=iso(T0),cnt=(rows,id)=>rows.filter(r=>r.office_id===id).length,nm=x=>x?(x.full_name||x.email):null;
   const list=o.data.map(r=>{
     const staff=pr.data.filter(p=>p.office_id===r.id),invs=inv.data.filter(i=>i.office_id===r.id);
@@ -2683,6 +2713,7 @@ async function loadMerkez(){
       ses,st:r.status==='aktif'?'aktif':r.status==='pasif'?'pasif':'davet',comp:0,cert:cnt(ce.data,r.id),inv:new Date(r.invited_at||r.created_at)};
   });
   OFFS.splice(0,OFFS.length,...list);
+  REQS.splice(0,REQS.length,...rq.data.map(x=>{const m=x.meta||{};return{id:x.id,at:new Date(x.created_at),kind:x.kind,name:x.full_name,company:x.company,city:x.city,phone:x.phone,email:x.email,message:x.message,topic:m.topic,size:m.size,mode:m.mode,status:x.status};}));
   return true;
 }
 

@@ -102,6 +102,28 @@ function openNewOffice(){
     OFFS.push({id:'o'+Date.now().toString(36),n:v.n.trim(),city:v.city.trim()||'—',br:null,mn:null,tier:v.tier,cons:0,start:s,end:plus(s,365),ses:0,st:'davet',comp:0,cert:0,inv:new Date(T0)});
     closeDrawer();toast('Üyelik açıldı; davetler gönderildi.');if(S.page==='ofisler')rerender();else go('ofisler');})]});
 }
+const RQK={kurumsal:'Kurumsal teklif',ofis:'Ofis başvurusu',davetiye:'Davetiye',bulten:'Bülten',etkinlik:'Etkinlik',iletisim:'İletişim'};
+let rqF='yeni';
+VIEWS.merkez.basvurular=()=>{
+  const root=h('div'),cnt=k=>REQS.filter(r=>r.status===k).length;
+  root.append(ph('Başvurular','Siteden gelen kurumsal teklif, ofis başvurusu, davetiye ve bülten kayıtları. Dönüş yaptıklarınızı işlendi olarak işaretleyin.'));
+  root.append(h('div',{class:'bar-row'},seg([['yeni','Yeni',cnt('yeni')],['islendi','İşlendi',cnt('islendi')],['hepsi','Hepsi',REQS.length]],rqF,k=>{rqF=k;rerender();},'Durum')));
+  const L=REQS.filter(r=>rqF==='hepsi'||r.status===rqF);
+  if(!L.length){root.append(h('section',{class:'pn'},empty(rqF==='yeni'?'Yeni başvuru yok':'Kayıt yok')));return root;}
+  const tb=h('tbody',null,L.map(r=>h('tr',null,
+    h('td',{'data-l':'Tarih'},dnum(r.at)),
+    h('td',{'data-l':'Tür'},RQK[r.kind]||r.kind),
+    h('td',null,h('div',{class:'t'},h('b',null,r.name||r.email||'—'),r.company?h('span',{class:'sm mu',style:'display:block'},r.company+(r.city?', '+r.city:'')):null)),
+    h('td',{'data-l':'İletişim'},[r.phone,r.email].filter(Boolean).join(' · ')||'—'),
+    h('td',{'data-l':'Ayrıntı',class:'sm'},[r.topic,r.size,r.mode,r.message].filter(Boolean).join(' · ')||'—'),
+    h('td',{class:'r'},r.status==='yeni'?btn('btn-k btn-xs','İşlendi',()=>setReq(r,'islendi')):btn('btn-g btn-xs','Yeniye al',()=>setReq(r,'yeni'))))));
+  root.append(h('section',{class:'pn'},h('div',{class:'tw'},h('table',{class:'tbl rsp'},h('thead',null,h('tr',null,['Tarih','Tür','Kişi','İletişim','Ayrıntı',''].map(x=>h('th',null,x)))),tb))));
+  return root;
+};
+async function setReq(r,st){
+  if(realM()){const{error}=await SB.from('site_requests').update({status:st}).eq('id',r.id);if(error){toast('Güncellenemedi; tekrar deneyin.');return;}}
+  r.status=st;toast(st==='islendi'?'İşlendi olarak işaretlendi.':'Yeni olarak işaretlendi.');rerender();
+}
 VIEWS.merkez.uyelikler=()=>{
   const root=h('div');
   root.append(ph('Üyelikler','12 aylık ofis üyelikleri. Bitişten 90, 60 ve 30 gün önce broker ve mentora hatırlatma gider.'));

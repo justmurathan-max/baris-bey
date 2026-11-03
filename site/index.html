@@ -710,6 +710,7 @@ button{cursor:pointer}
 .dlg form{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
 .dlg form .btn{width:100%;margin-top:4px}
 .dlg>.btn{display:flex;width:100%;margin-top:4px}
+.f-err{margin:8px 0 0;color:#B42318;font-size:14px}
 .done{padding:18px;border-radius:18px;background:var(--g0);display:grid;gap:6px}
 .done b{font:600 16px/1.3 var(--fb)}
 .done p{margin:0;color:var(--mu);font-size:15px;line-height:1.5}
@@ -1420,7 +1421,7 @@ body.sys-on .sys{display:block}
         <h4 style="margin:0">Sahadan notlar</h4>
         <p>Ayda bir e-posta: Barış’tan bir teknik, bir prova senaryosu ve yaklaşan etkinlikler.</p>
         <form class="ft-f" data-demo id="nlForm"><label class="sr" for="nl">E-posta</label><input id="nl" type="email" required placeholder="E-posta adresin"><button class="btn btn-w" type="submit">Kaydol</button></form>
-        <p class="ft-ok done-inline" hidden>Teşekkürler. Bu bir demo; gerçek sitede ilk e-posta hemen gider.</p>
+        <p class="ft-ok done-inline" hidden>Teşekkürler, listeye eklendiniz.</p>
       </div>
     </div>
     <div class="ft-b">
@@ -1463,7 +1464,7 @@ body.sys-on .sys{display:block}
       </div>
       <button class="btn btn-r" type="submit">Başvuruyu gönder</button>
     </form>
-    <div class="done" hidden><b>Bu bir demo formu.</b><p>Gerçek sitede başvuru satış hattına düşer ve Barış’a “bugün ara” listesinde gelir. Onaylanan ofise üyelik sözleşmesi ve ofis kodu gönderilir.</p></div>
+    <div class="done" hidden><b>Başvurunuz alındı.</b><p>Akademi ekibi en kısa sürede sizi arayacak. Onaylanan ofise üyelik sözleşmesi gönderilir; broker ve mentor davetle girer.</p></div>
     <div class="sys"><b>Arka planda</b>Başvuru CRM’de satış hattına düşer. Barış’ın yakın tanıdıklarını yapay zekâ aramaz, onlar Barış’a arama listesi olarak gelir.</div>
   </div>
 </div>
@@ -1482,7 +1483,7 @@ body.sys-on .sys{display:block}
       </div>
       <button class="btn btn-r" type="submit">Davetiye iste</button>
     </form>
-    <div class="done" hidden><b>Bu bir demo formu.</b><p>Gerçek sitede davetiye hemen e-posta ve WhatsApp’tan gider, takvime ekleme bağlantısıyla birlikte. Hatırlatmalar kendiliğinden başlar.</p></div>
+    <div class="done" hidden><b>Talebiniz alındı.</b><p>Davetiye ve etkinlik bilgileri için sizinle iletişime geçeceğiz.</p></div>
   </div>
 </div>
 
@@ -1502,7 +1503,7 @@ body.sys-on .sys{display:block}
       </div>
       <button class="btn btn-r" type="submit">Talebi gönder</button>
     </form>
-    <div class="done" hidden><b>Bu bir demo formu.</b><p>Gerçek sitede talep satış hattına düşer. Sesli asistan beş dakika içinde arar; konuyu, kişi sayısını ve tarihi sorar, Barış’ın takvimine görüşme koyar.</p></div>
+    <div class="done" hidden><b>Talebiniz alındı.</b><p>Barış Kılıçarslan’ın ekibi sizi arayıp konu, kişi sayısı ve tarihi konuşacak.</p></div>
   </div>
 </div>
 
@@ -1694,7 +1695,25 @@ function closeModal(m,noFocus){
 }
 $$('.md').forEach(function(m){m.addEventListener('click',function(e){if(e.target===m||e.target.closest('.x'))closeModal(m);});});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){$$('.md').forEach(function(m){if(!m.hidden)closeModal(m);});closeMenus(null);if(!mnav.hidden)setMnav(false);if(!langMenu.hidden)langMenu.hidden=true;}});
-$$('form[data-demo]').forEach(function(f){f.addEventListener('submit',function(e){e.preventDefault();if(!f.checkValidity()){f.reportValidity();return;}f.hidden=true;var d=f.parentElement.querySelector('.done,.done-inline');if(d)d.hidden=false;});});
+/* Formlar: kayıt Supabase'e düşer (yayınlanabilir anahtar tarayıcı için yapılmıştır; kayıtları yalnız merkez okur) */
+var SB_URL='https://xjbqesljonbbduldeesd.supabase.co',SB_KEY='sb_publishable_VaavFE-aieVC-vJJ7AA-Mg_k5RNSJNq';
+function formRow(f){
+  var v=function(id){var e=document.getElementById(id);return e?String(e.value||'').trim():'';};
+  if(f.id==='nlForm')return{kind:'bulten',email:v('nl')};
+  if(f.id==='corpForm')return{kind:'kurumsal',company:v('cf-org'),full_name:v('cf-name'),phone:v('cf-phone'),message:v('cf-note')||null,meta:{size:v('cf-size'),topic:v('cf-topic')}};
+  if(f.querySelector('#ap-office'))return{kind:'ofis',company:v('ap-office'),city:v('ap-city'),full_name:v('ap-name'),phone:v('ap-phone'),meta:{size:v('ap-size')}};
+  if(f.querySelector('#iv-name'))return{kind:'davetiye',full_name:v('iv-name'),company:v('iv-office'),phone:v('iv-phone'),meta:{mode:v('iv-mode')}};
+  return null;
+}
+$$('form[data-demo]').forEach(function(f){f.addEventListener('submit',function(e){e.preventDefault();if(!f.checkValidity()){f.reportValidity();return;}
+  var b=f.querySelector('[type=submit]'),row=formRow(f);
+  var done=function(){f.hidden=true;var d=f.parentElement.querySelector('.done,.done-inline');if(d)d.hidden=false;};
+  if(!row){done();return;}
+  if(b)b.disabled=true;
+  fetch(SB_URL+'/rest/v1/site_requests',{method:'POST',headers:{apikey:SB_KEY,'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify(row)})
+    .then(function(r){if(!r.ok)throw new Error(String(r.status));done();})
+    .catch(function(){if(b)b.disabled=false;var er=f.querySelector('.f-err');if(!er){er=document.createElement('p');er.className='f-err';er.setAttribute('role','alert');f.appendChild(er);}er.textContent='Gönderilemedi. Bağlantınızı kontrol edip tekrar deneyin.';});
+});});
 
 /* ---------- Program ve ürün pencereleri ---------- */
 var PROGS={
