@@ -1,6 +1,6 @@
 # Barış Kılıçarslan: site ve Masterclass Akademi
 
-Barış Kılıçarslan'ın tanıtım sitesi ve giriş sonrası Masterclass Akademi. Şu an örnek verilerle çalışan bir arayüz; ana eğitim videoları Vimeo'dan gömülü.
+Barış Kılıçarslan'ın tanıtım sitesi ve giriş sonrası Masterclass Akademi. Giriş, ofisler, mentor ve broker panelleri, site formları ve sertifika doğrulama Supabase'e bağlı; ana eğitim videoları Vimeo'dan gömülü. Girişsiz açılan önizleme örnek verilerle çalışır.
 
 ## Klasörler
 
@@ -8,7 +8,9 @@ Barış Kılıçarslan'ın tanıtım sitesi ve giriş sonrası Masterclass Akade
   - `index.html`: tanıtım sitesi.
   - `akademi.html`: giriş sonrası akademi (mentor, broker ve merkez panelleri). Elle düzenlenmez; `akademi-kaynak/` içinden üretilir.
   - `img/`: görseller.
+  - `dogrula.html`: herkese açık sertifika doğrulama; `/dogrula/<numara>` adresi buraya yönlenir (`vercel.json`).
   - `js/supabase.js`: Supabase'in tarayıcı kütüphanesi (2.118.0), npm'den olduğu gibi.
+  - `js/qr.js`: sertifikalardaki QR için qrcode-generator (1.4.4, MIT), npm'den olduğu gibi.
   - `vercel.json`, `robots.txt`: taslağı arama motorlarına kapatır.
 - `akademi-kaynak/`: akademinin parçaları.
   - `a.html` iskelet, `a.css` stiller, `1-core.js` … `7-init.js` uygulama.
@@ -36,3 +38,22 @@ Supabase (Frankfurt). Şema `supabase/migrations/` içindeki göç dosyalarında
 - Akademideki anahtar Supabase'in yayınlanabilir (publishable) anahtarıdır; tarayıcıda durması için yapılmıştır. Gizli (secret) anahtar asla depoya konmaz.
 - Yeni tablolar Data API'ye kendiliğinden açılmaz; her göç kendi tablosunun yetkisini ve satır kurallarını vermeli.
 - Bu depo herkese açık: anahtar, şifre ve kişisel veri buraya konmaz. Gizli anahtarlar Vercel'in ortam değişkenlerinde durur.
+
+### Göçler
+
+1. `20261103000000_akademi_temel.sql`: tablolar, satır kuralları, davetle profil, sertifika doğrulama.
+2. `20261103010000_katilim_ve_ofis_durumu.sql`: ilk girişte katılma zamanı; ofis davetten etkine geçer.
+3. `20261103020000_puan_ve_ofis_kilidi.sql`: özel puanda 0 = puanlanmadı; pasif ya da üyeliği bitmiş ofis kilitlenir.
+
+### Fonksiyonlar (Supabase Edge Functions)
+
+- `davet`: merkez yöneticisinin açtığı ofise broker ve mentor daveti gönderir, yeniden gönderir.
+- `baris-ai`: grup provasında müşteriyi oynar ve provayı değerlendirir (Claude). Çalışması için Supabase'te Edge Functions > Secrets altına `ANTHROPIC_API_KEY` eklenmeli; isteğe bağlı `BARIS_AI_MODEL` modeli değiştirir. Anahtar yokken akademi sabit prova akışını kullanır.
+
+Fonksiyonlar oturumu kendi kodunda doğrular; panelde "Verify JWT with legacy secret" kapalı. Gizli anahtarları Supabase kendi ortamından verir, depoda yer almaz.
+
+### Akademinin veriyle çalışması
+
+- Merkez girişinde ofisler, üyelikler, başvurular ve sertifika kaydı veritabanından gelir; işlemler doğrudan yazılır.
+- Broker ve mentor girişinde ofisin bütün kayıtları yüklenir (`akademi-kaynak/6-veri.js`). Ekrandaki değişiklikler son kaydedilen hâlle karşılaştırılır, fark birkaç saniye içinde yazılır. Yükleme başarısız olursa hiçbir şey yazılmaz.
+
