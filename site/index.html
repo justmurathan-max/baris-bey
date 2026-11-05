@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <script>/* Davet ve giriş bağlantıları ana sayfaya düşerse akademiye geçir */if(/(^|[#&])(access_token|error_description)=/.test(location.hash))location.replace('akademi.html'+location.hash);</script>
+<script>/* Açılış ve kaydırma efektleri; hareket azaltılmışsa çalışmaz */(function(){var d=document.documentElement;try{if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;}catch(e){}d.classList.add('ha','rv-on');var seen=false;try{seen=sessionStorage.getItem('bk-intro')==='1';}catch(e){}if(!seen&&!location.hash)d.classList.add('intro-on');})();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 <title>Barış Kılıçarslan</title>
@@ -796,9 +797,68 @@ body.sys-on .sys{display:block}
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
   .hdot[aria-current=true] i{animation:none!important;transform:scaleX(1)}
 }
+/* =================== HAREKET =================== */
+.intro{display:none}
+html.intro-on .intro{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:#000;color:#fff;clip-path:inset(0 0 0 0);transition:clip-path 1s cubic-bezier(.76,0,.24,1);animation:introSafe .01s 6s forwards}
+html.intro-on .intro.out{clip-path:inset(0 0 100% 0)}
+.intro-in{display:grid;justify-items:center;gap:22px;padding:24px;transition:opacity .5s ease,transform .9s cubic-bezier(.76,0,.24,1)}
+.intro.out .intro-in{opacity:0;transform:translateY(-28px)}
+.intro-wm{display:flex;font:700 clamp(15px,1.7vw,24px)/1 var(--fw);letter-spacing:.42em;margin-right:-.42em;overflow:hidden;padding:.25em 0}
+.intro-wm i{display:inline-block;font-style:normal;opacity:0;transform:translateY(110%);animation:inUp .8s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(.15s + var(--i) * 38ms)}
+.intro-wm i.sp{width:.55em}
+.intro-ln{position:relative;width:min(260px,46vw);height:1px;background:rgba(255,255,255,.16);overflow:hidden}
+.intro-ln::after{content:"";position:absolute;inset:0;background:var(--red);transform:scaleX(0);transform-origin:left;animation:lnFill 1.05s .45s cubic-bezier(.65,0,.35,1) forwards}
+.intro-sub{display:inline-flex;align-items:baseline;gap:8px;opacity:0;animation:fadeUp .8s .9s cubic-bezier(.2,.7,.2,1) forwards}
+.intro-sub .c{font:400 clamp(22px,2vw,30px)/1 var(--fc);letter-spacing:.015em}
+.intro-sub .s{font:italic 700 clamp(21px,1.9vw,29px)/1 var(--fs)}
+@keyframes inUp{to{opacity:1;transform:none}}
+@keyframes lnFill{to{transform:scaleX(1)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes introSafe{to{visibility:hidden;opacity:0;pointer-events:none}}
+@keyframes rvSafe{to{opacity:1;transform:none}}
+
+/* Açılış: hero */
+.hw .w,.rv-w .w{display:inline-block;overflow:hidden;vertical-align:top;padding:.14em .03em .2em;margin:-.14em -.03em -.2em}
+.hw .w>span,.rv-w .w>span{display:inline-block}
+html.ha .hs>img{transition:transform 2.8s cubic-bezier(.16,1,.3,1)}
+html.ha:not(.hi) .hs.on>img{transform:scale(1.14)}
+html.ha .hw .w>span{transition:transform 1.05s cubic-bezier(.16,1,.3,1);transition-delay:calc(.3s + var(--wi) * 70ms)}
+html.ha:not(.hi) .hw .w>span{transform:translateY(112%)}
+html.ha .hs-k{transition:opacity .8s .15s,transform .9s .15s cubic-bezier(.16,1,.3,1)}
+html.ha .hs-cta{transition:opacity .8s .95s,transform .9s .95s cubic-bezier(.16,1,.3,1)}
+html.ha .nx{transition:opacity .8s 1.15s,transform .9s 1.15s cubic-bezier(.16,1,.3,1)}
+html.ha:not(.hi) .hs-k,html.ha:not(.hi) .hs-cta,html.ha:not(.hi) .nx{opacity:0;transform:translateY(18px)}
+html.ha .hd-in{transition:opacity .8s .1s}
+html.ha:not(.hi) .hd-in{opacity:0}
+html.ha:not(.hi) .hw .w>span,html.ha:not(.hi) .hs-k,html.ha:not(.hi) .hs-cta,html.ha:not(.hi) .nx,html.ha:not(.hi) .hd-in{animation:rvSafe .6s 6.5s forwards}
+
+/* Kaydırınca beliren yazılar */
+html.rv-on .rv:not(.rv-w){opacity:0;transform:translateY(28px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform 1.05s cubic-bezier(.16,1,.3,1);transition-delay:var(--d,0s)}
+html.rv-on .rv.rv-in:not(.rv-w){opacity:1;transform:none}
+html.rv-on .rv-w .w>span{transition:transform 1.05s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--d,0s) + var(--wi) * 55ms)}
+html.rv-on .rv-w:not(.rv-in) .w>span{transform:translateY(112%)}
 </style>
 </head>
 <body>
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro-in">
+    <span class="intro-wm"><i style="--i:0">B</i><i style="--i:1">A</i><i style="--i:2">R</i><i style="--i:3">I</i><i style="--i:4">Ş</i><i class="sp" style="--i:5"> </i><i style="--i:6">K</i><i style="--i:7">I</i><i style="--i:8">L</i><i style="--i:9">I</i><i style="--i:10">Ç</i><i style="--i:11">A</i><i style="--i:12">R</i><i style="--i:13">S</i><i style="--i:14">L</i><i style="--i:15">A</i><i style="--i:16">N</i></span>
+    <span class="intro-ln"></span>
+    <span class="intro-sub"><span class="c">MASTERCLASS</span><span class="s">Akademi</span></span>
+  </div>
+</div>
+<script>/* Açılış perdesi: hero görseli gelince (en az 1,7 sn, en çok 3,2 sn) kalkar; tıklama, tuş ya da kaydırma geçer */
+(function(){var D=document.documentElement;if(!D.classList.contains('ha'))return;
+function heroIn(){D.classList.add('hi');}
+var it=document.getElementById('intro');
+if(!D.classList.contains('intro-on')||!it){document.addEventListener('DOMContentLoaded',function(){requestAnimationFrame(function(){requestAnimationFrame(heroIn);});});return;}
+var t0=Date.now(),done=false;
+function exit(){if(done)return;done=true;try{sessionStorage.setItem('bk-intro','1');}catch(e){}heroIn();it.classList.add('out');setTimeout(function(){D.classList.remove('intro-on');if(it.parentNode)it.parentNode.removeChild(it);},1050);}
+function ready(){setTimeout(exit,Math.max(0,1700-(Date.now()-t0)));}
+setTimeout(exit,3200);
+['wheel','touchstart','keydown','click'].forEach(function(ev){window.addEventListener(ev,exit,{once:true,passive:true});});
+document.addEventListener('DOMContentLoaded',function(){var im=document.querySelector('.hs.on>img');if(!im||im.complete)ready();else{im.addEventListener('load',ready);im.addEventListener('error',ready);}});
+})();</script>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <symbol id="i-r" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -928,7 +988,7 @@ body.sys-on .sys{display:block}
       <img src="img/hero-armsup.jpg" srcset="img/hero-armsup.jpg 1557w, img/hero-armsup-hd.jpg 3114w" sizes="100vw" alt="Barış Kılıçarslan sahnede, kollarını açmış gülümsüyor" style="object-position:50% 18%">
       <div class="hs-c">
         <span class="hs-k"><span class="c">MASTERCLASS</span><span class="s">Akademi</span><span class="d">Ocak 2027</span></span>
-        <h1 class="h1">Eğitim izlemek için değil, sonuç alıp kazanmak için.</h1>
+        <h1 class="h1 hw"><span class="w"><span style="--wi:0">Eğitim</span></span> <span class="w"><span style="--wi:1">izlemek</span></span> <span class="w"><span style="--wi:2">için</span></span> <span class="w"><span style="--wi:3">değil,</span></span> <span class="w"><span style="--wi:4">sonuç</span></span> <span class="w"><span style="--wi:5">alıp</span></span> <span class="w"><span style="--wi:6">kazanmak</span></span> <span class="w"><span style="--wi:7">için.</span></span></h1>
         <div class="hs-cta">
           <a class="btn btn-w" href="#akademi">Akademiyi keşfet</a>
           <a class="ply" href="#katalog"><i><svg aria-hidden="true"><use href="#i-r"/></svg></i>Eğitimleri gör</a>
@@ -1979,5 +2039,22 @@ $('.ac-play').addEventListener('click',function(){var b=this;b.setAttribute('ari
 
 })();
 </script>
+<script>/* Kaydırınca beliren yazılar: yalnız işaretlenen öğeler gizlenir, gözlemci yoksa hiçbir şey gizlenmez */
+(function(){var D=document.documentElement;if(!D.classList.contains('rv-on'))return;
+if(!('IntersectionObserver' in window)){D.classList.remove('rv-on');return;}
+var A=function(q,r){return Array.prototype.slice.call((r||document).querySelectorAll(q));};
+var secs=A('main > section.sec, main > section.fin');
+function split(h){if(h.children.length)return false;var ws=h.textContent.trim().split(/\s+/);h.textContent='';ws.forEach(function(w,i){var o=document.createElement('span'),n=document.createElement('span');o.className='w';n.textContent=w;n.style.setProperty('--wi',i);o.appendChild(n);h.appendChild(o);if(i<ws.length-1)h.appendChild(document.createTextNode(' '));});return true;}
+var SEL='.h2,.fin .h1,.h3,.lbl,.ak-mk,.ai-mk,.lead,.ab-ph,.st,.ab-lg,.mth-i,.kc,.ac,.cs,.plan,.plan-n,.ev,.cr,.evl-g,.ts-top,.ts-fig,.ts-ph,.ro-c,.shop .pd,.fin-ph,.fin-t .hs-cta';
+var list=[];secs.forEach(function(sec){A(SEL,sec).forEach(function(e){if(list.indexOf(e)<0)list.push(e);});});
+list=list.filter(function(e){for(var p=e.parentElement;p;p=p.parentElement){if(list.indexOf(p)>-1)return false;}return true;});
+list.forEach(function(e){if((e.classList.contains('h2')||e.classList.contains('h1'))&&split(e))e.classList.add('rv-w');e.classList.add('rv');});
+var io=new IntersectionObserver(function(es){
+  var v=es.filter(function(x){return x.isIntersecting;}).map(function(x){return x.target;});
+  v.sort(function(a,b){return a.compareDocumentPosition(b)&4?-1:1;});
+  v.forEach(function(t,i){t.style.setProperty('--d',(Math.min(i,6)*0.08).toFixed(2)+'s');t.classList.add('rv-in');io.unobserve(t);});
+},{rootMargin:'0px 0px -6% 0px',threshold:0.1});
+list.forEach(function(e){io.observe(e);});
+})();</script>
 
 </body></html>
