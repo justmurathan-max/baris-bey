@@ -45,7 +45,7 @@ button{cursor:pointer}
 :focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 .sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .wrap{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}
-.sec{padding-block:clamp(72px,9vw,144px)}
+.sec{padding-block:clamp(48px,5.2vw,96px)}
 .bk{background:#000;color:#fff}
 .wh{background:#fff;color:var(--tx)}
 .gy{background:var(--g0);color:var(--tx)}
@@ -247,15 +247,15 @@ button{cursor:pointer}
 
 /* =================== YORUMLAR =================== */
 .ts-g{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,.9fr);gap:clamp(32px,6vw,112px);align-items:start}
-.ts-top{display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--mud)}
+.ts-top{display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--mu)}
 .ts-n{font:500 14px/1 var(--fb);font-variant-numeric:tabular-nums}
 .ts-fig{margin:clamp(32px,4.4vw,72px) 0 0;display:grid;gap:28px}
 .ts-q{margin:0;font:500 clamp(26px,2.75vw,48px)/1.12 var(--fd);letter-spacing:-.034em;text-wrap:pretty}
 .ts-who{display:flex;align-items:center;gap:14px}
-.ts-av{width:52px;height:52px;border-radius:50%;background:var(--k3);display:grid;place-items:center;font:600 15px/1 var(--fb);overflow:hidden;flex:none}
+.ts-av{width:52px;height:52px;border-radius:50%;background:var(--g1);color:#000;display:grid;place-items:center;font:600 15px/1 var(--fb);overflow:hidden;flex:none}
 .ts-av img{width:100%;height:100%;object-fit:cover}
 .ts-who b{display:block;font:600 17px/1.2 var(--fb)}
-.ts-who small{display:block;color:var(--mud);font-size:14px;margin-top:5px}
+.ts-who small{display:block;color:var(--mu);font-size:14px;margin-top:5px}
 .ts-ph{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/5;max-height:620px;background:#111}
 .ts-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 8%}
 .ts-ctl{display:flex;align-items:center;gap:18px}
@@ -266,9 +266,18 @@ button{cursor:pointer}
 
 
 /* =================== SONUÇ =================== */
-.rs-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(32px,6vw,112px);align-items:end}
-.rs-l{display:grid;gap:26px;justify-items:start}
-.rs-st{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,3vw,44px) clamp(20px,3vw,40px)}
+/* HAKKINDA */
+.ab-g{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(32px,6vw,112px);align-items:center}
+.ab-ph{position:relative;border-radius:32px;background:var(--g0);aspect-ratio:4/5;max-height:700px;overflow:hidden;display:flex;justify-content:center;align-items:flex-end}
+.ab-ph img{height:93%;width:auto;max-width:none}
+.ab-c{display:grid;gap:26px;justify-items:start}
+.ab-k{color:var(--red)}
+.ab-st{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px clamp(20px,3vw,40px);width:100%}
+.ab-st .st b{font-size:clamp(34px,3.4vw,58px)}
+.ab-st .st span{margin-top:10px;font-size:15px}
+.ab-lg{display:flex;flex-wrap:wrap;align-items:center;gap:18px 30px}
+.ab-lg img{width:auto;opacity:.7}
+@media (max-width:900px){.ab-g{grid-template-columns:1fr}.ab-ph{aspect-ratio:1;max-height:none}}
 .st{border-top:1px solid rgba(0,0,0,.16);padding-top:16px}
 .st b{display:block;font:500 clamp(34px,4.6vw,84px)/.95 var(--fd);letter-spacing:-.05em;font-variant-numeric:tabular-nums;white-space:nowrap}
 .st span{display:block;margin-top:12px;color:var(--mu);font-size:15.5px}
@@ -282,7 +291,7 @@ button{cursor:pointer}
 .case-n div{border-top:1px solid var(--lnd);padding-top:14px}
 .case-n b{display:block;font:500 clamp(40px,4vw,68px)/.95 var(--fd);letter-spacing:-.05em}
 .case-n span{display:block;margin-top:10px;color:var(--mud);font-size:14.5px}
-@media (max-width:900px){.rs-g{grid-template-columns:1fr;align-items:start}.case{grid-template-columns:1fr}.case-ph{min-height:0;aspect-ratio:16/10}}
+@media (max-width:900px){.case{grid-template-columns:1fr}.case-ph{min-height:0;aspect-ratio:16/10}}
 
 /* =================== RÖPORTAJLAR =================== */
 .vc{width:clamp(280px,30vw,500px);display:grid;gap:12px;text-align:left;border:0;background:none;padding:0;color:inherit}
@@ -313,7 +322,7 @@ button{cursor:pointer}
 .ai-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(32px,6vw,112px);align-items:center}
 .ai-l{display:grid;gap:26px;justify-items:start}
 .ai-mk{display:inline-flex;align-items:center;gap:12px}
-.ai-chip{display:inline-grid;place-items:center;height:24px;padding:0 8px;border-radius:7px;background:#fff;color:#000;font:800 12.5px/1 var(--fw);letter-spacing:.06em}
+.ai-chip{display:inline-grid;place-items:center;height:24px;padding:0 8px;border-radius:7px;background:#000;color:#fff;font:800 12.5px/1 var(--fw);letter-spacing:.06em}
 .cs{display:flex;flex-direction:column;height:clamp(560px,72vh,680px);border-radius:28px;background:#111113;border:1px solid rgba(255,255,255,.08);overflow:hidden;color:#fff;box-shadow:0 50px 100px -40px rgba(0,0,0,.8)}
 .cs-h{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.07)}
 .cs-who{display:flex;align-items:center;gap:12px;min-width:0}
@@ -515,23 +524,23 @@ button{cursor:pointer}
 @media (max-width:560px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 /* =================== ETKİNLİKLER =================== */
-.ev{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);border-radius:32px;overflow:hidden;background:#0E0E10;color:#fff}
+.ev{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);border-radius:32px;overflow:hidden;background:var(--g0);color:var(--tx)}
 .ev-ph{position:relative;min-height:540px;display:grid;place-items:center;isolation:isolate;container-type:inline-size;padding:24px}
 .ev-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%;z-index:-2}
 .ev-ph::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.05) 30%,rgba(0,0,0,.72))}
 .ev-ph .lt{align-self:end;margin-bottom:6%}
 .ev-c{padding:clamp(28px,4vw,64px);display:grid;gap:22px;align-content:center}
-.ev-k{color:var(--mud)}
-.ev-c p{margin:0;color:var(--mud);font-size:17px;line-height:1.55;max-width:48ch}
-.ev-m{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:4px 0;padding:18px 0;border-block:1px solid var(--lnd)}
-.ev-m dt{font:600 11.5px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--mud);margin-bottom:8px}
+.ev-k{color:var(--mu)}
+.ev-c p{margin:0;color:var(--mu);font-size:17px;line-height:1.55;max-width:48ch}
+.ev-m{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:4px 0;padding:18px 0;border-block:1px solid var(--ln)}
+.ev-m dt{font:600 11.5px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin-bottom:8px}
 .ev-m dd{margin:0;font:500 17px/1.25 var(--fd);letter-spacing:-.015em}
 .ev-cta{display:flex;flex-wrap:wrap;gap:10px}
 .evl{margin-top:clamp(40px,5vw,72px);display:grid;gap:10px}
 .evl>.h3{margin:0 0 10px}
 .evl-l{display:grid;gap:10px}
 .evl-g{margin:18px 0 2px;font:600 12px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--mu)}
-.cr{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;padding:14px 16px 14px 14px;border-radius:22px;background:#fff;transition:box-shadow .3s}
+.cr{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;padding:14px 16px 14px 14px;border-radius:22px;background:var(--g0);transition:box-shadow .3s}
 .cr-d{width:62px;height:62px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;align-content:center;gap:3px;text-align:center}
 .cr.past .cr-d{opacity:.5}
 .cr-d b{font:600 19px/1 var(--fd);letter-spacing:-.02em}
@@ -541,7 +550,7 @@ button{cursor:pointer}
 .cr-t span{color:var(--mu);font-size:14px}
 .chp{display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;font:600 12px/1 var(--fb);background:var(--g1);color:#333;white-space:nowrap}
 .chp.pl{background:#EFE7FF;color:#5B21B6}
-.cr-e{padding:22px;border-radius:22px;background:#fff;color:var(--mu);font-size:15px}
+.cr-e{padding:22px;border-radius:22px;background:var(--g0);color:var(--mu);font-size:15px}
 @media (max-width:900px){.ev{grid-template-columns:1fr}.ev-ph{min-height:0;aspect-ratio:4/3}}
 @media (max-width:560px){.ev-m{grid-template-columns:1fr 1fr}.cr{grid-template-columns:auto minmax(0,1fr)}.cr>.btn,.cr>.chp{grid-column:2;justify-self:start}}
 
@@ -570,12 +579,12 @@ button{cursor:pointer}
 @media (max-width:1000px){.shop{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 /* =================== KAPANIŞ =================== */
-.fin{background:#000;padding:var(--edge)}
-.fin-c{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);border-radius:32px;background:var(--k2);color:#fff;padding:clamp(24px,4vw,64px);overflow:hidden}
+.fin{background:#fff;padding:0 var(--gut) clamp(48px,5.2vw,96px)}
+.fin-c{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);border-radius:32px;background:var(--g0);color:var(--tx);padding:clamp(24px,4vw,64px);overflow:hidden;max-width:calc(var(--max) - 2 * var(--gut));margin-inline:auto}
 .fin-t{display:grid;gap:28px;align-content:center;justify-items:start;padding-block:clamp(8px,3vw,48px)}
 .fin-ph{position:relative;border-radius:24px;overflow:hidden;min-height:460px}
 .fin-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0%}
-.fin .lead{color:var(--mud)}
+.fin .lead{color:var(--mu)}
 @media (max-width:900px){.fin-c{grid-template-columns:1fr}.fin-ph{min-height:0;aspect-ratio:4/3;order:-1}}
 
 /* =================== ALT BİLGİ =================== */
@@ -662,8 +671,8 @@ button{cursor:pointer}
 /* =================== SİSTEM NOTLARI =================== */
 .sys{display:none;margin-top:16px;padding:14px 16px;border-radius:16px;background:#EEF1FF;border:1px solid #D3DAFF;color:#1C2A86;font-size:14px;line-height:1.5;text-align:left;max-width:68ch}
 .sys b{display:block;margin-bottom:6px;font:700 10.5px/1 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
-.bk .sys,.ev .sys,.cs .sys,.plan.dk .sys{background:rgba(54,83,255,.14);border-color:rgba(110,132,255,.42);color:#D9DFFF}
-.bk .sys b,.ev .sys b,.cs .sys b{color:#9DB0FF}
+.bk .sys,.cs .sys,.plan.dk .sys{background:rgba(54,83,255,.14);border-color:rgba(110,132,255,.42);color:#D9DFFF}
+.bk .sys b,.cs .sys b{color:#9DB0FF}
 body.sys-on .sys{display:block}
 .sys-t{position:fixed;z-index:45;left:calc(14px + env(safe-area-inset-left,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 16px 0 9px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(17,17,19,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#fff;font:600 13.5px/1 var(--fb);box-shadow:0 16px 40px -16px rgba(0,0,0,.6)}
 .sys-t i{position:relative;width:34px;height:20px;border-radius:999px;background:#3A3A40;transition:background-color .2s}
@@ -706,20 +715,21 @@ body.sys-on .sys{display:block}
 @media (max-width:600px){.ro-g{grid-template-columns:1fr}.ro-c{aspect-ratio:16/11}}
 
 /* =================== AKADEMİ YÖNTEMİ =================== */
-.mth{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(40px,5vw,72px);border-radius:28px;overflow:hidden;background:#000;color:#fff}
-.mth-i{padding:clamp(22px,2.4vw,36px);display:grid;gap:14px;align-content:start;border-right:1px solid rgba(255,255,255,.12)}
-.mth-i:last-child{border-right:0;background:var(--red2)}
-.mth-n{font:500 13px/1 var(--fd);color:rgba(255,255,255,.6);font-variant-numeric:tabular-nums}
+.mth{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(40px,5vw,72px);border-radius:28px;overflow:hidden;background:var(--g0);color:var(--tx)}
+.mth-i{padding:clamp(22px,2.4vw,36px);display:grid;gap:14px;align-content:start;border-right:1px solid rgba(0,0,0,.08)}
+.mth-i:last-child{border-right:0;background:var(--red2);color:#fff}
+.mth-i:last-child .mth-n{color:rgba(255,255,255,.7)}
+.mth-n{font:500 13px/1 var(--fd);color:var(--mu);font-variant-numeric:tabular-nums}
 .mth-w{font:400 clamp(28px,2.7vw,48px)/.9 var(--fc);letter-spacing:.012em}
-.mth-i p{margin:0;font-size:15px;line-height:1.5;color:rgba(255,255,255,.8)}
+.mth-i p{margin:0;font-size:15px;line-height:1.5;color:var(--mu)}
 .mth-i:last-child p{color:rgba(255,255,255,.92)}
-@media (max-width:1000px){.mth{grid-template-columns:repeat(2,minmax(0,1fr))}.mth-i:nth-child(2){border-right:0}.mth-i:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.12)}}
-@media (max-width:560px){.mth{grid-template-columns:1fr}.mth-i{border-right:0;border-bottom:1px solid rgba(255,255,255,.12)}}
+@media (max-width:1000px){.mth{grid-template-columns:repeat(2,minmax(0,1fr))}.mth-i:nth-child(2){border-right:0}.mth-i:nth-child(-n+2){border-bottom:1px solid rgba(0,0,0,.08)}}
+@media (max-width:560px){.mth{grid-template-columns:1fr}.mth-i{border-right:0;border-bottom:1px solid rgba(0,0,0,.08)}}
 
 /* =================== EĞİTİM KATALOĞU =================== */
 .kt-h{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px clamp(32px,6vw,112px);align-items:end;margin-bottom:clamp(32px,4vw,56px)}
 .kt-g{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(22px,2vw,32px) clamp(12px,1.1vw,18px)}
-.kc{display:grid;gap:12px;align-content:start;padding:0;border:0;background:none;color:#fff;text-align:left;cursor:pointer;font:inherit}
+.kc{display:grid;gap:12px;align-content:start;padding:0;border:0;background:none;color:inherit;text-align:left;cursor:pointer;font:inherit}
 .kc .pc,.mdg .pc{width:100%}
 .kc .pc::before,.mdg .pc::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,0) 34%,var(--tn,#000) 140%);opacity:.95}
 .pc.cut{background:radial-gradient(120% 80% at 50% 26%,#4A1218 0%,#140608 55%,#050505 100%)}
@@ -727,7 +737,7 @@ body.sys-on .sys{display:block}
 .kc .pc-in{gap:0}
 .kc .lt .s+.c,.mdg .lt .s+.c{margin-top:.2em}
 .kc-t{font:600 15.5px/1.3 var(--fb);letter-spacing:-.01em}
-.kc-r{font-size:14px;line-height:1.45;color:var(--mud);margin-top:-4px}
+.kc-r{font-size:14px;line-height:1.45;color:var(--mu);margin-top:-4px}
 .kc:hover .kc-t{text-decoration:underline;text-underline-offset:3px}
 @media (max-width:1200px){.kt-g{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (max-width:1000px){.kt-g{grid-template-columns:repeat(3,minmax(0,1fr))}.kt-h{grid-template-columns:1fr}}
@@ -872,11 +882,12 @@ body.sys-on .sys{display:block}
         <button class="mi-b" type="button" aria-expanded="false">Hakkında<svg aria-hidden="true"><use href="#i-cd"/></svg></button>
         <div class="dd">
           <div class="dd-l">
-            <a href="#sonuclar" data-open="m-bio"><b>Hikaye</b><span>Royal Caribbean’dan RE/MAX sahnelerine</span></a>
-            <a href="#sonuclar"><b>Sonuçlar</b><span>Yirmi yılın rakamları</span></a>
+            <a href="#hakkinda"><b>Hikaye</b><span>Royal Caribbean’dan RE/MAX sahnelerine</span></a>
+            
             <a href="#yorumlar"><b>Yorumlar</b><span>Dünyadan ofis liderleri</span></a>
+            <a href="#roller"><b>Altı rol</b><span>Sahnede, salonda ve birebir</span></a>
           </div>
-          <a class="dd-f" href="#sonuclar" data-open="m-bio"><img src="img/point.jpg" alt="" style="object-position:50% 10%"><span>Barış Kılıçarslan kimdir?</span></a>
+          <a class="dd-f" href="#hakkinda"><img src="img/point.jpg" alt="" style="object-position:50% 10%"><span>Barış Kılıçarslan kimdir?</span></a>
         </div>
       </li>
     </ul>
@@ -900,7 +911,7 @@ body.sys-on .sys{display:block}
   <details><summary>Kurumsal<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#roller">Corporate Trainer</a><a href="#katalog">Real Estate Trainer</a><a href="#roller" data-corp="Birebir mentorluk">Private Mentoring</a></div></details>
   <details><summary>Etkinlikler<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#takvim">Etkinlik takvimi</a><a href="#takvim">Aralık webinarı</a><a href="#etkinlikler">Akademi lansmanı</a></div></details>
   <details><summary>Mağaza<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#magaza">Gelişim ve Kazanç Mağazası</a><a href="#magaza" data-prod="kitap">Kitaplar</a><a href="#magaza">Klasik Eğitimler</a></div></details>
-  <details><summary>Hakkında<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#sonuclar" data-open="m-bio">Hikaye</a><a href="#sonuclar">Sonuçlar</a><a href="#yorumlar">Yorumlar</a></div></details>
+  <details><summary>Hakkında<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#hakkinda">Hikaye</a><a href="#yorumlar">Yorumlar</a><a href="#roller">Altı rol</a></div></details>
   <div class="mnav-c">
     <button class="btn btn-w" type="button" data-open="m-apply">Hemen başla</button>
     <button class="btn btn-ow" type="button" data-open="m-login">Akademiye giriş</button>
@@ -935,6 +946,33 @@ body.sys-on .sys{display:block}
   </div>
 </section>
 
+<!-- HAKKINDA -->
+<section class="sec wh" id="hakkinda">
+  <div class="wrap ab-g">
+    <div class="ab-ph"><img src="img/baris-boy.webp" alt="Barış Kılıçarslan"></div>
+    <div class="ab-c">
+      <span class="lbl ab-k">Barış Kılıçarslan</span>
+      <h2 class="h2">Royal Caribbean’dan RE/MAX sahnelerine.</h2>
+      <p class="lead">Mühendislikle başladı. Royal Caribbean’da altı yıl boyunca 24 ülkede satış ve müşteri ilişkileri yönetti, Miami’de eğitmen oldu. Türkiye’ye dönünce RE/MAX Türkiye ile çalışmaya başladı. Bugün tek bir işi var: satış ekiplerinin sahada sonuç alması.</p>
+      <div class="ab-st">
+        <div class="st"><b>1.900+</b><span>gün eğitim ve seminer</span></div>
+        <div class="st"><b>200.000+</b><span>katılımcı</span></div>
+        <div class="st"><b>200+</b><span>kurum</span></div>
+        <div class="st"><b>%97,4</b><span>katılımcı memnuniyeti</span></div>
+      </div>
+      <div class="ab-lg" aria-label="Eğitim verdiği kurumlardan">
+        <img src="img/logo-hilton.png" alt="Hilton" style="height:24px">
+        <img src="img/logo-3m.png" alt="3M" style="height:22px">
+        <img src="img/logo-arcelik.png" alt="Arçelik" style="height:21px">
+        <img src="img/logo-hp.png" alt="HP" style="height:30px">
+        <img src="img/logo-aksigorta.png" alt="Aksigorta" style="height:15px">
+        <img src="img/logo-anadolujet.png" alt="AnadoluJet" style="height:11px">
+      </div>
+      <button class="btn btn-k" type="button" data-open="m-bio">Barış’ı tanı</button>
+    </div>
+  </div>
+</section>
+
 <!-- AKADEMİ -->
 <section class="sec wh" id="akademi">
   <div class="wrap">
@@ -953,7 +991,7 @@ body.sys-on .sys{display:block}
 </section>
 
 <!-- EĞİTİM KATALOĞU -->
-<section class="sec bk" id="katalog">
+<section class="sec wh" id="katalog">
   <div class="wrap">
     <div class="kt-h">
       <h2 class="h2">Sahada kazanca götüren on eğitim.</h2>
@@ -1015,7 +1053,7 @@ body.sys-on .sys{display:block}
 </section>
 
 <!-- BARIŞ AI -->
-<section class="sec bk" id="baris-ai">
+<section class="sec wh" id="baris-ai">
   <div class="wrap ai-g">
     <div class="ai-l">
       <span class="ai-mk"><span class="wmk">Barış Kılıçarslan</span><span class="ai-chip">AI</span></span>
@@ -1090,14 +1128,14 @@ body.sys-on .sys{display:block}
         <div class="tiers" aria-label="Danışman sayısına göre kademeler"><span>1-25 danışman</span><span>26-75</span><span>76-99</span><span>100+</span></div>
         <div class="plan-f"><span class="price">Ofis büyüklüğüne göre<small>Teklifle · ikinci yıl yenileme avantajı</small></span><button class="btn btn-k btn-sm" type="button" data-open="m-apply">Teklif isteyin</button></div>
       </article>
-      <article class="plan dk">
+      <article class="plan">
         <div class="plan-h"><div><h3 class="h3">Tek eğitim</h3><small>Ofisinize seçtiğiniz bir eğitim</small></div><span class="badge">Sabit bedel</span></div>
         <ul class="ck">
           <li><svg aria-hidden="true"><use href="#i-k"/></svg>Katalogdan seçtiğiniz eğitim</li>
           <li><svg aria-hidden="true"><use href="#i-k"/></svg>Eğitimin üç belgesi</li>
           <li><svg aria-hidden="true"><use href="#i-k"/></svg>Mentor eşliğinde grup uygulaması</li>
         </ul>
-        <div class="plan-f"><span class="price">Eğitim başına<small>Teklifle</small></span><a class="btn btn-w btn-sm" href="#katalog">Eğitim seçin</a></div>
+        <div class="plan-f"><span class="price">Eğitim başına<small>Teklifle</small></span><a class="btn btn-ok btn-sm" href="#katalog">Eğitim seçin</a></div>
       </article>
     </div>
     <p class="plan-n">Lansmana katılan ofislere 48 saatlik kurucu ofis fiyatı. Fiyatlar lansmanda açıklanır.</p>
@@ -1105,7 +1143,7 @@ body.sys-on .sys{display:block}
 </section>
 
 <!-- ETKİNLİKLER -->
-<section class="sec gy" id="etkinlikler">
+<section class="sec wh" id="etkinlikler">
   <div class="wrap">
     <div class="sh"><h2 class="h2">Yaklaşan etkinlikler</h2></div>
     <article class="ev">
@@ -1118,7 +1156,7 @@ body.sys-on .sys{display:block}
         <h3 class="h3">Masterclass Akademi lansmanı</h3>
         <p>Ofis sahipleri İstanbul’da aynı salonda, Türkiye canlı yayında. Akademi, Barış AI ve mentor sistemi ilk kez birlikte sahnede.</p>
         <dl class="ev-m"><div><dt>Tarih</dt><dd>Ocak 2027</dd></div><div><dt>Yer</dt><dd>İstanbul ve canlı yayın</dd></div><div><dt>Katılım</dt><dd>Davetiye ile</dd></div></dl>
-        <div class="ev-cta"><button class="btn btn-w" type="button" data-open="m-invite">Davetiye iste</button></div>
+        <div class="ev-cta"><button class="btn btn-k" type="button" data-open="m-invite">Davetiye iste</button></div>
         <div class="sys"><b>Arka planda</b>Kayıt olana onay mesajı; bir hafta, bir gün, üç saat ve on dakika önce hatırlatma. Salona gelen QR ile, online izleyen yayın sayfasından işaretlenir. Gelmeyene kaydın kısa hali gider. Sonra altı haftalık takip: 48 saat kurucu fiyatı, ardından %30 ve %20 dönemleri.</div>
       </div>
     </article>
@@ -1130,27 +1168,8 @@ body.sys-on .sys{display:block}
   </div>
 </section>
 
-<!-- SONUÇLAR -->
-<section class="sec wh" id="sonuclar">
-  <div class="wrap">
-    <div class="rs-g">
-      <div class="rs-l">
-        <h2 class="h2">Kılıçarslan demek sonuç demek.</h2>
-        <p class="lead">Türkiye’den Arjantin’e, Romanya’dan Las Vegas’a yirmi yıldır aynı soruyla çalışıyor: Katılımcı salondan çıktıktan sonra sahada ne değişti?</p>
-        <button class="btn btn-k" type="button" data-open="m-bio">Barış’ı tanı</button>
-      </div>
-      <div class="rs-st">
-        <div class="st"><b>1.900+</b><span>gün eğitim ve seminer</span></div>
-        <div class="st"><b>200.000+</b><span>katılımcı</span></div>
-        <div class="st"><b>200+</b><span>kurum</span></div>
-        <div class="st"><b>%97,4</b><span>katılımcı memnuniyeti</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- YORUMLAR -->
-<section class="sec bk ts" id="yorumlar">
+<section class="sec wh ts" id="yorumlar">
   <div class="wrap">
     <div class="ts-g">
       <div>
@@ -1175,7 +1194,7 @@ body.sys-on .sys{display:block}
 </section>
 
 <!-- ROLLER -->
-<section class="sec gy" id="roller">
+<section class="sec wh" id="roller">
   <div class="wrap">
     <div class="ro-h">
       <h2 class="h2">Altı rol, tek hedef: sonuç.</h2>
@@ -1228,7 +1247,7 @@ body.sys-on .sys{display:block}
     <div class="fin-t">
       <h2 class="h1">Olağanüstü bir yıla hazır mısın?</h2>
       <p class="lead">Şimdi tam zamanı. Ofisine en uygun yolu birlikte seçelim.</p>
-      <div class="hs-cta"><button class="btn btn-w" type="button" data-open="m-apply">Ofisim için başvur</button><button class="btn btn-ow" type="button" data-corp="Satış">Kurumsal teklif iste</button></div>
+      <div class="hs-cta"><button class="btn btn-k" type="button" data-open="m-apply">Ofisim için başvur</button><button class="btn btn-ok" type="button" data-corp="Satış">Kurumsal teklif iste</button></div>
     </div>
     <div class="fin-ph"><img src="img/upgrade.jpg" alt="Barış Kılıçarslan"></div>
   </div>
@@ -1238,7 +1257,7 @@ body.sys-on .sys{display:block}
 <footer class="ft">
   <div class="wrap">
     <div class="ft-top">
-      <div><h4>Hakkında</h4><ul><li><a href="#sonuclar" data-open="m-bio">Hikaye</a></li><li><a href="#sonuclar">Sonuçlar</a></li><li><a href="#yorumlar">Yorumlar</a></li><li><a href="#roller">Altı rol</a></li></ul></div>
+      <div><h4>Hakkında</h4><ul><li><a href="#hakkinda">Hikaye</a></li><li><a href="#yorumlar">Yorumlar</a></li><li><a href="#roller">Altı rol</a></li></ul></div>
       <div><h4>Akademi</h4><ul><li><a href="#akademi">Masterclass Akademi</a></li><li><a href="#katalog">Eğitim kataloğu</a></li><li><a href="#portal">Mentorun eğitim ekranı</a></li><li><a href="#baris-ai">Barış AI</a></li><li><a href="#uyelik">Üyelik</a></li></ul></div>
       <div><h4>Etkinlikler</h4><ul><li><a href="#takvim">Etkinlik takvimi</a></li><li><a href="#takvim">Aralık webinarı</a></li><li><a href="#etkinlikler">Akademi lansmanı</a></li></ul></div>
       <div><h4>Destek</h4><ul><li><button type="button" data-open="m-login">Akademiye giriş</button></li><li><button type="button" data-corp="Satış">İletişim</button></li><li><a href="#magaza">Mağaza</a></li></ul></div>
@@ -1590,7 +1609,7 @@ document.addEventListener('click',function(e){
 });
 
 /* ---------- Arama ---------- */
-var LINKS=[['Masterclass Akademi','akademi','Ofisinizin kendi satış okulu'],['Eğitim kataloğu','katalog','On eğitim, tanıtımları ve bölümleri'],['Mentorun eğitim ekranı','ofis','Bölümler, belgeler ve katılım'],['Barış AI','baris-ai','Sor ve prova yap'],['Üyelik','uyelik','12 aylık ofis üyeliği ve tek eğitim'],['Akademi lansmanı','etkinlikler','İstanbul, Ocak 2027'],['Etkinlik takvimi','takvim','Aralık webinarı, lansman ve geçmiş etkinlikler'],['Hikaye','m-bio','Barış Kılıçarslan kimdir'],['Sonuçlar','sonuclar','Yirmi yılın rakamları'],['Yorumlar','yorumlar','Dünyadan ofis liderleri'],['Altı rol','roller','Real Estate Trainer, Corporate Trainer, International Speaker, Keynote Speaker, Private Mentoring'],['Kurumsal eğitim ve konuşma','roller','Tarih ve teklif isteyin'],['Satışın Şifreleri','magaza','Online eğitim seti ve kitap'],['Gayrimenkulün Usta Satışçıları','magaza','Ustalarla birebir sohbetler'],['Klasik Eğitimler','magaza','Satışın Şifreleri, Gayrimenkulün Usta Satışçıları']];
+var LINKS=[['Masterclass Akademi','akademi','Ofisinizin kendi satış okulu'],['Eğitim kataloğu','katalog','On eğitim, tanıtımları ve bölümleri'],['Mentorun eğitim ekranı','ofis','Bölümler, belgeler ve katılım'],['Barış AI','baris-ai','Sor ve prova yap'],['Üyelik','uyelik','12 aylık ofis üyeliği ve tek eğitim'],['Akademi lansmanı','etkinlikler','İstanbul, Ocak 2027'],['Etkinlik takvimi','takvim','Aralık webinarı, lansman ve geçmiş etkinlikler'],['Hikaye','hakkinda','Barış Kılıçarslan kimdir'],['Sonuçlar','hakkinda','Yirmi yılın rakamları'],['Yorumlar','yorumlar','Dünyadan ofis liderleri'],['Altı rol','roller','Real Estate Trainer, Corporate Trainer, International Speaker, Keynote Speaker, Private Mentoring'],['Kurumsal eğitim ve konuşma','roller','Tarih ve teklif isteyin'],['Satışın Şifreleri','magaza','Online eğitim seti ve kitap'],['Gayrimenkulün Usta Satışçıları','magaza','Ustalarla birebir sohbetler'],['Klasik Eğitimler','magaza','Satışın Şifreleri, Gayrimenkulün Usta Satışçıları']];
 var sIn=$('#searchInput'),sList=$('#searchList');
 function renderSearch(q){
   q=(q||'').toLocaleLowerCase('tr');sList.replaceChildren();
