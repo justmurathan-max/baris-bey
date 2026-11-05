@@ -8,6 +8,23 @@
 <style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 <title>Barış Kılıçarslan</title>
 <meta name="description" content="Barış Kılıçarslan: uluslararası gayrimenkul satış eğitmeni. Masterclass Akademi, Barış AI ve mentor paneli.">
+<!-- Paylaşım önizlemesi: alan adı bariskilicarslan.com'a geçince iki adres de değişmeli -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:site_name" content="Barış Kılıçarslan">
+<meta property="og:title" content="Barış Kılıçarslan · Masterclass Akademi">
+<meta property="og:description" content="Eğitim izlemek için değil, sonuç alıp kazanmak için. RE/MAX ofisleri için 12 aylık Masterclass Akademi, Ocak 2027’de açılıyor.">
+<meta property="og:url" content="https://baris-kilicarslan-akademi.vercel.app/">
+<meta property="og:image" content="https://baris-kilicarslan-akademi.vercel.app/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Barış Kılıçarslan sahnede; Masterclass Akademi, Ocak 2027">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700;1,800&display=swap">
@@ -90,25 +107,25 @@ button{cursor:pointer}
 .sh-r{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 
 /* =================== ÜST MENÜ =================== */
-.hd{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:#000;color:#fff;transition:transform .35s var(--ease)}
+.hd{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:#fff;color:var(--tx);box-shadow:0 1px 0 rgba(0,0,0,.08);transition:transform .35s var(--ease)}
 .hd.up{transform:translateY(calc(-100% - env(safe-area-inset-top,0px)))}
 .hd-in{height:var(--hd);max-width:var(--max);margin-inline:auto;padding-inline:var(--gut);display:flex;align-items:center;gap:clamp(12px,2vw,36px)}
 .wm{font:700 14px/1 var(--fw);letter-spacing:.26em;text-decoration:none;white-space:nowrap;padding-block:10px}
 .menu{display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0}
 .mi{position:relative}
-.mi-b{display:inline-flex;align-items:center;gap:7px;height:40px;padding:0 14px;border-radius:999px;border:0;background:none;color:#fff;font:500 15px/1 var(--fb);letter-spacing:-.005em;transition:background-color .2s}
-.mi-b:hover,.mi.open .mi-b{background:var(--k3)}
+.mi-b{display:inline-flex;align-items:center;gap:7px;height:40px;padding:0 14px;border-radius:999px;border:0;background:none;color:inherit;font:500 15px/1 var(--fb);letter-spacing:-.005em;transition:background-color .2s}
+.mi-b:hover,.mi.open .mi-b{background:var(--g0)}
 .mi-b svg{width:10px;height:10px;transition:transform .2s}
 .mi.open .mi-b svg{transform:rotate(180deg)}
-.dd{position:absolute;left:0;top:calc(100% + 14px);width:min(600px,80vw);display:grid;grid-template-columns:minmax(0,1fr) 196px;gap:10px;padding:10px;background:#0F0F11;border:1px solid rgba(255,255,255,.09);border-radius:24px;box-shadow:0 40px 80px -30px rgba(0,0,0,.7);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .2s,transform .2s,visibility 0s .2s}
+.dd{position:absolute;left:0;top:calc(100% + 14px);width:min(600px,80vw);display:grid;grid-template-columns:minmax(0,1fr) 196px;gap:10px;padding:10px;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:24px;box-shadow:0 40px 80px -30px rgba(0,0,0,.28);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .2s,transform .2s,visibility 0s .2s}
 .dd::before{content:"";position:absolute;left:0;right:0;top:-16px;height:16px}
 .mi:nth-last-child(-n+2) .dd{left:auto;right:0}
 .mi.open .dd{opacity:1;visibility:visible;transform:none;transition:opacity .2s,transform .2s}
 .dd-l{display:grid;gap:2px;align-content:start;padding:4px}
-.dd-l a{display:grid;gap:4px;padding:12px 14px;border-radius:14px;text-decoration:none;color:#fff;transition:background-color .15s}
-.dd-l a:hover,.dd-l a:focus-visible{background:var(--k3)}
+.dd-l a{display:grid;gap:4px;padding:12px 14px;border-radius:14px;text-decoration:none;color:inherit;transition:background-color .15s}
+.dd-l a:hover,.dd-l a:focus-visible{background:var(--g0)}
 .dd-l b{font:600 15px/1.2 var(--fb);letter-spacing:-.01em}
-.dd-l span{font-size:13.5px;line-height:1.35;color:var(--mud)}
+.dd-l span{font-size:13.5px;line-height:1.35;color:var(--mu)}
 .dd-f{position:relative;display:flex;align-items:flex-end;min-height:240px;padding:14px;border-radius:16px;overflow:hidden;text-decoration:none;color:#fff;isolation:isolate;background:var(--k3)}
 .dd-f img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .6s var(--ease)}
 .dd-f.book img{object-fit:contain;padding:20px 34px 62px}
@@ -116,39 +133,39 @@ button{cursor:pointer}
 .dd-f::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,0) 38%,rgba(0,0,0,.86))}
 .dd-f span{font:600 14px/1.3 var(--fb);letter-spacing:-.01em}
 .hd-r{margin-left:auto;display:flex;align-items:center;gap:4px}
-.icb{width:42px;height:42px;border-radius:50%;border:0;background:none;color:#fff;display:grid;place-items:center;transition:background-color .2s}
-.icb:hover{background:var(--k3)}
+.icb{width:42px;height:42px;border-radius:50%;border:0;background:none;color:inherit;display:grid;place-items:center;transition:background-color .2s}
+.icb:hover{background:var(--g0)}
 .icb svg{width:20px;height:20px}
-.hd-lg{height:42px;padding:0 14px;border-radius:999px;border:0;background:none;color:#fff;font:500 15px/1 var(--fb);transition:background-color .2s}
-.hd-lg:hover{background:var(--k3)}
+.hd-lg{height:42px;padding:0 14px;border-radius:999px;border:0;background:none;color:inherit;font:500 15px/1 var(--fb);transition:background-color .2s}
+.hd-lg:hover{background:var(--g0)}
 .hd .btn{margin-inline:6px}
 .lang{position:relative}
-.lang-b{display:inline-flex;align-items:center;gap:7px;height:42px;padding:0 12px;border-radius:999px;border:0;background:none;color:#fff;font:500 14px/1 var(--fb);transition:background-color .2s}
-.lang-b:hover{background:var(--k3)}
+.lang-b{display:inline-flex;align-items:center;gap:7px;height:42px;padding:0 12px;border-radius:999px;border:0;background:none;color:inherit;font:500 14px/1 var(--fb);transition:background-color .2s}
+.lang-b:hover{background:var(--g0)}
 .lang-b svg{width:18px;height:18px}
-.lang-m{position:absolute;right:0;top:calc(100% + 10px);min-width:210px;list-style:none;margin:0;padding:8px;background:#0F0F11;border:1px solid rgba(255,255,255,.09);border-radius:18px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
-.lang-m li{display:flex;justify-content:space-between;gap:16px;padding:11px 12px;border-radius:12px;font-size:14px;color:#fff}
-.lang-m li span{color:var(--mud);font-size:12.5px}
-.lang-m li.cur{background:var(--k3)}
+.lang-m{position:absolute;right:0;top:calc(100% + 10px);min-width:210px;list-style:none;margin:0;padding:8px;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:18px;box-shadow:0 30px 60px -20px rgba(0,0,0,.25)}
+.lang-m li{display:flex;justify-content:space-between;gap:16px;padding:11px 12px;border-radius:12px;font-size:14px;color:inherit}
+.lang-m li span{color:var(--mu);font-size:12.5px}
+.lang-m li.cur{background:var(--g0)}
 .burger{display:none}
 @media (max-width:1180px){.menu,.hd-lg,.lang{display:none}.burger{display:grid}}
 @media (max-width:560px){.hd .btn{display:none}.wm{font-size:12.5px;letter-spacing:.22em}}
 
-.mnav{position:fixed;inset:0;z-index:70;background:#000;color:#fff;overflow-y:auto;padding:env(safe-area-inset-top,0px) var(--gut) calc(env(safe-area-inset-bottom,0px) + 32px)}
+.mnav{position:fixed;inset:0;z-index:70;background:#fff;color:var(--tx);overflow-y:auto;padding:env(safe-area-inset-top,0px) var(--gut) calc(env(safe-area-inset-bottom,0px) + 32px)}
 .mnav-h{display:flex;align-items:center;justify-content:space-between;height:var(--hd)}
-.mnav details{border-bottom:1px solid var(--lnd)}
+.mnav details{border-bottom:1px solid var(--ln)}
 .mnav summary{list-style:none;display:flex;align-items:center;justify-content:space-between;padding:22px 0;font:500 30px/1 var(--fd);letter-spacing:-.035em;cursor:pointer}
 .mnav summary::-webkit-details-marker{display:none}
 .mnav summary svg{width:14px;height:14px;transition:transform .2s}
 .mnav details[open] summary svg{transform:rotate(180deg)}
 .mnav details div{padding-bottom:18px}
-.mnav details a{display:block;padding:10px 0;font-size:17px;color:var(--mud);text-decoration:none}
+.mnav details a{display:block;padding:10px 0;font-size:17px;color:var(--mu);text-decoration:none}
 .mnav-c{display:grid;gap:10px;margin-top:32px}
 .mnav-c .btn{width:100%}
-.mnav-l{margin-top:28px;color:var(--mud);font-size:14px}
+.mnav-l{margin-top:28px;color:var(--mu);font-size:14px}
 
 /* =================== HERO =================== */
-.hero{position:relative;background:#000;padding:0 var(--edge) var(--edge)}
+.hero{position:relative;background:#fff;padding:var(--edge) var(--edge) 0}
 .hc{position:relative;height:calc(100svh - var(--hd) - var(--edge));min-height:620px;max-height:960px;border-radius:32px;overflow:hidden;background:#141416;color:#fff;isolation:isolate}
 .hs{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 1s ease,visibility 0s 1s}
 .hs.on{opacity:1;visibility:visible;transition:opacity 1s ease}
@@ -188,11 +205,14 @@ button{cursor:pointer}
 @media (max-width:1000px){
   .hs-c{width:auto;right:clamp(24px,4vw,72px)}
   .nx{position:static;width:auto;margin-top:10px}
-  .nx-c{background:var(--k2);border-color:rgba(255,255,255,.08)}
-  .nx-l{padding:10px 6px 2px}
+  .nx-c{background:var(--g0);border-color:rgba(0,0,0,.06);color:var(--tx)}
+  .nx-c:hover{background:var(--g1)}
+  .nx-t span{color:var(--mu)}
+  .nx-go{background:#000;color:#fff}
+  .nx-l{padding:10px 6px 2px;color:var(--tx)}
 }
 @media (max-width:640px){
-  .hero{padding:0 8px 8px}
+  .hero{padding:8px 8px 0}
   .hc{height:min(78svh,660px);min-height:540px;border-radius:24px}
   .hs-c{left:20px;right:20px;bottom:26px}
   .hs-c .h1{font-size:clamp(34px,10vw,46px)}
@@ -324,21 +344,21 @@ button{cursor:pointer}
 .ai-l{display:grid;gap:26px;justify-items:start}
 .ai-mk{display:inline-flex;align-items:center;gap:12px}
 .ai-chip{display:inline-grid;place-items:center;height:24px;padding:0 8px;border-radius:7px;background:#000;color:#fff;font:800 12.5px/1 var(--fw);letter-spacing:.06em}
-.cs{display:flex;flex-direction:column;height:clamp(560px,72vh,680px);border-radius:28px;background:#111113;border:1px solid rgba(255,255,255,.08);overflow:hidden;color:#fff;box-shadow:0 50px 100px -40px rgba(0,0,0,.8)}
-.cs-h{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.07)}
+.cs{display:flex;flex-direction:column;height:clamp(560px,72vh,680px);border-radius:28px;background:#fff;border:1px solid rgba(0,0,0,.1);overflow:hidden;color:var(--tx);box-shadow:0 40px 90px -45px rgba(0,0,0,.3)}
+.cs-h{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid rgba(0,0,0,.08)}
 .cs-who{display:flex;align-items:center;gap:12px;min-width:0}
-.cs-av{width:42px;height:42px;border-radius:50%;object-fit:cover;flex:none;background:#222}
+.cs-av{width:42px;height:42px;border-radius:50%;object-fit:cover;flex:none;background:var(--g1)}
 .cs-who b{display:block;font:600 16px/1.2 var(--fb)}
-.cs-who span{display:block;font-size:13px;color:var(--mud);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cs-who span{display:block;font-size:13px;color:var(--mu);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cs-who>div{min-width:0}
 .pd-img.dim>img{filter:brightness(.56) saturate(1.05)}
-.cs-st{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 12px;border-radius:999px;background:var(--k3);font:600 12.5px/1 var(--fb);flex:none}
+.cs-st{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 12px;border-radius:999px;background:var(--g0);font:600 12.5px/1 var(--fb);flex:none}
 .cs-st i{width:7px;height:7px;border-radius:50%;background:#8C8C94}
 .cs-st[data-mode=live] i{background:#34D27A;box-shadow:0 0 0 3px rgba(52,210,122,.2)}
 .cs-st[data-mode=demo] i{background:#FFB020}
-.cs-tabs{display:flex;gap:4px;margin:14px 18px 2px;padding:4px;border-radius:999px;background:var(--k3);align-self:flex-start}
-.cs-tab{height:38px;padding:0 18px;border-radius:999px;border:0;background:none;color:var(--mud);font:600 14px/1 var(--fb);transition:background-color .2s,color .2s}
-.cs-tab[aria-selected=true]{background:#fff;color:#000}
+.cs-tabs{display:flex;gap:4px;margin:14px 18px 2px;padding:4px;border-radius:999px;background:var(--g0);align-self:flex-start}
+.cs-tab{height:38px;padding:0 18px;border-radius:999px;border:0;background:none;color:var(--mu);font:600 14px/1 var(--fb);transition:background-color .2s,color .2s}
+.cs-tab[aria-selected=true]{background:#000;color:#fff}
 .cs-p{flex:1;min-height:0;display:flex;flex-direction:column}
 .cs-p[hidden]{display:none}
 .msgs{flex:1;min-height:0;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:14px}
@@ -347,42 +367,42 @@ button{cursor:pointer}
 .msg.me{align-self:flex-end;justify-items:end}
 .msg-l{font:600 11px/1 var(--fb);letter-spacing:.1em;text-transform:uppercase;color:var(--mu2)}
 .bub{padding:13px 16px;border-radius:20px;font-size:15px;line-height:1.55}
-.ai .bub{background:var(--k3);color:#F2F2F2;border-bottom-left-radius:6px}
-.me .bub{background:#fff;color:#000;border-bottom-right-radius:6px}
+.ai .bub{background:var(--g0);color:var(--tx);border-bottom-left-radius:6px}
+.me .bub{background:#000;color:#fff;border-bottom-right-radius:6px}
 .bub p{margin:0 0 8px}.bub p:last-child{margin:0}
 .bub .li{position:relative;padding-left:16px;margin:4px 0}
 .bub .li::before{content:"";position:absolute;left:3px;top:.68em;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.6}
-.bub .rel{display:inline-flex;margin-top:10px;padding:7px 12px;border-radius:999px;background:rgba(224,38,46,.18);color:#FF9AA0;font:600 12.5px/1.2 var(--fb)}
-.ex{display:block;margin-bottom:8px;font:700 10.5px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:#FFB020}
-.err{margin-top:8px;color:#FF9AA0;font-size:13px}
+.bub .rel{display:inline-flex;margin-top:10px;padding:7px 12px;border-radius:999px;background:#FDE7E8;color:#B3161E;font:600 12.5px/1.2 var(--fb)}
+.ex{display:block;margin-bottom:8px;font:700 10.5px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:#A66300}
+.err{margin-top:8px;color:#B3161E;font-size:13px}
 .dots{display:inline-flex;gap:5px;padding:4px 0}
 .dots i{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.35;animation:blink 1.2s infinite}
 .dots i:nth-child(2){animation-delay:.2s}.dots i:nth-child(3){animation-delay:.4s}
 @keyframes blink{0%,100%{opacity:.25}50%{opacity:.9}}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:0 18px 12px;scrollbar-width:none}
 .chips::-webkit-scrollbar{display:none}
-.chips button{flex:none;height:38px;padding:0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:var(--k3);color:#E9E9EC;font:500 13.5px/1 var(--fb);white-space:nowrap;transition:background-color .2s,border-color .2s}
-.chips button:hover{background:#26262A}
-.chips button[aria-pressed=true]{background:#fff;color:#000;border-color:#fff}
+.chips button{flex:none;height:38px;padding:0 14px;border-radius:999px;border:1px solid rgba(0,0,0,.1);background:#fff;color:var(--tx);font:500 13.5px/1 var(--fb);white-space:nowrap;transition:background-color .2s,border-color .2s}
+.chips button:hover{background:var(--g0)}
+.chips button[aria-pressed=true]{background:#000;color:#fff;border-color:#000}
 .chips button:disabled{opacity:.45;cursor:default}
 .chips.scen{padding-top:14px}
 @media (min-width:1001px){.chips{flex-wrap:wrap}}
-.cmp{display:flex;gap:8px;align-items:center;padding:12px;border-top:1px solid rgba(255,255,255,.07)}
-.cmp input{flex:1;min-width:0;height:52px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:var(--k3);color:#fff;padding:0 20px;font:400 15px var(--fb);outline:none;transition:border-color .2s}
-.cmp input:focus{border-color:rgba(255,255,255,.4)}
+.cmp{display:flex;gap:8px;align-items:center;padding:12px;border-top:1px solid rgba(0,0,0,.08)}
+.cmp input{flex:1;min-width:0;height:52px;border-radius:999px;border:1px solid rgba(0,0,0,.12);background:var(--g0);color:var(--tx);padding:0 20px;font:400 15px var(--fb);outline:none;transition:border-color .2s}
+.cmp input:focus{border-color:rgba(0,0,0,.45)}
 .cmp input::placeholder{color:#8B8B93}
 .cmp input:disabled{opacity:.5}
 .send,.stop{width:52px;height:52px;flex:none;border-radius:50%;border:0;display:grid;place-items:center;cursor:pointer}
-.send{background:#fff;color:#000}
-.stop{background:var(--k4);color:#fff}
+.send{background:#000;color:#fff}
+.stop{background:var(--g1);color:#000}
 .send svg,.stop svg{width:18px;height:18px}
 .send:disabled{opacity:.3;cursor:default}
 .cmp .end{flex:none}
-.pv-in{margin:auto 0;padding:24px;border-radius:22px;background:var(--k3);display:grid;gap:12px;justify-items:start}
-.pv-in .who{font:600 12px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:#FF9AA0}
+.pv-in{margin:auto 0;padding:24px;border-radius:22px;background:var(--g0);display:grid;gap:12px;justify-items:start}
+.pv-in .who{font:600 12px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
 .pv-in h3{margin:0;font:500 26px/1.1 var(--fd);letter-spacing:-.03em}
-.pv-in p{margin:0;color:var(--mud);font-size:15px;line-height:1.5}
-.sc{padding:20px;border-radius:22px;background:#fff;color:#000;display:grid;gap:16px}
+.pv-in p{margin:0;color:var(--mu);font-size:15px;line-height:1.5}
+.sc{padding:20px;border-radius:22px;background:var(--g0);color:#000;display:grid;gap:16px}
 .sc-ex{font:700 10.5px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:#A66300}
 .sc-top{display:flex;gap:16px;align-items:center}
 .ring{--p:0;width:74px;height:74px;border-radius:50%;background:conic-gradient(var(--red) calc(var(--p)*1%),#ECECE8 0);display:grid;place-items:center;flex:none}
@@ -390,7 +410,7 @@ button{cursor:pointer}
 .sc-top h4{margin:0 0 4px;font:600 16px/1.2 var(--fb)}
 .sc-top p{margin:0;color:var(--mu);font-size:14.5px;line-height:1.45}
 .sc-cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.sc-cols>div{border-radius:16px;background:var(--g0);padding:14px}
+.sc-cols>div{border-radius:16px;background:#fff;padding:14px}
 .sc-cols h5{margin:0 0 8px;font:700 11px/1 var(--fb);letter-spacing:.1em;text-transform:uppercase}
 .sc-cols .g h5{color:#13753A}.sc-cols .d h5{color:#B3161E}
 .sc-cols ul{margin:0;padding-left:16px;display:grid;gap:6px;font-size:14px;line-height:1.45}
@@ -412,61 +432,6 @@ button{cursor:pointer}
 .steps .n{font:500 14px/1 var(--fd);color:var(--red);font-variant-numeric:tabular-nums}
 .steps b{font:600 17px/1.3 var(--fb);letter-spacing:-.01em}
 .steps span:not(.n){color:var(--mu);font-size:15px;line-height:1.5}
-.ac{border-radius:28px;background:#fff;border:1px solid #E4E4E0;box-shadow:0 50px 90px -60px rgba(0,0,0,.4);overflow:hidden}
-.ac-top{display:flex;align-items:center;gap:24px;padding:14px 20px;border-bottom:1px solid #EDEDEA}
-.ac-logo{display:inline-flex;align-items:baseline;gap:6px;color:#000;white-space:nowrap}
-.ac-logo .c{font:400 19px/1 var(--fc);letter-spacing:.015em}
-.ac-logo .s{font:italic 700 18px/1 var(--fs)}
-.ac-nav{display:flex;gap:4px}
-.ac-nav span{height:36px;display:inline-flex;align-items:center;padding:0 14px;border-radius:999px;font:500 14px/1 var(--fb);color:var(--mu)}
-.ac-nav span[aria-current]{background:var(--g0);color:#000}
-.ac-u{margin-left:auto;display:flex;align-items:center;gap:10px;min-width:0}
-.ac-code{font:600 12px/1 var(--fb);letter-spacing:.06em;padding:9px 12px;border-radius:999px;background:var(--g0);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px}
-.ac-av{width:34px;height:34px;flex:none;border-radius:50%;background:#000;color:#fff;display:grid;place-items:center;font:600 12px/1 var(--fb)}
-.ac-b{display:grid;grid-template-columns:290px minmax(0,1fr)}
-.ac-side{border-right:1px solid #EDEDEA;padding:20px;display:grid;gap:20px;align-content:start;background:#FAFAF8}
-.ac-pr{display:grid;gap:8px}
-.ac-pr b{font:600 15px/1.2 var(--fb)}
-.ac-pr span{font-size:13px;color:var(--mu)}
-.ac-bar{height:6px;border-radius:6px;background:#E6E6E2;overflow:hidden}
-.ac-bar i{display:block;height:100%;width:var(--p);background:var(--red);border-radius:6px}
-.am-l{display:grid;gap:4px;list-style:none;margin:0;padding:0}
-.am{width:100%;display:grid;grid-template-columns:30px minmax(0,1fr);gap:12px;align-items:center;padding:10px;border-radius:14px;border:0;background:none;text-align:left;transition:background-color .15s}
-.am:hover{background:#F0F0EC}
-.am[aria-current=true]{background:#fff;box-shadow:0 0 0 1px #E4E4E0,0 6px 16px -10px rgba(0,0,0,.25)}
-.am-i{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:600 12px/1 var(--fb);background:#ECECE8;color:#555}
-.am-i svg{width:14px;height:14px}
-.am[data-state=done] .am-i{background:#000;color:#fff}
-.am[data-state=now] .am-i{background:var(--red);color:#fff}
-.am-t b{display:block;font:600 14.5px/1.25 var(--fb)}
-.am-t span{display:block;font-size:12.5px;color:var(--mu);margin-top:3px}
-.ac-main{padding:20px;display:grid;gap:20px;align-content:start;min-width:0}
-.ac-v{position:relative;aspect-ratio:16/8.4;border-radius:20px;overflow:hidden;background:#111;color:#fff;isolation:isolate}
-.ac-v img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 8%;z-index:-2}
-.ac-v::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.66))}
-.ac-play{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;background:#fff;color:#000;border:0;display:grid;place-items:center;transition:transform .2s}
-.ac-play:hover{transform:translate(-50%,-50%) scale(1.06)}
-.ac-play svg{width:26px;height:26px;margin-left:3px}
-.ac-vt{position:absolute;left:24px;bottom:34px;display:grid;gap:6px}
-.ac-vt small{font:600 11.5px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75)}
-.ac-vt b{font:500 clamp(22px,2.2vw,32px)/1 var(--fd);letter-spacing:-.03em}
-.ac-tl{position:absolute;left:24px;right:24px;bottom:16px;height:4px;border-radius:4px;background:rgba(255,255,255,.28)}
-.ac-tl i{display:block;width:44%;height:100%;border-radius:4px;background:#fff}
-.ac-time{position:absolute;right:24px;bottom:30px;font:500 12.5px/1 var(--fb);font-variant-numeric:tabular-nums;color:rgba(255,255,255,.85)}
-.ac-row{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:20px}
-.ac-d{display:grid;gap:16px;align-content:start}
-.ac-d p{margin:0;font-size:16px;line-height:1.55;color:#333}
-.ac-a{display:flex;flex-wrap:wrap;gap:8px}
-.ac-task{border-radius:20px;background:var(--g0);padding:18px;display:grid;gap:12px;align-content:start}
-.ac-task h4{margin:0;font:600 12px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--mu)}
-.tk{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;line-height:1.45;cursor:pointer}
-.tk input{appearance:none;-webkit-appearance:none;width:20px;height:20px;border-radius:6px;border:1.5px solid #BDBDB8;background:#fff;flex:none;margin:1px 0 0;display:grid;place-items:center;cursor:pointer}
-.tk input:checked{background:#000;border-color:#000}
-.tk input:checked::after{content:"";width:10px;height:5px;border:2px solid #fff;border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px)}
-.tk input:checked+span{color:var(--mu);text-decoration:line-through}
-.ac-mn{display:flex;gap:10px;align-items:flex-start;padding-top:12px;border-top:1px solid #E0E0DC;font-size:14px;line-height:1.45;color:var(--mu)}
-.ac-mn b{color:#000;font-weight:600}
-.ac-mn .ac-av{width:30px;height:30px;font-size:11px;background:#5E5E66}
 .plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
 .plan{border-radius:28px;padding:clamp(24px,3vw,40px);background:var(--g0);display:grid;gap:22px;align-content:start}
 .plan.dk{background:#000;color:#fff}
@@ -483,9 +448,9 @@ button{cursor:pointer}
 .price{font:500 21px/1.15 var(--fd);letter-spacing:-.02em}
 .price small{display:block;font:500 13px/1.3 var(--fb);letter-spacing:0;color:var(--mu);margin-top:4px}
 .plan.dk .price small{color:var(--mud)}
-@media (max-width:1000px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.ac-b{grid-template-columns:1fr}.ac-side{border-right:0;border-bottom:1px solid #EDEDEA}.am-l{grid-auto-flow:column;grid-auto-columns:minmax(210px,1fr);overflow-x:auto;scrollbar-width:none}.ac-row{grid-template-columns:1fr}.ac-nav{display:none}.plans{grid-template-columns:1fr}}
+@media (max-width:1000px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.plans{grid-template-columns:1fr}}
 @media (max-width:900px){.ak-h{grid-template-columns:1fr}}
-@media (max-width:560px){.ac-cl{display:none}.ac-top{gap:12px;padding:12px 14px}.steps{grid-template-columns:1fr}.ac-v{aspect-ratio:4/3}.ac-play{width:60px;height:60px}.ac-time{display:none}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}}
 
 /* =================== MENTOR =================== */
 .mn-g{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px;margin-top:clamp(40px,5vw,64px)}
@@ -589,27 +554,27 @@ button{cursor:pointer}
 @media (max-width:900px){.fin-c{grid-template-columns:1fr}.fin-ph{min-height:0;aspect-ratio:4/3;order:-1}}
 
 /* =================== ALT BİLGİ =================== */
-.ft{background:#000;color:#fff;padding-block:clamp(56px,7vw,104px) 36px}
+.ft{background:#fff;color:var(--tx);border-top:1px solid var(--ln);padding-block:clamp(56px,7vw,104px) 36px}
 .ft-top{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) minmax(0,1.6fr);gap:32px}
-.ft h4{font:600 12px/1 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:var(--mud);margin:0 0 20px}
+.ft h4{font:600 12px/1 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin:0 0 20px}
 .ft ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
-.ft ul a,.ft ul button{text-decoration:none;color:#fff;font-size:15px;background:none;border:0;padding:0;text-align:left;transition:opacity .2s}
+.ft ul a,.ft ul button{text-decoration:none;color:inherit;font-size:15px;background:none;border:0;padding:0;text-align:left;transition:opacity .2s}
 .ft ul a:hover,.ft ul button:hover{opacity:.66}
 .ft-nw{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;align-content:start}
-.ft-nw p{margin:0;color:var(--mud);font-size:15px;max-width:44ch}
+.ft-nw p{margin:0;color:var(--mu);font-size:15px;max-width:44ch}
 .ft-f{display:flex;gap:8px}
-.ft-f input{flex:1;min-width:0;height:52px;border-radius:999px;border:1px solid var(--lnd);background:var(--k2);color:#fff;padding:0 20px;font:400 15px var(--fb);outline:none}
-.ft-f input:focus{border-color:rgba(255,255,255,.5)}
+.ft-f input{flex:1;min-width:0;height:52px;border-radius:999px;border:1px solid rgba(0,0,0,.12);background:var(--g0);color:var(--tx);padding:0 20px;font:400 15px var(--fb);outline:none}
+.ft-f input:focus{border-color:rgba(0,0,0,.45)}
 .ft-f input::placeholder{color:#8B8B93}
-.ft-ok{color:var(--mud);font-size:14.5px}
-.ft-b{display:flex;flex-wrap:wrap;gap:16px 28px;justify-content:space-between;align-items:center;margin-top:clamp(48px,6vw,88px);padding-top:24px;border-top:1px solid var(--lnd);font-size:13px;color:var(--mud)}
+.ft-ok{color:var(--mu);font-size:14.5px}
+.ft-b{display:flex;flex-wrap:wrap;gap:16px 28px;justify-content:space-between;align-items:center;margin-top:clamp(48px,6vw,88px);padding-top:24px;border-top:1px solid var(--ln);font-size:13px;color:var(--mu)}
 .ft-leg{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center}
-.ft-leg a{color:var(--mud);text-decoration:none}
-.ft-leg a:hover{color:#fff}
+.ft-leg a{color:var(--mu);text-decoration:none}
+.ft-leg a:hover{color:#000}
 .ft-so{display:flex;gap:8px}
-.ft-so a{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--k3);transition:background-color .2s}
-.ft-so a:hover{background:var(--k4)}
-.ft-wm{font:700 13px/1 var(--fw);letter-spacing:.26em;color:#fff;margin-bottom:28px;display:block}
+.ft-so a{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#000;transition:background-color .2s}
+.ft-so a:hover{background:#2A2A2E}
+.ft-wm{font:700 13px/1 var(--fw);letter-spacing:.26em;color:var(--tx);margin-bottom:28px;display:block}
 @media (max-width:1000px){.ft-top{grid-template-columns:repeat(2,minmax(0,1fr))}.ft-nw{grid-column:1/-1}}
 
 /* =================== PENCERELER =================== */
@@ -670,18 +635,6 @@ button{cursor:pointer}
 @media (max-width:520px){.fg{grid-template-columns:minmax(0,1fr)}}
 
 /* =================== SİSTEM NOTLARI =================== */
-.sys{display:none;margin-top:16px;padding:14px 16px;border-radius:16px;background:#EEF1FF;border:1px solid #D3DAFF;color:#1C2A86;font-size:14px;line-height:1.5;text-align:left;max-width:68ch}
-.sys b{display:block;margin-bottom:6px;font:700 10.5px/1 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
-.bk .sys,.cs .sys,.plan.dk .sys{background:rgba(54,83,255,.14);border-color:rgba(110,132,255,.42);color:#D9DFFF}
-.bk .sys b,.cs .sys b{color:#9DB0FF}
-body.sys-on .sys{display:block}
-.sys-t{position:fixed;z-index:45;left:calc(14px + env(safe-area-inset-left,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 16px 0 9px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(17,17,19,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#fff;font:600 13.5px/1 var(--fb);box-shadow:0 16px 40px -16px rgba(0,0,0,.6)}
-.sys-t i{position:relative;width:34px;height:20px;border-radius:999px;background:#3A3A40;transition:background-color .2s}
-.sys-t i::after{content:"";position:absolute;left:3px;top:3px;width:14px;height:14px;border-radius:50%;background:#fff;transition:transform .2s}
-.sys-t[aria-pressed=true] i{background:var(--blue)}
-.sys-t[aria-pressed=true] i::after{transform:translateX(14px)}
-.sys-t .sl-s{display:none}
-@media (max-width:640px){.sys-t{height:38px;padding:0 12px 0 7px;font-size:12.5px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px))}.sys-t .sl-l{display:none}.sys-t .sl-s{display:inline}}
 
 /* =========================================================
    Barış Bey'in 18 Ekim yanıtlarına göre eklenenler
@@ -785,7 +738,7 @@ body.sys-on .sys{display:block}
 .tr-ch li span{color:var(--mu2);font:600 12px/1.6 var(--fb);letter-spacing:.04em}
 .tr-docs{display:grid;gap:8px}
 .tr-doc{display:grid;grid-template-columns:36px minmax(0,1fr);gap:12px;align-items:center;padding:10px 12px;border-radius:14px;border:1px solid var(--ln)}
-.tr-doc i,.ac-doc i{display:grid;place-items:center;border-radius:10px;background:#FDE7E8;color:#B3161E;font:700 10px/1 var(--fb);font-style:normal;letter-spacing:.04em}
+.tr-doc i{display:grid;place-items:center;border-radius:10px;background:#FDE7E8;color:#B3161E;font:700 10px/1 var(--fb);font-style:normal;letter-spacing:.04em}
 .tr-doc i{width:36px;height:36px}
 .tr-doc b{display:block;font:600 14.5px/1.25 var(--fb)}
 .tr-doc small{display:block;color:var(--mu);font-size:12.5px;margin-top:3px}
@@ -793,21 +746,7 @@ body.sys-on .sys{display:block}
 @media (max-width:760px){.mdg .pc{position:relative;aspect-ratio:4/3}}
 @media (max-width:560px){.tr-flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
-/* Mentorun eğitim ekranı */
-.am-h{list-style:none;padding:12px 10px 4px;font:700 10.5px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--mu2)}
-.am-h:first-child{padding-top:2px}
-.ac-docs{display:grid;gap:8px}
-.ac-doc{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:12px;background:#fff;font-size:14px;line-height:1.3}
-.ac-doc i{width:30px;height:30px;flex:none;border-radius:8px;font-size:9.5px}
-.ac-doc span{display:grid;gap:2px;min-width:0}
-.ac-doc b{font-weight:600}
-.ac-doc small{color:var(--mu);font-size:12px}
-.ac-doc[data-lock=true]{opacity:.6}
-.ac-doc[data-lock=true] i{background:#ECECE8;color:#777}
-.ac-att{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 12px}
-.ac-att .tk input:checked+span{color:inherit;text-decoration:none}
 .lg-n{margin:16px 0 0;color:var(--mu);font-size:14px;line-height:1.5}
-@media (max-width:1000px){.am-h{display:none}}
 
 /* Üyelik */
 .tiers{display:flex;flex-wrap:wrap;gap:8px}
@@ -817,7 +756,6 @@ body.sys-on .sys{display:block}
 #uyelik .plans{margin-top:clamp(32px,4vw,56px)}
 #uyelik .plan{display:flex;flex-direction:column}
 #uyelik .plan-f{margin-top:auto}
-@media (min-width:1001px){#ofis .ac-side .am-l{max-height:560px;overflow-y:auto;scrollbar-width:thin;margin-right:-8px;padding-right:8px}}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
@@ -914,10 +852,10 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
           <div class="dd-l">
             <a href="#akademi"><b>Masterclass Akademi</b><span>RE/MAX ofisleri için 12 aylık akademi</span></a>
             <a href="#katalog"><b>Eğitim kataloğu</b><span>On eğitim, tanıtımları ve bölümleri</span></a>
-            <a href="#portal"><b>Mentorun eğitim ekranı</b><span>Bölümler, belgeler ve katılım</span></a>
+            <a href="#uyelik"><b>Üyelik</b><span>12 aylık ofis üyeliği ve tek eğitim</span></a>
             <a href="#baris-ai"><b>Barış AI</b><span>Sor ve prova yap</span></a>
           </div>
-          <a class="dd-f" href="#akademi"><img src="img/collection.jpg" alt="" style="object-position:50% 16%"><span>Masterclass Akademi Ocak 2027’de açılıyor</span></a>
+          <a class="dd-f" href="#akademi"><img loading="lazy" decoding="async" src="img/collection.webp" alt="" style="object-position:50% 16%"><span>Masterclass Akademi Ocak 2027’de açılıyor</span></a>
         </div>
       </li>
       <li class="mi">
@@ -928,7 +866,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
             <a href="#yorumlar"><b>International Speaker</b><span>Arjantin’den Romanya’ya, sahneden sonra</span></a>
             <a href="#roller" data-corp="Kongre konuşması"><b>Konuşma teklifi isteyin</b><span>Tarih, ülke ve katılımcı sayısıyla</span></a>
           </div>
-          <a class="dd-f" href="#roller"><img src="img/upgrade.jpg" alt="" style="object-position:50% 12%"><span>Sahnede Barış Kılıçarslan</span></a>
+          <a class="dd-f" href="#roller"><img loading="lazy" decoding="async" src="img/upgrade.webp" alt="" style="object-position:50% 12%"><span>Sahnede Barış Kılıçarslan</span></a>
         </div>
       </li>
       <li class="mi">
@@ -939,7 +877,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
             <a href="#katalog"><b>Real Estate Trainer</b><span>Salonda ve ofiste gayrimenkul programları</span></a>
             <a href="#roller" data-corp="Birebir mentorluk"><b>Private Mentoring</b><span>Broker ve ofis sahipleriyle birebir</span></a>
           </div>
-          <a class="dd-f" href="#roller" data-corp="Satış"><img src="img/mic.jpg" alt="" style="object-position:50% 14%"><span>Tarih ve teklif isteyin</span></a>
+          <a class="dd-f" href="#roller" data-corp="Satış"><img loading="lazy" decoding="async" src="img/mic.webp" alt="" style="object-position:50% 14%"><span>Tarih ve teklif isteyin</span></a>
         </div>
       </li>
       <li class="mi">
@@ -950,7 +888,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
             <a href="#takvim"><b>Aralık webinarı</b><span>Online, tarih yakında açıklanacak</span></a>
             <a href="#etkinlikler"><b>Akademi lansmanı</b><span>Ocak 2027, İstanbul ve canlı yayın</span></a>
           </div>
-          <a class="dd-f" href="#etkinlikler"><img src="img/hero-armsup.jpg" alt="" style="object-position:50% 20%"><span>Lansman davetiyeni ayır</span></a>
+          <a class="dd-f" href="#etkinlikler"><img loading="lazy" decoding="async" src="img/hero-armsup.webp" alt="" style="object-position:50% 20%"><span>Lansman davetiyeni ayır</span></a>
         </div>
       </li>
       <li class="mi">
@@ -961,7 +899,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
             <a href="#magaza" data-prod="kitap"><b>Kitaplar</b><span>Satışın Şifreleri ile Sonucu Satmak</span></a>
             <a href="#magaza"><b>Klasik Eğitimler</b><span>Satışın Şifreleri, Gayrimenkulün Usta Satışçıları</span></a>
           </div>
-          <a class="dd-f book" href="#magaza" data-prod="kitap"><img src="img/kitap.jpg" alt=""><span>Satışın Şifreleri, imzalı</span></a>
+          <a class="dd-f book" href="#magaza" data-prod="kitap"><img loading="lazy" decoding="async" src="img/kitap.webp" alt=""><span>Satışın Şifreleri, imzalı</span></a>
         </div>
       </li>
       <li class="mi">
@@ -973,14 +911,14 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
             <a href="#yorumlar"><b>Yorumlar</b><span>Dünyadan ofis liderleri</span></a>
             <a href="#roller"><b>Altı rol</b><span>Sahnede, salonda ve birebir</span></a>
           </div>
-          <a class="dd-f" href="#hakkinda"><img src="img/point.jpg" alt="" style="object-position:50% 10%"><span>Barış Kılıçarslan kimdir?</span></a>
+          <a class="dd-f" href="#hakkinda"><img loading="lazy" decoding="async" src="img/point.webp" alt="" style="object-position:50% 10%"><span>Barış Kılıçarslan kimdir?</span></a>
         </div>
       </li>
     </ul>
     <div class="hd-r">
       <button class="icb" type="button" data-open="m-search" aria-label="Sitede ara"><svg aria-hidden="true"><use href="#i-s"/></svg></button>
       <button class="hd-lg" type="button" data-open="m-login">Giriş yap</button>
-      <button class="btn btn-w btn-xs" type="button" data-open="m-apply">Hemen başla</button>
+      <button class="btn btn-k btn-xs" type="button" data-open="m-apply">Hemen başla</button>
       <div class="lang">
         <button class="lang-b" id="langBtn" type="button" aria-expanded="false" aria-controls="langMenu"><svg aria-hidden="true"><use href="#i-g"/></svg>Türkçe</button>
         <ul class="lang-m" id="langMenu" hidden><li class="cur">Türkçe <span>Şu an</span></li><li>English <span>Yakında</span></li><li>Español <span>Yakında</span></li></ul>
@@ -992,15 +930,15 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
 
 <div class="mnav" id="mnav" hidden>
   <div class="mnav-h"><span class="wm">BARIŞ KILIÇARSLAN</span><button class="icb" id="mnavClose" type="button" aria-label="Menüyü kapat"><svg aria-hidden="true"><use href="#i-x"/></svg></button></div>
-  <details open><summary>Akademi<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#akademi">Masterclass Akademi</a><a href="#katalog">Eğitim kataloğu</a><a href="#portal">Mentorun eğitim ekranı</a><a href="#baris-ai">Barış AI</a></div></details>
+  <details open><summary>Akademi<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#akademi">Masterclass Akademi</a><a href="#katalog">Eğitim kataloğu</a><a href="#uyelik">Üyelik</a><a href="#baris-ai">Barış AI</a></div></details>
   <details><summary>Konuşmalar<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#roller">Keynote Speaker</a><a href="#yorumlar">International Speaker</a><a href="#roller" data-corp="Kongre konuşması">Konuşma teklifi isteyin</a></div></details>
   <details><summary>Kurumsal<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#roller">Corporate Trainer</a><a href="#katalog">Real Estate Trainer</a><a href="#roller" data-corp="Birebir mentorluk">Private Mentoring</a></div></details>
   <details><summary>Etkinlikler<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#takvim">Etkinlik takvimi</a><a href="#takvim">Aralık webinarı</a><a href="#etkinlikler">Akademi lansmanı</a></div></details>
   <details><summary>Mağaza<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#magaza">Gelişim ve Kazanç Mağazası</a><a href="#magaza" data-prod="kitap">Kitaplar</a><a href="#magaza">Klasik Eğitimler</a></div></details>
   <details><summary>Hakkında<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#hakkinda">Hikaye</a><a href="#yorumlar">Yorumlar</a><a href="#roller">Altı rol</a></div></details>
   <div class="mnav-c">
-    <button class="btn btn-w" type="button" data-open="m-apply">Hemen başla</button>
-    <button class="btn btn-ow" type="button" data-open="m-login">Akademiye giriş</button>
+    <button class="btn btn-k" type="button" data-open="m-apply">Hemen başla</button>
+    <button class="btn btn-ok" type="button" data-open="m-login">Akademiye giriş</button>
   </div>
   <p class="mnav-l">Türkçe · English ve Español yakında</p>
 </div>
@@ -1011,7 +949,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
 <section class="hero" aria-label="Öne çıkanlar">
   <div class="hc">
     <article class="hs on" aria-roledescription="slayt" aria-label="Masterclass Akademi">
-      <img src="img/hero-armsup.jpg" srcset="img/hero-armsup.jpg 1557w, img/hero-armsup-hd.jpg 3114w" sizes="100vw" alt="Barış Kılıçarslan sahnede, kollarını açmış gülümsüyor" style="object-position:50% 18%">
+      <img fetchpriority="high" src="img/hero-armsup.webp" srcset="img/hero-armsup.webp 1557w, img/hero-armsup-hd.webp 3114w" sizes="100vw" alt="Barış Kılıçarslan sahnede, kollarını açmış gülümsüyor" style="object-position:50% 18%">
       <div class="hs-c">
         <span class="hs-k"><span class="c">MASTERCLASS</span><span class="s">Akademi</span><span class="d">Ocak 2027</span></span>
         <h1 class="h1 hw"><span class="w"><span style="--wi:0">Eğitim</span></span> <span class="w"><span style="--wi:1">izlemek</span></span> <span class="w"><span style="--wi:2">için</span></span> <span class="w"><span style="--wi:3">değil,</span></span> <span class="w"><span style="--wi:4">sonuç</span></span> <span class="w"><span style="--wi:5">alıp</span></span> <span class="w"><span style="--wi:6">kazanmak</span></span> <span class="w"><span style="--wi:7">için.</span></span></h1>
@@ -1025,7 +963,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
   <div class="nx">
     <span class="nx-l">Sıradaki etkinlik</span>
     <a class="nx-c" href="#takvim" data-open="m-invite" data-title="Aralık webinarı ön kaydı">
-      <span class="nx-i"><img src="img/point.jpg" alt=""><b>Aralık<em>webinarı</em></b></span>
+      <span class="nx-i"><img loading="lazy" decoding="async" src="img/point.webp" alt=""><b>Aralık<em>webinarı</em></b></span>
       <span class="nx-t"><b>Aralık webinarı ve paneli</b><span>Aralık 2026 · Online · Tarih yakında</span></span>
       <span class="nx-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span>
     </a>
@@ -1035,7 +973,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
 <!-- HAKKINDA -->
 <section class="sec wh" id="hakkinda">
   <div class="wrap ab-g">
-    <div class="ab-ph"><img src="img/baris-boy.webp" alt="Barış Kılıçarslan"></div>
+    <div class="ab-ph"><img loading="lazy" decoding="async" src="img/baris-boy.webp" alt="Barış Kılıçarslan"></div>
     <div class="ab-c">
       <span class="lbl ab-k">Barış Kılıçarslan</span>
       <h2 class="h2">Royal Caribbean’dan RE/MAX sahnelerine.</h2>
@@ -1047,12 +985,12 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
         <div class="st"><b>%97,4</b><span>katılımcı memnuniyeti</span></div>
       </div>
       <div class="ab-lg" aria-label="Eğitim verdiği kurumlardan">
-        <img src="img/logo-hilton.png" alt="Hilton" style="height:24px">
-        <img src="img/logo-3m.png" alt="3M" style="height:22px">
-        <img src="img/logo-arcelik.png" alt="Arçelik" style="height:21px">
-        <img src="img/logo-hp.png" alt="HP" style="height:30px">
-        <img src="img/logo-aksigorta.png" alt="Aksigorta" style="height:15px">
-        <img src="img/logo-anadolujet.png" alt="AnadoluJet" style="height:11px">
+        <img loading="lazy" decoding="async" src="img/logo-hilton.png" alt="Hilton" style="height:24px">
+        <img loading="lazy" decoding="async" src="img/logo-3m.png" alt="3M" style="height:22px">
+        <img loading="lazy" decoding="async" src="img/logo-arcelik.png" alt="Arçelik" style="height:21px">
+        <img loading="lazy" decoding="async" src="img/logo-hp.png" alt="HP" style="height:30px">
+        <img loading="lazy" decoding="async" src="img/logo-aksigorta.png" alt="Aksigorta" style="height:15px">
+        <img loading="lazy" decoding="async" src="img/logo-anadolujet.png" alt="AnadoluJet" style="height:11px">
       </div>
       <button class="btn btn-k" type="button" data-open="m-bio">Barış’ı tanı</button>
     </div>
@@ -1085,57 +1023,6 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
       <p class="lead">Tanıtımları herkes izleyebilir. Eğitimin tamamı üye ofisin mentoruna ve brokerına açılır.</p>
     </div>
     <div class="kt-g" id="katGrid"></div>
-    <div class="sys"><b>Arka planda</b>Tanıtım videoları herkese açık; tam videolar yalnız yetkili ofis hesabında Vimeo’dan oynar. İndirme kapalı, aynı hesabın eş zamanlı kullanımı sınırlı.</div>
-  </div>
-</section>
-
-<!-- MENTORUN EĞİTİM EKRANI -->
-<section class="sec wh" id="ofis">
-  <div class="wrap">
-    <div class="ak-h">
-      <h2 class="h2">Mentorun eğitim ekranı.</h2>
-      <p class="lead">Danışmanlar eğitimi mentorla birlikte, grup halinde izler. Bölümler sırayla akar, belgeler doğru anda açılır, katılım tek dokunuşla işaretlenir.</p>
-    </div>
-
-    <div class="ac" id="portal" style="margin-top:clamp(32px,4vw,56px)">
-      <div class="ac-top">
-        <span class="ac-logo"><span class="c">MASTERCLASS</span><span class="s">Akademi</span></span>
-        <nav class="ac-nav" aria-label="Akademi menüsü"><span aria-current="page">Eğitimler</span><span>Gruplar</span><span>Takvim</span><span>Raporlar</span><span>Sertifikalar</span></nav>
-        <span class="ac-u"><span class="ac-code" id="acCode">RE/MAX Örnek Ofis · Mentor</span><span class="ac-av">MY</span></span>
-      </div>
-      <div class="ac-b">
-        <aside class="ac-side">
-          <div class="ac-pr"><b id="acTrain">Portföy Almada Ustalık</b><span id="acProg">11 bölümün 4’ü izlendi</span><span class="ac-bar"><i style="--p:36%"></i></span></div>
-          <ol class="am-l" id="modList" aria-label="Bölümler"></ol>
-        </aside>
-        <div class="ac-main">
-          <div class="ac-v">
-            <img src="img/stage.jpg" alt="">
-            <button class="ac-play" type="button" aria-label="Bölümü oynat"><svg aria-hidden="true"><use href="#i-p"/></svg></button>
-            <div class="ac-vt"><small id="lsNo">PA05 · Ana eğitim</small><b id="lsTitle">Portföy Almada İkinci Görüşme</b></div>
-            <span class="ac-time">12:40 / 28:15</span>
-            <div class="ac-tl"><i></i></div>
-          </div>
-          <div class="ac-row">
-            <div class="ac-d">
-              <p id="lsDesc"></p>
-              <div class="ac-a">
-                <button class="btn btn-k btn-sm" type="button" id="lsProva">Barış AI ile grup provası</button>
-                <button class="btn btn-ok btn-sm" type="button" id="lsAsk">Barış’a sor</button>
-              </div>
-              <div class="ac-mn"><span class="ac-av">MY</span><span><b>Mentor notu.</b> Perşembe 10.00’da Yeni Başlayanlar grubuyla izliyoruz. Koçluk sorularını aynı gün çalışacağız.</span></div>
-            </div>
-            <div class="ac-task">
-              <h4>Bu eğitimin belgeleri</h4>
-              <div class="ac-docs" id="lsDocs"></div>
-              <h4 style="margin-top:6px">Katılım · Yeni Başlayanlar</h4>
-              <div class="ac-att" id="lsTasks"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="sys"><b>Arka planda</b>Ofis hesabı üyeliğe bağlı. Üyelik bitince broker ve mentor girişleri kapanır, geçmiş kayıtlar saklanır. Ofisler birbirinin verisini göremez. Videolar Vimeo’dan oynar, yeniden yükleme gerekmez.</div>
   </div>
 </section>
 
@@ -1146,12 +1033,11 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
       <span class="ai-mk"><span class="wmk">Barış Kılıçarslan</span><span class="ai-chip">AI</span></span>
       <h2 class="h2">Sahada takıldığın an Barış yanında.</h2>
       <p class="lead">Danışman takıldığı yeri sorar ya da müşteriyle konuşmadan önce prova yapar. Barış AI, Barış’ın yaklaşımıyla cevap verir ve provayı puanlar.</p>
-      <div class="sys"><b>Arka planda</b>Aynı asistan WhatsApp’ta çalışır. Görevden iki üç gün sonra danışmana kendisi yazar: “Bu hafta kaç ev sahibiyle görüştün, nerede zorlandın?” Cevap mentorun raporuna düşer.</div>
     </div>
 
     <div class="cs" aria-label="Barış AI demosu">
       <div class="cs-h">
-        <div class="cs-who"><img class="cs-av" src="img/baris-portre.jpg" alt=""><div><b>Barış AI</b><span>Barış Kılıçarslan’ın eğitim çerçevesiyle</span></div></div>
+        <div class="cs-who"><img loading="lazy" decoding="async" class="cs-av" src="img/baris-portre.webp" alt=""><div><b>Barış AI</b><span>Barış Kılıçarslan’ın eğitim çerçevesiyle</span></div></div>
         <span class="cs-st" id="aiStatus" data-mode="wait"><i></i><span>Bağlanıyor</span></span>
       </div>
       <div class="cs-tabs" role="tablist" aria-label="Mod">
@@ -1187,7 +1073,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
           <label class="sr" for="provaInput">Cevabın</label>
           <input id="provaInput" type="text" placeholder="Danışman olarak cevap ver..." maxlength="600" disabled>
           <button class="stop" id="provaStop" type="button" hidden aria-label="Durdur"><svg aria-hidden="true"><use href="#i-q"/></svg></button>
-          <button class="btn btn-ow btn-sm end" id="provaEnd" type="button" disabled>Bitir ve puanla</button>
+          <button class="btn btn-ok btn-sm end" id="provaEnd" type="button" disabled>Bitir ve puanla</button>
           <button class="send" type="submit" aria-label="Gönder"><svg aria-hidden="true"><use href="#i-u"/></svg></button>
         </form>
       </div>
@@ -1235,7 +1121,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
     <div class="sh"><h2 class="h2">Yaklaşan etkinlikler</h2></div>
     <article class="ev">
       <div class="ev-ph">
-        <img src="img/hero-armsup.jpg" alt="Barış Kılıçarslan sahnede">
+        <img loading="lazy" decoding="async" src="img/hero-armsup.webp" alt="Barış Kılıçarslan sahnede">
         <span class="lt"><span class="k">BARIŞ KILIÇARSLAN</span><span class="c" style="font-size:72px;font-size:13cqi">MASTERCLASS</span><span class="s" style="font-size:68px;font-size:12.5cqi">Akademi</span><span class="w" style="font-size:16px;font-size:3cqi;margin-top:1.1em">LANSMAN · İSTANBUL 2027</span></span>
       </div>
       <div class="ev-c">
@@ -1244,7 +1130,6 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
         <p>Ofis sahipleri İstanbul’da aynı salonda, Türkiye canlı yayında. Akademi, Barış AI ve mentor sistemi ilk kez birlikte sahnede.</p>
         <dl class="ev-m"><div><dt>Tarih</dt><dd>Ocak 2027</dd></div><div><dt>Yer</dt><dd>İstanbul ve canlı yayın</dd></div><div><dt>Katılım</dt><dd>Davetiye ile</dd></div></dl>
         <div class="ev-cta"><button class="btn btn-k" type="button" data-open="m-invite">Davetiye iste</button></div>
-        <div class="sys"><b>Arka planda</b>Kayıt olana onay mesajı; bir hafta, bir gün, üç saat ve on dakika önce hatırlatma. Salona gelen QR ile, online izleyen yayın sayfasından işaretlenir. Gelmeyene kaydın kısa hali gider. Sonra altı haftalık takip: 48 saat kurucu fiyatı, ardından %30 ve %20 dönemleri.</div>
       </div>
     </article>
 
@@ -1275,7 +1160,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
           <figcaption class="ts-who"><span class="ts-av" id="tsAv"></span><span><b id="tsName"></b><small id="tsRole"></small><small id="tsPlace"></small></span></figcaption>
         </figure>
       </div>
-      <div class="ts-ph"><img src="img/point.jpg" alt="Barış Kılıçarslan"></div>
+      <div class="ts-ph"><img loading="lazy" decoding="async" src="img/point.webp" alt="Barış Kılıçarslan"></div>
     </div>
   </div>
 </section>
@@ -1288,14 +1173,13 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
       <p class="lead">Gayrimenkul ekiplerinden kurumsal salonlara, kongre sahnelerinden birebir çalışmalara.</p>
     </div>
     <div class="ro-g">
-      <a class="ro-c" href="#katalog" style="--pos:34% 24%"><img src="img/stage.jpg" alt=""><span class="ro-k">Gayrimenkul eğitmeni</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Real Estate Trainer</b><span class="ro-s">Power Start, Power Camp ve RE/MAX sahnelerinde danışman yetiştiren programlar.</span></a>
-      <button class="ro-c" type="button" data-corp="Satış" style="--pos:50% 12%"><img src="img/mic.jpg" alt=""><span class="ro-k">Kurumsal eğitmen</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Corporate Trainer</b><span class="ro-s">Hilton’dan Arçelik’e, 200’den fazla kurumda satış, motivasyon ve liderlik.</span></button>
-      <a class="ro-c" href="#yorumlar" style="--pos:50% 22%"><img src="img/hero-armsup.jpg" alt=""><span class="ro-k">Uluslararası konuşmacı</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>International Speaker</b><span class="ro-s">Arjantin, Romanya, ABD, Avusturya ve Yunanistan sahnelerinde.</span></a>
-      <button class="ro-c" type="button" data-corp="Kongre konuşması" style="--pos:50% 10%"><img src="img/upgrade.jpg" alt=""><span class="ro-k">Kongre ve açılış konuşmacısı</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Keynote Speaker</b><span class="ro-s">Kongre, yıl açılışı ve lansman sahneleri için Türkçe ve İngilizce konuşmalar.</span></button>
-      <button class="ro-c" type="button" data-corp="Birebir mentorluk" style="--pos:20% 50%"><img src="img/banner.jpg" alt=""><span class="ro-k">Birebir çalışma</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Private Mentoring</b><span class="ro-s">Kişiye özel, birebir mentorluk çalışmaları.</span></button>
-      <a class="ro-c ak" href="#akademi" style="--pos:50% 12%"><img src="img/collection.jpg" alt=""><span class="ro-k">Ofisler için 12 aylık akademi</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Masterclass Akademi</b><span class="ro-s">Mentor liderliğinde, sonuca odaklı eğitim ve performans platformu.</span></a>
+      <a class="ro-c" href="#katalog" style="--pos:34% 24%"><img loading="lazy" decoding="async" src="img/stage.webp" alt=""><span class="ro-k">Gayrimenkul eğitmeni</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Real Estate Trainer</b><span class="ro-s">Power Start, Power Camp ve RE/MAX sahnelerinde danışman yetiştiren programlar.</span></a>
+      <button class="ro-c" type="button" data-corp="Satış" style="--pos:50% 12%"><img loading="lazy" decoding="async" src="img/mic.webp" alt=""><span class="ro-k">Kurumsal eğitmen</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Corporate Trainer</b><span class="ro-s">Hilton’dan Arçelik’e, 200’den fazla kurumda satış, motivasyon ve liderlik.</span></button>
+      <a class="ro-c" href="#yorumlar" style="--pos:50% 22%"><img loading="lazy" decoding="async" src="img/hero-armsup.webp" alt=""><span class="ro-k">Uluslararası konuşmacı</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>International Speaker</b><span class="ro-s">Arjantin, Romanya, ABD, Avusturya ve Yunanistan sahnelerinde.</span></a>
+      <button class="ro-c" type="button" data-corp="Kongre konuşması" style="--pos:50% 10%"><img loading="lazy" decoding="async" src="img/upgrade.webp" alt=""><span class="ro-k">Kongre ve açılış konuşmacısı</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Keynote Speaker</b><span class="ro-s">Kongre, yıl açılışı ve lansman sahneleri için Türkçe ve İngilizce konuşmalar.</span></button>
+      <button class="ro-c" type="button" data-corp="Birebir mentorluk" style="--pos:20% 50%"><img loading="lazy" decoding="async" src="img/banner.webp" alt=""><span class="ro-k">Birebir çalışma</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Private Mentoring</b><span class="ro-s">Kişiye özel, birebir mentorluk çalışmaları.</span></button>
+      <a class="ro-c ak" href="#akademi" style="--pos:50% 12%"><img loading="lazy" decoding="async" src="img/collection.webp" alt=""><span class="ro-k">Ofisler için 12 aylık akademi</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Masterclass Akademi</b><span class="ro-s">Mentor liderliğinde, sonuca odaklı eğitim ve performans platformu.</span></a>
     </div>
-    <div class="sys"><b>Arka planda</b>Her kart ileride kendi tanıtım sayfasına gider. Keynote Speaker sayfasında konuşma kartları, Türkiye ve uluslararası filtreleri, sahne görüntüleri ve konuşma teklifi formu yer alacak.</div>
   </div>
 </section>
 
@@ -1308,23 +1192,22 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
     </div>
     <div class="shop">
       <button class="pd" type="button" data-prod="kitap" data-cat="kitap">
-        <span class="pd-img book"><img src="img/kitap.jpg" alt="Satışın Şifreleri ile Sonucu Satmak kitap kapağı"><span class="badge">İmzalı</span></span>
+        <span class="pd-img book"><img loading="lazy" decoding="async" src="img/kitap.webp" alt="Satışın Şifreleri ile Sonucu Satmak kitap kapağı"><span class="badge">İmzalı</span></span>
         <span class="pd-n"><b>Satışın Şifreleri ile Sonucu Satmak</b><span>Kitap · İknanın 12 şifresi</span><i>İncele<svg aria-hidden="true"><use href="#i-r"/></svg></i></span>
       </button>
       <button class="pd" type="button" data-prod="ss" data-cat="online">
-        <span class="pd-img ph" style="--pos:50% 26%"><img src="img/hero-armsup.jpg" alt=""><span class="badge">Çok satan</span><span class="lt"><span class="k">BARIŞ KILIÇARSLAN</span><span class="s" style="font-size:44px;font-size:15cqi">Satışın</span><span class="c" style="font-size:54px;font-size:18.5cqi">ŞİFRELERİ</span></span></span>
+        <span class="pd-img ph" style="--pos:50% 26%"><img loading="lazy" decoding="async" src="img/hero-armsup.webp" alt=""><span class="badge">Çok satan</span><span class="lt"><span class="k">BARIŞ KILIÇARSLAN</span><span class="s" style="font-size:44px;font-size:15cqi">Satışın</span><span class="c" style="font-size:54px;font-size:18.5cqi">ŞİFRELERİ</span></span></span>
         <span class="pd-n"><b>Satışın Şifreleri</b><span>Online eğitim seti · 9,5 saat</span><i>İncele<svg aria-hidden="true"><use href="#i-r"/></svg></i></span>
       </button>
       <button class="pd" type="button" data-prod="gus" data-cat="online">
-        <span class="pd-img ph dim" style="--pos:30% 50%"><img src="img/banner.jpg" alt=""><span class="lt"><span class="k">BARIŞ KILIÇARSLAN</span><span class="w" style="font-size:14px;font-size:5cqi">GAYRİMENKULÜN</span><span class="c" style="font-size:86px;font-size:30cqi">USTA</span><span class="s" style="font-size:38px;font-size:13cqi">Satışçıları</span></span></span>
+        <span class="pd-img ph dim" style="--pos:30% 50%"><img loading="lazy" decoding="async" src="img/banner.webp" alt=""><span class="lt"><span class="k">BARIŞ KILIÇARSLAN</span><span class="w" style="font-size:14px;font-size:5cqi">GAYRİMENKULÜN</span><span class="c" style="font-size:86px;font-size:30cqi">USTA</span><span class="s" style="font-size:38px;font-size:13cqi">Satışçıları</span></span></span>
         <span class="pd-n"><b>Gayrimenkulün Usta Satışçıları</b><span>Online eğitim seti · 6 röportaj</span><i>İncele<svg aria-hidden="true"><use href="#i-r"/></svg></i></span>
       </button>
       <button class="pd" type="button" data-prod="akademi" data-cat="akademi">
-        <span class="pd-img ph" style="--pos:50% 14%"><img src="img/collection.jpg" alt=""><span class="badge">Yeni</span><span class="lt"><span class="k">BARIŞ KILIÇARSLAN</span><span class="c" style="font-size:46px;font-size:15.5cqi">MASTERCLASS</span><span class="s" style="font-size:44px;font-size:15cqi">Akademi</span></span></span>
+        <span class="pd-img ph" style="--pos:50% 14%"><img loading="lazy" decoding="async" src="img/collection.webp" alt=""><span class="badge">Yeni</span><span class="lt"><span class="k">BARIŞ KILIÇARSLAN</span><span class="c" style="font-size:46px;font-size:15.5cqi">MASTERCLASS</span><span class="s" style="font-size:44px;font-size:15cqi">Akademi</span></span></span>
         <span class="pd-n"><b>Masterclass Akademi</b><span>Ofisler için 12 aylık üyelik</span><i>İncele<svg aria-hidden="true"><use href="#i-r"/></svg></i></span>
       </button>
     </div>
-    <div class="sys"><b>Arka planda</b>Setleri daha önce almış danışmanlar lansmandan önce aranır ve davet edilir. Ofis sahibi olanlara ofis üyeliği anlatılır.</div>
   </div>
 </section>
 
@@ -1336,7 +1219,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
       <p class="lead">Şimdi tam zamanı. Ofisine en uygun yolu birlikte seçelim.</p>
       <div class="hs-cta"><button class="btn btn-k" type="button" data-open="m-apply">Ofisim için başvur</button><button class="btn btn-ok" type="button" data-corp="Satış">Kurumsal teklif iste</button></div>
     </div>
-    <div class="fin-ph"><img src="img/upgrade.jpg" alt="Barış Kılıçarslan"></div>
+    <div class="fin-ph"><img loading="lazy" decoding="async" src="img/upgrade.webp" alt="Barış Kılıçarslan"></div>
   </div>
 </section>
 </main>
@@ -1345,14 +1228,14 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
   <div class="wrap">
     <div class="ft-top">
       <div><h4>Hakkında</h4><ul><li><a href="#hakkinda">Hikaye</a></li><li><a href="#yorumlar">Yorumlar</a></li><li><a href="#roller">Altı rol</a></li></ul></div>
-      <div><h4>Akademi</h4><ul><li><a href="#akademi">Masterclass Akademi</a></li><li><a href="#katalog">Eğitim kataloğu</a></li><li><a href="#portal">Mentorun eğitim ekranı</a></li><li><a href="#baris-ai">Barış AI</a></li><li><a href="#uyelik">Üyelik</a></li></ul></div>
+      <div><h4>Akademi</h4><ul><li><a href="#akademi">Masterclass Akademi</a></li><li><a href="#katalog">Eğitim kataloğu</a></li><li><a href="#baris-ai">Barış AI</a></li><li><a href="#uyelik">Üyelik</a></li></ul></div>
       <div><h4>Etkinlikler</h4><ul><li><a href="#takvim">Etkinlik takvimi</a></li><li><a href="#takvim">Aralık webinarı</a></li><li><a href="#etkinlikler">Akademi lansmanı</a></li></ul></div>
       <div><h4>Destek</h4><ul><li><button type="button" data-open="m-login">Akademiye giriş</button></li><li><button type="button" data-corp="Satış">İletişim</button></li><li><a href="#magaza">Mağaza</a></li></ul></div>
       <div class="ft-nw">
         <span class="ft-wm">BARIŞ KILIÇARSLAN</span>
         <h4 style="margin:0">Sahadan notlar</h4>
         <p>Ayda bir e-posta: Barış’tan bir teknik, bir prova senaryosu ve yaklaşan etkinlikler.</p>
-        <form class="ft-f" data-demo id="nlForm"><label class="sr" for="nl">E-posta</label><input id="nl" type="email" required placeholder="E-posta adresin"><button class="btn btn-w" type="submit">Kaydol</button></form>
+        <form class="ft-f" data-demo id="nlForm"><label class="sr" for="nl">E-posta</label><input id="nl" type="email" required placeholder="E-posta adresin"><button class="btn btn-k" type="submit">Kaydol</button></form>
         <p class="ft-ok done-inline" hidden>Teşekkürler, listeye eklendiniz.</p>
       </div>
     </div>
@@ -1367,7 +1250,6 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
 </footer>
 </div>
 
-<button class="sys-t" id="sysT" type="button" aria-pressed="false" aria-label="Arka plandaki sistemi göster"><i aria-hidden="true"></i><span class="sl-l" id="sysL">Sistemi göster</span><span class="sl-s" aria-hidden="true">Sistem</span></button>
 
 <!-- PENCERELER -->
 <div class="md" id="m-login" hidden>
@@ -1377,7 +1259,6 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
     <p>Merkez yöneticisi, broker ve mentor aynı yerden girer. Davet e-postasındaki adresinizi yazın; şifre yok, giriş bağlantısı e-postanıza gelir.</p>
     <a class="btn btn-k" id="loginGo" href="akademi.html">Giriş ekranına git</a>
     <p class="lg-n">Danışmanlara ayrı hesap açılmaz; eğitimler mentor eşliğinde grup oturumunda izlenir.</p>
-    <div class="sys"><b>Arka planda</b>Üyelik ofise bağlıdır. Üyelik bitince broker ve mentor girişleri kapanır, geçmiş kayıtlar saklanır. Ofisler birbirinin verisini göremez.</div>
   </div>
 </div>
 
@@ -1397,7 +1278,6 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
       <button class="btn btn-r" type="submit">Başvuruyu gönder</button>
     </form>
     <div class="done" hidden><b>Başvurunuz alındı.</b><p>Akademi ekibi en kısa sürede sizi arayacak. Onaylanan ofise üyelik sözleşmesi gönderilir; broker ve mentor davetle girer.</p></div>
-    <div class="sys"><b>Arka planda</b>Başvuru CRM’de satış hattına düşer. Barış’ın yakın tanıdıklarını yapay zekâ aramaz, onlar Barış’a arama listesi olarak gelir.</div>
   </div>
 </div>
 
@@ -1442,7 +1322,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
 <div class="md" id="m-bio" hidden>
   <div class="dlg wide" role="dialog" aria-modal="true" aria-labelledby="mb-t" style="width:min(760px,100%)">
     <button class="x" type="button" aria-label="Kapat"><svg aria-hidden="true"><use href="#i-x"/></svg></button>
-    <div class="bio-h"><img src="img/baris-portre.jpg" alt=""><div><span class="lbl" style="color:var(--red)">Hikaye</span><h3 id="mb-t" style="margin:8px 0 0">Barış Kılıçarslan</h3></div></div>
+    <div class="bio-h"><img loading="lazy" decoding="async" src="img/baris-portre.webp" alt=""><div><span class="lbl" style="color:var(--red)">Hikaye</span><h3 id="mb-t" style="margin:8px 0 0">Barış Kılıçarslan</h3></div></div>
     <div class="bio">
       <p>Barış Kılıçarslan, mühendislikle başladığı öğrenim hayatını işletmeyle tamamladı. Bilkent Sport International Genel Merkezi’nde Müşteri İlişkileri ve Halkla İlişkiler bölümlerinde çalıştı, yöneticilik yaptı.</p>
       <p>Altı yıl boyunca Royal Caribbean International ile Kuzey Amerika, Güney Amerika ve Karayipler’de 24 farklı ülkede müşteri ilişkileri, yiyecek içecek ve satış bölümlerinde çalıştı, yöneticilik yaptı. Miami’de Radiance of the Seas Royal Training Academy’nin eğitimcinin eğitimi programını tamamladı ve eğitmenliğe başladı.</p>
@@ -1456,7 +1336,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
   <div class="dlg wide" role="dialog" aria-modal="true" aria-labelledby="mp-t">
     <button class="x" type="button" aria-label="Kapat"><svg aria-hidden="true"><use href="#i-x"/></svg></button>
     <div class="mdg">
-      <div class="mdg-ph"><img id="mp-img" src="img/stage.jpg" alt=""></div>
+      <div class="mdg-ph"><img loading="lazy" decoding="async" id="mp-img" src="img/stage.webp" alt=""></div>
       <div class="mdg-c">
         <span class="lbl" id="mp-k">Master class</span>
         <h3 id="mp-t">Program</h3>
@@ -1517,7 +1397,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
 <div class="md" id="m-shot" hidden>
   <div class="dlg shot" role="dialog" aria-modal="true" aria-labelledby="ms-t">
     <button class="x" type="button" aria-label="Kapat"><svg aria-hidden="true"><use href="#i-x"/></svg></button>
-    <img id="ms-img" alt="">
+    <img loading="lazy" decoding="async" id="ms-img" alt="">
     <p id="ms-t"></p>
   </div>
 </div>
@@ -1595,7 +1475,7 @@ $$('[data-car]').forEach(function(sec){
 var TQ=[
   {q:'Barış Türkiye’de herkesten fazla danışman yetiştirdi. Her yıl büyüyor, işini seviyor ve gittiği her yere değer katıyor.',o:'BARIŞ trained agents more than anybody in TURKEY. He grows every year, loves what he does and he brings value wherever he goes.',n:'Murat Goldştayn',r:'Bölge Direktörü, RE/MAX Türkiye',p:'',i:'MG',t:'RE/MAX Türkiye'},
   {q:'Oturumunda 1.400 danışman ve broker vardı. Kişiliğini, içeriğini ve dinamik anlatımını çok sevdik. Onu mutlaka yeniden davet edeceğiz.',o:'We had 1400 Agents and Brokers in his session and we loved his personality, his great content and his dynamic delivery. For sure we will invite him again to inspire our people.',n:'Sebastian Sosa',r:'Bölge Direktörü, RE/MAX Arjantin',p:'Art of Persuasion · Rosario, Arjantin',i:'SS',t:'RE/MAX Arjantin'},
-  {q:'Braveology muhteşemdi. Oturumdan sonra bütün danışman ve brokerlarımız işe sarılmak için ilham aldı. Barış sahnede de sahne dışında da harikaydı.',o:'Braveology was absolutely great. All of our agents and brokers were inspired to take work after the session. Barış was great on the stage and off the stage. We will definitely call him for our next convention.',n:'Razvan Cuc',r:'Bölge Direktörü, RE/MAX Romanya',p:'Braveology · Cluj-Napoca, Romanya',i:'RC',img:'img/razvan.jpg',t:'RE/MAX Romanya'},
+  {q:'Braveology muhteşemdi. Oturumdan sonra bütün danışman ve brokerlarımız işe sarılmak için ilham aldı. Barış sahnede de sahne dışında da harikaydı.',o:'Braveology was absolutely great. All of our agents and brokers were inspired to take work after the session. Barış was great on the stage and off the stage. We will definitely call him for our next convention.',n:'Razvan Cuc',r:'Bölge Direktörü, RE/MAX Romanya',p:'Braveology · Cluj-Napoca, Romanya',i:'RC',img:'img/razvan.webp',t:'RE/MAX Romanya'},
   {q:'Barış çok ilham verici ve bir o kadar samimi. Liderlik konusunda müthiş bir enerji yayıyor, salonu içine çekiyor.',o:'BARIŞ was very inspiring and down to earth. He projects a lot of energy about leadership and engages the audience.',n:'Andrea Frigo',r:'Kurucu ve Sahibi, RE/MAX Central',p:'Leadology · Las Vegas, ABD',i:'AF',t:'RE/MAX Central'},
   {q:'Barış, lüks konut uzmanları için mükemmel bir eğitmen.',o:'BARIŞ is perfect trainer for LUXURY HOME EXPERTS.',n:'Marco Tilesi',r:'RE/MAX Dolcevita, Roma',p:'Collection Sertifika Programı · Viyana, Avusturya',i:'MT',t:'RE/MAX Dolcevita'},
   {q:'Barış Bey’in semineri muhteşemdi, sadece içimizden birisi böylesine bize özel bir sunum yapabilirdi. Tüm çalışanlarımız çok motive oldu.',o:'',n:'İlkay Erginöz',r:'İnsan Kaynakları, Hilton Dalaman',p:'Kurumsal seminer · Dalaman',i:'İE',t:'Hilton Dalaman'}
@@ -1661,9 +1541,9 @@ $$('form[data-demo]').forEach(function(f){f.addEventListener('submit',function(e
 
 /* ---------- Program ve ürün pencereleri ---------- */
 var PROGS={
-  yk:{k:'Master class',t:'Gayrimenkulde Yüksek Kazanç Prensipleri',img:'img/stage.jpg',pos:'36% 26%',d:'Gayrimenkulde bir üst seviyeye geçmenin prensipleri. Portföy almaktan kapanışa, yüksek kazanan danışmanın her gün yaptığı işler.',ul:['Ofisinize özel, salonda','Ekipçe katılım, Türkçe ya da İngilizce','Son uygulama: 25 Eylül 2026, RE/MAX Deniz'],topic:'Gayrimenkul danışmanlığı'},
-  up:{k:'Master class · 2. seviye',t:'UPGRADE: Yüksek Kazanç Ustalığı',img:'img/upgrade.jpg',pos:'50% 12%',d:'Yüksek Kazanç Prensipleri’nin ikinci seviyesi. Yüksek kazancı tek seferlik başarı olmaktan çıkarıp alışkanlığa çevirir.',ul:['Yüksek Kazanç Prensipleri’nden sonra','Ofisinize özel, salonda','Son uygulama: 26 Eylül 2026, RE/MAX Deniz'],topic:'Gayrimenkul danışmanlığı'},
-  pb:{k:'RE/MAX Collection Club',t:'Lüks Konutta Personal Branding',img:'img/point.jpg',pos:'50% 12%',d:'Yeni lüks. Yeni müşteri. Yeni biz. Lüks konutta kişisel marka ve network ile iş potansiyelini büyütmek.',ul:['Lüks konut danışmanları için','Viyana’daki uluslararası Collection sertifika programından','Son uygulama: 23 Eylül 2026, RE/MAX Collection Club'],topic:'Lüks konut satışı'}
+  yk:{k:'Master class',t:'Gayrimenkulde Yüksek Kazanç Prensipleri',img:'img/stage.webp',pos:'36% 26%',d:'Gayrimenkulde bir üst seviyeye geçmenin prensipleri. Portföy almaktan kapanışa, yüksek kazanan danışmanın her gün yaptığı işler.',ul:['Ofisinize özel, salonda','Ekipçe katılım, Türkçe ya da İngilizce','Son uygulama: 25 Eylül 2026, RE/MAX Deniz'],topic:'Gayrimenkul danışmanlığı'},
+  up:{k:'Master class · 2. seviye',t:'UPGRADE: Yüksek Kazanç Ustalığı',img:'img/upgrade.webp',pos:'50% 12%',d:'Yüksek Kazanç Prensipleri’nin ikinci seviyesi. Yüksek kazancı tek seferlik başarı olmaktan çıkarıp alışkanlığa çevirir.',ul:['Yüksek Kazanç Prensipleri’nden sonra','Ofisinize özel, salonda','Son uygulama: 26 Eylül 2026, RE/MAX Deniz'],topic:'Gayrimenkul danışmanlığı'},
+  pb:{k:'RE/MAX Collection Club',t:'Lüks Konutta Personal Branding',img:'img/point.webp',pos:'50% 12%',d:'Yeni lüks. Yeni müşteri. Yeni biz. Lüks konutta kişisel marka ve network ile iş potansiyelini büyütmek.',ul:['Lüks konut danışmanları için','Viyana’daki uluslararası Collection sertifika programından','Son uygulama: 23 Eylül 2026, RE/MAX Collection Club'],topic:'Lüks konut satışı'}
 };
 function fillCk(ul,arr){ul.replaceChildren();arr.forEach(function(x){var li=el('li');li.append(ico('i-k',18),document.createTextNode(x));ul.append(li);});}
 function openProg(k){var p=PROGS[k];if(!p)return;var im=$('#mp-img');im.src=p.img;im.style.objectPosition=p.pos;$('#mp-k').textContent=p.k;$('#mp-t').textContent=p.t;$('#mp-d').textContent=p.d;fillCk($('#mp-ul'),p.ul);$('#mp-cta').setAttribute('data-corp',p.topic);openModal('m-prog');}
@@ -1704,7 +1584,7 @@ document.addEventListener('click',function(e){
 });
 
 /* ---------- Arama ---------- */
-var LINKS=[['Masterclass Akademi','akademi','Ofisinizin kendi satış okulu'],['Eğitim kataloğu','katalog','On eğitim, tanıtımları ve bölümleri'],['Mentorun eğitim ekranı','ofis','Bölümler, belgeler ve katılım'],['Barış AI','baris-ai','Sor ve prova yap'],['Üyelik','uyelik','12 aylık ofis üyeliği ve tek eğitim'],['Akademi lansmanı','etkinlikler','İstanbul, Ocak 2027'],['Etkinlik takvimi','takvim','Aralık webinarı, lansman ve geçmiş etkinlikler'],['Hikaye','hakkinda','Barış Kılıçarslan kimdir'],['Sonuçlar','hakkinda','Yirmi yılın rakamları'],['Yorumlar','yorumlar','Dünyadan ofis liderleri'],['Altı rol','roller','Real Estate Trainer, Corporate Trainer, International Speaker, Keynote Speaker, Private Mentoring'],['Kurumsal eğitim ve konuşma','roller','Tarih ve teklif isteyin'],['Satışın Şifreleri','magaza','Online eğitim seti ve kitap'],['Gayrimenkulün Usta Satışçıları','magaza','Ustalarla birebir sohbetler'],['Klasik Eğitimler','magaza','Satışın Şifreleri, Gayrimenkulün Usta Satışçıları']];
+var LINKS=[['Masterclass Akademi','akademi','Ofisinizin kendi satış okulu'],['Eğitim kataloğu','katalog','On eğitim, tanıtımları ve bölümleri'],['Akademinin dört adımı','akademi','Öğren, içselleştir, uygula, kazan'],['Barış AI','baris-ai','Sor ve prova yap'],['Üyelik','uyelik','12 aylık ofis üyeliği ve tek eğitim'],['Akademi lansmanı','etkinlikler','İstanbul, Ocak 2027'],['Etkinlik takvimi','takvim','Aralık webinarı, lansman ve geçmiş etkinlikler'],['Hikaye','hakkinda','Barış Kılıçarslan kimdir'],['Sonuçlar','hakkinda','Yirmi yılın rakamları'],['Yorumlar','yorumlar','Dünyadan ofis liderleri'],['Altı rol','roller','Real Estate Trainer, Corporate Trainer, International Speaker, Keynote Speaker, Private Mentoring'],['Kurumsal eğitim ve konuşma','roller','Tarih ve teklif isteyin'],['Satışın Şifreleri','magaza','Online eğitim seti ve kitap'],['Gayrimenkulün Usta Satışçıları','magaza','Ustalarla birebir sohbetler'],['Klasik Eğitimler','magaza','Satışın Şifreleri, Gayrimenkulün Usta Satışçıları']];
 var sIn=$('#searchInput'),sList=$('#searchList');
 function renderSearch(q){
   q=(q||'').toLocaleLowerCase('tr');sList.replaceChildren();
@@ -1717,9 +1597,6 @@ function renderSearch(q){
 }
 sIn.addEventListener('input',function(){renderSearch(sIn.value);});renderSearch('');
 
-/* ---------- Sistem notları ---------- */
-var sysT=$('#sysT');
-sysT.addEventListener('click',function(){var on=!document.body.classList.contains('sys-on');document.body.classList.toggle('sys-on',on);sysT.setAttribute('aria-pressed',String(on));$('#sysL').textContent=on?'Sistemi gizle':'Sistemi göster';});
 
 /* ---------- Etkinlikler ---------- */
 var EVENTS=[
@@ -1890,7 +1767,7 @@ function resetProva(){
   if(provaCtl)provaCtl.abort();
   provaTurns=[];provaLive=false;pList.replaceChildren();
   var sc=SCEN[provaKey],box=el('div','pv-in');
-  var btn=el('button','btn btn-w btn-sm','Provayı başlat');btn.type='button';btn.addEventListener('click',startProva);
+  var btn=el('button','btn btn-k btn-sm','Provayı başlat');btn.type='button';btn.addEventListener('click',startProva);
   box.append(el('span','who',sc.kisi+' · yapay zekâ müşteriyi oynuyor'),el('h3',null,sc.ad),el('p',null,sc.durum+' Sen danışmansın. En az iki cevap ver, sonra “Bitir ve puanla” de.'),btn);
   pList.append(box);setProvaBusy(false);
 }
@@ -1969,23 +1846,23 @@ csTabs.forEach(function(t){t.addEventListener('click',function(){setTab(t.datase
 /* =================== AKADEMİ: EĞİTİM KATALOĞU =================== */
 function chs(str){return str.split(';').map(function(x){return x.split('|');});}
 var TR=[
-  {id:'kb',t:'Kişisel Başarı Prensiplerinde Ustalık',img:'img/hero-armsup.jpg',pos:'50% 16%',tn:'#5A0A12',lt:[['s','Kişisel',15],['c','BAŞARI',27],['w','PRENSİPLERİ',4.4]],r:'Hedefini koy, korkunu yönet, özgüvenle sahaya çık.',
+  {id:'kb',t:'Kişisel Başarı Prensiplerinde Ustalık',img:'img/hero-armsup.webp',pos:'50% 16%',tn:'#5A0A12',lt:[['s','Kişisel',15],['c','BAŞARI',27],['w','PRENSİPLERİ',4.4]],r:'Hedefini koy, korkunu yönet, özgüvenle sahaya çık.',
    ch:chs('KB01|Giriş;KB02|Kişisel Motivasyon, Kişisel İlerleme;KB03|İçsel Hedef Belirleme Sanatı 1;KB04|İçsel Hedef Belirleme Sanatı 2;KB05|Kişisel Gelişim Metodolojilerinin Önemi;KB06|Özgüven Gelişimi;KB07|3B Gelişim;KB08|Rahatlık Bölgesi Gelişimi;KB09|Korku Yönetimi Gelişimi;KB10|Geri Bildirimde Gelişmek;KB11|Çevre Yönetiminde Gelişmek;KB14|Kişisel Dönüşüm: Mantalite Eğitimleri;KB15|İki Çeşit Mantalite;KB16|Mantalitenin Yapı Taşları: Başarı İnançları;KB17|İnanç Değişiminin 5 Adımı')},
-  {id:'mb',t:'Kişisel Marka ve Müşteri Bulmada Ustalık',img:'img/point.jpg',pos:'50% 10%',tn:'#0B1E5C',lt:[['s','Kişisel Marka ve',10.5],['c','MÜŞTERİ',23],['w','BULMA USTALIĞI',4.2]],r:'Müşteri havuzunu büyüt, adayları randevuya çevir.',
+  {id:'mb',t:'Kişisel Marka ve Müşteri Bulmada Ustalık',img:'img/point.webp',pos:'50% 10%',tn:'#0B1E5C',lt:[['s','Kişisel Marka ve',10.5],['c','MÜŞTERİ',23],['w','BULMA USTALIĞI',4.2]],r:'Müşteri havuzunu büyüt, adayları randevuya çevir.',
    ch:chs('MB01|Geniş Müşteri Havuzu Oluşturmanın Önemi;MB02|Alıcı ve Satıcı Tipleri: Kolay ve Zor Müşteri;MB03|Geniş Müşteri Havuzu Oluşturmanın 2 Yöntemi;KP01|Kişisel Markamızın 4 K’sı;KP02|Müşteri Bulma Kaynakları;KP03|Kişisel Pazarlamada Tanıtımlar ve Sunulan Değerler;KP04-01|Etki Çevresi Kaynağı;KP04-02|Etki Çevresi: Değer Sunarken Dengeyi Yakalamak;SM01|Sosyal Medyada Konumlanma;KP05|Eski Müşterilerimiz;KP06|Dernekler ve Kulüpler;KP07|Yeni İnsanlarla Tanışmak;RD01|Adayları Randevuya Çevirmek İçin İlk Temas Prensipleri;RD02|Randevuya Çevirmede Başarının Mental Sırları')},
-  {id:'dd',t:'Dolu Danışman Olmada Ustalık',img:'img/collection.jpg',pos:'50% 12%',tn:'#4A3205',lt:[['s','Dolu',16],['c','DANIŞMAN',20],['w','OLMADA USTALIK',4.2]],r:'Portföy sunumuna hazır git, ilk görüşmede fark yarat.',
+  {id:'dd',t:'Dolu Danışman Olmada Ustalık',img:'img/collection.webp',pos:'50% 12%',tn:'#4A3205',lt:[['s','Dolu',16],['c','DANIŞMAN',20],['w','OLMADA USTALIK',4.2]],r:'Portföy sunumuna hazır git, ilk görüşmede fark yarat.',
    ch:chs('D01|Portföy Sunumu Hazırlıkları;D02|Ön Portföy Paketi;D02-01|Rakip Pazar Analizi;D04|Raporlama ve İletişim Planı')},
-  {id:'fsbo',t:'Sahibinden Satılıklarda Ustalık',img:'img/mic.jpg',pos:'50% 12%',tn:'#3A0A0E',lt:[['s','Sahibinden',14],['c','SATILIKLAR',16.5],['w','USTALIK',4.6]],r:'Sahibinden satılık ilanını telefonda randevuya çevir.',
+  {id:'fsbo',t:'Sahibinden Satılıklarda Ustalık',img:'img/mic.webp',pos:'50% 12%',tn:'#3A0A0E',lt:[['s','Sahibinden',14],['c','SATILIKLAR',16.5],['w','USTALIK',4.6]],r:'Sahibinden satılık ilanını telefonda randevuya çevir.',
    ch:chs('FSBO 01|Sahibinden Satılıklar Neden Sahibinden Satılık;FSBO 02|Sahibinden Satılıkların Problemleri;FSBO 03|Sahibinden Satılıklarda Farklı FSBO Grupları;FSBO 03-01|FSBO’larla Telefon Görüşmesi;FSBO 04|Telefon Görüşmesinde Çıkabilecek 3 Sonuç;FSBO 05|Telefon Görüşmesinde İtirazlar;FSBO 06|Telefonu Açma Teknikleri;FSBO 07|Alternatif Randevu Alma Yöntemleri;FSBO 08|FSBO Özetleri ve Hareket Planı')},
-  {id:'pa',t:'Portföy Almada Ustalık',img:'img/stage.jpg',pos:'34% 24%',tn:'#5C0810',lt:[['c','PORTFÖY',23],['w','ALMADA USTALIK',4.2]],r:'İlk görüşmede güveni kur, sözleşmeyi iste ve al.',
+  {id:'pa',t:'Portföy Almada Ustalık',img:'img/stage.webp',pos:'34% 24%',tn:'#5C0810',lt:[['c','PORTFÖY',23],['w','ALMADA USTALIK',4.2]],r:'İlk görüşmede güveni kur, sözleşmeyi iste ve al.',
    ch:chs('PA01|Portföy Almada Ustalık: Giriş;PA02|Birinci Görüşmede Güven ve Yakınlık;PA03|Mülk Analizi;PA04|Birinci Görüşme İtirazları;PA05|Portföy Almada İkinci Görüşme;PA06|Portföy Sunumu Sıralaması: Timeline Detayları;PA07|Portföy Sunumunda Fiyatı ve Pazarlama Planını Sunmak;PA08|Portföy Sunumunda İletişim Planını Sunmak;PA09|Satıcı Kapanışı: Sözleşmeyi İstemek;PA10|Sözleşmeyi Alma Yöntemleri;PA11|Koçluk Soruları')},
-  {id:'iu',t:'İtirazlarda Ustalık',img:'img/upgrade.jpg',pos:'50% 10%',tn:'#1D1D22',lt:[['s','İtirazlarda',14],['c','USTALIK',23]],r:'İtirazı karşıla, değerini koru, işlemi kapat.',
+  {id:'iu',t:'İtirazlarda Ustalık',img:'img/upgrade.webp',pos:'50% 10%',tn:'#1D1D22',lt:[['s','İtirazlarda',14],['c','USTALIK',23]],r:'İtirazı karşıla, değerini koru, işlemi kapat.',
    ch:chs('İU 01|İtirazlarda Ustalığın Temeli;İU 02|İtirazları Yönetmenin 3 Prensibi;İU 03|Değerde Güçlü Olmak;İU 04|Duruşta Güçlü Olmak;İU 05|Diyaloglarda Güçlü Olmak;İU 06|Hizmet Bedeli İçin Güçlü Diyalog Yöntemleri;İU 07|Gayrimenkul Danışmanlığında 2 Farklı Rekabet;İU 08|“Düşünmek İstiyoruz” İtirazı;İU 09|Sözleşme İtirazlarında Ustalık;İU 10|Koçluk Soruları')},
-  {id:'au',t:'Alıcılarda Ustalık',img:'img/banner.jpg',pos:'21% 46%',tn:'#0D2A1A',lt:[['s','Alıcılarda',14],['c','USTALIK',23]],r:'Alıcıyı doğru analiz et, teklife ve sonuca ulaştır.',
+  {id:'au',t:'Alıcılarda Ustalık',img:'img/banner.webp',pos:'21% 46%',tn:'#0D2A1A',lt:[['s','Alıcılarda',14],['c','USTALIK',23]],r:'Alıcıyı doğru analiz et, teklife ve sonuca ulaştır.',
    ch:chs('AU 01|Alıcılara Giriş ve Alıcı Deneyimi Süreci;AU 02|Alıcı Tipleri ve Alıcılarda Öncelik Yönetimi;AU 03|Alıcı Analizinde Ustalık;AU 04|Alıcı Telefon Görüşmesinde Ustalık;AU 05|Alıcılarda İlk Yüz Yüze Görüşmede Ustalık;AU 06|Alıcı Ön Sunumunda Ustalık;AU 07|Yer Göstermelerde Ustalık;AU 08|Teklif Sürecinde Ustalık;AU 09|Koçluk Soruları ve Hareket Planı')},
-  {id:'dfi',t:'Doğru Fiyatlı Portföy Almada Ustalık',img:'img/baris-portre.jpg',pos:'50% 40%',tn:'#08153A',lt:[['s','Doğru',16],['c','FİYAT',28],['w','PORTFÖY ALMADA USTALIK',3.4]],r:'Doğru fiyatla sözleşme al, satılan portföy topla.',
+  {id:'dfi',t:'Doğru Fiyatlı Portföy Almada Ustalık',img:'img/baris-portre.webp',pos:'50% 40%',tn:'#08153A',lt:[['s','Doğru',16],['c','FİYAT',28],['w','PORTFÖY ALMADA USTALIK',3.4]],r:'Doğru fiyatla sözleşme al, satılan portföy topla.',
    ch:chs('DFI 01|Doğru Fiyata İknada Ustalık;DFI 02|Fiyatı Etkileyen Alıcı ve Satıcı Pazarı;DFI 03|Sebep Sonuç İlişkisi;DFI 04|Fiyatı Etkileyen Faktörler;DFI 05|Fiyatı Belirlemede Ustalık;DFI 06|Alternatif Rakip Pazar Analizi Yöntemleri;DFI 07|Fiyat Sunumunda Ustalık;DFI 08|Fiyat Karşılamada Ustalık;DFI 09|“Masrafımız Çok” İtirazı;DFI 10|“Başkaları Daha Yükseğe Satarız Dedi” İtirazı;DFI 11|“Vaktimiz Var, Biraz Yüksek Fiyattan Deneyelim” İtirazı;DFI 12|Pazarlık Payı İtirazı;DFI 13|“Ne Kadar Sürede Satılır?” İtirazı;DFI 14|Fiyat Düzeltme Stratejileri;DFI 15|Fiyatı Kabullenmenin Psikolojik Yolculuğu;DFI 16|Fiyata İknada En Etkili Teknik;DFI 17|Hareket Planı')},
-  {id:'cl',t:'İşlem Kapanışta Ustalık',img:'img/roportaj-3.jpg',pos:'16% 50%',tn:'#3B2405',lt:[['s','İşlem',16],['c','KAPANIŞ',23],['w','USTALIK',4.6]],r:'Kapanışı ilk görüşmeden kur, işlemi sonuca bağla.',
+  {id:'cl',t:'İşlem Kapanışta Ustalık',img:'img/roportaj-3.webp',pos:'16% 50%',tn:'#3B2405',lt:[['s','İşlem',16],['c','KAPANIŞ',23],['w','USTALIK',4.6]],r:'Kapanışı ilk görüşmeden kur, işlemi sonuca bağla.',
    ch:chs('CLOSING 01|Kapanış Çizgisi;CLOSING 02|Kapanışta Ustalık Mantalitesi;CLOSING 03|Üç Farklı Kapanış;CLOSING 04|Kapanış Açılışla Başlar;CLOSING 05|Kapanış Süreçle Devam Eder;CLOSING 06|Taktiksel Empatide Rüya ve Kabus Sınırlar;CLOSING 07|Mesaj Ustası ve Kapanış Ustası;CLOSING 08|Teklif ve Kontra Teklif Yönetimi;CLOSING 09|Alternatif Kapanış Teknikleri;CLOSING 10|Baskı Kapanışı, Geri Bildirim Kapanışı;CLOSING 11|Koçluk Soruları, Hareket Planı')},
   {id:'byu',t:'Beyin Yönetiminde Ustalık',img:'img/baris-boy.webp',cut:true,tn:'#000',lt:[['s','Beyin',16],['c','YÖNETİMİ',20],['w','USTALIK',4.6]],r:'Dikkatini koru, gününü yönet, üretkenliğini artır.',
    ch:chs('BYU 01|Beynimizi Keşfediyoruz;BYU 02|Yeni Dünyanın Dijital Rahatsızlıkları ve Dikkat Dağıtıcıları;BYU 03|Üretkenliğin 4 Ana Kuralı;BYU 04|Süper Güçlerimiz ve Kriptonitlerimiz;BYU 05|Sıradışı Üretkenlik İçin Yap, Vazgeç, Delege Et Modeli;BYU 06|Üretkenlik Planımda Sabah ve Akşam Rutinleri;BYU 07|Beynimizi Yönetme Uygulamaları ve Formları;BYU 08|Koçluk Soruları')}
@@ -2020,65 +1897,14 @@ function openTrain(id){
 $('#tr-play').addEventListener('click',function(){$('#tr-done').hidden=false;});
 TR.forEach(function(t){LINKS.push([t.t,'katalog',t.r]);});renderSearch('');
 
-/* =================== AKADEMİ: MENTORUN EĞİTİM EKRANI =================== */
-var MODS=[
-  {g:'Tanıtım ve motivasyon',c:'',ad:'Tanıtım ve motivasyon',st:'done',k:'tan',s:'komisyon'},
-  {g:'Ana eğitim',c:'PA01',ad:'Portföy Almada Ustalık: Giriş',st:'done',k:'ana',s:'komisyon'},
-  {c:'PA02',ad:'Birinci Görüşmede Güven ve Yakınlık',st:'done',k:'ana',s:'tekyetki'},
-  {c:'PA03',ad:'Mülk Analizi',st:'done',k:'ana',s:'fiyat'},
-  {c:'PA04',ad:'Birinci Görüşme İtirazları',st:'done',k:'ana',s:'komisyon'},
-  {c:'PA05',ad:'Portföy Almada İkinci Görüşme',st:'now',k:'ana',s:'tekyetki'},
-  {c:'PA06',ad:'Portföy Sunumu Sıralaması: Timeline Detayları',st:'next',k:'ana',s:'fiyat'},
-  {c:'PA07',ad:'Portföy Sunumunda Fiyatı ve Pazarlama Planını Sunmak',st:'next',k:'ana',s:'fiyat'},
-  {c:'PA08',ad:'Portföy Sunumunda İletişim Planını Sunmak',st:'next',k:'ana',s:'tekyetki'},
-  {c:'PA09',ad:'Satıcı Kapanışı: Sözleşmeyi İstemek',st:'next',k:'ana',s:'tekyetki'},
-  {c:'PA10',ad:'Sözleşmeyi Alma Yöntemleri',st:'next',k:'ana',s:'tekyetki'},
-  {g:'Koçluk ve içselleştirme',c:'',ad:'Koçluk ve içselleştirme videosu',st:'next',k:'koc',s:'komisyon'},
-  {c:'PA11',ad:'Koçluk Soruları',st:'next',k:'koc',s:'komisyon'},
-  {g:'Uygulama ve kazanç',c:'',ad:'Gelişim ve Kazanç Aktiviteleri',st:'next',k:'uyg',s:'fiyat'}
-];
-var STG={tan:'Tanıtım',ana:'Ana eğitim',koc:'Koçluk ve içselleştirme',uyg:'Uygulama ve kazanç'};
-var DESC={
-  tan:'Eğitimin neden önemli olduğunu ve sonunda ne kazanılacağını anlatan açılış. Grup oturumu bununla başlar.',
-  ana:'Ana eğitim bölümleri sırayla izlenir. Mentor eğitimi önceden izlediği için gerektiğinde durdurup ekiple konuşur.',
-  koc:'Koçluk ve içselleştirme ana eğitimin sonunda. Koçluk soruları eğitimin bittiği gün birlikte çalışılır.',
-  uyg:'Rol çalışması, tarihli müşteri çalışmaları, fiyat analizleri ve hedefler. Mentor aktiviteleri ofisine uyarlar ve takip eder.'
-};
-var curMod=5,modList=$('#modList'),modBtns=[];
-MODS.forEach(function(m,i){
-  if(m.g){var h=el('li','am-h',m.g);h.setAttribute('aria-hidden','true');modList.append(h);}
-  var li=el('li'),b=el('button','am');b.type='button';b.dataset.state=m.st;
-  var ic=el('span','am-i');if(m.st==='done')ic.append(ico('i-k',14));else ic.textContent=m.c?m.c.slice(-2):'·';
-  var sub=m.st==='done'?'İzlendi':(m.st==='now'?'Bu oturum':(m.k==='koc'?'Ana eğitimden sonra':(m.k==='uyg'?'Koçluktan sonra':'Sırada')));
-  var tx=el('span','am-t');tx.append(el('b',null,m.ad),el('span',null,(m.c?m.c+' · ':'')+sub));
-  b.append(ic,tx);b.addEventListener('click',function(){setMod(i);});li.append(b);modList.append(li);modBtns.push(b);
-});
-function docRow(name,note,lock){var d=el('div','ac-doc');d.dataset.lock=String(lock);var sp=el('span');sp.append(el('b',null,name),el('small',null,note));d.append(el('i',null,'PDF'),sp);return d;}
-function setMod(i){
-  curMod=i;var m=MODS[i],k=m.k;modBtns.forEach(function(b,j){b.setAttribute('aria-current',String(j===i));});
-  $('#lsNo').textContent=(m.c?m.c+' · ':'')+STG[k];$('#lsTitle').textContent=m.ad;$('#lsDesc').textContent=DESC[k];
-  var kocOpen=(k==='koc'||k==='uyg');
-  $('#lsDocs').replaceChildren(
-    docRow('Eğitim Notları',k==='tan'?'Oturumun başında dağıtılır':'Dağıtıldı',false),
-    docRow('Koçluk ve İçselleştirme Soruları',k==='koc'?'Bugün birlikte çalışılır':(k==='uyg'?'Çalışıldı':'Ana videolar bitince açılır'),!kocOpen),
-    docRow('Gelişim ve Kazanç Aktiviteleri',k==='uyg'?'Mentor ofisine uyarladı':'Koçluktan sonra açılır',k!=='uyg')
-  );
-}
-var ATT=[['Ayşe K.',true],['Mert D.',true],['Elif S.',true],['Burak T.',false],['Zeynep A.',true],['Can Y.',true]];
-var att=$('#lsTasks');
-ATT.forEach(function(a,k){var id='att-'+k;var l=el('label','tk');l.setAttribute('for',id);var c=el('input');c.type='checkbox';c.id=id;c.checked=a[1];l.append(c,el('span',null,a[0]));att.append(l);});
-setMod(curMod);
-$('#lsProva').addEventListener('click',function(){setTab('prova');selectScen(MODS[curMod].s);goTo('baris-ai');setTimeout(startProva,RM?0:700);});
-$('#lsAsk').addEventListener('click',function(){setTab('sor');sorInput.value='“'+MODS[curMod].ad+'” bölümündeki konuyu sahada nasıl uygularım?';goTo('baris-ai');setTimeout(function(){sorInput.focus({preventScroll:true});},RM?0:700);});
-$('.ac-play').addEventListener('click',function(){var b=this;b.setAttribute('aria-label','Demo: bölüm videosu');var v=b.closest('.ac-v');var n=v.querySelector('.ac-note');if(!n){n=el('span','ac-note');n.style.cssText='position:absolute;left:50%;top:calc(46% + 58px);transform:translateX(-50%);font:600 13px/1.3 var(--fb);background:rgba(0,0,0,.55);padding:8px 12px;border-radius:999px;white-space:nowrap';n.textContent='Demo: gerçek sitede bölüm Vimeo’dan burada oynar';v.append(n);setTimeout(function(){n.remove();},2600);}});
 
 
 /* ---------- Akademinin dört adımı: imleç gelince (dokunmatikte dokununca) programdan görüntü ---------- */
 var STEPS=[
-  {k:'01 · Öğren',t:'Grup oturumu',d:'Mentor eğitimi grubuyla aynı ekranda başlatır. Bölümler sırayla akar; video bitmeden sonraki bölüm açılmaz. Katılım tek dokunuşla işaretlenir, Eğitim Notları en başta dağıtılır.',img:'img/akademi/ogren-2.jpg',c:'Mentor paneli: sıradaki oturum tek tıkla başlar'},
-  {k:'02 · İçselleştir',t:'Koçluk aynı gün',d:'Ana videolar bitince koçluk ve içselleştirme videosu açılır. Koçluk soruları eğitimin bittiği gün grupla çalışılır; tamamlayan danışmanlar tek tek işaretlenir.',img:'img/akademi/icsel-2.jpg',c:'Eğitim sayfası: dört aşama ve aşamaya göre açılan belgeler'},
-  {k:'03 · Uygula',t:'Sahada uygulama',d:'Gelişim ve Kazanç Aktiviteleri oturumda dağıtılır, tarihleri o günden sayılır. Mentor aktiviteleri ofisine uyarlar, görev takibinde kimin neyi yaptığını görür.',img:'img/akademi/uygula-2.jpg',c:'Görev takibi: katılım, koçluk ve aktiviteler'},
-  {k:'04 · Kazan',t:'Sertifika',d:'Mentor onaylayınca sertifika üretilir: Katılım, Başarı ve bütün ana eğitimleri bitirene Masterclass Akademi Sertifikası. Her sertifikanın numarası ve QR kodu var, sitede doğrulanır.',img:'img/akademi/kazan-2.jpg',c:'Başarı Sertifikası: numara ve QR kodla doğrulanır'}
+  {k:'01 · Öğren',t:'Grup oturumu',d:'Mentor eğitimi grubuyla aynı ekranda başlatır. Bölümler sırayla akar; video bitmeden sonraki bölüm açılmaz. Katılım tek dokunuşla işaretlenir, Eğitim Notları en başta dağıtılır.',img:'img/akademi/ogren-2.webp',c:'Mentor paneli: sıradaki oturum tek tıkla başlar'},
+  {k:'02 · İçselleştir',t:'Koçluk aynı gün',d:'Ana videolar bitince koçluk ve içselleştirme videosu açılır. Koçluk soruları eğitimin bittiği gün grupla çalışılır; tamamlayan danışmanlar tek tek işaretlenir.',img:'img/akademi/icsel-2.webp',c:'Eğitim sayfası: dört aşama ve aşamaya göre açılan belgeler'},
+  {k:'03 · Uygula',t:'Sahada uygulama',d:'Gelişim ve Kazanç Aktiviteleri oturumda dağıtılır, tarihleri o günden sayılır. Mentor aktiviteleri ofisine uyarlar, görev takibinde kimin neyi yaptığını görür.',img:'img/akademi/uygula-2.webp',c:'Görev takibi: katılım, koçluk ve aktiviteler'},
+  {k:'04 · Kazan',t:'Sertifika',d:'Mentor onaylayınca sertifika üretilir: Katılım, Başarı ve bütün ana eğitimleri bitirene Masterclass Akademi Sertifikası. Her sertifikanın numarası ve QR kodu var, sitede doğrulanır.',img:'img/akademi/kazan-2.webp',c:'Başarı Sertifikası: numara ve QR kodla doğrulanır'}
 ];
 var mth=$('#mth'),mthP=$('#mthP'),mBtns=$$('.mth-i',mth),mOpen=-1,mAt=0,mHov=null,mScr=0;
 function mCols(){return getComputedStyle(mth).gridTemplateColumns.split(' ').filter(Boolean).length||1;}
