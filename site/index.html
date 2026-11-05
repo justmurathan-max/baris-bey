@@ -264,40 +264,6 @@ button{cursor:pointer}
 @media (max-width:900px){.ts-g{grid-template-columns:1fr}.ts-ph{display:none}}
 @media (max-width:560px){.ts .arw{width:44px;height:44px}}
 
-/* =================== TANIŞ (pinwheel) =================== */
-.mt-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.22fr);grid-template-rows:auto auto}
-.mt-card{grid-column:1;grid-row:1;position:relative;background:var(--red2);color:#fff;border-radius:32px 32px 0 32px;padding:clamp(28px,3.4vw,56px);min-height:clamp(440px,38vw,580px);display:flex;flex-direction:column;justify-content:space-between;gap:28px}
-.mt-card::after{content:"";position:absolute;left:100%;bottom:0;width:32px;height:32px;background:radial-gradient(circle at 100% 0,transparent 31.5px,var(--red2) 32px)}
-.mt-card .h2{max-width:min(9.5em,60%);font-size:clamp(34px,3.4vw,60px);position:relative;z-index:1}
-.mt-cut{position:absolute;right:clamp(4px,1.6vw,28px);bottom:0;height:82%;width:auto;max-width:46%;object-fit:contain;object-position:bottom right;pointer-events:none}
-.mt-card .wmk{position:relative;z-index:1}
-.mt-card .btn{position:relative;z-index:1;align-self:flex-start}
-.mt-bio{grid-column:2;grid-row:1;align-self:end;display:grid;gap:18px;padding:0 0 clamp(28px,3vw,48px) clamp(40px,5vw,96px)}
-.mt-bio p{margin:0;max-width:52ch;font-size:clamp(17px,1.25vw,20px);line-height:1.55;color:var(--mu)}
-.mt-bio p.sm{font-size:15px}
-.mt-lg{grid-column:1;grid-row:2;display:grid;gap:18px;align-content:start;padding:clamp(28px,3vw,48px) clamp(28px,4vw,64px) 0 0}
-.lg-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.lg-g span{height:84px;border-radius:16px;background:var(--g0);display:grid;place-items:center;padding:14px 18px}
-.lg-g img{width:auto;max-width:100%;opacity:.86}
-.mt-more{margin:0;color:var(--mu);font-size:14.5px}
-.mt-vid{grid-column:2;grid-row:2;position:relative;border-radius:0 32px 32px 32px;background:var(--k2);min-height:clamp(340px,32vw,560px)}
-.mt-vid::before{content:"";position:absolute;right:100%;top:0;width:32px;height:32px;background:radial-gradient(circle at 0 100%,transparent 31.5px,var(--k2) 32px)}
-.mt-vid .ph{position:absolute;inset:0;border-radius:inherit;overflow:hidden;isolation:isolate}
-.mt-vid .ph img{width:100%;height:100%;object-fit:cover;object-position:34% 50%}
-.mt-vid .ph::before{content:"";position:absolute;inset:0;background:radial-gradient(200px 200px at 0 0,var(--k2) 0,rgba(19,19,21,0) 100%),linear-gradient(180deg,rgba(0,0,0,0) 50%,rgba(0,0,0,.7))}
-.mt-vid .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 42%,rgba(0,0,0,.8))}
-.mt-vc{position:absolute;left:clamp(20px,2.4vw,36px);bottom:clamp(20px,2.4vw,36px);right:clamp(20px,2.4vw,36px);z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;color:#fff}
-.mt-vc span{font:500 15px/1.35 var(--fb);color:rgba(255,255,255,.86);max-width:30ch}
-@media (max-width:900px){
-  .mt-g{grid-template-columns:1fr}
-  .mt-card{grid-column:1;grid-row:1;border-radius:28px 28px 0 0;min-height:460px}
-  .mt-vid{grid-column:1;grid-row:2;border-radius:0 0 28px 28px;min-height:300px}
-  .mt-card::after,.mt-vid::before,.mt-vid .ph::before{display:none}
-  .mt-bio{grid-column:1;grid-row:3;padding:36px 0 0}
-  .mt-lg{grid-column:1;grid-row:4;padding:32px 0 0}
-  .mt-card .h2{max-width:56%;font-size:clamp(30px,8.4vw,40px)}
-  .mt-cut{height:66%;max-width:44%}
-}
 
 /* =================== SONUÇ =================== */
 .rs-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(32px,6vw,112px);align-items:end}
@@ -906,11 +872,11 @@ body.sys-on .sys{display:block}
         <button class="mi-b" type="button" aria-expanded="false">Hakkında<svg aria-hidden="true"><use href="#i-cd"/></svg></button>
         <div class="dd">
           <div class="dd-l">
-            <a href="#hakkinda"><b>Hikaye</b><span>Royal Caribbean’dan RE/MAX sahnelerine</span></a>
+            <a href="#sonuclar" data-open="m-bio"><b>Hikaye</b><span>Royal Caribbean’dan RE/MAX sahnelerine</span></a>
             <a href="#sonuclar"><b>Sonuçlar</b><span>Yirmi yılın rakamları</span></a>
             <a href="#yorumlar"><b>Yorumlar</b><span>Dünyadan ofis liderleri</span></a>
           </div>
-          <a class="dd-f" href="#hakkinda"><img src="img/point.jpg" alt="" style="object-position:50% 10%"><span>Barış Kılıçarslan kimdir?</span></a>
+          <a class="dd-f" href="#sonuclar" data-open="m-bio"><img src="img/point.jpg" alt="" style="object-position:50% 10%"><span>Barış Kılıçarslan kimdir?</span></a>
         </div>
       </li>
     </ul>
@@ -934,7 +900,7 @@ body.sys-on .sys{display:block}
   <details><summary>Kurumsal<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#roller">Corporate Trainer</a><a href="#katalog">Real Estate Trainer</a><a href="#roller" data-corp="Birebir mentorluk">Private Mentoring</a></div></details>
   <details><summary>Etkinlikler<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#takvim">Etkinlik takvimi</a><a href="#takvim">Aralık webinarı</a><a href="#etkinlikler">Akademi lansmanı</a></div></details>
   <details><summary>Mağaza<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#magaza">Gelişim ve Kazanç Mağazası</a><a href="#magaza" data-prod="kitap">Kitaplar</a><a href="#magaza">Klasik Eğitimler</a></div></details>
-  <details><summary>Hakkında<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#hakkinda">Hikaye</a><a href="#sonuclar">Sonuçlar</a><a href="#yorumlar">Yorumlar</a></div></details>
+  <details><summary>Hakkında<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#sonuclar" data-open="m-bio">Hikaye</a><a href="#sonuclar">Sonuçlar</a><a href="#yorumlar">Yorumlar</a></div></details>
   <div class="mnav-c">
     <button class="btn btn-w" type="button" data-open="m-apply">Hemen başla</button>
     <button class="btn btn-ow" type="button" data-open="m-login">Akademiye giriş</button>
@@ -1164,50 +1130,14 @@ body.sys-on .sys{display:block}
   </div>
 </section>
 
-<!-- TANIŞ -->
-<section class="sec wh" id="hakkinda">
-  <div class="wrap">
-    <div class="mt-g">
-      <div class="mt-card">
-        <span class="wmk">Barış Kılıçarslan</span>
-        <h2 class="h2">Royal Caribbean’dan RE/MAX sahnelerine.</h2>
-        <button class="btn btn-w" type="button" data-open="m-bio">Barış’ı tanı</button>
-        <img class="mt-cut" src="img/baris-boy.webp" alt="Barış Kılıçarslan">
-      </div>
-      <div class="mt-bio">
-        <p>Mühendislikle başladı. Royal Caribbean’da altı yıl boyunca 24 ülkede satış ve müşteri ilişkileri yönetti, Miami’de eğitmen oldu. Türkiye’ye dönünce RE/MAX Türkiye ile çalışmaya başladı. Bugün tek bir işi var: satış ekiplerinin sahada sonuç alması.</p>
-        <p class="sm">Anthony Robbins’ten UPW, Jack Canfield’dan BTS, Richard Bandler’dan Uluslararası NLP Uygulayıcısı eğitimlerini aldı. Türkçe ve İngilizce sahnelerde konuşuyor.</p>
-      </div>
-      <div class="mt-lg">
-        <span class="lbl" style="color:var(--mu)">Eğitim verdiği kurumlardan</span>
-        <div class="lg-g">
-          <span><img src="img/logo-hilton.png" alt="Hilton" style="height:30px"></span>
-          <span><img src="img/logo-3m.png" alt="3M" style="height:28px"></span>
-          <span><img src="img/logo-arcelik.png" alt="Arçelik" style="height:27px"></span>
-          <span><img src="img/logo-hp.png" alt="HP" style="height:40px"></span>
-          <span><img src="img/logo-aksigorta.png" alt="Aksigorta" style="height:19px"></span>
-          <span><img src="img/logo-anadolujet.png" alt="AnadoluJet" style="height:13px"></span>
-        </div>
-        <p class="mt-more">RE/MAX, AstraZeneca, Filli Boya, Borusan Oto ve 200’den fazla kurum.</p>
-      </div>
-      <div class="mt-vid">
-        <div class="ph"><img src="img/banner.jpg" alt="Barış Kılıçarslan bir röportaj çekiminde"></div>
-        <div class="mt-vc">
-          <span>Barış, Gayrimenkulün Usta Satışçıları röportaj serisinde.</span>
-          <a class="ply" href="#magaza" data-prod="gus"><i><svg aria-hidden="true"><use href="#i-p"/></svg></i>Röportajları izle</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- SONUÇLAR -->
-<section class="sec gy" id="sonuclar">
+<section class="sec wh" id="sonuclar">
   <div class="wrap">
     <div class="rs-g">
       <div class="rs-l">
         <h2 class="h2">Kılıçarslan demek sonuç demek.</h2>
         <p class="lead">Türkiye’den Arjantin’e, Romanya’dan Las Vegas’a yirmi yıldır aynı soruyla çalışıyor: Katılımcı salondan çıktıktan sonra sahada ne değişti?</p>
+        <button class="btn btn-k" type="button" data-open="m-bio">Barış’ı tanı</button>
       </div>
       <div class="rs-st">
         <div class="st"><b>1.900+</b><span>gün eğitim ve seminer</span></div>
@@ -1308,7 +1238,7 @@ body.sys-on .sys{display:block}
 <footer class="ft">
   <div class="wrap">
     <div class="ft-top">
-      <div><h4>Hakkında</h4><ul><li><a href="#hakkinda">Hikaye</a></li><li><a href="#sonuclar">Sonuçlar</a></li><li><a href="#yorumlar">Yorumlar</a></li><li><a href="#roller">Altı rol</a></li></ul></div>
+      <div><h4>Hakkında</h4><ul><li><a href="#sonuclar" data-open="m-bio">Hikaye</a></li><li><a href="#sonuclar">Sonuçlar</a></li><li><a href="#yorumlar">Yorumlar</a></li><li><a href="#roller">Altı rol</a></li></ul></div>
       <div><h4>Akademi</h4><ul><li><a href="#akademi">Masterclass Akademi</a></li><li><a href="#katalog">Eğitim kataloğu</a></li><li><a href="#portal">Mentorun eğitim ekranı</a></li><li><a href="#baris-ai">Barış AI</a></li><li><a href="#uyelik">Üyelik</a></li></ul></div>
       <div><h4>Etkinlikler</h4><ul><li><a href="#takvim">Etkinlik takvimi</a></li><li><a href="#takvim">Aralık webinarı</a></li><li><a href="#etkinlikler">Akademi lansmanı</a></li></ul></div>
       <div><h4>Destek</h4><ul><li><button type="button" data-open="m-login">Akademiye giriş</button></li><li><button type="button" data-corp="Satış">İletişim</button></li><li><a href="#magaza">Mağaza</a></li></ul></div>
@@ -1660,13 +1590,13 @@ document.addEventListener('click',function(e){
 });
 
 /* ---------- Arama ---------- */
-var LINKS=[['Masterclass Akademi','akademi','Ofisinizin kendi satış okulu'],['Eğitim kataloğu','katalog','On eğitim, tanıtımları ve bölümleri'],['Mentorun eğitim ekranı','ofis','Bölümler, belgeler ve katılım'],['Barış AI','baris-ai','Sor ve prova yap'],['Üyelik','uyelik','12 aylık ofis üyeliği ve tek eğitim'],['Akademi lansmanı','etkinlikler','İstanbul, Ocak 2027'],['Etkinlik takvimi','takvim','Aralık webinarı, lansman ve geçmiş etkinlikler'],['Hikaye','hakkinda','Barış Kılıçarslan kimdir'],['Sonuçlar','sonuclar','Yirmi yılın rakamları'],['Yorumlar','yorumlar','Dünyadan ofis liderleri'],['Altı rol','roller','Real Estate Trainer, Corporate Trainer, International Speaker, Keynote Speaker, Private Mentoring'],['Kurumsal eğitim ve konuşma','roller','Tarih ve teklif isteyin'],['Satışın Şifreleri','magaza','Online eğitim seti ve kitap'],['Gayrimenkulün Usta Satışçıları','magaza','Ustalarla birebir sohbetler'],['Klasik Eğitimler','magaza','Satışın Şifreleri, Gayrimenkulün Usta Satışçıları']];
+var LINKS=[['Masterclass Akademi','akademi','Ofisinizin kendi satış okulu'],['Eğitim kataloğu','katalog','On eğitim, tanıtımları ve bölümleri'],['Mentorun eğitim ekranı','ofis','Bölümler, belgeler ve katılım'],['Barış AI','baris-ai','Sor ve prova yap'],['Üyelik','uyelik','12 aylık ofis üyeliği ve tek eğitim'],['Akademi lansmanı','etkinlikler','İstanbul, Ocak 2027'],['Etkinlik takvimi','takvim','Aralık webinarı, lansman ve geçmiş etkinlikler'],['Hikaye','m-bio','Barış Kılıçarslan kimdir'],['Sonuçlar','sonuclar','Yirmi yılın rakamları'],['Yorumlar','yorumlar','Dünyadan ofis liderleri'],['Altı rol','roller','Real Estate Trainer, Corporate Trainer, International Speaker, Keynote Speaker, Private Mentoring'],['Kurumsal eğitim ve konuşma','roller','Tarih ve teklif isteyin'],['Satışın Şifreleri','magaza','Online eğitim seti ve kitap'],['Gayrimenkulün Usta Satışçıları','magaza','Ustalarla birebir sohbetler'],['Klasik Eğitimler','magaza','Satışın Şifreleri, Gayrimenkulün Usta Satışçıları']];
 var sIn=$('#searchInput'),sList=$('#searchList');
 function renderSearch(q){
   q=(q||'').toLocaleLowerCase('tr');sList.replaceChildren();
   LINKS.filter(function(l){return !q||l[0].toLocaleLowerCase('tr').indexOf(q)>-1||l[2].toLocaleLowerCase('tr').indexOf(q)>-1;}).forEach(function(l){
     var li=el('li'),a=el('a');a.href='#'+l[1];a.append(el('b',null,l[0]),el('span',null,l[2]));
-    a.addEventListener('click',function(e){e.preventDefault();closeModal($('#m-search'),true);goTo(l[1]);});
+    a.addEventListener('click',function(e){e.preventDefault();closeModal($('#m-search'),true);if(l[1].indexOf('m-')===0)openModal(l[1]);else goTo(l[1]);});
     li.append(a);sList.append(li);
   });
   if(!sList.children.length)sList.append(el('li','empty','Sonuç yok. Başka bir kelime dene.'));
