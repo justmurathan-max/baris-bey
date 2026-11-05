@@ -251,8 +251,6 @@ button{cursor:pointer}
 .ts-n{font:500 14px/1 var(--fb);font-variant-numeric:tabular-nums}
 .ts-fig{margin:clamp(32px,4.4vw,72px) 0 0;display:grid;gap:28px}
 .ts-q{margin:0;font:500 clamp(26px,2.75vw,48px)/1.12 var(--fd);letter-spacing:-.034em;text-wrap:pretty}
-.ts-o{margin:0;max-width:64ch;color:var(--mud);font-size:15px;line-height:1.55}
-.ts-o b{font-weight:600;color:rgba(255,255,255,.84);margin-right:6px}
 .ts-who{display:flex;align-items:center;gap:14px}
 .ts-av{width:52px;height:52px;border-radius:50%;background:var(--k3);display:grid;place-items:center;font:600 15px/1 var(--fb);overflow:hidden;flex:none}
 .ts-av img{width:100%;height:100%;object-fit:cover}
@@ -260,16 +258,11 @@ button{cursor:pointer}
 .ts-who small{display:block;color:var(--mud);font-size:14px;margin-top:5px}
 .ts-ph{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/5;max-height:620px;background:#111}
 .ts-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 8%}
-.ts-tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;margin-top:clamp(40px,5vw,80px)}
-.ts-t{position:relative;display:grid;gap:6px;align-content:start;text-align:left;padding:18px 0 0;border:0;background:none;color:var(--mud);font-size:13.5px;line-height:1.35}
-.ts-t::before,.ts-t i{content:"";position:absolute;left:0;right:0;top:0;height:2px;border-radius:2px}
-.ts-t::before{background:rgba(255,255,255,.18)}
-.ts-t i{background:#fff;transform:scaleX(0);transform-origin:left}
-.ts-t[aria-selected=true] i{animation:fill 10s linear forwards}
-.ts:hover .ts-t i{animation-play-state:paused}
-.ts-t b{font:600 15px/1.25 var(--fb);color:#fff;opacity:.55;transition:opacity .2s}
-.ts-t[aria-selected=true] b,.ts-t:hover b{opacity:1}
-@media (max-width:900px){.ts-g{grid-template-columns:1fr}.ts-ph{display:none}.ts-tabs{display:flex;overflow-x:auto;scrollbar-width:none;gap:14px}.ts-tabs::-webkit-scrollbar{display:none}.ts-t{flex:0 0 190px}}
+.ts-ctl{display:flex;align-items:center;gap:18px}
+.ts-fig.in{animation:tsIn .5s var(--ease) both}
+@keyframes tsIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (max-width:900px){.ts-g{grid-template-columns:1fr}.ts-ph{display:none}}
+@media (max-width:560px){.ts .arw{width:44px;height:44px}}
 
 /* =================== TANIŞ (pinwheel) =================== */
 .mt-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.22fr);grid-template-rows:auto auto}
@@ -355,13 +348,7 @@ button{cursor:pointer}
 .ai-l{display:grid;gap:26px;justify-items:start}
 .ai-mk{display:inline-flex;align-items:center;gap:12px}
 .ai-chip{display:inline-grid;place-items:center;height:24px;padding:0 8px;border-radius:7px;background:#fff;color:#000;font:800 12.5px/1 var(--fw);letter-spacing:.06em}
-.ai-f{list-style:none;margin:6px 0 0;padding:0;border-top:1px solid var(--lnd);width:100%}
-.ai-f li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:4px 12px;padding:18px 0;border-bottom:1px solid var(--lnd)}
-.ai-f .n{grid-row:span 2;font:500 14px/1.6 var(--fd);color:var(--mud);font-variant-numeric:tabular-nums}
-.ai-f b{font:600 17px/1.35 var(--fb);letter-spacing:-.01em}
-.ai-f span:not(.n){color:var(--mud);font-size:15px;line-height:1.5}
-.ai-note{margin:0;font-size:13.5px;color:var(--mud)}
-.cs{display:flex;flex-direction:column;height:clamp(620px,80vh,780px);border-radius:28px;background:#111113;border:1px solid rgba(255,255,255,.08);overflow:hidden;color:#fff;box-shadow:0 50px 100px -40px rgba(0,0,0,.8)}
+.cs{display:flex;flex-direction:column;height:clamp(560px,72vh,680px);border-radius:28px;background:#111113;border:1px solid rgba(255,255,255,.08);overflow:hidden;color:#fff;box-shadow:0 50px 100px -40px rgba(0,0,0,.8)}
 .cs-h{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.07)}
 .cs-who{display:flex;align-items:center;gap:12px;min-width:0}
 .cs-av{width:42px;height:42px;border-radius:50%;object-fit:cover;flex:none;background:#222}
@@ -574,30 +561,11 @@ button{cursor:pointer}
 .ev-m dt{font:600 11.5px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--mud);margin-bottom:8px}
 .ev-m dd{margin:0;font:500 17px/1.25 var(--fd);letter-spacing:-.015em}
 .ev-cta{display:flex;flex-wrap:wrap;gap:10px}
-.cal{margin-top:16px;border-radius:32px;background:var(--g0);padding:clamp(20px,3vw,44px)}
-.cal-top{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:clamp(24px,3vw,36px)}
-.cal-f{display:flex;flex-wrap:wrap;gap:8px}
-.cal-f button{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--g2);background:#fff;font:600 14px/1 var(--fb);color:#222;transition:background-color .2s,color .2s,border-color .2s}
-.cal-f button i{width:8px;height:8px;border-radius:50%;background:var(--c)}
-.cal-f button:hover{border-color:#000}
-.cal-f button[aria-pressed=true]{background:#000;color:#fff;border-color:#000}
-.cal-b{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(24px,4vw,64px);align-items:start}
-.cal-mh{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}
-.cal-mh b{font:500 28px/1 var(--fd);letter-spacing:-.035em}
-.cal-mh .arw{width:42px;height:42px;background:#fff}
-.cal-mh .arw:hover{background:var(--g1)}
-.cal-wd,.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px 4px}
-.cal-wd span{font:600 12px/1 var(--fb);color:var(--mu);text-align:center;padding-bottom:8px}
-.cd{width:100%;max-width:46px;aspect-ratio:1;justify-self:center;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;font:500 15px/1 var(--fb);font-variant-numeric:tabular-nums;color:#222;border:0;background:none;padding:0}
-.cd.ev{background:var(--c);color:#fff;font-weight:600;cursor:pointer;transition:transform .15s}
-.cd.ev:hover{transform:scale(1.08)}
-.cd.ev.past{opacity:.45}
-.cd.ev.mid{opacity:.62}
-.cd.today{box-shadow:inset 0 0 0 1.5px #000;font-weight:700}
-.cd.ev.today{box-shadow:0 0 0 2px var(--g0),0 0 0 3.5px #000}
-.cal-l{display:grid;gap:10px;align-content:start}
+.evl{margin-top:clamp(40px,5vw,72px);display:grid;gap:10px}
+.evl>.h3{margin:0 0 10px}
+.evl-l{display:grid;gap:10px}
+.evl-g{margin:18px 0 2px;font:600 12px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--mu)}
 .cr{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;padding:14px 16px 14px 14px;border-radius:22px;background:#fff;transition:box-shadow .3s}
-.cr.flash{box-shadow:0 0 0 2px var(--c)}
 .cr-d{width:62px;height:62px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;align-content:center;gap:3px;text-align:center}
 .cr.past .cr-d{opacity:.5}
 .cr-d b{font:600 19px/1 var(--fd);letter-spacing:-.02em}
@@ -608,35 +576,13 @@ button{cursor:pointer}
 .chp{display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;font:600 12px/1 var(--fb);background:var(--g1);color:#333;white-space:nowrap}
 .chp.pl{background:#EFE7FF;color:#5B21B6}
 .cr-e{padding:22px;border-radius:22px;background:#fff;color:var(--mu);font-size:15px}
-.cr-nx{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:14px 18px;border-radius:18px;border:1px dashed var(--g2);background:none;text-align:left;font:500 14.5px/1.4 var(--fb);color:var(--mu);transition:border-color .2s,color .2s}
-.cr-nx b{color:#000;font-weight:600}
-.cr-nx:hover{border-color:#000;color:#000}
-.cr-nx svg{flex:none;width:16px;height:16px}
-@media (max-width:900px){.ev{grid-template-columns:1fr}.ev-ph{min-height:0;aspect-ratio:4/3}.cal-b{grid-template-columns:1fr}}
+@media (max-width:900px){.ev{grid-template-columns:1fr}.ev-ph{min-height:0;aspect-ratio:4/3}}
 @media (max-width:560px){.ev-m{grid-template-columns:1fr 1fr}.cr{grid-template-columns:auto minmax(0,1fr)}.cr>.btn,.cr>.chp{grid-column:2;justify-self:start}}
 
 /* =================== KURUMSAL =================== */
-.kr-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(32px,6vw,112px);align-items:center}
-.kr-ph{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/5;max-height:780px;background:#111}
-.kr-ph img{width:100%;height:100%;object-fit:cover;object-position:50% 0%}
-.kr-c{display:grid;gap:28px;justify-items:start}
-.kr-st{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;width:100%}
-.kr-st div{border-top:1px solid var(--lnd);padding-top:16px}
-.kr-st b{display:block;font:500 clamp(44px,4.6vw,80px)/.95 var(--fd);letter-spacing:-.05em}
-.kr-st span{display:block;margin-top:10px;color:var(--mud);font-size:15px}
-.kr-f{list-style:none;margin:0;padding:0;border-top:1px solid var(--lnd);width:100%}
-.kr-f li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:18px 0;border-bottom:1px solid var(--lnd)}
-.kr-f b{font:600 17px/1.3 var(--fb);letter-spacing:-.01em}
-.kr-f span{grid-column:1;color:var(--mud);font-size:15px}
-.kr-f em{grid-column:2;grid-row:1/3;align-self:center;font:600 12px/1 var(--fb);font-style:normal;letter-spacing:.1em;color:var(--mud)}
-.kr-cta{display:flex;flex-wrap:wrap;gap:10px}
-@media (max-width:900px){.kr-g{grid-template-columns:1fr}.kr-ph{aspect-ratio:4/3}}
 
 /* =================== MAĞAZA =================== */
-.seg{display:flex;flex-wrap:wrap;gap:4px;padding:4px;border-radius:999px;background:var(--g0)}
-.seg button{height:40px;padding:0 16px;border-radius:999px;border:0;background:none;font:600 14px/1 var(--fb);color:#444;transition:background-color .2s,color .2s}
-.seg button[aria-pressed=true]{background:#000;color:#fff}
-@media (max-width:640px){.seg{flex-wrap:nowrap;overflow-x:auto;max-width:100%;scrollbar-width:none}.seg::-webkit-scrollbar{display:none}.seg button{flex:none}}
+.sh-l{max-width:46ch}
 .shop{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.4vw,24px)}
 .pd{display:grid;gap:14px;align-content:start;text-align:left;border:0;background:none;padding:0;color:inherit}
 .pd[hidden]{display:none}
@@ -817,17 +763,9 @@ body.sys-on .sys{display:block}
 .kc-t{font:600 15.5px/1.3 var(--fb);letter-spacing:-.01em}
 .kc-r{font-size:14px;line-height:1.45;color:var(--mud);margin-top:-4px}
 .kc:hover .kc-t{text-decoration:underline;text-underline-offset:3px}
-.kt-n{margin-top:clamp(20px,2vw,28px);color:var(--mud);font-size:14px}
-.ks{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1fr);gap:clamp(12px,1.4vw,24px);margin-top:clamp(48px,5vw,80px);padding-top:clamp(28px,3vw,40px);border-top:1px solid var(--lnd);align-items:start}
-.ks-h{display:grid;gap:14px;align-content:start;justify-items:start}
-.ks-h p{margin:0;color:var(--mud);font-size:16px;line-height:1.55;max-width:42ch}
-.ks .pd{color:#fff}
-.ks .pd-n span{color:var(--mud)}
-.ks .pd-img{aspect-ratio:16/11}
 @media (max-width:1200px){.kt-g{grid-template-columns:repeat(4,minmax(0,1fr))}}
-@media (max-width:1000px){.kt-g{grid-template-columns:repeat(3,minmax(0,1fr))}.kt-h{grid-template-columns:1fr}.ks{grid-template-columns:repeat(2,minmax(0,1fr))}.ks-h{grid-column:1/-1}}
+@media (max-width:1000px){.kt-g{grid-template-columns:repeat(3,minmax(0,1fr))}.kt-h{grid-template-columns:1fr}}
 @media (max-width:640px){.kt-g{grid-template-columns:repeat(2,minmax(0,1fr))}.kc-r{display:none}}
-@media (max-width:480px){.ks{grid-template-columns:1fr}}
 
 /* Eğitim penceresi */
 .tr-res{margin:0;font:500 clamp(20px,1.7vw,26px)/1.22 var(--fd);letter-spacing:-.022em}
@@ -873,13 +811,14 @@ body.sys-on .sys{display:block}
 .tiers span{display:inline-flex;align-items:center;height:34px;padding:0 14px;border-radius:999px;background:#fff;border:1px solid var(--ln);font:600 13.5px/1 var(--fb)}
 .plan.dk .tiers span{background:var(--k3);border-color:var(--lnd);color:#fff}
 .plan-n{margin:16px 0 0;color:var(--mu);font-size:14.5px;line-height:1.5}
-#ofis .plan{display:flex;flex-direction:column}
-#ofis .plan-f{margin-top:auto}
+#uyelik .plans{margin-top:clamp(32px,4vw,56px)}
+#uyelik .plan{display:flex;flex-direction:column}
+#uyelik .plan-f{margin-top:auto}
 @media (min-width:1001px){#ofis .ac-side .am-l{max-height:560px;overflow-y:auto;scrollbar-width:thin;margin-right:-8px;padding-right:8px}}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
-  .hdot[aria-current=true] i,.ts-t[aria-selected=true] i{animation:none!important;transform:scaleX(1)}
+  .hdot[aria-current=true] i{animation:none!important;transform:scaleX(1)}
 }
 </style>
 </head>
@@ -925,7 +864,7 @@ body.sys-on .sys{display:block}
           <div class="dd-l">
             <a href="#roller"><b>Keynote Speaker</b><span>Kongre, yıl açılışı ve lansman sahneleri</span></a>
             <a href="#yorumlar"><b>International Speaker</b><span>Arjantin’den Romanya’ya, sahneden sonra</span></a>
-            <a href="#kurumsal" data-corp="Kongre konuşması"><b>Konuşma teklifi isteyin</b><span>Tarih, ülke ve katılımcı sayısıyla</span></a>
+            <a href="#roller" data-corp="Kongre konuşması"><b>Konuşma teklifi isteyin</b><span>Tarih, ülke ve katılımcı sayısıyla</span></a>
           </div>
           <a class="dd-f" href="#roller"><img src="img/upgrade.jpg" alt="" style="object-position:50% 12%"><span>Sahnede Barış Kılıçarslan</span></a>
         </div>
@@ -934,11 +873,11 @@ body.sys-on .sys{display:block}
         <button class="mi-b" type="button" aria-expanded="false">Kurumsal<svg aria-hidden="true"><use href="#i-cd"/></svg></button>
         <div class="dd">
           <div class="dd-l">
-            <a href="#kurumsal"><b>Corporate Trainer</b><span>Satış, motivasyon ve liderlik eğitimleri</span></a>
+            <a href="#roller"><b>Corporate Trainer</b><span>Satış, motivasyon ve liderlik eğitimleri</span></a>
             <a href="#katalog"><b>Real Estate Trainer</b><span>Salonda ve ofiste gayrimenkul programları</span></a>
-            <a href="#kurumsal" data-corp="Birebir mentorluk"><b>Private Mentoring</b><span>Broker ve ofis sahipleriyle birebir</span></a>
+            <a href="#roller" data-corp="Birebir mentorluk"><b>Private Mentoring</b><span>Broker ve ofis sahipleriyle birebir</span></a>
           </div>
-          <a class="dd-f" href="#kurumsal"><img src="img/mic.jpg" alt="" style="object-position:50% 14%"><span>Tarih ve teklif isteyin</span></a>
+          <a class="dd-f" href="#roller" data-corp="Satış"><img src="img/mic.jpg" alt="" style="object-position:50% 14%"><span>Tarih ve teklif isteyin</span></a>
         </div>
       </li>
       <li class="mi">
@@ -958,7 +897,7 @@ body.sys-on .sys{display:block}
           <div class="dd-l">
             <a href="#magaza"><b>Gelişim ve Kazanç Mağazası</b><span>Kısa, odaklı eğitimler ve paketler</span></a>
             <a href="#magaza" data-prod="kitap"><b>Kitaplar</b><span>Satışın Şifreleri ile Sonucu Satmak</span></a>
-            <a href="#klasik"><b>Klasik Eğitimler</b><span>Satışın Şifreleri, Gayrimenkulün Usta Satışçıları</span></a>
+            <a href="#magaza"><b>Klasik Eğitimler</b><span>Satışın Şifreleri, Gayrimenkulün Usta Satışçıları</span></a>
           </div>
           <a class="dd-f book" href="#magaza" data-prod="kitap"><img src="img/kitap.jpg" alt=""><span>Satışın Şifreleri, imzalı</span></a>
         </div>
@@ -991,10 +930,10 @@ body.sys-on .sys{display:block}
 <div class="mnav" id="mnav" hidden>
   <div class="mnav-h"><span class="wm">BARIŞ KILIÇARSLAN</span><button class="icb" id="mnavClose" type="button" aria-label="Menüyü kapat"><svg aria-hidden="true"><use href="#i-x"/></svg></button></div>
   <details open><summary>Akademi<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#akademi">Masterclass Akademi</a><a href="#katalog">Eğitim kataloğu</a><a href="#portal">Mentorun eğitim ekranı</a><a href="#baris-ai">Barış AI</a></div></details>
-  <details><summary>Konuşmalar<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#roller">Keynote Speaker</a><a href="#yorumlar">International Speaker</a><a href="#kurumsal" data-corp="Kongre konuşması">Konuşma teklifi isteyin</a></div></details>
-  <details><summary>Kurumsal<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#kurumsal">Corporate Trainer</a><a href="#katalog">Real Estate Trainer</a><a href="#kurumsal" data-corp="Birebir mentorluk">Private Mentoring</a></div></details>
+  <details><summary>Konuşmalar<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#roller">Keynote Speaker</a><a href="#yorumlar">International Speaker</a><a href="#roller" data-corp="Kongre konuşması">Konuşma teklifi isteyin</a></div></details>
+  <details><summary>Kurumsal<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#roller">Corporate Trainer</a><a href="#katalog">Real Estate Trainer</a><a href="#roller" data-corp="Birebir mentorluk">Private Mentoring</a></div></details>
   <details><summary>Etkinlikler<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#takvim">Etkinlik takvimi</a><a href="#takvim">Aralık webinarı</a><a href="#etkinlikler">Akademi lansmanı</a></div></details>
-  <details><summary>Mağaza<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#magaza">Gelişim ve Kazanç Mağazası</a><a href="#magaza" data-prod="kitap">Kitaplar</a><a href="#klasik">Klasik Eğitimler</a></div></details>
+  <details><summary>Mağaza<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#magaza">Gelişim ve Kazanç Mağazası</a><a href="#magaza" data-prod="kitap">Kitaplar</a><a href="#magaza">Klasik Eğitimler</a></div></details>
   <details><summary>Hakkında<svg aria-hidden="true"><use href="#i-cd"/></svg></summary><div><a href="#hakkinda">Hikaye</a><a href="#sonuclar">Sonuçlar</a><a href="#yorumlar">Yorumlar</a></div></details>
   <div class="mnav-c">
     <button class="btn btn-w" type="button" data-open="m-apply">Hemen başla</button>
@@ -1030,22 +969,198 @@ body.sys-on .sys{display:block}
   </div>
 </section>
 
-<!-- ROLLER -->
-<section class="sec wh" id="roller">
+<!-- AKADEMİ -->
+<section class="sec wh" id="akademi">
   <div class="wrap">
-    <div class="ro-h">
-      <h2 class="h2">Altı rol, tek hedef: sonuç.</h2>
-      <p class="lead">Gayrimenkul ekiplerinden kurumsal salonlara, kongre sahnelerinden birebir çalışmalara.</p>
+    <div class="ak-h">
+      <div><span class="ak-mk"><span class="c">MASTERCLASS</span><span class="s">Akademi</span></span><h2 class="h2">Ofisinizin kendi satış okulu.</h2></div>
+      <p class="lead">RE/MAX ofisleri için mentor liderliğinde, 12 aylık eğitim ve performans programı. Her eğitim aynı dört adımla ilerler.</p>
     </div>
-    <div class="ro-g">
-      <a class="ro-c" href="#katalog" style="--pos:34% 24%"><img src="img/stage.jpg" alt=""><span class="ro-k">Gayrimenkul eğitmeni</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Real Estate Trainer</b><span class="ro-s">Power Start, Power Camp ve RE/MAX sahnelerinde danışman yetiştiren programlar.</span></a>
-      <a class="ro-c" href="#kurumsal" style="--pos:50% 12%"><img src="img/mic.jpg" alt=""><span class="ro-k">Kurumsal eğitmen</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Corporate Trainer</b><span class="ro-s">Hilton’dan Arçelik’e, 200’den fazla kurumda satış, motivasyon ve liderlik.</span></a>
-      <a class="ro-c" href="#yorumlar" style="--pos:50% 22%"><img src="img/hero-armsup.jpg" alt=""><span class="ro-k">Uluslararası konuşmacı</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>International Speaker</b><span class="ro-s">Arjantin, Romanya, ABD, Avusturya ve Yunanistan sahnelerinde.</span></a>
-      <button class="ro-c" type="button" data-corp="Kongre konuşması" style="--pos:50% 10%"><img src="img/upgrade.jpg" alt=""><span class="ro-k">Kongre ve açılış konuşmacısı</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Keynote Speaker</b><span class="ro-s">Kongre, yıl açılışı ve lansman sahneleri için Türkçe ve İngilizce konuşmalar.</span></button>
-      <button class="ro-c" type="button" data-corp="Birebir mentorluk" style="--pos:20% 50%"><img src="img/banner.jpg" alt=""><span class="ro-k">Birebir çalışma</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Private Mentoring</b><span class="ro-s">Kişiye özel, birebir mentorluk çalışmaları.</span></button>
-      <a class="ro-c ak" href="#akademi" style="--pos:50% 12%"><img src="img/collection.jpg" alt=""><span class="ro-k">Ofisler için 12 aylık akademi</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Masterclass Akademi</b><span class="ro-s">Mentor liderliğinde, sonuca odaklı eğitim ve performans platformu.</span></a>
+
+    <div class="mth" aria-label="Akademinin yöntemi">
+      <div class="mth-i"><span class="mth-n">01</span><span class="mth-w">ÖĞREN</span><p>Tanıtım ve ana eğitim videoları. Eğitim Notları en başta dağıtılır.</p></div>
+      <div class="mth-i"><span class="mth-n">02</span><span class="mth-w">İÇSELLEŞTİR</span><p>Koçluk videosu ve koçluk soruları, eğitimin bittiği gün.</p></div>
+      <div class="mth-i"><span class="mth-n">03</span><span class="mth-w">UYGULA</span><p>Gelişim ve Kazanç Aktiviteleri; mentor ofisine uyarlar.</p></div>
+      <div class="mth-i"><span class="mth-n">04</span><span class="mth-w">KAZAN</span><p>Mentor onaylar, sertifika gelir. Hepsini bitirene Masterclass Akademi Sertifikası.</p></div>
     </div>
-    <div class="sys"><b>Arka planda</b>Her kart ileride kendi tanıtım sayfasına gider. Keynote Speaker sayfasında konuşma kartları, Türkiye ve uluslararası filtreleri, sahne görüntüleri ve konuşma teklifi formu yer alacak.</div>
+  </div>
+</section>
+
+<!-- EĞİTİM KATALOĞU -->
+<section class="sec bk" id="katalog">
+  <div class="wrap">
+    <div class="kt-h">
+      <h2 class="h2">Sahada kazanca götüren on eğitim.</h2>
+      <p class="lead">Tanıtımları herkes izleyebilir. Eğitimin tamamı üye ofisin mentoruna ve brokerına açılır.</p>
+    </div>
+    <div class="kt-g" id="katGrid"></div>
+    <div class="sys"><b>Arka planda</b>Tanıtım videoları herkese açık; tam videolar yalnız yetkili ofis hesabında Vimeo’dan oynar. İndirme kapalı, aynı hesabın eş zamanlı kullanımı sınırlı.</div>
+  </div>
+</section>
+
+<!-- MENTORUN EĞİTİM EKRANI -->
+<section class="sec wh" id="ofis">
+  <div class="wrap">
+    <div class="ak-h">
+      <h2 class="h2">Mentorun eğitim ekranı.</h2>
+      <p class="lead">Danışmanlar eğitimi mentorla birlikte, grup halinde izler. Bölümler sırayla akar, belgeler doğru anda açılır, katılım tek dokunuşla işaretlenir.</p>
+    </div>
+
+    <div class="ac" id="portal" style="margin-top:clamp(32px,4vw,56px)">
+      <div class="ac-top">
+        <span class="ac-logo"><span class="c">MASTERCLASS</span><span class="s">Akademi</span></span>
+        <nav class="ac-nav" aria-label="Akademi menüsü"><span aria-current="page">Eğitimler</span><span>Gruplar</span><span>Takvim</span><span>Raporlar</span><span>Sertifikalar</span></nav>
+        <span class="ac-u"><span class="ac-code" id="acCode">RE/MAX Örnek Ofis · Mentor</span><span class="ac-av">MY</span></span>
+      </div>
+      <div class="ac-b">
+        <aside class="ac-side">
+          <div class="ac-pr"><b id="acTrain">Portföy Almada Ustalık</b><span id="acProg">11 bölümün 4’ü izlendi</span><span class="ac-bar"><i style="--p:36%"></i></span></div>
+          <ol class="am-l" id="modList" aria-label="Bölümler"></ol>
+        </aside>
+        <div class="ac-main">
+          <div class="ac-v">
+            <img src="img/stage.jpg" alt="">
+            <button class="ac-play" type="button" aria-label="Bölümü oynat"><svg aria-hidden="true"><use href="#i-p"/></svg></button>
+            <div class="ac-vt"><small id="lsNo">PA05 · Ana eğitim</small><b id="lsTitle">Portföy Almada İkinci Görüşme</b></div>
+            <span class="ac-time">12:40 / 28:15</span>
+            <div class="ac-tl"><i></i></div>
+          </div>
+          <div class="ac-row">
+            <div class="ac-d">
+              <p id="lsDesc"></p>
+              <div class="ac-a">
+                <button class="btn btn-k btn-sm" type="button" id="lsProva">Barış AI ile grup provası</button>
+                <button class="btn btn-ok btn-sm" type="button" id="lsAsk">Barış’a sor</button>
+              </div>
+              <div class="ac-mn"><span class="ac-av">MY</span><span><b>Mentor notu.</b> Perşembe 10.00’da Yeni Başlayanlar grubuyla izliyoruz. Koçluk sorularını aynı gün çalışacağız.</span></div>
+            </div>
+            <div class="ac-task">
+              <h4>Bu eğitimin belgeleri</h4>
+              <div class="ac-docs" id="lsDocs"></div>
+              <h4 style="margin-top:6px">Katılım · Yeni Başlayanlar</h4>
+              <div class="ac-att" id="lsTasks"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sys"><b>Arka planda</b>Ofis hesabı üyeliğe bağlı. Üyelik bitince broker ve mentor girişleri kapanır, geçmiş kayıtlar saklanır. Ofisler birbirinin verisini göremez. Videolar Vimeo’dan oynar, yeniden yükleme gerekmez.</div>
+  </div>
+</section>
+
+<!-- BARIŞ AI -->
+<section class="sec bk" id="baris-ai">
+  <div class="wrap ai-g">
+    <div class="ai-l">
+      <span class="ai-mk"><span class="wmk">Barış Kılıçarslan</span><span class="ai-chip">AI</span></span>
+      <h2 class="h2">Sahada takıldığın an Barış yanında.</h2>
+      <p class="lead">Danışman takıldığı yeri sorar ya da müşteriyle konuşmadan önce prova yapar. Barış AI, Barış’ın yaklaşımıyla cevap verir ve provayı puanlar.</p>
+      <div class="sys"><b>Arka planda</b>Aynı asistan WhatsApp’ta çalışır. Görevden iki üç gün sonra danışmana kendisi yazar: “Bu hafta kaç ev sahibiyle görüştün, nerede zorlandın?” Cevap mentorun raporuna düşer.</div>
+    </div>
+
+    <div class="cs" aria-label="Barış AI demosu">
+      <div class="cs-h">
+        <div class="cs-who"><img class="cs-av" src="img/baris-portre.jpg" alt=""><div><b>Barış AI</b><span>Barış Kılıçarslan’ın eğitim çerçevesiyle</span></div></div>
+        <span class="cs-st" id="aiStatus" data-mode="wait"><i></i><span>Bağlanıyor</span></span>
+      </div>
+      <div class="cs-tabs" role="tablist" aria-label="Mod">
+        <button class="cs-tab" type="button" role="tab" data-tab="sor" aria-selected="true">Barış’a sor</button>
+        <button class="cs-tab" type="button" role="tab" data-tab="prova" aria-selected="false">Prova yap</button>
+      </div>
+      <div class="cs-p" data-pane="sor" role="tabpanel">
+        <div class="msgs" id="sorMsgs" aria-live="polite">
+          <div class="msg ai"><div class="bub"><p>Merhaba. Sahada takıldığın yeri yaz, Barış’ın yaklaşımıyla cevaplayayım. Aşağıdaki sorulardan biriyle de başlayabilirsin.</p></div></div>
+        </div>
+        <div class="chips" id="sorChips">
+          <button type="button">Ev sahibi “komisyonu düşür” diyor, ne cevap vereyim?</button>
+          <button type="button">Evi üç emlakçıya birden vermiş, tek yetki nasıl isterim?</button>
+          <button type="button">Alıcı “eşimle konuşup döneceğim” dedi, nasıl ilerlerim?</button>
+          <button type="button">İlk telefonda güveni nasıl kurarım?</button>
+        </div>
+        <form class="cmp" id="sorForm" autocomplete="off">
+          <label class="sr" for="sorInput">Sorun</label>
+          <input id="sorInput" type="text" placeholder="Sorunu yaz..." maxlength="600">
+          <button class="stop" id="sorStop" type="button" hidden aria-label="Durdur"><svg aria-hidden="true"><use href="#i-q"/></svg></button>
+          <button class="send" type="submit" aria-label="Gönder"><svg aria-hidden="true"><use href="#i-u"/></svg></button>
+        </form>
+      </div>
+      <div class="cs-p" data-pane="prova" role="tabpanel" hidden>
+        <div class="chips scen" id="scenChips">
+          <button type="button" data-s="komisyon" aria-pressed="true">Komisyonu düşür diyen ev sahibi</button>
+          <button type="button" data-s="tekyetki" aria-pressed="false">Evi üç emlakçıya veren ev sahibi</button>
+          <button type="button" data-s="fiyat" aria-pressed="false">Fiyatı yüksek isteyen ev sahibi</button>
+          <button type="button" data-s="kararsiz" aria-pressed="false">“Eşimle konuşayım” diyen alıcı</button>
+        </div>
+        <div class="msgs" id="provaMsgs" aria-live="polite"></div>
+        <form class="cmp" id="provaForm" autocomplete="off">
+          <label class="sr" for="provaInput">Cevabın</label>
+          <input id="provaInput" type="text" placeholder="Danışman olarak cevap ver..." maxlength="600" disabled>
+          <button class="stop" id="provaStop" type="button" hidden aria-label="Durdur"><svg aria-hidden="true"><use href="#i-q"/></svg></button>
+          <button class="btn btn-ow btn-sm end" id="provaEnd" type="button" disabled>Bitir ve puanla</button>
+          <button class="send" type="submit" aria-label="Gönder"><svg aria-hidden="true"><use href="#i-u"/></svg></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÜYELİK -->
+<section class="sec wh" id="uyelik">
+  <div class="wrap">
+    <div class="ak-h">
+      <h2 class="h2">Ofisiniz için üyelik.</h2>
+      <p class="lead">Akademi herkese açık değil. Başvurudan sonra görüşme ve sözleşmeyle ofis hesabı açılır; broker ve mentor davetle girer.</p>
+    </div>
+    <div class="plans">
+      <article class="plan">
+        <div class="plan-h"><div><h3 class="h3">Akademi üyeliği</h3><small>12 ay · ofis bazında</small></div><span class="badge">Ofisler için</span></div>
+        <ul class="ck">
+          <li><svg aria-hidden="true"><use href="#i-k"/></svg>Bütün eğitimler, 12 ay boyunca</li>
+          <li><svg aria-hidden="true"><use href="#i-k"/></svg>Her eğitimde üç belge</li>
+          <li><svg aria-hidden="true"><use href="#i-k"/></svg>Mentor paneli, gelişim raporu ve sertifikalar</li>
+          <li><svg aria-hidden="true"><use href="#i-k"/></svg>Barış AI ile prova ve sorular</li>
+          <li><svg aria-hidden="true"><use href="#i-k"/></svg>Bonus: Satışın Şifreleri ve Gayrimenkulün Usta Satışçıları</li>
+        </ul>
+        <div class="tiers" aria-label="Danışman sayısına göre kademeler"><span>1-25 danışman</span><span>26-75</span><span>76-99</span><span>100+</span></div>
+        <div class="plan-f"><span class="price">Ofis büyüklüğüne göre<small>Teklifle · ikinci yıl yenileme avantajı</small></span><button class="btn btn-k btn-sm" type="button" data-open="m-apply">Teklif isteyin</button></div>
+      </article>
+      <article class="plan dk">
+        <div class="plan-h"><div><h3 class="h3">Tek eğitim</h3><small>Ofisinize seçtiğiniz bir eğitim</small></div><span class="badge">Sabit bedel</span></div>
+        <ul class="ck">
+          <li><svg aria-hidden="true"><use href="#i-k"/></svg>Katalogdan seçtiğiniz eğitim</li>
+          <li><svg aria-hidden="true"><use href="#i-k"/></svg>Eğitimin üç belgesi</li>
+          <li><svg aria-hidden="true"><use href="#i-k"/></svg>Mentor eşliğinde grup uygulaması</li>
+        </ul>
+        <div class="plan-f"><span class="price">Eğitim başına<small>Teklifle</small></span><a class="btn btn-w btn-sm" href="#katalog">Eğitim seçin</a></div>
+      </article>
+    </div>
+    <p class="plan-n">Lansmana katılan ofislere 48 saatlik kurucu ofis fiyatı. Fiyatlar lansmanda açıklanır.</p>
+  </div>
+</section>
+
+<!-- ETKİNLİKLER -->
+<section class="sec gy" id="etkinlikler">
+  <div class="wrap">
+    <div class="sh"><h2 class="h2">Yaklaşan etkinlikler</h2></div>
+    <article class="ev">
+      <div class="ev-ph">
+        <img src="img/hero-armsup.jpg" alt="Barış Kılıçarslan sahnede">
+        <span class="lt"><span class="k">BARIŞ KILIÇARSLAN</span><span class="c" style="font-size:72px;font-size:13cqi">MASTERCLASS</span><span class="s" style="font-size:68px;font-size:12.5cqi">Akademi</span><span class="w" style="font-size:16px;font-size:3cqi;margin-top:1.1em">LANSMAN · İSTANBUL 2027</span></span>
+      </div>
+      <div class="ev-c">
+        <span class="lbl ev-k">Salonda ve canlı yayında</span>
+        <h3 class="h3">Masterclass Akademi lansmanı</h3>
+        <p>Ofis sahipleri İstanbul’da aynı salonda, Türkiye canlı yayında. Akademi, Barış AI ve mentor sistemi ilk kez birlikte sahnede.</p>
+        <dl class="ev-m"><div><dt>Tarih</dt><dd>Ocak 2027</dd></div><div><dt>Yer</dt><dd>İstanbul ve canlı yayın</dd></div><div><dt>Katılım</dt><dd>Davetiye ile</dd></div></dl>
+        <div class="ev-cta"><button class="btn btn-w" type="button" data-open="m-invite">Davetiye iste</button></div>
+        <div class="sys"><b>Arka planda</b>Kayıt olana onay mesajı; bir hafta, bir gün, üç saat ve on dakika önce hatırlatma. Salona gelen QR ile, online izleyen yayın sayfasından işaretlenir. Gelmeyene kaydın kısa hali gider. Sonra altı haftalık takip: 48 saat kurucu fiyatı, ardından %30 ve %20 dönemleri.</div>
+      </div>
+    </article>
+
+    <div class="evl" id="takvim">
+      <h3 class="h3">Etkinlik takvimi</h3>
+      <div class="evl-l" id="evList"></div>
+    </div>
   </div>
 </section>
 
@@ -1109,261 +1224,42 @@ body.sys-on .sys{display:block}
   <div class="wrap">
     <div class="ts-g">
       <div>
-        <div class="ts-top"><span class="lbl">Sahneden sonra</span><span class="ts-n" id="tsCount">01 / 06</span></div>
-        <figure class="ts-fig" aria-live="polite">
+        <div class="ts-top">
+          <span class="lbl">Sahneden sonra</span>
+          <div class="ts-ctl">
+            <span class="ts-n" id="tsCount">01 / 06</span>
+            <div class="arws">
+              <button class="arw" id="tsPrev" type="button" aria-label="Önceki yorum"><svg aria-hidden="true"><use href="#i-cl"/></svg></button>
+              <button class="arw" id="tsNext" type="button" aria-label="Sonraki yorum"><svg aria-hidden="true"><use href="#i-cr"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <figure class="ts-fig" id="tsFig" aria-live="polite">
           <blockquote class="ts-q" id="tsQuote"></blockquote>
-          <p class="ts-o" id="tsOrig"></p>
           <figcaption class="ts-who"><span class="ts-av" id="tsAv"></span><span><b id="tsName"></b><small id="tsRole"></small><small id="tsPlace"></small></span></figcaption>
         </figure>
       </div>
       <div class="ts-ph"><img src="img/point.jpg" alt="Barış Kılıçarslan"></div>
     </div>
-    <div class="ts-tabs" id="tsTabs" role="tablist" aria-label="Yorumlar"></div>
   </div>
 </section>
 
-<!-- BARIŞ AI -->
-<section class="sec bk" id="baris-ai">
-  <div class="wrap ai-g">
-    <div class="ai-l">
-      <span class="ai-mk"><span class="wmk">Barış Kılıçarslan</span><span class="ai-chip">AI</span></span>
-      <h2 class="h2">Sahada takıldığın an Barış yanında.</h2>
-      <p class="lead">Barış AI, Barış Kılıçarslan’ın satış yaklaşımıyla çalışan bir koç. Danışman sorusunu sorar, cevabı Barış’ın çerçevesiyle alır. Müşteriyle konuşmadan önce prova yapar, puanını ve neyi düzelteceğini öğrenir.</p>
-      <ul class="ai-f">
-        <li><span class="n">01</span><b>Barış’a sor</b><span>Ev sahibi komisyona itiraz etti, alıcı “eşimle konuşayım” dedi. Cevap saniyeler içinde, ilgili dersle birlikte.</span></li>
-        <li><span class="n">02</span><b>Prova yap</b><span>Yapay zekâ müşteriyi oynar. Bitince puan, güçlü yön ve bir dahaki sefere söylenecek tek cümle.</span></li>
-        <li><span class="n">03</span><b>WhatsApp’tan sesli mesajla</b><span>Danışman provayı sesli mesajla da yapar. Konuşmasını bitirir, cevap sonra gelir. Sözü kesen bir ses yok.</span></li>
-        <li><span class="n">04</span><b>Mentora rapor</b><span>Her prova danışmanın kartına yazılır, mentorun pazartesi raporuna girer.</span></li>
-      </ul>
-      <p class="ai-note">Bu bir demo. Gerçek sürüm Barış’ın bütün video, ses ve kitap içeriğiyle eğitilecek.</p>
-      <div class="sys"><b>Arka planda</b>Aynı asistan WhatsApp’ta çalışır. Görevden iki üç gün sonra danışmana kendisi yazar: “Bu hafta kaç ev sahibiyle görüştün, nerede zorlandın?” Cevap mentorun raporuna düşer.</div>
-    </div>
-
-    <div class="cs" aria-label="Barış AI demosu">
-      <div class="cs-h">
-        <div class="cs-who"><img class="cs-av" src="img/baris-portre.jpg" alt=""><div><b>Barış AI</b><span>Barış Kılıçarslan’ın eğitim çerçevesiyle</span></div></div>
-        <span class="cs-st" id="aiStatus" data-mode="wait"><i></i><span>Bağlanıyor</span></span>
-      </div>
-      <div class="cs-tabs" role="tablist" aria-label="Mod">
-        <button class="cs-tab" type="button" role="tab" data-tab="sor" aria-selected="true">Barış’a sor</button>
-        <button class="cs-tab" type="button" role="tab" data-tab="prova" aria-selected="false">Prova yap</button>
-      </div>
-      <div class="cs-p" data-pane="sor" role="tabpanel">
-        <div class="msgs" id="sorMsgs" aria-live="polite">
-          <div class="msg ai"><div class="bub"><p>Merhaba. Sahada takıldığın yeri yaz, Barış’ın yaklaşımıyla cevaplayayım. Aşağıdaki sorulardan biriyle de başlayabilirsin.</p></div></div>
-        </div>
-        <div class="chips" id="sorChips">
-          <button type="button">Ev sahibi “komisyonu düşür” diyor, ne cevap vereyim?</button>
-          <button type="button">Evi üç emlakçıya birden vermiş, tek yetki nasıl isterim?</button>
-          <button type="button">Alıcı “eşimle konuşup döneceğim” dedi, nasıl ilerlerim?</button>
-          <button type="button">İlk telefonda güveni nasıl kurarım?</button>
-        </div>
-        <form class="cmp" id="sorForm" autocomplete="off">
-          <label class="sr" for="sorInput">Sorun</label>
-          <input id="sorInput" type="text" placeholder="Sorunu yaz..." maxlength="600">
-          <button class="stop" id="sorStop" type="button" hidden aria-label="Durdur"><svg aria-hidden="true"><use href="#i-q"/></svg></button>
-          <button class="send" type="submit" aria-label="Gönder"><svg aria-hidden="true"><use href="#i-u"/></svg></button>
-        </form>
-      </div>
-      <div class="cs-p" data-pane="prova" role="tabpanel" hidden>
-        <div class="chips scen" id="scenChips">
-          <button type="button" data-s="komisyon" aria-pressed="true">Komisyonu düşür diyen ev sahibi</button>
-          <button type="button" data-s="tekyetki" aria-pressed="false">Evi üç emlakçıya veren ev sahibi</button>
-          <button type="button" data-s="fiyat" aria-pressed="false">Fiyatı yüksek isteyen ev sahibi</button>
-          <button type="button" data-s="kararsiz" aria-pressed="false">“Eşimle konuşayım” diyen alıcı</button>
-        </div>
-        <div class="msgs" id="provaMsgs" aria-live="polite"></div>
-        <form class="cmp" id="provaForm" autocomplete="off">
-          <label class="sr" for="provaInput">Cevabın</label>
-          <input id="provaInput" type="text" placeholder="Danışman olarak cevap ver..." maxlength="600" disabled>
-          <button class="stop" id="provaStop" type="button" hidden aria-label="Durdur"><svg aria-hidden="true"><use href="#i-q"/></svg></button>
-          <button class="btn btn-ow btn-sm end" id="provaEnd" type="button" disabled>Bitir ve puanla</button>
-          <button class="send" type="submit" aria-label="Gönder"><svg aria-hidden="true"><use href="#i-u"/></svg></button>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- AKADEMİ -->
-<section class="sec wh" id="akademi">
+<!-- ROLLER -->
+<section class="sec gy" id="roller">
   <div class="wrap">
-    <div class="ak-h">
-      <div><span class="ak-mk"><span class="c">MASTERCLASS</span><span class="s">Akademi</span></span><h2 class="h2">Ofisinizin kendi satış okulu.</h2></div>
-      <p class="lead">RE/MAX ofisleri için mentor liderliğinde uygulanan, 12 aylık kurumsal eğitim ve performans platformu. Herkese açık değil: görüşme, sözleşme ve ödemeden sonra ofis hesabı açılır.</p>
+    <div class="ro-h">
+      <h2 class="h2">Altı rol, tek hedef: sonuç.</h2>
+      <p class="lead">Gayrimenkul ekiplerinden kurumsal salonlara, kongre sahnelerinden birebir çalışmalara.</p>
     </div>
-
-    <div class="mth" aria-label="Akademinin yöntemi">
-      <div class="mth-i"><span class="mth-n">01</span><span class="mth-w">ÖĞREN</span><p>Tanıtım ve motivasyon videosuyla başlar, ana eğitim videolarıyla devam eder. Eğitim Notları en başta dağıtılır.</p></div>
-      <div class="mth-i"><span class="mth-n">02</span><span class="mth-w">İÇSELLEŞTİR</span><p>Ana eğitimin sonunda koçluk ve içselleştirme videosu. Koçluk soruları eğitimin bittiği gün birlikte çalışılır.</p></div>
-      <div class="mth-i"><span class="mth-n">03</span><span class="mth-w">UYGULA</span><p>Gelişim ve Kazanç Aktiviteleri: rol çalışması, tarihli müşteri çalışmaları, fiyat analizleri, hedefler. Mentor ofisine uyarlar.</p></div>
-      <div class="mth-i"><span class="mth-n">04</span><span class="mth-w">KAZAN</span><p>Mentor onaylar, Katılım ve Başarı Sertifikası gelir. Bütün ana eğitimleri bitirene Masterclass Akademi Sertifikası.</p></div>
+    <div class="ro-g">
+      <a class="ro-c" href="#katalog" style="--pos:34% 24%"><img src="img/stage.jpg" alt=""><span class="ro-k">Gayrimenkul eğitmeni</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Real Estate Trainer</b><span class="ro-s">Power Start, Power Camp ve RE/MAX sahnelerinde danışman yetiştiren programlar.</span></a>
+      <button class="ro-c" type="button" data-corp="Satış" style="--pos:50% 12%"><img src="img/mic.jpg" alt=""><span class="ro-k">Kurumsal eğitmen</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Corporate Trainer</b><span class="ro-s">Hilton’dan Arçelik’e, 200’den fazla kurumda satış, motivasyon ve liderlik.</span></button>
+      <a class="ro-c" href="#yorumlar" style="--pos:50% 22%"><img src="img/hero-armsup.jpg" alt=""><span class="ro-k">Uluslararası konuşmacı</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>International Speaker</b><span class="ro-s">Arjantin, Romanya, ABD, Avusturya ve Yunanistan sahnelerinde.</span></a>
+      <button class="ro-c" type="button" data-corp="Kongre konuşması" style="--pos:50% 10%"><img src="img/upgrade.jpg" alt=""><span class="ro-k">Kongre ve açılış konuşmacısı</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Keynote Speaker</b><span class="ro-s">Kongre, yıl açılışı ve lansman sahneleri için Türkçe ve İngilizce konuşmalar.</span></button>
+      <button class="ro-c" type="button" data-corp="Birebir mentorluk" style="--pos:20% 50%"><img src="img/banner.jpg" alt=""><span class="ro-k">Birebir çalışma</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Private Mentoring</b><span class="ro-s">Kişiye özel, birebir mentorluk çalışmaları.</span></button>
+      <a class="ro-c ak" href="#akademi" style="--pos:50% 12%"><img src="img/collection.jpg" alt=""><span class="ro-k">Ofisler için 12 aylık akademi</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Masterclass Akademi</b><span class="ro-s">Mentor liderliğinde, sonuca odaklı eğitim ve performans platformu.</span></a>
     </div>
-
-  </div>
-</section>
-
-<!-- EĞİTİM KATALOĞU -->
-<section class="sec bk" id="katalog">
-  <div class="wrap">
-    <div class="kt-h">
-      <h2 class="h2">Sahada kazanca götüren on eğitim.</h2>
-      <p class="lead">Her eğitimin tanıtımını herkes izleyebilir. Eğitimin tamamı, üye ofisin mentoruna ve brokerına açılır. Eğitimler arasında zorunlu sıra yok; mentor ihtiyaca göre seçer.</p>
-    </div>
-    <div class="kt-g" id="katGrid"></div>
-    <p class="kt-n">Yeni eğitimler zamanla eklenir. Kısa ve odaklı eğitimler Gelişim ve Kazanç Mağazası’nda ayrıca satılır.</p>
-    <div class="sys"><b>Arka planda</b>Tanıtım videoları herkese açık; tam videolar yalnız yetkili ofis hesabında Vimeo’dan oynar. İndirme kapalı, aynı hesabın eş zamanlı kullanımı sınırlı.</div>
-
-    <div class="ks" id="klasik">
-      <div class="ks-h">
-        <span class="lbl" style="color:var(--mud)">Klasik Eğitimler</span>
-        <h3 class="h3">İki klasik, akademide bonus.</h3>
-        <p>Satışın Şifreleri ve Gayrimenkulün Usta Satışçıları ayrı satılmaya devam eder, akademi üyelerine iki bonus eğitim olarak açılır. Daha önce sınırsız erişimle alanların hakları aynen korunur.</p>
-      </div>
-      <button class="pd" type="button" data-prod="ss">
-        <span class="pd-img ph" style="--pos:50% 26%"><img src="img/hero-armsup.jpg" alt=""><span class="badge">Akademide bonus</span><span class="lt"><span class="k">BARIŞ KILIÇARSLAN</span><span class="s" style="font-size:40px;font-size:11cqi">Satışın</span><span class="c" style="font-size:50px;font-size:14cqi">ŞİFRELERİ</span></span></span>
-        <span class="pd-n"><b>Satışın Şifreleri</b><span>Klasik eğitim · 9,5 saat</span></span>
-      </button>
-      <button class="pd" type="button" data-prod="gus">
-        <span class="pd-img ph dim" style="--pos:22% 50%"><img src="img/banner.jpg" alt=""><span class="badge">Akademide bonus</span><span class="lt"><span class="k">BARIŞ KILIÇARSLAN</span><span class="w" style="font-size:14px;font-size:3.8cqi">GAYRİMENKULÜN</span><span class="c" style="font-size:70px;font-size:20cqi">USTA</span><span class="s" style="font-size:34px;font-size:9.5cqi">Satışçıları</span></span></span>
-        <span class="pd-n"><b>Gayrimenkulün Usta Satışçıları</b><span>Klasik eğitim · 6 röportaj</span></span>
-      </button>
-    </div>
-  </div>
-</section>
-
-<!-- MENTORUN EĞİTİM EKRANI -->
-<section class="sec wh" id="ofis">
-  <div class="wrap">
-    <div class="ak-h">
-      <h2 class="h2">Mentorun eğitim ekranı.</h2>
-      <p class="lead">Danışmanlara ayrı hesap açılmaz; eğitimi mentor grubuyla birlikte izletir. Bölümler sırayla akar, belgeler doğru anda açılır, katılım tek dokunuşla işaretlenir.</p>
-    </div>
-
-    <div class="ac" id="portal" style="margin-top:clamp(32px,4vw,56px)">
-      <div class="ac-top">
-        <span class="ac-logo"><span class="c">MASTERCLASS</span><span class="s">Akademi</span></span>
-        <nav class="ac-nav" aria-label="Akademi menüsü"><span aria-current="page">Eğitimler</span><span>Gruplar</span><span>Takvim</span><span>Raporlar</span><span>Sertifikalar</span></nav>
-        <span class="ac-u"><span class="ac-code" id="acCode">RE/MAX Örnek Ofis · Mentor</span><span class="ac-av">MY</span></span>
-      </div>
-      <div class="ac-b">
-        <aside class="ac-side">
-          <div class="ac-pr"><b id="acTrain">Portföy Almada Ustalık</b><span id="acProg">11 bölümün 4’ü izlendi</span><span class="ac-bar"><i style="--p:36%"></i></span></div>
-          <ol class="am-l" id="modList" aria-label="Bölümler"></ol>
-        </aside>
-        <div class="ac-main">
-          <div class="ac-v">
-            <img src="img/stage.jpg" alt="">
-            <button class="ac-play" type="button" aria-label="Bölümü oynat"><svg aria-hidden="true"><use href="#i-p"/></svg></button>
-            <div class="ac-vt"><small id="lsNo">PA05 · Ana eğitim</small><b id="lsTitle">Portföy Almada İkinci Görüşme</b></div>
-            <span class="ac-time">12:40 / 28:15</span>
-            <div class="ac-tl"><i></i></div>
-          </div>
-          <div class="ac-row">
-            <div class="ac-d">
-              <p id="lsDesc"></p>
-              <div class="ac-a">
-                <button class="btn btn-k btn-sm" type="button" id="lsProva">Barış AI ile grup provası</button>
-                <button class="btn btn-ok btn-sm" type="button" id="lsAsk">Barış’a sor</button>
-              </div>
-              <div class="ac-mn"><span class="ac-av">MY</span><span><b>Mentor notu.</b> Perşembe 10.00’da Yeni Başlayanlar grubuyla izliyoruz. Koçluk sorularını aynı gün çalışacağız.</span></div>
-            </div>
-            <div class="ac-task">
-              <h4>Bu eğitimin belgeleri</h4>
-              <div class="ac-docs" id="lsDocs"></div>
-              <h4 style="margin-top:6px">Katılım · Yeni Başlayanlar</h4>
-              <div class="ac-att" id="lsTasks"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="sys"><b>Arka planda</b>Ofis hesabı üyeliğe bağlı. Üyelik bitince broker ve mentor girişleri kapanır, geçmiş kayıtlar saklanır. Ofisler birbirinin verisini göremez. Videolar Vimeo’dan oynar, yeniden yükleme gerekmez.</div>
-
-    <div class="plans">
-      <article class="plan">
-        <div class="plan-h"><div><h3 class="h3">Akademi üyeliği</h3><small>12 ay · ofis bazında</small></div><span class="badge">Ofisler için</span></div>
-        <ul class="ck">
-          <li><svg aria-hidden="true"><use href="#i-k"/></svg>Akademideki bütün eğitimler, yıl boyunca tekrar tekrar</li>
-          <li><svg aria-hidden="true"><use href="#i-k"/></svg>Her eğitimde üç belge: notlar, koçluk soruları, kazanç aktiviteleri</li>
-          <li><svg aria-hidden="true"><use href="#i-k"/></svg>Mentor paneli, gelişim raporu ve sertifikalar</li>
-          <li><svg aria-hidden="true"><use href="#i-k"/></svg>Barış AI ile grup provası ve sorular</li>
-          <li><svg aria-hidden="true"><use href="#i-k"/></svg>Yeni danışmanlar üyeliğe eklenir, ayrılanlar listeden çıkar</li>
-        </ul>
-        <div class="tiers" aria-label="Danışman sayısına göre kademeler"><span>1-25 danışman</span><span>26-75</span><span>76-99</span><span>100+</span></div>
-        <div class="plan-f"><span class="price">Ofis büyüklüğüne göre<small>Teklifle · ikinci yıl yenileme avantajı</small></span><button class="btn btn-k btn-sm" type="button" data-open="m-apply">Teklif isteyin</button></div>
-      </article>
-      <article class="plan dk">
-        <div class="plan-h"><div><h3 class="h3">Tek eğitim</h3><small>Ofisinize seçtiğiniz bir eğitim</small></div><span class="badge">Sabit bedel</span></div>
-        <ul class="ck">
-          <li><svg aria-hidden="true"><use href="#i-k"/></svg>Katalogdan seçtiğiniz eğitim</li>
-          <li><svg aria-hidden="true"><use href="#i-k"/></svg>Eğitimin üç belgesi</li>
-          <li><svg aria-hidden="true"><use href="#i-k"/></svg>Mentor eşliğinde grup uygulaması</li>
-        </ul>
-        <div class="plan-f"><span class="price">Eğitim başına<small>Teklifle</small></span><a class="btn btn-w btn-sm" href="#katalog">Eğitim seçin</a></div>
-      </article>
-    </div>
-    <p class="plan-n">Lansmana katılan ofislere 48 saatlik kurucu ofis fiyatı. Fiyatlar lansmanda açıklanır.</p>
-  </div>
-</section>
-
-<!-- ETKİNLİKLER -->
-<section class="sec wh" id="etkinlikler">
-  <div class="wrap">
-    <div class="sh"><h2 class="h2">Yaklaşan etkinlikler</h2><a class="btn btn-ok btn-sm" href="#takvim">Takvime git</a></div>
-    <article class="ev">
-      <div class="ev-ph">
-        <img src="img/hero-armsup.jpg" alt="Barış Kılıçarslan sahnede">
-        <span class="lt"><span class="k">BARIŞ KILIÇARSLAN</span><span class="c" style="font-size:72px;font-size:13cqi">MASTERCLASS</span><span class="s" style="font-size:68px;font-size:12.5cqi">Akademi</span><span class="w" style="font-size:16px;font-size:3cqi;margin-top:1.1em">LANSMAN · İSTANBUL 2027</span></span>
-      </div>
-      <div class="ev-c">
-        <span class="lbl ev-k">Salonda ve canlı yayında</span>
-        <h3 class="h3">Masterclass Akademi lansmanı</h3>
-        <p>Türkiye’nin önde gelen ofis sahipleri İstanbul’da aynı salonda, Türkiye canlı yayında. Akademi, Barış AI ve mentor sistemi ilk kez birlikte sahnede. Lansmana katılan ofislere 48 saatlik kurucu ofis fiyatı.</p>
-        <dl class="ev-m"><div><dt>Tarih</dt><dd>Ocak 2027</dd></div><div><dt>Yer</dt><dd>İstanbul ve canlı yayın</dd></div><div><dt>Katılım</dt><dd>Davetiye ile</dd></div></dl>
-        <div class="ev-cta"><button class="btn btn-w" type="button" data-open="m-invite">Davetiye iste</button><button class="btn btn-ow" type="button" data-open="m-apply">Ofisim için başvur</button></div>
-        <div class="sys"><b>Arka planda</b>Kayıt olana onay mesajı; bir hafta, bir gün, üç saat ve on dakika önce hatırlatma. Salona gelen QR ile, online izleyen yayın sayfasından işaretlenir. Gelmeyene kaydın kısa hali gider. Sonra altı haftalık takip: 48 saat kurucu fiyatı, ardından %30 ve %20 dönemleri.</div>
-      </div>
-    </article>
-
-    <div class="cal" id="takvim">
-      <div class="cal-top">
-        <h3 class="h3">Etkinlik takvimi</h3>
-        <div class="cal-f" role="group" aria-label="Etkinlik türü">
-          <button type="button" data-f="all" aria-pressed="true">Tümü</button>
-          <button type="button" data-f="mc" aria-pressed="false"><i style="--c:var(--red)"></i>Master class</button>
-          <button type="button" data-f="sm" aria-pressed="false"><i style="--c:var(--blue)"></i>Seminer</button>
-          <button type="button" data-f="ln" aria-pressed="false"><i style="--c:var(--vio)"></i>Lansman</button>
-          <button type="button" data-f="mp" aria-pressed="false"><i style="--c:var(--gold)"></i>MasterPlan</button>
-        </div>
-      </div>
-      <div class="cal-b">
-        <div>
-          <div class="cal-mh"><b id="calTitle" aria-live="polite">Ekim 2026</b><div class="arws"><button class="arw" id="calPrev" type="button" aria-label="Önceki ay"><svg aria-hidden="true"><use href="#i-cl"/></svg></button><button class="arw" id="calNext" type="button" aria-label="Sonraki ay"><svg aria-hidden="true"><use href="#i-cr"/></svg></button></div></div>
-          <div class="cal-wd" aria-hidden="true"><span>Pt</span><span>Sa</span><span>Ça</span><span>Pe</span><span>Cu</span><span>Ct</span><span>Pz</span></div>
-          <div class="cal-grid" id="calGrid"></div>
-        </div>
-        <div class="cal-l" id="calList" aria-live="polite"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- KURUMSAL -->
-<section class="sec bk" id="kurumsal">
-  <div class="wrap kr-g">
-    <div class="kr-ph"><img src="img/mic.jpg" alt="Barış Kılıçarslan sahnede, yaka mikrofonuyla"></div>
-    <div class="kr-c">
-      <h2 class="h2">Kurumunuza özel eğitim.</h2>
-      <p class="lead">Satış, motivasyon, gayrimenkul danışmanlığı ve lüks konut satışı. Türkçe ya da İngilizce, salonda ya da online.</p>
-      <ul class="kr-f">
-        <li><b>Kongre ve yıl açılışı konuşmaları</b><span>İkna, liderlik ve motivasyon oturumları</span><em>TR · EN</em></li>
-        <li><b>Ofislere özel eğitimler</b><span>Ekibinizin ihtiyacına göre kurulan eğitim günü</span><em>TR · EN</em></li>
-        <li><b>Masterclass programları</b><span>Konunun derinine inen ileri seviye programlar</span><em>TR · EN</em></li>
-      </ul>
-      <div class="kr-cta"><button class="btn btn-w" type="button" data-corp="Satış">Tarih ve teklif iste</button><button class="btn btn-ow" type="button" data-corp="Kongre konuşması">Kongre konuşması</button></div>
-      <div class="sys"><b>Arka planda</b>Barış seyahatteyken de talep kaçmaz. Form satış hattına düşer, sesli asistan beş dakika içinde arar; konuyu, kişi sayısını ve tarihi sorar, Barış’ın takvimine görüşme koyar ve özet gönderir.</div>
-    </div>
+    <div class="sys"><b>Arka planda</b>Her kart ileride kendi tanıtım sayfasına gider. Keynote Speaker sayfasında konuşma kartları, Türkiye ve uluslararası filtreleri, sahne görüntüleri ve konuşma teklifi formu yer alacak.</div>
   </div>
 </section>
 
@@ -1372,7 +1268,7 @@ body.sys-on .sys{display:block}
   <div class="wrap">
     <div class="sh">
       <h2 class="h2">Gelişim ve Kazanç Mağazası</h2>
-      <div class="seg" role="group" aria-label="Kategori"><button type="button" data-c="all" aria-pressed="true">Tümü</button><button type="button" data-c="kitap" aria-pressed="false">Kitap</button><button type="button" data-c="online" aria-pressed="false">Online eğitim</button><button type="button" data-c="akademi" aria-pressed="false">Akademi</button></div>
+      <p class="lead sh-l">Kitap ve online eğitim setleri. Daha önce alanların erişim hakkı aynen korunur.</p>
     </div>
     <div class="shop">
       <button class="pd" type="button" data-prod="kitap" data-cat="kitap">
@@ -1412,9 +1308,9 @@ body.sys-on .sys{display:block}
 <footer class="ft">
   <div class="wrap">
     <div class="ft-top">
-      <div><h4>Hakkında</h4><ul><li><a href="#hakkinda">Hikaye</a></li><li><a href="#roller">Altı rol</a></li><li><a href="#sonuclar">Sonuçlar</a></li><li><a href="#yorumlar">Yorumlar</a></li></ul></div>
-      <div><h4>Akademi</h4><ul><li><a href="#akademi">Masterclass Akademi</a></li><li><a href="#katalog">Eğitim kataloğu</a></li><li><a href="#portal">Mentorun eğitim ekranı</a></li><li><a href="#baris-ai">Barış AI</a></li><li><a href="#klasik">Klasik Eğitimler</a></li></ul></div>
-      <div><h4>Etkinlikler</h4><ul><li><a href="#takvim">Etkinlik takvimi</a></li><li><a href="#takvim">Aralık webinarı</a></li><li><a href="#etkinlikler">Akademi lansmanı</a></li><li><a href="#kurumsal">Kurumsal eğitim</a></li></ul></div>
+      <div><h4>Hakkında</h4><ul><li><a href="#hakkinda">Hikaye</a></li><li><a href="#sonuclar">Sonuçlar</a></li><li><a href="#yorumlar">Yorumlar</a></li><li><a href="#roller">Altı rol</a></li></ul></div>
+      <div><h4>Akademi</h4><ul><li><a href="#akademi">Masterclass Akademi</a></li><li><a href="#katalog">Eğitim kataloğu</a></li><li><a href="#portal">Mentorun eğitim ekranı</a></li><li><a href="#baris-ai">Barış AI</a></li><li><a href="#uyelik">Üyelik</a></li></ul></div>
+      <div><h4>Etkinlikler</h4><ul><li><a href="#takvim">Etkinlik takvimi</a></li><li><a href="#takvim">Aralık webinarı</a></li><li><a href="#etkinlikler">Akademi lansmanı</a></li></ul></div>
       <div><h4>Destek</h4><ul><li><button type="button" data-open="m-login">Akademiye giriş</button></li><li><button type="button" data-corp="Satış">İletişim</button></li><li><a href="#magaza">Mağaza</a></li></ul></div>
       <div class="ft-nw">
         <span class="ft-wm">BARIŞ KILIÇARSLAN</span>
@@ -1473,7 +1369,7 @@ body.sys-on .sys{display:block}
   <div class="dlg" role="dialog" aria-modal="true" aria-labelledby="mi-t">
     <button class="x" type="button" aria-label="Kapat"><svg aria-hidden="true"><use href="#i-x"/></svg></button>
     <h3 id="mi-t">Lansman davetiyesi</h3>
-    <p>İstanbul’daki salonda mı olacaksınız, canlı yayından mı izleyeceksiniz?</p>
+    <p id="mi-p">İstanbul’daki salonda mı olacaksınız, canlı yayından mı izleyeceksiniz?</p>
     <form data-demo>
       <div class="fg">
         <div class="fld"><label for="iv-name">Ad soyad</label><input id="iv-name" required placeholder="Adınız"></div>
@@ -1481,7 +1377,7 @@ body.sys-on .sys{display:block}
         <div class="fld full"><label for="iv-mode">Katılım</label><select id="iv-mode"><option>Salonda, İstanbul</option><option>Canlı yayından</option></select></div>
         <div class="fld full"><label for="iv-phone">Telefon</label><input id="iv-phone" type="tel" required placeholder="05xx xxx xx xx"></div>
       </div>
-      <button class="btn btn-r" type="submit">Davetiye iste</button>
+      <button class="btn btn-r" type="submit" id="iv-btn">Davetiye iste</button>
     </form>
     <div class="done" hidden><b>Talebiniz alındı.</b><p>Davetiye ve etkinlik bilgileri için sizinle iletişime geçeceğiz.</p></div>
   </div>
@@ -1614,8 +1510,8 @@ var mis=$$('.mi');
 function closeMenus(ex){mis.forEach(function(li){if(li!==ex){li.classList.remove('open');$('.mi-b',li).setAttribute('aria-expanded','false');}});}
 mis.forEach(function(li){
   var b=$('.mi-b',li);
-  b.addEventListener('click',function(e){e.stopPropagation();var o=!li.classList.contains('open');closeMenus(li);li.classList.toggle('open',o);b.setAttribute('aria-expanded',String(o));});
-  li.addEventListener('mouseenter',function(){if(canHover()){closeMenus(li);li.classList.add('open');b.setAttribute('aria-expanded','true');}});
+  b.addEventListener('click',function(e){e.stopPropagation();var o=!li.classList.contains('open')||Date.now()-(li._hov||0)<700;closeMenus(li);li.classList.toggle('open',o);b.setAttribute('aria-expanded',String(o));});
+  li.addEventListener('mouseenter',function(){if(canHover()){li._hov=Date.now();closeMenus(li);li.classList.add('open');b.setAttribute('aria-expanded','true');}});
   li.addEventListener('mouseleave',function(){if(canHover()){li.classList.remove('open');b.setAttribute('aria-expanded','false');}});
 });
 $$('.dd a').forEach(function(a){a.addEventListener('click',function(){closeMenus(null);});});
@@ -1660,17 +1556,21 @@ var TQ=[
   {q:'Barış, lüks konut uzmanları için mükemmel bir eğitmen.',o:'BARIŞ is perfect trainer for LUXURY HOME EXPERTS.',n:'Marco Tilesi',r:'RE/MAX Dolcevita, Roma',p:'Collection Sertifika Programı · Viyana, Avusturya',i:'MT',t:'RE/MAX Dolcevita'},
   {q:'Barış Bey’in semineri muhteşemdi, sadece içimizden birisi böylesine bize özel bir sunum yapabilirdi. Tüm çalışanlarımız çok motive oldu.',o:'',n:'İlkay Erginöz',r:'İnsan Kaynakları, Hilton Dalaman',p:'Kurumsal seminer · Dalaman',i:'İE',t:'Hilton Dalaman'}
 ];
-var tsTabs=$('#tsTabs'),tcur=0,tBtns=[];
-TQ.forEach(function(o,i){var b=el('button','ts-t');b.type='button';b.setAttribute('role','tab');b.setAttribute('aria-selected','false');b.append(el('i'),el('b',null,o.n),document.createTextNode(o.t));b.addEventListener('click',function(){setT(i);});$('i',b).addEventListener('animationend',function(){if(i===tcur&&!RM)setT(tcur+1);});tsTabs.append(b);tBtns.push(b);});
-function setT(i){
+var tcur=0,tFig=$('#tsFig');
+function setT(i,anim){
   tcur=(i+TQ.length)%TQ.length;var o=TQ[tcur];
   $('#tsQuote').textContent='“'+o.q+'”';
-  var orig=$('#tsOrig');orig.replaceChildren();if(o.o){orig.append(el('b',null,'Orijinal'),document.createTextNode(o.o));orig.hidden=false;}else orig.hidden=true;
   var av=$('#tsAv');av.replaceChildren();if(o.img){var im=el('img');im.src=o.img;im.alt='';av.append(im);}else av.textContent=o.i;
   $('#tsName').textContent=o.n;$('#tsRole').textContent=o.r;var tp=$('#tsPlace');tp.textContent=o.p;tp.hidden=!o.p;
   $('#tsCount').textContent=String(tcur+1).padStart(2,'0')+' / '+String(TQ.length).padStart(2,'0');
-  tBtns.forEach(function(b,k){b.setAttribute('aria-selected',String(k===tcur));var bar=$('i',b);bar.style.animation='none';void bar.offsetWidth;bar.style.animation='';});
+  if(anim&&!RM){tFig.classList.remove('in');void tFig.offsetWidth;tFig.classList.add('in');}
 }
+$('#tsPrev').addEventListener('click',function(){setT(tcur-1,true);});
+$('#tsNext').addEventListener('click',function(){setT(tcur+1,true);});
+(function(){var x0=null,y0=0;
+  tFig.addEventListener('touchstart',function(e){var t=e.touches[0];x0=t.clientX;y0=t.clientY;},{passive:true});
+  tFig.addEventListener('touchend',function(e){if(x0==null)return;var t=e.changedTouches[0],dx=t.clientX-x0,dy=t.clientY-y0;x0=null;if(Math.abs(dx)>48&&Math.abs(dx)>Math.abs(dy)*1.4)setT(tcur+(dx<0?1:-1),true);},{passive:true});
+})();
 setT(0);
 
 /* ---------- Pencereler ---------- */
@@ -1680,9 +1580,9 @@ function openModal(id,opt){
   closeMenus(null);
   $$('.md').forEach(function(x){if(!x.hidden&&x!==m)x.hidden=true;});
   if(!document.activeElement||!document.activeElement.closest('.md'))lastFocus=document.activeElement;
-  $$('form[data-demo]',m).forEach(function(f){f.hidden=false;f.reset();});
+  $$('form[data-demo]',m).forEach(function(f){f.hidden=false;f.reset();var sb=f.querySelector('[type=submit]');if(sb)sb.disabled=false;var er=f.querySelector('.f-err');if(er)er.remove();});
   $$('.done',m).forEach(function(d){d.hidden=true;});
-  if(id==='m-invite')$('#mi-t').textContent=(opt&&opt.title)||'Lansman davetiyesi';
+  if(id==='m-invite'){var tt=(opt&&opt.title)||'Lansman davetiyesi',web=/webinar/i.test(tt);$('#mi-t').textContent=tt;$('#mi-p').textContent=web?'Tarih kesinleşince size haber verelim.':'İstanbul’daki salonda mı olacaksınız, canlı yayından mı izleyeceksiniz?';$('#iv-mode').closest('.fld').hidden=web;$('#iv-btn').textContent=web?'Ön kayıt ol':'Davetiye iste';m.dataset.ev=web?tt.replace(/ ön kaydı$/,''):'';}
   if(id==='m-corp'&&opt&&opt.topic){var s=$('#cf-topic');Array.prototype.forEach.call(s.options,function(op){if(op.text===opt.topic)s.value=op.value;});}
   m.hidden=false;document.body.classList.add('lock');
   var f=m.querySelector('input,select,textarea');
@@ -1702,7 +1602,7 @@ function formRow(f){
   if(f.id==='nlForm')return{kind:'bulten',email:v('nl')};
   if(f.id==='corpForm')return{kind:'kurumsal',company:v('cf-org'),full_name:v('cf-name'),phone:v('cf-phone'),message:v('cf-note')||null,meta:{size:v('cf-size'),topic:v('cf-topic')}};
   if(f.querySelector('#ap-office'))return{kind:'ofis',company:v('ap-office'),city:v('ap-city'),full_name:v('ap-name'),phone:v('ap-phone'),meta:{size:v('ap-size')}};
-  if(f.querySelector('#iv-name'))return{kind:'davetiye',full_name:v('iv-name'),company:v('iv-office'),phone:v('iv-phone'),meta:{mode:v('iv-mode')}};
+  if(f.querySelector('#iv-name')){var md=f.closest('.md'),evn=md&&md.dataset.ev;return{kind:evn?'etkinlik':'davetiye',full_name:v('iv-name'),company:v('iv-office'),phone:v('iv-phone'),meta:{mode:evn||v('iv-mode')}};}
   return null;
 }
 $$('form[data-demo]').forEach(function(f){f.addEventListener('submit',function(e){e.preventDefault();if(!f.checkValidity()){f.reportValidity();return;}
@@ -1760,7 +1660,7 @@ document.addEventListener('click',function(e){
 });
 
 /* ---------- Arama ---------- */
-var LINKS=[['Masterclass Akademi','akademi','Eğitim izlemek için değil, sonuç alıp kazanmak için'],['Eğitim kataloğu','katalog','On eğitim, tanıtımları ve bölümleri'],['Mentorun eğitim ekranı','portal','Bölümler, belgeler ve katılım'],['Altı rol','roller','Real Estate Trainer, Corporate Trainer, International Speaker, Keynote Speaker, Private Mentoring'],['Klasik Eğitimler','klasik','Satışın Şifreleri, Gayrimenkulün Usta Satışçıları'],['Barış AI','baris-ai','Sor ve prova yap'],['Mentorun eğitim ekranı','ofis','Bölümler, belgeler ve katılım'],['Akademi lansmanı','etkinlikler','İstanbul, Ocak 2027'],['Etkinlik takvimi','takvim','Yaklaşan ve geçmiş etkinlikler'],['Satışın Şifreleri','magaza','Online eğitim seti ve kitap'],['Gayrimenkulün Usta Satışçıları','magaza','Ustalarla birebir sohbetler'],['Kurumsal eğitim','kurumsal','Tarih ve teklif isteyin'],['Hikaye','hakkinda','Barış Kılıçarslan kimdir'],['Yorumlar','yorumlar','Dünyadan ofis liderleri'],['Sonuçlar','sonuclar','Yirmi yılın rakamları']];
+var LINKS=[['Masterclass Akademi','akademi','Ofisinizin kendi satış okulu'],['Eğitim kataloğu','katalog','On eğitim, tanıtımları ve bölümleri'],['Mentorun eğitim ekranı','ofis','Bölümler, belgeler ve katılım'],['Barış AI','baris-ai','Sor ve prova yap'],['Üyelik','uyelik','12 aylık ofis üyeliği ve tek eğitim'],['Akademi lansmanı','etkinlikler','İstanbul, Ocak 2027'],['Etkinlik takvimi','takvim','Aralık webinarı, lansman ve geçmiş etkinlikler'],['Hikaye','hakkinda','Barış Kılıçarslan kimdir'],['Sonuçlar','sonuclar','Yirmi yılın rakamları'],['Yorumlar','yorumlar','Dünyadan ofis liderleri'],['Altı rol','roller','Real Estate Trainer, Corporate Trainer, International Speaker, Keynote Speaker, Private Mentoring'],['Kurumsal eğitim ve konuşma','roller','Tarih ve teklif isteyin'],['Satışın Şifreleri','magaza','Online eğitim seti ve kitap'],['Gayrimenkulün Usta Satışçıları','magaza','Ustalarla birebir sohbetler'],['Klasik Eğitimler','magaza','Satışın Şifreleri, Gayrimenkulün Usta Satışçıları']];
 var sIn=$('#searchInput'),sList=$('#searchList');
 function renderSearch(q){
   q=(q||'').toLocaleLowerCase('tr');sList.replaceChildren();
@@ -1777,77 +1677,40 @@ sIn.addEventListener('input',function(){renderSearch(sIn.value);});renderSearch(
 var sysT=$('#sysT');
 sysT.addEventListener('click',function(){var on=!document.body.classList.contains('sys-on');document.body.classList.toggle('sys-on',on);sysT.setAttribute('aria-pressed',String(on));$('#sysL').textContent=on?'Sistemi gizle':'Sistemi göster';});
 
-/* ---------- Takvim ---------- */
+/* ---------- Etkinlikler ---------- */
 var EVENTS=[
   {s:'2026-02-09',t:'2026 MasterPlan',p:'RE/MAX Master',k:'mp'},
   {s:'2026-09-23',t:'Lüks Konutta Personal Branding',p:'RE/MAX Collection Club',k:'mc'},
   {s:'2026-09-25',t:'Gayrimenkulde Yüksek Kazanç Prensipleri 1',p:'RE/MAX Deniz · Sahne Sende Coffee',k:'mc'},
   {s:'2026-09-26',t:'UPGRADE: Yüksek Kazanç Ustalığı',p:'RE/MAX Deniz · Sahne Sende Coffee',k:'mc'},
-  {s:'2026-10-24',t:'Türkiye geneli işe alım semineri',p:'Canlı yayın',k:'sm',cta:'Kayıt ol',title:'İşe alım semineri kaydı'},
-  {s:'2027-01-11',e:'2027-01-15',t:'Masterclass Akademi lansman haftası',p:'İstanbul · Salonda ve canlı yayında',k:'ln',plan:true,cta:'Davetiye iste',title:'Lansman davetiyesi'}
+  {s:'2026-10-24',t:'Türkiye geneli işe alım semineri',p:'Canlı yayın',k:'sm'},
+  {s:'2026-12',t:'Aralık webinarı ve paneli',p:'Online · Tarih yakında',k:'wb',cta:'Ön kayıt',title:'Aralık webinarı ön kaydı'},
+  {s:'2027-01-11',e:'2027-01-15',t:'Masterclass Akademi lansman haftası',p:'İstanbul · Salonda ve canlı yayında',k:'ln',cta:'Davetiye iste',title:'Lansman davetiyesi'}
 ];
-var COL={mc:'var(--red)',sm:'var(--blue)',ln:'var(--vio)',mp:'var(--gold)'};
-var MN=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+var COL={mc:'var(--red)',sm:'var(--blue)',ln:'var(--vio)',mp:'var(--gold)',wb:'var(--blue)'};
+var KN={mc:'Master class',sm:'Seminer',ln:'Lansman',mp:'MasterPlan',wb:'Webinar'};
 var MS=['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'];
-function pdt(s){var a=s.split('-');return new Date(+a[0],+a[1]-1,+a[2]);}
+function pdt(s){var a=s.split('-');return new Date(+a[0],+a[1]-1,a[2]?+a[2]:1);}
+function evEnd(ev){if(ev.e)return pdt(ev.e);var d=pdt(ev.s);return ev.s.length===7?new Date(d.getFullYear(),d.getMonth()+1,0):d;}
 var today=new Date();today.setHours(0,0,0,0);
-var months=[];EVENTS.forEach(function(ev){var d=pdt(ev.s),key=d.getFullYear()*12+d.getMonth();if(months.indexOf(key)<0)months.push(key);});
-months.sort(function(a,b){return a-b;});
-var calF='all',mIdx=months.length-1;
-(function(){var tk=today.getFullYear()*12+today.getMonth();for(var i=0;i<months.length;i++){if(months[i]>=tk){mIdx=i;return;}}})();
-function isPast(ev){return (ev.e?pdt(ev.e):pdt(ev.s))<today;}
-function flash(ev){var r=$('#calList .cr[data-s="'+ev.s+'"]');if(!r)return;r.classList.remove('flash');void r.offsetWidth;r.classList.add('flash');r.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'});setTimeout(function(){r.classList.remove('flash');},1600);}
-function renderCal(){
-  var key=months[mIdx],y=Math.floor(key/12),m=key%12;
-  $('#calTitle').textContent=MN[m]+' '+y;
-  $('#calPrev').disabled=mIdx===0;$('#calNext').disabled=mIdx===months.length-1;
-  var first=new Date(y,m,1),off=(first.getDay()+6)%7,days=new Date(y,m+1,0).getDate();
-  var grid=$('#calGrid');grid.replaceChildren();
-  for(var i=0;i<off;i++)grid.append(el('span','cd'));
-  var evs=EVENTS.filter(function(ev){var d=pdt(ev.s);return d.getFullYear()===y&&d.getMonth()===m;});
-  var shown=evs.filter(function(ev){return calF==='all'||calF===ev.k;});
-  for(var d=1;d<=days;d++){
-    var dt=new Date(y,m,d),hit=null;
-    shown.forEach(function(ev){var s=pdt(ev.s),e=ev.e?pdt(ev.e):s;if(!hit&&dt>=s&&dt<=e)hit=ev;});
-    var c=el(hit?'button':'span','cd',String(d));
-    if(hit){
-      c.type='button';c.classList.add('ev');c.style.setProperty('--c',COL[hit.k]);
-      if(isPast(hit))c.classList.add('past');
-      if(hit.e&&+dt!==+pdt(hit.s))c.classList.add('mid');
-      c.setAttribute('aria-label',d+' '+MN[m]+': '+hit.t);
-      (function(h){c.addEventListener('click',function(){flash(h);});})(hit);
-    }
-    if(+dt===+today)c.classList.add('today');
-    grid.append(c);
-  }
-  var list=$('#calList');list.replaceChildren();
-  if(!shown.length)list.append(el('div','cr-e',evs.length?'Bu ay bu türde etkinlik yok. Diğer ayları ya da “Tümü”nü dene.':'Bu ay etkinlik yok.'));
-  shown.forEach(function(ev){
-    var r=el('div','cr');r.dataset.s=ev.s;r.style.setProperty('--c',COL[ev.k]);var past=isPast(ev);if(past)r.classList.add('past');
-    var s=pdt(ev.s),dd=el('div','cr-d');
-    dd.append(el('b',null,ev.e?(s.getDate()+'-'+pdt(ev.e).getDate()):String(s.getDate())),el('small',null,MS[s.getMonth()]));
-    var tx=el('div','cr-t');tx.append(el('b',null,ev.t),el('span',null,ev.p+' · '+({mc:'Master class',sm:'Seminer',ln:'Lansman',mp:'MasterPlan'})[ev.k]));
-    r.append(dd,tx);
-    if(past)r.append(el('span','chp','Tamamlandı'));
-    else if(ev.cta){var wrap=el('div');wrap.style.cssText='display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end';if(ev.plan)wrap.append(el('span','chp pl','Planlanan'));var b=el('button','btn btn-k btn-sm',ev.cta);b.type='button';b.setAttribute('data-open','m-invite');b.setAttribute('data-title',ev.title);wrap.append(b);r.append(wrap);}
-    list.append(r);
-  });
-  var nextM=-1,nextEv=null;
-  for(var j=mIdx+1;j<months.length&&nextM<0;j++){EVENTS.forEach(function(ev){var d=pdt(ev.s);if(nextM<0&&d.getFullYear()*12+d.getMonth()===months[j]&&!isPast(ev)&&(calF==='all'||calF===ev.k)){nextM=j;nextEv=ev;}});}
-  if(nextEv){var nb=el('button','cr-nx');nb.type='button';var sp=el('span');sp.append(document.createTextNode('Sonra: '),el('b',null,nextEv.t),document.createTextNode(' · '+MN[pdt(nextEv.s).getMonth()]+' '+pdt(nextEv.s).getFullYear()));nb.append(sp,ico('i-r',16));nb.addEventListener('click',function(){mIdx=nextM;renderCal();});list.append(nb);}
+function evRow(ev,past){
+  var r=el('div','cr'+(past?' past':''));r.style.setProperty('--c',COL[ev.k]);
+  var s=pdt(ev.s),mo=ev.s.length===7,dd=el('div','cr-d');
+  dd.append(el('b',null,mo?MS[s.getMonth()]:(ev.e?(s.getDate()+'-'+pdt(ev.e).getDate()):String(s.getDate()))),el('small',null,mo?String(s.getFullYear()):MS[s.getMonth()]));
+  var tx=el('div','cr-t');tx.append(el('b',null,ev.t),el('span',null,ev.p+' · '+KN[ev.k]));
+  r.append(dd,tx);
+  if(past)r.append(el('span','chp','Tamamlandı'));
+  else if(ev.cta){var b=el('button','btn btn-k btn-sm',ev.cta);b.type='button';b.setAttribute('data-open','m-invite');b.setAttribute('data-title',ev.title);r.append(b);}
+  return r;
 }
-$('#calPrev').addEventListener('click',function(){if(mIdx>0){mIdx--;renderCal();}});
-$('#calNext').addEventListener('click',function(){if(mIdx<months.length-1){mIdx++;renderCal();}});
-var calBtns=$$('.cal-f button');
-calBtns.forEach(function(b){b.addEventListener('click',function(){calF=b.dataset.f;calBtns.forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});
-  if(calF!=='all'){var key=months[mIdx],has=EVENTS.some(function(ev){var d=pdt(ev.s);return ev.k===calF&&d.getFullYear()*12+d.getMonth()===key;});
-    if(!has){var tk=today.getFullYear()*12+today.getMonth(),best=-1;months.forEach(function(mk,i){var ok=EVENTS.some(function(ev){var d=pdt(ev.s);return ev.k===calF&&d.getFullYear()*12+d.getMonth()===mk;});if(ok&&(best<0||(months[best]<tk&&mk>=tk)))best=i;});if(best>-1)mIdx=best;}}
-  renderCal();});});
-renderCal();
+(function(){
+  var list=$('#evList');
+  var up=EVENTS.filter(function(ev){return evEnd(ev)>=today;}).sort(function(x,y){return pdt(x.s)-pdt(y.s);});
+  var past=EVENTS.filter(function(ev){return evEnd(ev)<today;}).sort(function(x,y){return pdt(y.s)-pdt(x.s);}).slice(0,3);
+  up.forEach(function(ev){list.append(evRow(ev,false));});
+  if(past.length){list.append(el('span','evl-g','Geçmiş etkinlikler'));past.forEach(function(ev){list.append(evRow(ev,true));});}
+})();
 
-/* ---------- Mağaza filtresi ---------- */
-var segB=$$('.seg button');
-segB.forEach(function(b){b.addEventListener('click',function(){var c=b.dataset.c;segB.forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});$$('.shop .pd').forEach(function(p){p.hidden=!(c==='all'||p.dataset.cat===c);});});});
 
 /* =================== BARIŞ AI =================== */
 var samplePromise=(window.claude&&typeof window.claude.use==='function')?window.claude.use('sample').then(function(s){return s||null;},function(){return null;}):Promise.resolve(null);
