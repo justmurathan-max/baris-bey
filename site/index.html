@@ -340,11 +340,12 @@ button{cursor:pointer}
 @media (max-width:480px){.stm-l{grid-template-columns:1fr}}
 
 /* =================== BARIŞ AI =================== */
-.ai-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(32px,6vw,112px);align-items:center}
+.ai-g{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(32px,5vw,96px);align-items:center}
+@media (min-width:1001px){.ai-g>.cs{order:-1}}
 .ai-l{display:grid;gap:26px;justify-items:start}
 .ai-mk{display:inline-flex;align-items:center;gap:12px}
 .ai-chip{display:inline-grid;place-items:center;height:24px;padding:0 8px;border-radius:7px;background:#000;color:#fff;font:800 12.5px/1 var(--fw);letter-spacing:.06em}
-.cs{display:flex;flex-direction:column;height:clamp(560px,72vh,680px);border-radius:28px;background:#fff;border:1px solid rgba(0,0,0,.1);overflow:hidden;color:var(--tx);box-shadow:0 40px 90px -45px rgba(0,0,0,.3)}
+.cs{display:flex;flex-direction:column;height:clamp(620px,80vh,780px);border-radius:28px;background:#fff;border:1px solid rgba(0,0,0,.1);overflow:hidden;color:var(--tx);box-shadow:0 40px 90px -45px rgba(0,0,0,.3)}
 .cs-h{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid rgba(0,0,0,.08)}
 .cs-who{display:flex;align-items:center;gap:12px;min-width:0}
 .cs-av{width:42px;height:42px;border-radius:50%;object-fit:cover;flex:none;background:var(--g1)}
@@ -1822,7 +1823,6 @@ function showScore(d,example){
   var foot=el('div','sc-f');
   if(d.ilgili_bolum)foot.append(el('span','rel-c','İlgili bölüm: '+String(d.ilgili_bolum)));
   var again=el('button','btn btn-ok btn-sm','Yeni prova');again.type='button';again.addEventListener('click',resetProva);foot.append(again);card.append(foot);
-  var note=el('div','sys');note.append(el('b',null,'Arka planda'),document.createTextNode('Bu puan danışmanın CRM kartına yazılır ve mentorun pazartesi raporuna girer.'));card.append(note);
   pList.append(card);pList.scrollTop=pList.scrollHeight;
 }
 pEnd.addEventListener('click',function(){
