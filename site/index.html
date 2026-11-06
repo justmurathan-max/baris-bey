@@ -689,6 +689,11 @@ button{cursor:pointer}
 .mth-i.kz[aria-expanded=true] .mth-x::before,.mth-i.kz[aria-expanded=true] .mth-x::after{background:var(--red2)}
 .mth-p{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.6fr);gap:clamp(20px,3vw,52px);align-items:center;padding:clamp(20px,3vw,44px);background:#fff;border-top:1px solid rgba(0,0,0,.08);animation:mthIn .55s cubic-bezier(.16,1,.3,1)}
 @keyframes mthIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.mth-i::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:currentColor;opacity:.35;transform:scaleX(0);transform-origin:left;pointer-events:none}
+.mth-i.auto::after{animation:mthBar 2s linear forwards}
+@keyframes mthBar{to{transform:scaleX(1)}}
+.mth-p.sw>*{animation:mthSw .45s cubic-bezier(.16,1,.3,1)}
+@keyframes mthSw{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .mth-pt{display:grid;gap:14px;justify-items:start;align-content:center}
 .mth-pt .lbl{color:var(--red)}
 .mth-pt p{margin:0;color:var(--mu);font-size:16.5px;line-height:1.6;max-width:46ch}
@@ -1916,6 +1921,7 @@ function mRender(k){
   var bi=el('img');bi.src=st.img;bi.alt=st.c;bi.loading='lazy';bb.append(bi);
   bb.addEventListener('click',function(){var im=$('#ms-img');im.src=bi.currentSrc||bi.src;im.alt=bi.alt;$('#ms-t').textContent=bi.alt;openModal('m-shot');});
   fg.append(bb,el('figcaption',null,st.c));mthP.append(tx,fg);
+  mthP.classList.remove('sw');void mthP.offsetWidth;mthP.classList.add('sw');
 }
 function mShowStep(k,scroll){
   if(mOpen===k)return;
@@ -1924,16 +1930,38 @@ function mShowStep(k,scroll){
   if(scroll){var r=mthP.getBoundingClientRect();if(r.bottom>innerHeight||r.top<0)mthP.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'});}
 }
 function mHide(){if(mOpen<0)return;mBtns[mOpen].setAttribute('aria-expanded','false');mOpen=-1;mthP.hidden=true;}
-function mHoverStart(k){if(mOpen===k||mHov)return;mHov=setTimeout(function(){mHov=null;if(Date.now()-mScr>250)mShowStep(k,false);},140);}
+function mHoverStart(k){if(mHov||(mOpen===k&&mAutoDone))return;mHov=setTimeout(function(){mHov=null;if(Date.now()-mScr>250){mAutoStop();if(mOpen!==k)mShowStep(k,false);else mAt=Date.now();}},140);}
 function mHoverStop(){clearTimeout(mHov);mHov=null;}
 mBtns.forEach(function(b,k){
-  b.addEventListener('click',function(){if(mOpen===k){if(Date.now()-mAt>700)mHide();}else mShowStep(k,true);});
+  b.addEventListener('click',function(){var wasAuto=!mAutoDone;mAutoStop();if(mOpen===k){if(!wasAuto&&Date.now()-mAt>700)mHide();}else mShowStep(k,true);});
   b.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse'&&canHover())mHoverStart(k);});
   b.addEventListener('pointermove',function(e){if(e.pointerType==='mouse'&&canHover()&&(e.movementX||e.movementY))mHoverStart(k);});
   b.addEventListener('pointerleave',mHoverStop);
 });
 window.addEventListener('scroll',function(){mScr=Date.now();mHoverStop();},{passive:true});
 window.addEventListener('resize',mPlace);
+// Dört adım yan yanayken: görününce ikişer saniyede ilerler, Kazan'da durur.
+// Ekrandan çıkınca bekler, dönünce sürer; imleç ya da tıklama gelince tamamen durur.
+var mAuto=null,mAutoDone=false,mAutoK=0,mio=null;
+function mAutoClear(){if(mAuto){clearTimeout(mAuto);mAuto=null;}mBtns.forEach(function(b){b.classList.remove('auto');});}
+function mAutoEnd(){mAutoDone=true;if(mio){mio.disconnect();mio=null;}}
+function mAutoStop(){mAutoClear();mAutoEnd();}
+function mAutoStep(k){
+  mAutoClear();mAutoK=k;
+  if(mOpen!==k)mShowStep(k,false);
+  if(k<mBtns.length-1){void mBtns[k].offsetWidth;mBtns[k].classList.add('auto');mAuto=setTimeout(function(){mAuto=null;mAutoStep(k+1);},2000);}
+  else mAutoEnd();
+}
+if(!RM&&'IntersectionObserver' in window){
+  mio=new IntersectionObserver(function(es){
+    var e=es[es.length-1];if(mAutoDone)return;
+    if(!e.isIntersecting){mAutoClear();return;}
+    if(e.intersectionRatio<.55||mAuto)return;
+    if(mCols()<4){mAutoStop();return;}
+    mAuto=setTimeout(function(){mAuto=null;mAutoStep(mAutoK);},500);
+  },{threshold:[0,.6],rootMargin:'0px 0px -15% 0px'});
+  mio.observe(mBtns[0]);
+}
 })();
 </script>
 <script>/* Kaydırınca beliren yazılar: yalnız işaretlenen öğeler gizlenir, gözlemci yoksa hiçbir şey gizlenmez */
