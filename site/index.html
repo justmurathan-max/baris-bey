@@ -342,8 +342,11 @@ button{cursor:pointer}
 /* =================== BARIŞ AI =================== */
 .ai-g{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(32px,5vw,96px);align-items:center}
 @media (min-width:1001px){.ai-g>.cs{order:-1}}
-.ai-l{display:grid;gap:26px;justify-items:start}
-.ai-mk{display:inline-flex;align-items:center;gap:12px}
+.ai-l{display:grid;gap:22px;justify-items:start;container-type:inline-size}
+/* Barış AI adı: sütun genişliğine göre büyür, hep tek satır */
+.ai-ad{display:flex;align-items:center;gap:.12em;margin:0 0 6px;font:500 clamp(64px,8vw,150px)/.9 var(--fd);font:500 min(30cqi,168px)/.9 var(--fd);letter-spacing:-.055em;white-space:nowrap}
+.ai-ad .ai-chip{height:1.62em;padding:0 .34em;border-radius:.3em;font:800 .44em/1 var(--fw);letter-spacing:.03em;transform:translateY(.05em)}
+.ai-alt{margin:0;font:500 clamp(24px,2.3vw,38px)/1.08 var(--fd);letter-spacing:-.035em;text-wrap:balance}
 .ai-chip{display:inline-grid;place-items:center;height:24px;padding:0 8px;border-radius:7px;background:#000;color:#fff;font:800 12.5px/1 var(--fw);letter-spacing:.06em}
 .cs{display:flex;flex-direction:column;height:clamp(620px,80vh,780px);border-radius:28px;background:#fff;border:1px solid rgba(0,0,0,.1);overflow:hidden;color:var(--tx);box-shadow:0 40px 90px -45px rgba(0,0,0,.3)}
 .cs-h{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid rgba(0,0,0,.08)}
@@ -1063,8 +1066,8 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
 <section class="sec wh" id="baris-ai">
   <div class="wrap ai-g">
     <div class="ai-l">
-      <span class="ai-mk"><span class="wmk">Barış Kılıçarslan</span><span class="ai-chip">AI</span></span>
-      <h2 class="h2">Sahada takıldığın an Barış yanında.</h2>
+      <h2 class="ai-ad"><span>Barış</span> <span class="ai-chip">AI</span></h2>
+      <p class="ai-alt">Sahada takıldığın an Barış yanında.</p>
       <p class="lead">Danışman takıldığı yeri sorar ya da müşteriyle konuşmadan önce prova yapar. Barış AI, Barış’ın yaklaşımıyla cevap verir ve provayı puanlar.</p>
     </div>
 
@@ -1992,7 +1995,7 @@ if(!('IntersectionObserver' in window)){D.classList.remove('rv-on');return;}
 var A=function(q,r){return Array.prototype.slice.call((r||document).querySelectorAll(q));};
 var secs=A('main > section.sec, main > section.fin');
 function split(h){if(h.children.length)return false;var ws=h.textContent.trim().split(/\s+/);h.textContent='';ws.forEach(function(w,i){var o=document.createElement('span'),n=document.createElement('span');o.className='w';n.textContent=w;n.style.setProperty('--wi',i);o.appendChild(n);h.appendChild(o);if(i<ws.length-1)h.appendChild(document.createTextNode(' '));});return true;}
-var SEL='.h2,.fin .h1,.h3,.lbl,.ak-mk,.ai-mk,.lead,.ab-ph,.st,.ab-lg,.ym-s,.ym-sahne,.kc,.ac,.cs,.plan,.plan-n,.ev,.cr,.evl-g,.ts-top,.ts-fig,.ts-ph,.ro-c,.shop .pd,.fin-ph,.fin-t .hs-cta';
+var SEL='.h2,.fin .h1,.h3,.lbl,.ak-mk,.ai-ad,.ai-alt,.lead,.ab-ph,.st,.ab-lg,.ym-s,.ym-sahne,.kc,.ac,.cs,.plan,.plan-n,.ev,.cr,.evl-g,.ts-top,.ts-fig,.ts-ph,.ro-c,.shop .pd,.fin-ph,.fin-t .hs-cta';
 var list=[];secs.forEach(function(sec){A(SEL,sec).forEach(function(e){if(list.indexOf(e)<0)list.push(e);});});
 list=list.filter(function(e){for(var p=e.parentElement;p;p=p.parentElement){if(list.indexOf(p)>-1)return false;}return true;});
 list.forEach(function(e){if((e.classList.contains('h2')||e.classList.contains('h1'))&&split(e))e.classList.add('rv-w');e.classList.add('rv');});
