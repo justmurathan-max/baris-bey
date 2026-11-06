@@ -57,3 +57,8 @@ Fonksiyonlar oturumu kendi kodunda doğrular; panelde "Verify JWT with legacy se
 - Merkez girişinde ofisler, üyelikler, başvurular ve sertifika kaydı veritabanından gelir; işlemler doğrudan yazılır.
 - Broker ve mentor girişinde ofisin bütün kayıtları yüklenir (`akademi-kaynak/6-veri.js`). Ekrandaki değişiklikler son kaydedilen hâlle karşılaştırılır, fark birkaç saniye içinde yazılır. Yükleme başarısız olursa hiçbir şey yazılmaz.
 
+## Tally ve Cal.com
+
+- `site/js/tally-cal.js`: ofis başvurusu, kurumsal talep ve etkinlik pencerelerinde formu Tally'den açar; gönderilen kayıt `site_requests` tablosuna da yazılır, merkezdeki Başvurular sayfası değişmeden çalışır. Başvurudan ve kurumsal talepten sonra aynı pencerede Cal.com takvimi ad, e-posta, telefon ve notla dolu açılır. Tally açılmazsa sitenin kendi formu, Cal.com açılmazsa Cal.com bağlantısı kullanılır. Bülten sitenin kendi formunda kalır. `index.html` sonunda `<script src="js/tally-cal.js" defer></script>` ile yüklenir.
+- Tally formları Barış Bey'in hesabında: ofis başvurusu `4aBNGk`, kurumsal talep `Eq5bAN`, etkinlik kaydı `aOerkq`. Gizli alanlar: `kaynak`, kurumsalda `konu`, etkinlikte `etkinlik` (lansman için `lansman`, webinar için adı). Formdaki soru başlıkları değişirse `tally-cal.js` içindeki eşleştirme de güncellenmeli.
+- Cal.com görüşmeleri: `baris-kilicarslan-yesokm/akademi-gorusmesi` ve `baris-kilicarslan-yesokm/kurumsal-gorusme`.
