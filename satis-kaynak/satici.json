@@ -1,0 +1,21 @@
+{
+  "_not": "Satıcı ve satış koşulları; sözleşmeler, ödeme sayfası ve altbilgi buradan beslenir. null alanlar sitede sarı işaretle görünür. Değiştirince: python3 satis-kaynak/build.py",
+  "unvan": null,
+  "marka": "Barış Kılıçarslan",
+  "adres": null,
+  "vergi_dairesi": null,
+  "vergi_no": null,
+  "mersis": null,
+  "telefon": null,
+  "eposta": "info@bariskilicarslan.com",
+  "kep": null,
+  "web": "www.bariskilicarslan.com",
+  "yetkili_sehir": "İzmir",
+  "dijital_teslim_saat": 24,
+  "dijital_iptal_saat": 24,
+  "kargo": {
+    "firma": null,
+    "hazirlama_gun": 5
+  },
+  "guncelleme": "7 Kasım 2026"
+}

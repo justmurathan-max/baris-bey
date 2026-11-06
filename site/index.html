@@ -569,9 +569,16 @@ button{cursor:pointer}
 .ft-f input::placeholder{color:#8B8B93}
 .ft-ok{color:var(--mu);font-size:14.5px}
 .ft-b{display:flex;flex-wrap:wrap;gap:16px 28px;justify-content:space-between;align-items:center;margin-top:clamp(48px,6vw,88px);padding-top:24px;border-top:1px solid var(--ln);font-size:13px;color:var(--mu)}
-.ft-leg{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center}
+.ft-leg{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;flex:1 1 560px}
 .ft-leg a{color:var(--mu);text-decoration:none}
 .ft-leg a:hover{color:#000}
+.ft-sat{order:3;flex-basis:100%;margin:0;font-size:12.5px;line-height:1.65;color:var(--mu)}
+.ft-sat mark.eksik{background:#FFF1B8;color:#6B5200;border-radius:4px;padding:0 4px}
+.ft-sat a{color:inherit}
+.pd-n em.pd-p{font-style:normal;font:600 15px/1.2 var(--fb);color:var(--tx);margin-top:2px}
+.pr-f{margin:4px 0 0;font:600 24px/1.2 var(--fd);letter-spacing:-.02em}
+.pr-f small{font:500 13px/1 var(--fb);color:var(--mu);margin-left:8px;letter-spacing:0}
+.mdg-cta .btn[disabled]{opacity:.45;cursor:not-allowed}
 .ft-so{display:flex;gap:8px}
 .ft-so a{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#000;transition:background-color .2s}
 .ft-so a:hover{background:#2A2A2E}
@@ -1199,15 +1206,15 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
     <div class="shop">
       <button class="pd" type="button" data-prod="kitap" data-cat="kitap">
         <span class="pd-img book"><img loading="lazy" decoding="async" src="img/kitap.webp" alt="Satışın Şifreleri ile Sonucu Satmak kitap kapağı"><span class="badge">İmzalı</span></span>
-        <span class="pd-n"><b>Satışın Şifreleri ile Sonucu Satmak</b><span>Kitap · İknanın 12 şifresi</span><i>İncele<svg aria-hidden="true"><use href="#i-r"/></svg></i></span>
+        <span class="pd-n"><b>Satışın Şifreleri ile Sonucu Satmak</b><span>Kitap · İknanın 12 şifresi</span><em class="pd-p" data-u="kitap">Fiyatı yakında</em><i>İncele<svg aria-hidden="true"><use href="#i-r"/></svg></i></span>
       </button>
       <button class="pd" type="button" data-prod="ss" data-cat="online">
         <span class="pd-img ph" style="--pos:50% 26%"><img loading="lazy" decoding="async" src="img/hero-armsup.webp" alt=""><span class="badge">Çok satan</span><span class="lt"><span class="k">BARIŞ KILIÇARSLAN</span><span class="s" style="font-size:44px;font-size:15cqi">Satışın</span><span class="c" style="font-size:54px;font-size:18.5cqi">ŞİFRELERİ</span></span></span>
-        <span class="pd-n"><b>Satışın Şifreleri</b><span>Online eğitim seti · 9,5 saat</span><i>İncele<svg aria-hidden="true"><use href="#i-r"/></svg></i></span>
+        <span class="pd-n"><b>Satışın Şifreleri</b><span>Online eğitim seti · 9,5 saat</span><em class="pd-p" data-u="ss">9.797 TL</em><i>İncele<svg aria-hidden="true"><use href="#i-r"/></svg></i></span>
       </button>
       <button class="pd" type="button" data-prod="gus" data-cat="online">
         <span class="pd-img ph dim" style="--pos:30% 50%"><img loading="lazy" decoding="async" src="img/banner.webp" alt=""><span class="lt"><span class="k">BARIŞ KILIÇARSLAN</span><span class="w" style="font-size:14px;font-size:5cqi">GAYRİMENKULÜN</span><span class="c" style="font-size:86px;font-size:30cqi">USTA</span><span class="s" style="font-size:38px;font-size:13cqi">Satışçıları</span></span></span>
-        <span class="pd-n"><b>Gayrimenkulün Usta Satışçıları</b><span>Online eğitim seti · 6 röportaj</span><i>İncele<svg aria-hidden="true"><use href="#i-r"/></svg></i></span>
+        <span class="pd-n"><b>Gayrimenkulün Usta Satışçıları</b><span>Online eğitim seti · 6 röportaj</span><em class="pd-p" data-u="gus">9.797 TL</em><i>İncele<svg aria-hidden="true"><use href="#i-r"/></svg></i></span>
       </button>
       <button class="pd" type="button" data-prod="akademi" data-cat="akademi">
         <span class="pd-img ph" style="--pos:50% 14%"><img loading="lazy" decoding="async" src="img/collection.webp" alt=""><span class="badge">Yeni</span><span class="lt"><span class="k">BARIŞ KILIÇARSLAN</span><span class="c" style="font-size:46px;font-size:15.5cqi">MASTERCLASS</span><span class="s" style="font-size:44px;font-size:15cqi">Akademi</span></span></span>
@@ -1246,7 +1253,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
       </div>
     </div>
     <div class="ft-b">
-      <div class="ft-leg"><span>© 2026 Barış Kılıçarslan</span><a href="#top">Yasal uyarılar</a><a href="#top">Gizlilik politikası</a><a href="#top">Mesafeli satış sözleşmesi</a></div>
+      <!--URETILEN:yasal--><div class="ft-leg"><span>© 2026 Barış Kılıçarslan</span><a href="sozlesmeler/mesafeli-satis-sozlesmesi.html">Mesafeli satış sözleşmesi</a><a href="sozlesmeler/on-bilgilendirme-formu.html">Ön bilgilendirme formu</a><a href="sozlesmeler/iptal-ve-iade.html">İptal ve iade</a><a href="sozlesmeler/teslimat.html">Teslimat</a><a href="sozlesmeler/kvkk-aydinlatma-metni.html">KVKK aydınlatma metni</a><a href="sozlesmeler/gizlilik-ve-cerez-politikasi.html">Gizlilik ve çerezler</a><a href="sozlesmeler/uyelik-sozlesmesi.html">Üyelik sözleşmesi</a><a href="sozlesmeler/yasal-uyarilar.html">Yasal uyarılar</a><a href="sozlesmeler/hakkimizda.html">Hakkımızda</a><a href="sozlesmeler/iletisim.html">İletişim</a></div><p class="ft-sat"><mark class="eksik">[satıcı unvanı]</mark> · <mark class="eksik">[satıcı adresi]</mark> · Tel: <mark class="eksik">[telefon]</mark> · <a href="mailto:info@bariskilicarslan.com">info@bariskilicarslan.com</a> · Vergi: <mark class="eksik">[vergi dairesi]</mark> / <mark class="eksik">[vergi no]</mark> · MERSİS: <mark class="eksik">[MERSİS no]</mark><br>Ödemeler Türk lirası (TL) ile, lisanslı ödeme kuruluşunun 3D Secure güvenli sayfasında alınır. Kart bilgileri bu siteye ulaşmaz.</p><!--/URETILEN:yasal-->
       <div class="ft-so">
         <a href="https://www.instagram.com/baris.kilicarslan/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="#fff" stroke-width="1.8"/><circle cx="17.4" cy="6.6" r="1.1" fill="#fff"/></svg></a>
         <a href="https://www.facebook.com/bariskilicarslantr/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h2.5V4.5H14c-2.5 0-4 1.6-4 4.2V11H7.5v3.5H10V21h3.5v-6.5H16l.6-3.5h-3.1V9c0-.6.4-1 1-1z" fill="#fff"/></svg></a>
@@ -1366,8 +1373,8 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
         <ul class="ck" id="pr-ul"></ul>
         <ul class="eps" id="pr-eps" hidden></ul>
         <div class="pq" id="pr-q" hidden></div>
+        <p class="pr-f" id="pr-f" hidden></p>
         <div class="mdg-cta"><button class="btn btn-k" type="button" id="pr-cta">Hemen başla</button><button class="btn btn-ok" type="button" id="pr-cta2">Ekip olarak başla</button></div>
-        <div class="done" id="pr-done" hidden><b>Bu bir demo.</b><p>Gerçek sitede ödeme sayfası açılır. Ödemeden sonra erişim ve imzalı kitap kargosu kendiliğinden başlar.</p></div>
       </div>
     </div>
   </div>
@@ -1554,6 +1561,7 @@ var PROGS={
 function fillCk(ul,arr){ul.replaceChildren();arr.forEach(function(x){var li=el('li');li.append(ico('i-k',18),document.createTextNode(x));ul.append(li);});}
 function openProg(k){var p=PROGS[k];if(!p)return;var im=$('#mp-img');im.src=p.img;im.style.objectPosition=p.pos;$('#mp-k').textContent=p.k;$('#mp-t').textContent=p.t;$('#mp-d').textContent=p.d;fillCk($('#mp-ul'),p.ul);$('#mp-cta').setAttribute('data-corp',p.topic);openModal('m-prog');}
 var EPS=[['Ayça Aral','Paylaşım Şampiyonu Olmanın Sırları','50 dk'],['Ulvi Kocailik','Ticari Gayrimenkulde Başarının Sırları','1 saat'],['Can Alisbah','Cesur Gayrimenkul Danışmanlığı','56 dk'],['Erhan Vardar','Kapalı Bölge Uzmanlığı ile Başarıda Süreklilik',''],['Evren Topal','İlişki Kurma ve Dijital Pazarlama Ustalığı',''],['Evrim Kırmızıtaş','Büyük İşler İçin Büyük Düşünmek','']];
+/*URETILEN:fiyat*/var FIYAT={"ss":{"f":9797,"t":"9.797 TL"},"gus":{"f":9797,"t":"9.797 TL"},"kitap":null};/*/URETILEN:fiyat*/
 var PROD={
   kitap:{k:'Kitap',t:'Satışın Şifreleri ile Sonucu Satmak',d:'İçgüdüsel, mantıksal ve duygusal iknanın 12 şifresi. Satmaktan çok satın aldırmak üzerine, sahada denenmiş ve keyifle okunan bir satış kitabı.',ul:['İmzalı kitap','Satışın Şifreleri online setiyle birlikte gelir'],q:[['Bu kitap satış şampiyonu olmak isteyenler için yazılmış.','Hasan Can','Dünya Gayrimenkul Şampiyonu, RE/MAX'],['Satış konusunda en iyisi olmak istiyorsanız sadece çalışmak yeterli değil. Fark yaratan detaylarla satışta başarının sırlarını öğrenmek istiyorsanız elinizdeki eğlenceli kitabı okuyun derim.','Bülent Diker','Türkiye Satış Birincisi Ekibin Lideri, Borusan Oto']],c1:'Satın al',c2:null},
   ss:{k:'Online eğitim seti',t:'Satışın Şifreleri',d:'Satmaktan çok satın aldırmaya odaklı set. Sonucu Satmak, Önce Kendine Sat, Ethos, Logos, Pathos ve Kendini Satmak bölümleri.',ul:['9,5 saat video anlatım','9,5 saat sesli anlatım','13 koçluk videosu','PDF eğitim notları ve imzalı kitap'],c1:'Hemen başla',c2:'Ekip olarak başla'},
@@ -1571,11 +1579,13 @@ function openProd(k){
   if(p.eps)EPS.forEach(function(e,i){var li=el('li');li.append(el('span',null,String(i+1).padStart(2,'0')),el('span',null,e[0]+' ile '+e[1]),el('em',null,e[2]));eps.append(li);});
   var q=$('#pr-q');q.replaceChildren();q.hidden=!p.q;
   if(p.q)p.q.forEach(function(x){var f=el('figure');var fc=el('figcaption');fc.append(el('b',null,x[1]),document.createTextNode(x[2]));f.append(el('blockquote',null,'“'+x[0]+'”'),fc);q.append(f);});
-  $('#pr-cta').textContent=p.c1;var c2=$('#pr-cta2');c2.hidden=!p.c2;if(p.c2)c2.textContent=p.c2;
-  $('#pr-done').hidden=true;
+  var f=FIYAT[k],pf=$('#pr-f'),c1=$('#pr-cta');pf.hidden=!!p.apply;pf.replaceChildren();
+  if(!p.apply){if(f){pf.append(f.t);pf.append(el('small',null,'KDV dâhil'));}else pf.append('Yakında satışta');}
+  c1.textContent=p.apply||f?p.c1:'Yakında satışta';c1.disabled=!p.apply&&!f;
+  var c2=$('#pr-cta2');c2.hidden=!p.c2;if(p.c2)c2.textContent=p.c2;
   openModal('m-prod');
 }
-$('#pr-cta').addEventListener('click',function(){if(PROD[curProd]&&PROD[curProd].apply){openModal('m-apply');return;}$('#pr-done').hidden=false;});
+$('#pr-cta').addEventListener('click',function(){if(PROD[curProd]&&PROD[curProd].apply){openModal('m-apply');return;}if(FIYAT[curProd])location.href='odeme.html?urun='+encodeURIComponent(curProd);});
 $('#pr-cta2').addEventListener('click',function(){if(curProd==='akademi'){closeModal($('#m-prod'),true);goTo('akademi');return;}openModal('m-apply');});
 
 document.addEventListener('click',function(e){

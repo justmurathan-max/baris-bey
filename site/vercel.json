@@ -18,6 +18,72 @@
     {
       "source": "/dogrula",
       "destination": "/dogrula.html"
+    },
+    {
+      "source": "/odeme",
+      "destination": "/odeme.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/mesafeli-satis-sozlesmesi",
+      "destination": "/sozlesmeler/mesafeli-satis-sozlesmesi.html",
+      "permanent": false
+    },
+    {
+      "source": "/gizlilik",
+      "destination": "/sozlesmeler/gizlilik-ve-cerez-politikasi.html",
+      "permanent": false
+    },
+    {
+      "source": "/yasal-uyarilar",
+      "destination": "/sozlesmeler/yasal-uyarilar.html",
+      "permanent": false
+    },
+    {
+      "source": "/uyelik",
+      "destination": "/sozlesmeler/uyelik-sozlesmesi.html",
+      "permanent": false
+    },
+    {
+      "source": "/iletisim",
+      "destination": "/sozlesmeler/iletisim.html",
+      "permanent": false
+    },
+    {
+      "source": "/kimdir",
+      "destination": "/sozlesmeler/hakkimizda.html",
+      "permanent": false
+    },
+    {
+      "source": "/refund_returns",
+      "destination": "/sozlesmeler/iptal-ve-iade.html",
+      "permanent": false
+    },
+    {
+      "source": "/magaza",
+      "destination": "/#magaza",
+      "permanent": false
+    },
+    {
+      "source": "/cart",
+      "destination": "/odeme.html",
+      "permanent": false
+    },
+    {
+      "source": "/urun/satisin-sifreleri-online-egitim",
+      "destination": "/odeme.html?urun=ss",
+      "permanent": false
+    },
+    {
+      "source": "/urun/gayrimenkulun-usta-satiscilari-online-egitim",
+      "destination": "/odeme.html?urun=gus",
+      "permanent": false
+    },
+    {
+      "source": "/course/:slug",
+      "destination": "/#magaza",
+      "permanent": false
     }
   ]
 }

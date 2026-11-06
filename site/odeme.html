@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Satın al · Barış Kılıçarslan</title>
+<meta name="description" content="Online eğitim setleri ve kitap için güvenli satın alma.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600&family=Inter:wght@400;500;600;700&family=Montserrat:wght@800&display=swap">
+<style>
+:root{--tx:#0B0B0C;--mu:#5E5E66;--mu2:#8C8C94;--ln:rgba(0,0,0,.11);--g0:#F4F4F1;--g1:#EBEBE7;--red:#E0262E;--ok:#0F7B4B;--blue:#3653FF;
+  --fd:"Inter Tight","Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--fb:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;--fw:"Montserrat","Inter",system-ui,sans-serif;
+  --gut:clamp(16px,3.2vw,56px);--r:14px}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:var(--tx);font:400 16px/1.5 var(--fb);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-underline-offset:3px}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+img{display:block;max-width:100%}
+[hidden]{display:none!important}
+.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.oh{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px var(--gut);background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--ln)}
+.wm{font:800 14px/1 var(--fw);letter-spacing:.16em;text-decoration:none;white-space:nowrap}
+.oh-g{display:inline-flex;align-items:center;gap:7px;font:500 13.5px/1 var(--fb);color:var(--mu);white-space:nowrap}
+.oh-g svg{width:15px;height:15px}
+.ow{max-width:1240px;margin:0 auto;padding:clamp(24px,4vw,56px) var(--gut) 72px;display:grid;grid-template-columns:minmax(0,1fr) 410px;gap:clamp(24px,4vw,64px);align-items:start}
+.geri{display:inline-flex;align-items:center;gap:6px;font:500 14px/1 var(--fb);color:var(--mu);text-decoration:none}
+.geri:hover{color:var(--tx)}
+h1{font:500 clamp(36px,4.6vw,60px)/1 var(--fd);letter-spacing:-.046em;margin:16px 0 28px}
+h2{font:600 22px/1.2 var(--fd);letter-spacing:-.02em;margin:0}
+.kt{border:1px solid var(--ln);border-radius:var(--r);padding:clamp(18px,2.2vw,28px);margin:0 0 16px;min-width:0}
+.kt legend{display:flex;align-items:center;gap:10px;padding:0 8px;margin-left:-8px;font:600 18px/1.2 var(--fd);letter-spacing:-.015em}
+.kt legend span{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--tx);color:#fff;font:600 13px/1 var(--fb)}
+.kt-n{margin:6px 0 0;color:var(--mu);font-size:14px;line-height:1.5}
+.kt-n a{color:var(--tx)}
+.gr{display:grid;grid-template-columns:1fr 1fr;gap:14px 14px;margin-top:14px}
+.gr .t{grid-column:1/-1}
+.al{display:grid;gap:6px;min-width:0}
+.al>span{font:500 13.5px/1.2 var(--fb);color:#2A2A2E}
+.al>span i{font-style:normal;color:var(--mu2);font-weight:400}
+.al input,.al select,.al textarea{width:100%;padding:12px 14px;border:1px solid rgba(0,0,0,.18);border-radius:10px;background:#fff;font-size:16px;line-height:1.3;transition:border-color .15s,box-shadow .15s}
+.al textarea{min-height:84px;resize:vertical}
+.al input:focus,.al select:focus,.al textarea:focus{outline:0;border-color:var(--tx);box-shadow:0 0 0 3px rgba(0,0,0,.08)}
+.al [aria-invalid="true"]{border-color:var(--red);box-shadow:0 0 0 3px rgba(224,38,46,.12)}
+.al small{display:none;color:var(--red);font-size:13px}
+.al [aria-invalid="true"]~small{display:block}
+.sec2{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.sec2 label{position:relative}
+.sec2 input{position:absolute;opacity:0;inset:0}
+.sec2 span{display:inline-block;padding:9px 16px;border:1px solid rgba(0,0,0,.18);border-radius:999px;font:500 14px/1.2 var(--fb)}
+.sec2 input:checked+span{background:var(--tx);border-color:var(--tx);color:#fff}
+.sec2 input:focus-visible+span{outline:2px solid var(--blue);outline-offset:2px}
+.obf{margin-top:14px;max-height:260px;overflow:auto;border:1px solid var(--ln);border-radius:12px;padding:6px 18px 14px;background:#FCFCFB;font-size:14px;line-height:1.6;color:#2A2A2E}
+.obf h2{font:600 15px/1.3 var(--fb);letter-spacing:0;margin:18px 0 6px}
+.obf ul{padding-left:18px;margin:6px 0}.obf li{margin:3px 0}.obf p{margin:8px 0}
+.sb{margin:6px 0 0;padding:0}.sb div{display:grid;grid-template-columns:140px minmax(0,1fr);gap:10px;padding:4px 0}.sb dt{color:var(--mu)}.sb dd{margin:0;overflow-wrap:anywhere}
+mark.eksik{background:#FFF1B8;color:#6B5200;border-radius:4px;padding:0 4px;font-weight:500}
+.sf{font-style:normal;font-weight:600;color:var(--tx)}.sf.bos{font-weight:400;color:var(--mu2)}
+.ut{width:100%;border-collapse:collapse;margin:8px 0;font-size:13.5px}.ut th,.ut td{padding:6px 4px;border-bottom:1px solid var(--ln);text-align:left;vertical-align:top}.ut th{font-weight:600;color:var(--mu)}.ut td:nth-child(n+2),.ut th:nth-child(n+2){text-align:right;white-space:nowrap}
+.ck{display:flex;gap:12px;align-items:flex-start;margin-top:14px;font-size:15px;line-height:1.45;cursor:pointer}
+.ck input{flex:none;width:20px;height:20px;margin:1px 0 0;accent-color:var(--tx)}
+.ck button{padding:0;border:0;background:none;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.ck.err{color:var(--red)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 28px;border:0;border-radius:999px;background:var(--tx);color:#fff;font:600 16px/1 var(--fb);text-decoration:none}
+.btn:hover{background:#000}.btn[disabled]{opacity:.5;cursor:progress}
+.btn-a{background:#fff;color:var(--tx);border:1px solid var(--tx)}.btn-a:hover{background:var(--g0)}
+.gonder{display:grid;gap:12px;margin-top:8px}
+.gonder .btn{width:100%}
+.hata{margin:0;padding:12px 14px;border-radius:10px;background:#FDECEC;color:#8A1117;font-size:14.5px}
+.oz{position:sticky;top:84px;border:1px solid var(--ln);border-radius:var(--r);padding:clamp(18px,2vw,26px);background:#fff}
+.oz-l{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:14px}
+.oz-l li{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:12px;align-items:start}
+.oz-l img{width:64px;height:64px;object-fit:cover;border-radius:10px;background:var(--g0)}
+.oz-l b{display:block;font:600 15px/1.3 var(--fb)}.oz-l small{display:block;color:var(--mu);font-size:13px;line-height:1.35;margin-top:2px}
+.oz-l .f{font:600 15px/1.3 var(--fb);white-space:nowrap;text-align:right}
+.oz-l .x{display:block;margin:6px 0 0 auto;padding:0;border:0;background:none;color:var(--mu);font-size:13px;text-decoration:underline;text-underline-offset:3px}
+.ad{display:inline-flex;align-items:center;border:1px solid var(--ln);border-radius:999px;margin-top:8px}
+.ad button{width:30px;height:28px;border:0;background:none;font-size:16px;line-height:1}
+.ad output{min-width:22px;text-align:center;font:600 14px/1 var(--fb)}
+.oz-e{margin-top:16px;padding-top:14px;border-top:1px dashed var(--ln);display:grid;gap:8px}
+.oz-e p{margin:0;color:var(--mu);font-size:13px}
+.oz-e button{display:flex;justify-content:space-between;gap:10px;width:100%;padding:10px 12px;border:1px solid var(--ln);border-radius:10px;background:#fff;text-align:left;font-size:14px}
+.oz-e button:hover{border-color:var(--tx)}
+.oz-e button b{white-space:nowrap}
+.oz-t{margin:18px 0 0;padding-top:14px;border-top:1px solid var(--ln);display:grid;gap:8px}
+.oz-t div{display:flex;justify-content:space-between;gap:12px}.oz-t dt{color:var(--mu)}.oz-t dd{margin:0;font-weight:500}
+.oz-t .gt{padding-top:10px;border-top:1px solid var(--ln);margin-top:4px}.oz-t .gt dt{color:var(--tx);font-weight:600}.oz-t .gt dt small{color:var(--mu);font-weight:400;font-size:12.5px;margin-left:6px}.oz-t .gt dd{font:600 22px/1.1 var(--fd);letter-spacing:-.02em}
+.oz-g{list-style:none;margin:18px 0 0;padding:14px 0 0;border-top:1px solid var(--ln);display:grid;gap:8px;color:var(--mu);font-size:13px;line-height:1.45}
+.oz-g li{display:flex;gap:8px}.oz-g svg{flex:none;width:15px;height:15px;margin-top:2px}
+.bos-sepet{margin:18px 0 0;color:var(--mu);font-size:14.5px}
+.op{border:1px solid var(--ln);border-radius:var(--r);padding:clamp(18px,2.2vw,28px)}
+.op p{color:var(--mu);margin:8px 0 16px}
+#paytriframe{width:100%;min-height:560px;border:0}
+.sonuc{max-width:720px;margin:0 auto;padding:clamp(40px,7vw,96px) var(--gut) 80px;text-align:center}
+.sonuc .ik{width:64px;height:64px;margin:0 auto 18px;display:grid;place-items:center;border-radius:50%;background:var(--g0)}
+.sonuc .ik svg{width:30px;height:30px}
+.sonuc.ok .ik{background:#E6F4EC;color:var(--ok)}.sonuc.no .ik{background:#FDECEC;color:var(--red)}
+.sonuc h1{margin:0 0 12px}
+.sonuc p{color:var(--mu);font-size:16.5px;line-height:1.55;margin:0 auto 10px;max-width:560px}
+.sonuc .no-k{display:inline-block;margin:10px 0 18px;padding:8px 14px;border-radius:999px;background:var(--g0);font:600 14px/1 var(--fb);letter-spacing:.04em}
+.sonuc ul{list-style:none;padding:0;margin:18px auto;max-width:460px;text-align:left;display:grid;gap:8px}
+.sonuc ul li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--ln)}
+.sonuc .bt{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.don{width:22px;height:22px;border:2.5px solid rgba(0,0,0,.15);border-top-color:var(--tx);border-radius:50%;animation:don .8s linear infinite}
+@keyframes don{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.don{animation-duration:2.4s}}
+dialog.bel{width:min(860px,calc(100% - 24px));max-height:calc(100dvh - 48px);padding:0;border:0;border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.25)}
+dialog.bel::backdrop{background:rgba(0,0,0,.45)}
+.bel-h{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 22px;background:#fff;border-bottom:1px solid var(--ln)}
+.bel-h button{width:38px;height:38px;border:1px solid var(--ln);border-radius:50%;background:#fff;font-size:20px;line-height:1}
+.bel-g{padding:6px 24px 24px;font-size:15px;line-height:1.65;color:#26262B}
+.bel-g h2{font:600 17px/1.3 var(--fd);margin:22px 0 8px}.bel-g ul{padding-left:20px}
+.yf{border-top:1px solid var(--ln);padding:26px var(--gut);color:var(--mu);font-size:13px;line-height:1.6;display:grid;gap:6px}.yf p{margin:0}
+@media (max-width:960px){.ow{grid-template-columns:1fr}.oz{position:static;order:-1}}
+@media (max-width:560px){.gr{grid-template-columns:1fr}.sb div{grid-template-columns:1fr;gap:0}.oh-g b{display:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-kilit" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+  <symbol id="i-tik" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="i-kargo" viewBox="0 0 24 24"><path d="M3 7.5h11v9H3zM14 10.5h4l3 3v3h-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7" cy="17.5" r="1.6" fill="#fff" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="17.5" r="1.6" fill="#fff" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="i-iade" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.5-5.8M4 4v4.5h4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="oh">
+  <a class="wm" href="index.html">BARIŞ KILIÇARSLAN</a>
+  <span class="oh-g"><svg aria-hidden="true"><use href="#i-kilit"/></svg><b>Güvenli ödeme</b></span>
+</header>
+
+<main class="ow" id="ana">
+  <section aria-labelledby="of-t">
+    <a class="geri" href="index.html#magaza">← Mağazaya dön</a>
+    <h1 id="of-t">Satın al</h1>
+
+    <form id="sf" novalidate>
+      <fieldset class="kt">
+        <legend><span>1</span>İletişim</legend>
+        <div class="gr">
+          <label class="al"><span>Ad</span><input id="f-ad" name="ad" autocomplete="given-name" maxlength="60" required><small>Adını yaz.</small></label>
+          <label class="al"><span>Soyad</span><input id="f-soyad" name="soyad" autocomplete="family-name" maxlength="60" required><small>Soyadını yaz.</small></label>
+          <label class="al"><span>E-posta</span><input id="f-eposta" name="eposta" type="email" autocomplete="email" maxlength="120" required><small>Geçerli bir e-posta adresi yaz.</small></label>
+          <label class="al"><span>Telefon</span><input id="f-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="05xx xxx xx xx" required><small>10 haneli telefon numaranı yaz.</small></label>
+        </div>
+        <p class="kt-n">Erişim bilgileri, fatura ve sipariş bilgilendirmeleri bu e-postaya gelir.</p>
+      </fieldset>
+
+      <fieldset class="kt">
+        <legend><span>2</span><b id="adr-t" style="font:inherit">Fatura adresi</b></legend>
+        <p class="kt-n" id="adr-n">Online eğitim e-postayla teslim edilir; adres fatura için gerekir.</p>
+        <div class="gr">
+          <label class="al"><span>İl</span><select id="f-il" name="il" autocomplete="address-level1" required><option value="">Seç</option></select><small>İl seç.</small></label>
+          <label class="al"><span>İlçe</span><input id="f-ilce" name="ilce" autocomplete="address-level2" maxlength="60" required><small>İlçeyi yaz.</small></label>
+          <label class="al t"><span>Açık adres</span><textarea id="f-adres" name="adres" autocomplete="street-address" maxlength="300" required></textarea><small>Mahalle, sokak, bina ve daire bilgisiyle açık adresini yaz.</small></label>
+          <label class="al"><span>Posta kodu <i>(isteğe bağlı)</i></span><input id="f-posta" name="posta" inputmode="numeric" autocomplete="postal-code" maxlength="5"><small>Posta kodu 5 haneli olmalı.</small></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="kt">
+        <legend><span>3</span>Fatura</legend>
+        <div class="sec2" role="radiogroup" aria-label="Fatura türü">
+          <label><input type="radio" name="ftip" value="bireysel" checked><span>Bireysel</span></label>
+          <label><input type="radio" name="ftip" value="kurumsal"><span>Kurumsal</span></label>
+        </div>
+        <div class="gr" id="f-bir">
+          <label class="al t"><span>T.C. kimlik no <i>(isteğe bağlı, fatura için)</i></span><input id="f-tckn" name="tckn" inputmode="numeric" maxlength="11" autocomplete="off"><small>T.C. kimlik numarası geçerli görünmüyor.</small></label>
+        </div>
+        <div class="gr" id="f-kur" hidden>
+          <label class="al t"><span>Şirket unvanı</span><input id="f-unvan" name="unvan" autocomplete="organization" maxlength="150"><small>Şirket unvanını yaz.</small></label>
+          <label class="al"><span>Vergi dairesi</span><input id="f-vd" name="vd" maxlength="60"><small>Vergi dairesini yaz.</small></label>
+          <label class="al"><span>Vergi no</span><input id="f-vkn" name="vkn" inputmode="numeric" maxlength="11"><small>Vergi numarası 10, şahıs şirketinde 11 haneli olmalı.</small></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="kt">
+        <legend><span>4</span>Sözleşmeler</legend>
+        <p class="kt-n">Ön Bilgilendirme Formu, girdiğin bilgilerle doldurulur. Onaylamadan önce oku.</p>
+        <div class="obf" id="obf" tabindex="0" role="region" aria-label="Ön Bilgilendirme Formu"></div>
+        <label class="ck" id="ck-onay"><input type="checkbox" id="f-onay" required><span><button type="button" data-belge="obf">Ön Bilgilendirme Formu</button>’nu ve <button type="button" data-belge="mss">Mesafeli Satış Sözleşmesi</button>’ni okudum, onaylıyorum.</span></label>
+        <label class="ck"><input type="checkbox" id="f-ileti"><span>Kampanya, yeni eğitim ve etkinliklerden e-posta ve SMS ile haberdar olmak istiyorum. <i style="font-style:normal;color:var(--mu)">(İsteğe bağlı)</i></span></label>
+        <p class="kt-n">Kişisel verilerin <a href="sozlesmeler/kvkk-aydinlatma-metni.html" target="_blank" rel="noopener">KVKK Aydınlatma Metni</a> kapsamında işlenir. İade koşulları: <a href="sozlesmeler/iptal-ve-iade.html" target="_blank" rel="noopener">İptal ve İade</a>.</p>
+      </fieldset>
+
+      <div class="gonder">
+        <button class="btn" type="submit" id="f-ode"><svg width="17" height="17" aria-hidden="true"><use href="#i-kilit"/></svg><span>Siparişi onayla ve öde</span></button>
+        <p class="kt-n">Siparişi onayladığında ödeme yükümlülüğü altına girersin. Ödeme, lisanslı ödeme kuruluşunun 3D Secure güvenli sayfasında alınır; kart bilgilerin bu siteye ulaşmaz.</p>
+        <p class="hata" id="f-hata" role="alert" hidden></p>
+      </div>
+    </form>
+
+    <section class="op" id="op" hidden aria-labelledby="op-t" tabindex="-1">
+      <h2 id="op-t">Ödeme</h2>
+      <p id="op-n"></p>
+      <div id="op-alan"></div>
+      <button class="btn btn-a" type="button" id="op-geri">Bilgileri düzenle</button>
+    </section>
+  </section>
+
+  <aside class="oz" aria-labelledby="oz-t">
+    <h2 id="oz-t">Sipariş özeti</h2>
+    <ul class="oz-l" id="ozl"></ul>
+    <p class="bos-sepet" id="ozb" hidden>Sepetin boş. Aşağıdan bir ürün ekle.</p>
+    <div class="oz-e" id="oze" hidden><p>Bunu da ekle</p></div>
+    <dl class="oz-t">
+      <div><dt>Ara toplam</dt><dd id="t-ara">0 TL</dd></div>
+      <div><dt>Kargo</dt><dd id="t-kargo">—</dd></div>
+      <div class="gt"><dt>Toplam<small>KDV dâhil</small></dt><dd id="t-top">0 TL</dd></div>
+    </dl>
+    <ul class="oz-g" id="ozg">
+      <li><svg aria-hidden="true"><use href="#i-kilit"/></svg><span>Türk lirası ile, 3D Secure güvenli ödeme</span></li>
+      <li id="ozg-d"><svg aria-hidden="true"><use href="#i-tik"/></svg><span></span></li>
+      <li id="ozg-k"><svg aria-hidden="true"><use href="#i-kargo"/></svg><span></span></li>
+      <li><svg aria-hidden="true"><use href="#i-iade"/></svg><span><a href="sozlesmeler/iptal-ve-iade.html" target="_blank" rel="noopener">İptal ve iade koşulları</a></span></li>
+    </ul>
+  </aside>
+</main>
+
+<section class="sonuc" id="sonuc" hidden aria-live="polite">
+  <div class="ik" id="so-ik"><span class="don"></span></div>
+  <h1 id="so-t">Ödemen doğrulanıyor</h1>
+  <p id="so-p">Bu birkaç saniye sürebilir, sayfayı kapatma.</p>
+  <span class="no-k" id="so-no" hidden></span>
+  <ul id="so-l" hidden></ul>
+  <div id="so-ek"></div>
+  <div class="bt" id="so-bt"></div>
+</section>
+
+<dialog class="bel" id="bel" aria-labelledby="bel-t">
+  <div class="bel-h"><h2 id="bel-t">Belge</h2><button type="button" id="bel-x" aria-label="Kapat">×</button></div>
+  <div class="bel-g" id="bel-g"></div>
+</dialog>
+
+<!--URETILEN:altbilgi--><footer class="yf"><p><mark class="eksik">[satıcı unvanı]</mark> · <mark class="eksik">[satıcı adresi]</mark> · Tel: <mark class="eksik">[telefon]</mark> · <a href="mailto:info@bariskilicarslan.com">info@bariskilicarslan.com</a> · Vergi: <mark class="eksik">[vergi dairesi]</mark> / <mark class="eksik">[vergi no]</mark> · MERSİS: <mark class="eksik">[MERSİS no]</mark></p><p>© 2026 Barış Kılıçarslan · Ödemeler Türk lirası (TL) ile, lisanslı ödeme kuruluşunun 3D Secure güvenli sayfasında alınır. <a href="sozlesmeler/index.html">Yasal metinler</a></p></footer><!--/URETILEN:altbilgi-->
+
+<!--URETILEN:veri--><script type="application/json" id="veri">{"surum":"2026-11-07.33db78b5","satici":{"unvan":null,"marka":"Barış Kılıçarslan","adres":null,"vergi_dairesi":null,"vergi_no":null,"mersis":null,"telefon":null,"eposta":"info@bariskilicarslan.com","kep":null,"web":"www.bariskilicarslan.com","dijital_teslim_saat":24,"dijital_iptal_saat":24,"hazirlama_gun":5,"kargo_firma":null},"urunler":[{"kod":"ss","ad":"Satışın Şifreleri Online Eğitim Seti","kisa":"Online eğitim seti ve imzalı kitap","icerik":["9,5 saat video anlatım (online)","9,5 saat sesli anlatım (online)","13 koçluk videosu (online)","PDF eğitim notları (online)","İmzalı Satışın Şifreleri kitabı (kargoyla)"],"dijital":true,"kargo":true,"fiyat":9797,"kargo_ucreti":0,"en_fazla":1,"kategori":"Online eğitim","gorsel":"img/hero-armsup.webp"},{"kod":"gus","ad":"Gayrimenkulün Usta Satışçıları Online Eğitim Seti","kisa":"Online eğitim seti","icerik":["10 saat video anlatım (online)","10 saat sesli anlatım (online, indirilebilir)","PDF eğitim notları (online, indirilebilir)"],"dijital":true,"kargo":false,"fiyat":9797,"kargo_ucreti":0,"en_fazla":1,"kategori":"Online eğitim","gorsel":"img/banner.webp"},{"kod":"kitap","ad":"Satışın Şifreleri ile Sonucu Satmak","kisa":"İmzalı kitap","icerik":["İmzalı basılı kitap","Türkiye içine kargo"],"dijital":false,"kargo":true,"fiyat":null,"kargo_ucreti":null,"en_fazla":10,"kategori":"Kitap","gorsel":"img/kitap.webp"}],"eksik":["unvan","adres","telefon","mersis","vergi_dairesi","vergi_no","kargo_firma"],"sablon":{"obf":"<p>Bu form, 6502 sayılı Tüketicinin Korunması Hakkında Kanun ve Mesafeli Sözleşmeler Yönetmeliği uyarınca, ALICI’nın siparişini onaylamadan önce bilgilendirilmesi için hazırlanmıştır. Sipariş sırasında aşağıdaki alanlar ALICI’nın girdiği bilgilerle doldurulur ve form ALICI tarafından elektronik ortamda onaylanır.<\/p>\n<h2>1. Satıcı bilgileri<\/h2>\n<dl class=\"sb\"><div><dt>Unvan<\/dt><dd><mark class=\"eksik\">[satıcı unvanı]<\/mark><\/dd><\/div><div><dt>Adres<\/dt><dd><mark class=\"eksik\">[satıcı adresi]<\/mark><\/dd><\/div><div><dt>Telefon<\/dt><dd><mark class=\"eksik\">[telefon]<\/mark><\/dd><\/div><div><dt>E-posta<\/dt><dd><a href=\"mailto:info@bariskilicarslan.com\">info@bariskilicarslan.com<\/a><\/dd><\/div><div><dt>MERSİS no<\/dt><dd><mark class=\"eksik\">[MERSİS no]<\/mark><\/dd><\/div><div><dt>Vergi dairesi / no<\/dt><dd><mark class=\"eksik\">[vergi dairesi]<\/mark> / <mark class=\"eksik\">[vergi no]<\/mark><\/dd><\/div><div><dt>İnternet sitesi<\/dt><dd>www.bariskilicarslan.com<\/dd><\/div><\/dl>\n<h2>2. Alıcı bilgileri<\/h2>\n<ul><li>Ad soyad / unvan: <span class=\"sf\" data-f=\"alici_ad\">sipariş sırasında doldurulur<\/span><\/li><li>Adres: <span class=\"sf\" data-f=\"alici_adres\">sipariş sırasında doldurulur<\/span><\/li><li>Telefon: <span class=\"sf\" data-f=\"alici_tel\">sipariş sırasında doldurulur<\/span><\/li><li>E-posta: <span class=\"sf\" data-f=\"alici_eposta\">sipariş sırasında doldurulur<\/span><\/li><li>Fatura bilgileri: <span class=\"sf\" data-f=\"fatura_bilgisi\">sipariş sırasında doldurulur<\/span><\/li><\/ul>\n<h2>3. Sözleşme konusu ürünler ve fiyat<\/h2>\n<p>Ürünlerin temel nitelikleri, adedi ve vergiler dâhil satış fiyatı aşağıdadır. Fiyatlar Türk lirası (TL) cinsindendir ve KDV dâhildir.<\/p>\n<div class=\"sf-t\" data-f=\"urun_tablosu\"><p class=\"sf\">Ürünler, adet ve fiyatlar sipariş sırasında doldurulur.<\/p><\/div>\n<ul><li>Kargo ücreti: <span class=\"sf\" data-f=\"kargo_ucreti\">sipariş sırasında doldurulur<\/span><\/li><li>Ödenecek toplam tutar (vergiler dâhil): <span class=\"sf\" data-f=\"genel_toplam\">sipariş sırasında doldurulur<\/span><\/li><li>Sipariş tarihi: <span class=\"sf\" data-f=\"siparis_tarihi\">sipariş sırasında doldurulur<\/span><\/li><\/ul>\n<p>Sitede ilan edilen fiyatlar güncellenene kadar geçerlidir. Süreli kampanya fiyatları kampanya süresi boyunca geçerlidir.<\/p>\n<h2>4. Ödeme<\/h2>\n<p>Ödeme; kredi kartı, banka kartı ya da ödeme kuruluşunun sunduğu diğer yöntemlerle, lisanslı ödeme kuruluşunun 3D Secure güvenli ödeme sayfasında alınır. Kart bilgileri SATICI’ya iletilmez ve SATICI tarafından saklanmaz. Taksit seçenekleri kartı veren bankanın ve ödeme kuruluşunun koşullarına bağlıdır; taksitli ödemelerde uygulanan vade farkı ödeme sayfasında gösterilir.<\/p>\n<p>ALICI, siparişi onayladığında ödeme yükümlülüğü altına girer.<\/p>\n<h2>5. Teslimat<\/h2>\n<ul><li><strong>Online eğitim setleri:<\/strong> Ödeme onaylandıktan sonra en geç 24 saat içinde eğitime erişim bilgileri ALICI’nın e-posta adresine gönderilir.<\/li><li><strong>Kitap ve sete dâhil imzalı kitap:<\/strong> Ödeme onaylandıktan sonra en geç 5 iş günü içinde kargoya verilir ve <span class=\"sf\" data-f=\"teslimat_adresi\">sipariş sırasında doldurulur<\/span> adresine teslim edilir. Teslimat yalnızca Türkiye içindeki adreslere yapılır. Kargo firması: <mark class=\"eksik\">[kargo firması]<\/mark>. Kargo takip numarası e-postayla bildirilir.<\/li><li>Her durumda teslimat, sipariş tarihinden itibaren yasal 30 günlük süreyi aşmaz.<\/li><\/ul>\n<h2>6. Cayma hakkı<\/h2>\n<p><strong>Kitap:<\/strong> ALICI, kitabın kendisine ya da gösterdiği kişiye teslim edildiği tarihten itibaren 14 (on dört) gün içinde, hiçbir gerekçe göstermeden ve cezai şart ödemeden sözleşmeden cayabilir. Cayma bildirimi <a href=\"mailto:info@bariskilicarslan.com\">info@bariskilicarslan.com<\/a> adresine e-postayla ya da <mark class=\"eksik\">[satıcı adresi]<\/mark> adresine yazılı olarak yapılır. ALICI, cayma bildirimini yönelttiği tarihten itibaren 10 (on) gün içinde kitabı SATICI’ya geri gönderir. SATICI, cayma bildiriminin kendisine ulaştığı tarihten itibaren en geç 14 (on dört) gün içinde, teslim masrafları dâhil tahsil ettiği tüm ödemeleri ALICI’nın ödemede kullandığı yönteme uygun şekilde iade eder.<\/p>\n<p><strong>Online eğitim setleri:<\/strong> Elektronik ortamda anında ifa edilen hizmetler ve tüketiciye anında teslim edilen gayrimaddi mallar için, Mesafeli Sözleşmeler Yönetmeliği’nin 15. maddesi gereğince cayma hakkı bulunmamaktadır. Bununla birlikte SATICI, online eğitim setlerinde satın alma tarihinden itibaren 24 saat içinde <a href=\"mailto:info@bariskilicarslan.com\">info@bariskilicarslan.com<\/a> adresine iletilen iptal taleplerini gerekçe aramaksızın kabul eder ve ödenen tutarın tamamını iade eder. Sete dâhil kitap kargoya verilmişse kitabın geri gönderilmesi gerekir.<\/p>\n<p><strong>Cayma hakkının kullanılamadığı durumlar:<\/strong> Teslimden sonra ambalaj, bant, mühür, paket gibi koruyucu unsurları açılmış kitaplarda ve elektronik ortamda anında teslim edilen dijital içeriklerde cayma hakkı kullanılamaz.<\/p>\n<p>Ayrıntılar <a href=\"iptal-ve-iade.html\">İptal ve İade Koşulları<\/a> sayfasındadır.<\/p>\n<h2>7. Dijital içeriğe ilişkin bilgiler<\/h2>\n<p>Eğitimler, internet bağlantısı olan güncel bir tarayıcı üzerinden bilgisayar, tablet ya da telefonda izlenir; ayrı bir program kurulması gerekmez. İçeriklere ALICI’ya özel kullanıcı bilgileriyle erişilir. İçerikler kişisel kullanım içindir; kopyalanması, indirilmesine izin verilmeyen içeriklerin indirilmesi, başkalarıyla paylaşılması ve toplu gösterimi yasaktır. Erişimin güvenliği için oturum ve cihaz sınırlamaları uygulanabilir.<\/p>\n<h2>8. Şikâyet ve uyuşmazlıklar<\/h2>\n<p>ALICI, sipariş, teslimat ve iadeyle ilgili taleplerini <a href=\"mailto:info@bariskilicarslan.com\">info@bariskilicarslan.com<\/a> adresine iletebilir. Uyuşmazlık hâlinde ALICI, Ticaret Bakanlığınca her yıl ilan edilen parasal sınırlar dâhilinde, yerleşim yerinin bulunduğu veya tüketici işleminin yapıldığı yerdeki tüketici hakem heyetine ya da tüketici mahkemesine başvurabilir.<\/p>\n<h2>9. Kişisel veriler<\/h2>\n<p>ALICI’nın kişisel verileri <a href=\"kvkk-aydinlatma-metni.html\">KVKK Aydınlatma Metni<\/a>’nde belirtilen amaçlarla, 6698 sayılı Kişisel Verilerin Korunması Kanunu’na uygun olarak işlenir.<\/p>\n<p>Bu form, siparişe ait <a href=\"mesafeli-satis-sozlesmesi.html\">Mesafeli Satış Sözleşmesi<\/a>’nin ayrılmaz parçasıdır.<\/p>","mss":"<h2>1. Taraflar<\/h2>\n<p>İşbu Sözleşme, aşağıda bilgileri yer alan ALICI ile SATICI arasında, aşağıdaki hüküm ve şartlar çerçevesinde elektronik ortamda kurulmuştur.<\/p>\n<p><strong>SATICI<\/strong><\/p>\n<dl class=\"sb\"><div><dt>Unvan<\/dt><dd><mark class=\"eksik\">[satıcı unvanı]<\/mark><\/dd><\/div><div><dt>Adres<\/dt><dd><mark class=\"eksik\">[satıcı adresi]<\/mark><\/dd><\/div><div><dt>Telefon<\/dt><dd><mark class=\"eksik\">[telefon]<\/mark><\/dd><\/div><div><dt>E-posta<\/dt><dd><a href=\"mailto:info@bariskilicarslan.com\">info@bariskilicarslan.com<\/a><\/dd><\/div><div><dt>MERSİS no<\/dt><dd><mark class=\"eksik\">[MERSİS no]<\/mark><\/dd><\/div><div><dt>Vergi dairesi / no<\/dt><dd><mark class=\"eksik\">[vergi dairesi]<\/mark> / <mark class=\"eksik\">[vergi no]<\/mark><\/dd><\/div><div><dt>İnternet sitesi<\/dt><dd>www.bariskilicarslan.com<\/dd><\/div><\/dl>\n<p><strong>ALICI<\/strong><\/p>\n<ul><li>Ad soyad / unvan: <span class=\"sf\" data-f=\"alici_ad\">sipariş sırasında doldurulur<\/span><\/li><li>Adres: <span class=\"sf\" data-f=\"alici_adres\">sipariş sırasında doldurulur<\/span><\/li><li>Telefon: <span class=\"sf\" data-f=\"alici_tel\">sipariş sırasında doldurulur<\/span><\/li><li>E-posta: <span class=\"sf\" data-f=\"alici_eposta\">sipariş sırasında doldurulur<\/span><\/li><\/ul>\n<p>ALICI, işbu Sözleşme’yi kabul etmekle, sipariş konusu bedeli ve varsa kargo ücreti gibi belirtilen ek ücretleri ödeme yükümlülüğü altına gireceğini ve bu konuda bilgilendirildiğini kabul eder.<\/p>\n<h2>2. Tanımlar<\/h2>\n<p>İşbu Sözleşme’nin uygulanmasında ve yorumlanmasında aşağıdaki terimler karşılarındaki anlamları ifade eder:<\/p>\n<ul><li><strong>Bakanlık:<\/strong> Ticaret Bakanlığı’nı,<\/li><li><strong>Kanun:<\/strong> 6502 sayılı Tüketicinin Korunması Hakkında Kanun’u,<\/li><li><strong>Yönetmelik:<\/strong> Mesafeli Sözleşmeler Yönetmeliği’ni (RG: 27.11.2014/29188),<\/li><li><strong>Hizmet:<\/strong> Bir ücret veya menfaat karşılığında yapılan ya da yapılması taahhüt edilen mal sağlama dışındaki her türlü tüketici işleminin konusunu,<\/li><li><strong>Satıcı:<\/strong> Ticari veya mesleki faaliyetleri kapsamında tüketiciye mal veya hizmet sunan ya da mal veya hizmet sunan adına veya hesabına hareket eden gerçek veya tüzel kişiyi,<\/li><li><strong>Alıcı:<\/strong> Bir mal veya hizmeti ticari veya mesleki olmayan amaçlarla edinen, kullanan veya yararlanan gerçek ya da tüzel kişiyi,<\/li><li><strong>Site:<\/strong> SATICI’ya ait www.bariskilicarslan.com internet sitesini,<\/li><li><strong>Sipariş veren:<\/strong> Bir mal veya hizmeti Site üzerinden talep eden gerçek ya da tüzel kişiyi,<\/li><li><strong>Taraflar:<\/strong> SATICI ve ALICI’yı,<\/li><li><strong>Sözleşme:<\/strong> SATICI ve ALICI arasında akdedilen işbu sözleşmeyi,<\/li><li><strong>Mal:<\/strong> Alışverişe konu olan taşınır eşyayı (kitap) ve elektronik ortamda kullanılmak üzere hazırlanan ses, görüntü ve benzeri gayrimaddi malları (online eğitim içerikleri) ifade eder.<\/li><\/ul>\n<h2>3. Konu<\/h2>\n<p>İşbu Sözleşme, ALICI’nın Site üzerinden elektronik ortamda siparişini verdiği, aşağıda nitelikleri ve satış fiyatı belirtilen ürünlerin satışı ve teslimiyle ilgili olarak Kanun ve Yönetmelik hükümleri gereğince tarafların hak ve yükümlülüklerini düzenler.<\/p>\n<p>Sitede ilan edilen fiyatlar satış fiyatıdır. İlan edilen fiyatlar ve vaatler güncellenene kadar geçerlidir. Süreli olarak ilan edilen fiyatlar belirtilen süre sonuna kadar geçerlidir.<\/p>\n<h2>4. Sözleşme konusu ürünler<\/h2>\n<p>Ürünlerin temel nitelikleri Site’de ürün tanıtımında yayınlanmaktadır. Sözleşme konusu ürünlerin vergiler dâhil satış fiyatı aşağıda gösterilmiştir.<\/p>\n<div class=\"sf-t\" data-f=\"urun_tablosu\"><p class=\"sf\">Ürünler, adet ve fiyatlar sipariş sırasında doldurulur.<\/p><\/div>\n<ul><li>Kargo ücreti: <span class=\"sf\" data-f=\"kargo_ucreti\">sipariş sırasında doldurulur<\/span><\/li><li>Toplam tutar (vergiler dâhil): <span class=\"sf\" data-f=\"genel_toplam\">sipariş sırasında doldurulur<\/span><\/li><li>Ödeme şekli: <span class=\"sf\" data-f=\"odeme_sekli\">sipariş sırasında doldurulur<\/span><\/li><li>Teslimat adresi: <span class=\"sf\" data-f=\"teslimat_adresi\">sipariş sırasında doldurulur<\/span><\/li><li>Teslim şekli: <span class=\"sf\" data-f=\"teslim_bilgisi\">sipariş sırasında doldurulur<\/span><\/li><li>Sipariş tarihi: <span class=\"sf\" data-f=\"siparis_tarihi\">sipariş sırasında doldurulur<\/span><\/li><li>Sipariş numarası: <span class=\"sf\" data-f=\"siparis_no\">sipariş sırasında doldurulur<\/span><\/li><\/ul>\n<h2>5. Fatura bilgileri<\/h2>\n<ul><li>Fatura bilgileri: <span class=\"sf\" data-f=\"fatura_bilgisi\">sipariş sırasında doldurulur<\/span><\/li><li>Fatura, ALICI’nın sipariş sırasında bildirdiği bilgilerle düzenlenir ve elektronik ortamda ALICI’nın e-posta adresine gönderilir.<\/li><\/ul>\n<h2>6. Genel hükümler<\/h2>\n<p>6.1. ALICI, Site’de sözleşme konusu ürünün temel nitelikleri, satış fiyatı ve ödeme şekli ile teslimata ilişkin ön bilgileri okuyup bilgi sahibi olduğunu ve elektronik ortamda gerekli teyidi verdiğini kabul, beyan ve taahhüt eder. ALICI, Ön Bilgilendirme Formu’nu elektronik ortamda teyit etmekle, mesafeli satış sözleşmesinin kurulmasından önce SATICI tarafından ALICI’ya verilmesi gereken adresi, siparişi verilen ürünlere ait temel özellikleri, ürünlerin vergiler dâhil fiyatını, ödeme ve teslimat bilgilerini doğru ve eksiksiz olarak edindiğini kabul, beyan ve taahhüt eder.<\/p>\n<p>6.2. Online eğitim setlerinde erişim bilgileri, ödeme onaylandıktan sonra en geç 24 saat içinde ALICI’nın e-posta adresine gönderilir. Kitaplar, ödeme onaylandıktan sonra en geç 5 iş günü içinde kargoya verilir. Sözleşme konusu her ürün, 30 günlük yasal süreyi aşmamak kaydıyla ALICI’ya ya da ALICI’nın gösterdiği adresteki kişi ve/veya kuruluşa teslim edilir. Bu süre içinde ürünün teslim edilememesi durumunda ALICI’nın sözleşmeyi feshetme hakkı saklıdır.<\/p>\n<p>6.3. SATICI, sözleşme konusu ürünü eksiksiz, siparişte belirtilen niteliklere uygun ve varsa işin gereği olan bilgi ve belgelerle teslim etmeyi, her türlü ayıptan arî olarak yasal mevzuat gereklerine göre sağlam, standartlara uygun bir şekilde, doğruluk ve dürüstlük esasları dâhilinde ifa etmeyi, hizmet kalitesini koruyup yükseltmeyi, işin ifası sırasında gerekli dikkat ve özeni göstermeyi, ihtiyat ve öngörü ile hareket etmeyi kabul, beyan ve taahhüt eder.<\/p>\n<p>6.4. SATICI, sözleşmeden doğan ifa yükümlülüğünün süresi dolmadan ALICI’yı bilgilendirmek ve açıkça onayını almak suretiyle eşit kalite ve fiyatta farklı bir ürün tedarik edebilir.<\/p>\n<p>6.5. SATICI, sipariş konusu ürün veya hizmetin yerine getirilmesinin imkânsızlaşması hâlinde, bu durumu öğrendiği tarihten itibaren 3 (üç) gün içinde yazılı olarak ALICI’ya bildireceğini ve 14 (on dört) günlük süre içinde toplam bedeli ALICI’ya iade edeceğini kabul, beyan ve taahhüt eder.<\/p>\n<p>6.6. ALICI, sözleşme konusu ürünün teslimatı için işbu Sözleşme’yi elektronik ortamda teyit edeceğini; herhangi bir nedenle ürün bedelinin ödenmemesi ve/veya banka kayıtlarında iptal edilmesi hâlinde SATICI’nın ürünü teslim yükümlülüğünün sona ereceğini kabul, beyan ve taahhüt eder.<\/p>\n<p>6.7. Ürünün tesliminden sonra ALICI’ya ait kartın yetkisiz kişilerce haksız kullanılması sonucunda ürün bedelinin ilgili banka veya finans kuruluşu tarafından SATICI’ya ödenmemesi hâlinde ALICI, kitabı 3 (üç) gün içinde nakliye gideri SATICI’ya ait olacak şekilde SATICI’ya iade edeceğini; online eğitimlerde erişimin kapatılacağını kabul, beyan ve taahhüt eder.<\/p>\n<p>6.8. SATICI, tarafların iradesi dışında gelişen, önceden öngörülemeyen ve tarafların borçlarını yerine getirmesini engelleyici ve/veya geciktirici mücbir sebepler nedeniyle sözleşme konusu ürünü süresi içinde teslim edemezse, durumu ALICI’ya bildireceğini kabul, beyan ve taahhüt eder. ALICI da siparişin iptal edilmesini, sözleşme konusu ürünün varsa emsali ile değiştirilmesini ve/veya teslimat süresinin engelleyici durum ortadan kalkana kadar ertelenmesini SATICI’dan talep etme hakkına sahiptir. ALICI tarafından siparişin iptal edilmesi hâlinde ödenen tutar 14 (on dört) gün içinde ALICI’nın ödemede kullandığı karta ya da hesaba iade edilir. ALICI, iade edilen tutarın hesabına yansıma süresinin bankanın işlem sürecine bağlı olduğunu ve olası gecikmeler için SATICI’yı sorumlu tutamayacağını kabul eder.<\/p>\n<p>6.9. SATICI, ALICI’nın sipariş sırasında bildirdiği iletişim bilgileri üzerinden siparişin onayı, teslimatı, faturası ve iadesiyle ilgili bilgilendirme yapabilir. Kampanya ve tanıtım amaçlı ticari elektronik iletiler yalnızca ALICI’nın ayrıca verdiği onayla gönderilir; ALICI bu onayı dilediği zaman ücretsiz olarak geri alabilir.<\/p>\n<p>6.10. ALICI, kitabı teslim almadan önce kontrol eder; ezik, kırık, ambalajı yırtılmış veya hasarlı paketi kargo görevlisine tutanak tutturmadan teslim almaz. Teslim alınan ürünün hasarsız ve sağlam olduğu kabul edilir. Teslimden sonra ürünün özenle korunması ALICI’ya aittir. Cayma hakkı kullanılacaksa ürün kullanılmamış olmalı ve faturası iade edilmelidir.<\/p>\n<p>6.11. ALICI ile sipariş sırasında kullanılan kart hamilinin aynı kişi olmaması veya ürünün ALICI’ya tesliminden önce siparişte kullanılan karta ilişkin güvenlik açığı tespit edilmesi hâlinde SATICI, kart hamiline ilişkin kimlik ve iletişim bilgilerini ya da kartın kendisine ait olduğuna ilişkin banka yazısını ibraz etmesini ALICI’dan talep edebilir. ALICI’nın talep edilen bilgi ve belgeleri temin etmesine kadar sipariş dondurulur; talebin 24 (yirmi dört) saat içinde karşılanmaması hâlinde SATICI siparişi iptal etme hakkına sahiptir.<\/p>\n<p>6.12. ALICI, Site’yi kullanırken verdiği kişisel ve diğer bilgilerin gerçeğe uygun olduğunu, bu bilgilerin gerçeğe aykırılığı nedeniyle SATICI’nın uğrayacağı zararları tazmin edeceğini beyan ve taahhüt eder.<\/p>\n<p>6.13. ALICI, Site’yi kullanırken yasal mevzuat hükümlerine uymayı ve bunları ihlal etmemeyi kabul ve taahhüt eder. Aksi takdirde doğacak tüm hukuki ve cezai yükümlülükler ALICI’yı bağlar.<\/p>\n<p>6.14. ALICI, Site’yi kamu düzenini bozucu, genel ahlaka aykırı, başkalarını rahatsız ve taciz edici şekilde, yasalara aykırı bir amaçla veya başkalarının maddi ve manevi haklarını ihlal edecek şekilde kullanamaz. Ayrıca başkalarının hizmetleri kullanmasını önleyici veya zorlaştırıcı faaliyetlerde (spam, virüs, truva atı vb.) bulunamaz.<\/p>\n<p>6.15. Site üzerinden SATICI’nın kontrolünde olmayan ve/veya üçüncü kişilere ait başka internet sitelerine bağlantı verilebilir. Bu bağlantılar yönlendirme kolaylığı sağlamak için konmuş olup bağlantı verilen siteyi veya o siteyi işleten kişiyi desteklemez ve bu sitelerdeki bilgilere yönelik bir garanti niteliği taşımaz.<\/p>\n<p>6.16. Online eğitim içerikleri ALICI’nın kişisel kullanımı içindir. ALICI, içerikleri kopyalayamaz, çoğaltamaz, yeniden yayımlayamaz, başkalarıyla paylaşamaz ve toplu gösterimini yapamaz. Erişim bilgilerinin üçüncü kişilerle paylaşıldığının tespiti hâlinde SATICI erişimi kapatma hakkına sahiptir.<\/p>\n<h2>7. Cayma hakkı<\/h2>\n<p>7.1. ALICI, kitap satışlarında, ürünün kendisine veya gösterdiği adresteki kişi ya da kuruluşa teslim tarihinden itibaren 14 (on dört) gün içinde, SATICI’ya bildirmek şartıyla, hiçbir hukuki ve cezai sorumluluk üstlenmeksizin ve hiçbir gerekçe göstermeksizin sözleşmeden cayma hakkını kullanabilir.<\/p>\n<p>7.2. Cayma hakkının kullanılması için bu süre içinde SATICI’ya <a href=\"mailto:info@bariskilicarslan.com\">info@bariskilicarslan.com<\/a> adresine e-postayla ya da <mark class=\"eksik\">[satıcı adresi]<\/mark> adresine yazılı olarak bildirimde bulunulması ve ürünün 8. maddede düzenlenen hâller dışında kalması şarttır. Bu hakkın kullanılması hâlinde:<\/p>\n<ul><li>ALICI, cayma bildirimini yönelttiği tarihten itibaren 10 (on) gün içinde ürünü faturasıyla birlikte, eksiksiz ve hasarsız olarak SATICI’ya geri gönderir. Faturası kurum adına düzenlenen siparişlerde iade, kurumun düzenleyeceği iade faturasıyla tamamlanır.<\/li><li>Ürün, SATICI’nın bildirdiği anlaşmalı kargo firmasıyla gönderilirse iade kargo ücreti ALICI’dan alınmaz.<\/li><li>SATICI, cayma bildiriminin kendisine ulaştığı tarihten itibaren en geç 14 (on dört) gün içinde, teslim masrafları dâhil tahsil ettiği tüm ödemeleri ALICI’ya, ödemede kullanılan yönteme uygun şekilde iade eder.<\/li><li>ALICI’nın kusurundan kaynaklanan bir nedenle ürünün değerinde bir azalma olursa veya iade imkânsızlaşırsa ALICI, kusuru oranında SATICI’nın zararlarını tazmin etmekle yükümlüdür. Ancak cayma hakkı süresi içinde ürünün usulüne uygun kullanılması sebebiyle meydana gelen değişiklik ve bozulmalardan ALICI sorumlu değildir.<\/li><\/ul>\n<p>7.3. Online eğitim setlerinde SATICI, satın alma tarihinden itibaren 24 saat içinde <a href=\"mailto:info@bariskilicarslan.com\">info@bariskilicarslan.com<\/a> adresine iletilen iptal taleplerini gerekçe aramaksızın kabul eder ve ödenen tutarın tamamını 14 (on dört) gün içinde iade eder. Sete dâhil kitap kargoya verilmişse kitabın 7.2. maddedeki şekilde geri gönderilmesi gerekir.<\/p>\n<h2>8. Cayma hakkı kullanılamayacak ürünler<\/h2>\n<p>Yönetmelik’in 15. maddesi uyarınca, elektronik ortamda anında ifa edilen hizmetler ve tüketiciye anında teslim edilen gayrimaddi mallar (online eğitim içerikleri) ile tesliminden sonra ambalaj, bant, mühür, paket gibi koruyucu unsurları açılmış kitaplarda cayma hakkı kullanılamaz. 7.3. maddedeki iptal güvencesi saklıdır.<\/p>\n<h2>9. Temerrüt hâli ve hukuki sonuçları<\/h2>\n<p>ALICI, ödeme işlemlerini kredi kartıyla yaptığı durumda temerrüde düştüğü takdirde, kart sahibi banka ile arasındaki kredi kartı sözleşmesi çerçevesinde faiz ödeyeceğini ve bankaya karşı sorumlu olacağını kabul, beyan ve taahhüt eder. Bu durumda ilgili banka hukuki yollara başvurabilir; doğacak masrafları ve vekâlet ücretini ALICI’dan talep edebilir. ALICI, borcundan dolayı temerrüde düşmesi hâlinde borcun gecikmeli ifasından dolayı SATICI’nın uğradığı zarar ve ziyanı ödeyeceğini kabul eder.<\/p>\n<h2>10. Yetkili merci<\/h2>\n<p>İşbu Sözleşme’den doğan uyuşmazlıklarda şikâyet ve itirazlar, Ticaret Bakanlığınca her yıl ilan edilen parasal sınırlar dâhilinde, ALICI’nın yerleşim yerinin bulunduğu veya tüketici işleminin yapıldığı yerdeki tüketici hakem heyetine veya tüketici mahkemesine yapılır.<\/p>\n<h2>11. Yürürlük<\/h2>\n<p>ALICI, Site üzerinden verdiği siparişe ait ödemeyi gerçekleştirdiğinde işbu Sözleşme’nin tüm şartlarını kabul etmiş sayılır. SATICI, sipariş gerçekleşmeden önce işbu Sözleşme’nin ALICI tarafından okunup kabul edildiğine dair onay alacak şekilde gerekli yazılımsal düzenlemeleri yapmakla yükümlüdür. Sözleşme’nin bir örneği sipariş onayından sonra ALICI’nın e-posta adresine gönderilir.<\/p>\n<ul><li>SATICI: <mark class=\"eksik\">[satıcı unvanı]<\/mark><\/li><li>ALICI: <span class=\"sf\" data-f=\"alici_ad\">sipariş sırasında doldurulur<\/span><\/li><li>Tarih: <span class=\"sf\" data-f=\"siparis_tarihi\">sipariş sırasında doldurulur<\/span><\/li><\/ul>"}}</script><!--/URETILEN:veri-->
+<script>
+(function(){
+'use strict';
+var V=JSON.parse(document.getElementById('veri').textContent);
+var FN='https://xjbqesljonbbduldeesd.supabase.co/functions/v1/odeme';
+var DEMO=!!window.ODEME_ONIZLEME||location.protocol==='file:'||/[?&]demo=1(&|$)/.test(location.search);
+var $=function(s,r){return (r||document).querySelector(s);},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+function tl(n){var t=Math.round(n*100),l=Math.floor(t/100),k=t%100;var s=String(l).replace(/\B(?=(\d{3})+(?!\d))/g,'.');return k?s+','+String(k).padStart(2,'0')+' TL':s+' TL';}
+var U={};V.urunler.forEach(function(u){U[u.kod]=u;});
+var S=V.satici,q=new URLSearchParams(location.search);
+var IL=['Adana','Adıyaman','Afyonkarahisar','Ağrı','Aksaray','Amasya','Ankara','Antalya','Ardahan','Artvin','Aydın','Balıkesir','Bartın','Batman','Bayburt','Bilecik','Bingöl','Bitlis','Bolu','Burdur','Bursa','Çanakkale','Çankırı','Çorum','Denizli','Diyarbakır','Düzce','Edirne','Elazığ','Erzincan','Erzurum','Eskişehir','Gaziantep','Giresun','Gümüşhane','Hakkari','Hatay','Iğdır','Isparta','İstanbul','İzmir','Kahramanmaraş','Karabük','Karaman','Kars','Kastamonu','Kayseri','Kilis','Kırıkkale','Kırklareli','Kırşehir','Kocaeli','Konya','Kütahya','Malatya','Manisa','Mardin','Mersin','Muğla','Muş','Nevşehir','Niğde','Ordu','Osmaniye','Rize','Sakarya','Samsun','Siirt','Sinop','Sivas','Şanlıurfa','Şırnak','Tekirdağ','Tokat','Trabzon','Tunceli','Uşak','Van','Yalova','Yozgat','Zonguldak'];
+
+/* ---------- Sonuç ---------- */
+if(q.get('no')&&q.get('k')){
+  if(window.top!==window.self){try{window.top.location.replace(location.href);return;}catch(e){}}
+  sonuc(q.get('no'),q.get('k'),q.get('d'));
+  return;
+}
+
+/* ---------- Sepet ---------- */
+var satista=function(k){return U[k]&&U[k].fiyat!=null&&!(U[k].kargo&&U[k].kargo_ucreti==null);};
+var sepet=[];
+(q.get('urun')||(window.ODEME_ONIZLEME?'ss':'')).split(',').forEach(function(k){if(satista(k)&&!sepet.some(function(x){return x.kod===k;}))sepet.push({kod:k,adet:1});});
+var IL_SEC=$('#f-il');IL.forEach(function(i){var o=el('option',null,i);o.value=i;IL_SEC.append(o);});
+
+function hesap(){
+  var ara=0,kargo=null,dij=false,kar=false;
+  sepet.forEach(function(x){var u=U[x.kod];ara+=u.fiyat*x.adet;if(u.dijital)dij=true;if(u.kargo){kar=true;kargo=Math.max(kargo||0,u.kargo_ucreti||0);}});
+  return {ara:ara,kargo:kar?kargo:0,kar:kar,dij:dij,top:ara+(kar?kargo:0)};
+}
+function cizSepet(){
+  var l=$('#ozl');l.replaceChildren();
+  sepet.forEach(function(x,i){
+    var u=U[x.kod],li=el('li'),im=el('img');im.src=u.gorsel;im.alt='';im.loading='lazy';
+    var m=el('div');m.append(el('b',null,u.ad),el('small',null,u.kisa));
+    if(u.en_fazla>1){var ad=el('div','ad');ad.setAttribute('role','group');ad.setAttribute('aria-label','Adet');
+      var e1=el('button',null,'−'),o=el('output',null,String(x.adet)),e2=el('button',null,'+');e1.type=e2.type='button';e1.setAttribute('aria-label','Azalt');e2.setAttribute('aria-label','Artır');
+      e1.disabled=x.adet<=1;e2.disabled=x.adet>=u.en_fazla;
+      e1.onclick=function(){x.adet=Math.max(1,x.adet-1);yenile();};e2.onclick=function(){x.adet=Math.min(u.en_fazla,x.adet+1);yenile();};
+      ad.append(e1,o,e2);m.append(ad);}
+    var f=el('div');f.append(el('span','f',tl(u.fiyat*x.adet)));var rm=el('button','x','Çıkar');rm.type='button';rm.setAttribute('aria-label',u.ad+' sepetten çıkar');rm.onclick=function(){sepet.splice(i,1);yenile();};f.append(rm);
+    li.append(im,m,f);l.append(li);
+  });
+  $('#ozb').hidden=sepet.length>0;
+  var e=$('#oze');$$('button',e).forEach(function(b){b.remove();});
+  var ek=V.urunler.filter(function(u){return satista(u.kod)&&!sepet.some(function(x){return x.kod===u.kod;});});
+  e.hidden=!ek.length;
+  ek.forEach(function(u){var b=el('button');b.type='button';b.append(el('span',null,'+ '+u.ad),el('b',null,tl(u.fiyat)));b.onclick=function(){sepet.push({kod:u.kod,adet:1});yenile();};e.append(b);});
+  var h=hesap();
+  $('#t-ara').textContent=tl(h.ara);
+  $('#t-kargo').textContent=h.kar?(h.kargo?tl(h.kargo):'Ücretsiz'):'Yok, dijital teslimat';
+  $('#t-top').textContent=tl(h.top);
+  var d=$('#ozg-d'),k=$('#ozg-k');d.hidden=!h.dij;k.hidden=!h.kar;
+  $('span',d).textContent='Eğitim erişimi, ödemeden sonra en geç '+S.dijital_teslim_saat+' saat içinde e-postanda';
+  $('span',k).textContent='Kitap en geç '+S.hazirlama_gun+' iş günü içinde kargoda';
+  $('#adr-t').textContent=h.kar?'Teslimat ve fatura adresi':'Fatura adresi';
+  $('#adr-n').textContent=h.kar?'Kitap bu adrese gönderilir; fatura da bu adrese düzenlenir.':'Online eğitim e-postayla teslim edilir; adres fatura için gerekir.';
+  $('#f-ode').disabled=!sepet.length;
+}
+
+/* ---------- Form değerleri ---------- */
+function v(id){var e=document.getElementById(id);return e?String(e.value||'').trim():'';}
+function ftip(){var r=$('input[name="ftip"]:checked');return r?r.value:'bireysel';}
+function rakam(s){return String(s||'').replace(/\D/g,'');}
+function telNorm(s){var d=rakam(s);if(d.length===12&&d.indexOf('90')===0)d=d.slice(2);if(d.length===11&&d[0]==='0')d=d.slice(1);return d.length===10?d:'';}
+function tcknOk(t){if(!/^[1-9]\d{10}$/.test(t))return false;var d=t.split('').map(Number);var o=((d[0]+d[2]+d[4]+d[6]+d[8])*7-(d[1]+d[3]+d[5]+d[7]))%10;if((o+10)%10!==d[9])return false;var s=0;for(var i=0;i<10;i++)s+=d[i];return s%10===d[10];}
+function bilgiler(){
+  var tip=ftip(),h=hesap();
+  var adres=[v('f-adres'),[v('f-ilce'),v('f-il')].filter(Boolean).join(' / '),v('f-posta')].filter(Boolean).join(', ');
+  var adsoy=[v('f-ad'),v('f-soyad')].filter(Boolean).join(' ');
+  var fatura=tip==='kurumsal'?['Kurumsal',v('f-unvan'),v('f-vd')?'VD: '+v('f-vd'):'',v('f-vkn')?'VKN: '+v('f-vkn'):''].filter(Boolean).join(' · ')
+    :['Bireysel',adsoy,v('f-tckn')?'TCKN: '+v('f-tckn'):''].filter(Boolean).join(' · ');
+  var t=new Date();
+  return {
+    alici_ad:tip==='kurumsal'&&v('f-unvan')?v('f-unvan')+(adsoy?' ('+adsoy+')':''):adsoy,
+    alici_adres:adres,alici_tel:v('f-tel'),alici_eposta:v('f-eposta'),fatura_bilgisi:fatura,
+    teslimat_adresi:h.kar?adres:'Dijital teslimat, e-posta ile',
+    kargo_ucreti:h.kar?(h.kargo?tl(h.kargo):'Ücretsiz'):'Yok (dijital teslimat)',
+    genel_toplam:tl(h.top),siparis_tarihi:t.toLocaleDateString('tr-TR',{day:'numeric',month:'long',year:'numeric'}),
+    siparis_no:'Ödeme adımında verilir',odeme_sekli:'Kredi kartı veya banka kartı; lisanslı ödeme kuruluşunun güvenli ödeme sayfasında',
+    teslim_bilgisi:[h.dij?'Online erişim (e-posta ile)':'',h.kar?'Kargo ile adrese teslim':''].filter(Boolean).join(', ')||'—'
+  };
+}
+function tablo(){
+  var t=el('table','ut'),th=el('thead'),r=el('tr');['Ürün','Adet','Birim fiyat','Tutar'].forEach(function(x){r.append(el('th',null,x));});th.append(r);t.append(th);
+  var tb=el('tbody');sepet.forEach(function(x){var u=U[x.kod],tr=el('tr');var c=el('td');c.append(el('b',null,u.ad));c.append(el('div',null,u.icerik.join(', ')));tr.append(c,el('td',null,String(x.adet)),el('td',null,tl(u.fiyat)),el('td',null,tl(u.fiyat*x.adet)));tb.append(tr);});
+  t.append(tb);return t;
+}
+function doldur(kok){
+  var b=bilgiler();
+  $$('[data-f]',kok).forEach(function(s){
+    var k=s.getAttribute('data-f');
+    if(k==='urun_tablosu'){s.replaceChildren(sepet.length?tablo():el('p','sf bos','Sepette ürün yok.'));return;}
+    var x=b[k];s.textContent=x||'—';s.classList.toggle('bos',!x);
+  });
+}
+function obfCiz(){var o=$('#obf');if(!o.firstChild)o.innerHTML=V.sablon.obf;doldur(o);}
+function yenile(){cizSepet();obfCiz();}
+
+/* ---------- Belgeler ---------- */
+var bel=$('#bel');
+$$('[data-belge]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();var k=b.getAttribute('data-belge');
+  $('#bel-t').textContent=k==='mss'?'Mesafeli Satış Sözleşmesi':'Ön Bilgilendirme Formu';var g=$('#bel-g');g.innerHTML=V.sablon[k];doldur(g);
+  if(bel.showModal)bel.showModal();else bel.setAttribute('open','');g.scrollTop=0;});});
+$('#bel-x').addEventListener('click',function(){bel.close?bel.close():bel.removeAttribute('open');});
+bel.addEventListener('click',function(e){if(e.target===bel)bel.close();});
+
+/* ---------- Doğrulama ---------- */
+function isaret(id,hatali){var e=document.getElementById(id);if(e)e.setAttribute('aria-invalid',hatali?'true':'false');return !hatali;}
+function dogrula(){
+  var ok=true,ilk=null,kur=ftip()==='kurumsal';
+  function k(id,hatali){if(!isaret(id,hatali)){ok=false;if(!ilk)ilk=document.getElementById(id);}}
+  k('f-ad',v('f-ad').length<2);k('f-soyad',v('f-soyad').length<2);
+  k('f-eposta',!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(v('f-eposta')));
+  k('f-tel',!telNorm(v('f-tel')));
+  k('f-il',IL.indexOf(v('f-il'))<0);k('f-ilce',v('f-ilce').length<2);k('f-adres',v('f-adres').length<10);
+  k('f-posta',!!v('f-posta')&&!/^\d{5}$/.test(v('f-posta')));
+  k('f-tckn',!kur&&!!v('f-tckn')&&!tcknOk(v('f-tckn')));
+  k('f-unvan',kur&&v('f-unvan').length<2);k('f-vd',kur&&v('f-vd').length<2);k('f-vkn',kur&&!/^\d{10,11}$/.test(v('f-vkn')));
+  var on=$('#f-onay').checked;$('#ck-onay').classList.toggle('err',!on);if(!on){ok=false;if(!ilk)ilk=$('#f-onay');}
+  if(ilk){ilk.focus();if(ilk.scrollIntoView)ilk.scrollIntoView({block:'center'});}
+  return ok;
+}
+$('#sf').addEventListener('input',function(e){if(e.target.getAttribute('aria-invalid')==='true')isaret(e.target.id,false);obfCiz();});
+$('#sf').addEventListener('change',function(e){if(e.target.name==='ftip'){var kur=ftip()==='kurumsal';$('#f-kur').hidden=!kur;$('#f-bir').hidden=kur;}if(e.target.id==='f-onay')$('#ck-onay').classList.remove('err');obfCiz();});
+
+/* ---------- Ödeme ---------- */
+var HATA={istek:'Bilgilerinde bir eksik var, kontrol edip tekrar dene.',urun:'Sepetteki ürünlerden biri şu an satışta değil.',sunucu:'Ödeme başlatılamadı. Birkaç dakika sonra tekrar dene.',saglayici:'Ödeme kuruluşu şu an yanıt vermiyor. Birkaç dakika sonra tekrar dene.'};
+function hata(m){var h=$('#f-hata');h.textContent=m;h.hidden=!m;}
+function kilitle(x){var b=$('#f-ode');b.disabled=x;$('span',b).textContent=x?'Ödeme hazırlanıyor…':'Siparişi onayla ve öde';}
+function govde(){
+  var kur=ftip()==='kurumsal';
+  return {urunler:sepet.map(function(x){return {kod:x.kod,adet:x.adet};}),
+    alici:{ad:v('f-ad'),soyad:v('f-soyad'),eposta:v('f-eposta'),telefon:telNorm(v('f-tel')),il:v('f-il'),ilce:v('f-ilce'),adres:v('f-adres'),posta:v('f-posta')},
+    fatura:kur?{tip:'kurumsal',unvan:v('f-unvan'),vergi_dairesi:v('f-vd'),vergi_no:v('f-vkn')}:{tip:'bireysel',tckn:v('f-tckn')},
+    onay:{sozlesme:$('#f-onay').checked,ticari_ileti:$('#f-ileti').checked,surum:V.surum}};
+}
+function odemeAdimi(baslik,not){$('#sf').hidden=true;var o=$('#op');o.hidden=false;$('#op-t').textContent=baslik;$('#op-n').textContent=not;$('#op-alan').replaceChildren();o.focus();o.scrollIntoView({block:'start'});return $('#op-alan');}
+$('#op-geri').addEventListener('click',function(){$('#op').hidden=true;$('#op-alan').replaceChildren();$('#sf').hidden=false;kilitle(false);});
+$('#sf').addEventListener('submit',function(e){
+  e.preventDefault();hata('');
+  if(!sepet.length){hata('Sepetin boş.');return;}
+  if(!dogrula()){hata('İşaretli alanları kontrol et.');return;}
+  kilitle(true);
+  if(DEMO){
+    var a=odemeAdimi('Ödeme','Bu önizlemede gerçek ödeme alınmaz. Yayında bu alanda ödeme kuruluşunun güvenli kart formu açılır.');
+    var kutu=el('div');kutu.style.cssText='border:1px dashed rgba(0,0,0,.25);border-radius:12px;padding:28px;text-align:center;margin-bottom:16px;color:var(--mu)';
+    kutu.append(el('p',null,'Kart formu (iyzico ya da PayTR)'));var t=el('button','btn','Ödemeyi tamamla (örnek)');t.type='button';t.onclick=function(){sonuc('BK261107DEMO01','onizleme','ok');};kutu.append(t);a.append(kutu);
+    return;
+  }
+  fetch(FN+'/baslat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(govde())})
+    .then(function(r){return r.json().catch(function(){return {hata:'sunucu'};});})
+    .then(function(j){
+      if(j.kapali){var a=odemeAdimi('Kartla ödeme çok yakında','Ödeme altyapımız onay sürecinde. Açıldığında bu sayfadan satın alabileceksin. Şimdi sipariş vermek istersen '+(S.eposta||'')+' adresine yaz.');kilitle(false);return;}
+      if(j.saglayici==='paytr'&&j.token){
+        var al=odemeAdimi('Kart bilgileri','Ödemen PayTR güvenli ödeme sayfasında alınır. Sipariş no: '+j.no);
+        var fr=document.createElement('iframe');fr.id='paytriframe';fr.title='PayTR güvenli ödeme formu';fr.src='https://www.paytr.com/odeme/guvenli/'+encodeURIComponent(j.token);fr.setAttribute('scrolling','no');al.append(fr);
+        var sc=document.createElement('script');sc.src='https://www.paytr.com/js/iframeResizer.min.js';sc.onload=function(){if(window.iFrameResize)window.iFrameResize({},'#paytriframe');};document.head.append(sc);
+        return;
+      }
+      if(j.saglayici==='iyzico'&&j.url){location.href=j.url;return;}
+      hata(HATA[j.hata]||HATA.sunucu);kilitle(false);
+    })
+    .catch(function(){hata('Bağlantı kurulamadı. İnternet bağlantını kontrol edip tekrar dene.');kilitle(false);});
+});
+
+yenile();
+
+/* ---------- Sonuç ekranı ---------- */
+function sonuc(no,k,d){
+  $('#ana').hidden=true;var s=$('#sonuc');s.hidden=false;
+  var ik=$('#so-ik'),t=$('#so-t'),p=$('#so-p'),nk=$('#so-no'),ul=$('#so-l'),ek=$('#so-ek'),bt=$('#so-bt');
+  function dugme(href,metin,acik){var a=el('a','btn'+(acik?' btn-a':''),metin);a.href=href;return a;}
+  function bitti(j){
+    s.className='sonuc ok';ik.replaceChildren();var sv=document.createElementNS('http://www.w3.org/2000/svg','svg');var us=document.createElementNS('http://www.w3.org/2000/svg','use');us.setAttribute('href','#i-tik');sv.append(us);ik.append(sv);
+    t.textContent='Teşekkürler, siparişin alındı';
+    p.textContent='Sipariş özeti ve fatura e-postana gönderilecek.';
+    nk.hidden=false;nk.textContent='Sipariş no: '+no;
+    ul.replaceChildren();(j.urunler||[]).forEach(function(x){var li=el('li');li.append(el('span',null,x.ad+(x.adet>1?' × '+x.adet:'')),el('b',null,tl(x.tutar)));ul.append(li);});
+    if(j.toplam!=null){var li=el('li');li.append(el('span',null,'Toplam'),el('b',null,tl(j.toplam)));ul.append(li);}
+    ul.hidden=!ul.children.length;
+    ek.replaceChildren();
+    if(j.dijital)ek.append(el('p',null,'Eğitime erişim bilgilerin en geç '+S.dijital_teslim_saat+' saat içinde e-postana gelecek.'));
+    if(j.kargo)ek.append(el('p',null,'Kitabın en geç '+S.hazirlama_gun+' iş günü içinde kargoya verilecek; takip numarası e-postayla gelir.'));
+    bt.replaceChildren(dugme('index.html','Ana sayfaya dön'));
+  }
+  function olmadi(j){
+    s.className='sonuc no';ik.replaceChildren();var sv=document.createElementNS('http://www.w3.org/2000/svg','svg');var us=document.createElementNS('http://www.w3.org/2000/svg','use');us.setAttribute('href','#i-x');sv.append(us);ik.append(sv);
+    t.textContent='Ödeme tamamlanmadı';
+    p.textContent=(j&&j.neden?j.neden+' ':'')+'Kartından para çekilmedi. Tekrar deneyebilir ya da farklı bir kart kullanabilirsin.';
+    nk.hidden=true;ul.hidden=true;ek.replaceChildren();
+    var tekrar='odeme.html'+(j&&j.urunler&&j.urunler.length?'?urun='+j.urunler.map(function(x){return x.kod;}).join(','):'');
+    bt.replaceChildren(dugme(tekrar,'Tekrar dene'),dugme('sozlesmeler/iletisim.html','Bize yaz',true));
+  }
+  if(DEMO){if(d==='hata')olmadi(null);else bitti({urunler:[{ad:'Satışın Şifreleri Online Eğitim Seti',adet:1,tutar:9797}],toplam:9797,dijital:true,kargo:true});return;}
+  var deneme=0;
+  (function sor(){
+    fetch(FN+'/durum?no='+encodeURIComponent(no)+'&k='+encodeURIComponent(k)).then(function(r){return r.json();}).then(function(j){
+      if(j.durum==='odendi'){bitti(j);return;}
+      if(j.durum==='basarisiz'||j.durum==='iptal'){olmadi(j);return;}
+      if(j.hata){olmadi(null);return;}
+      if(++deneme<48){if(deneme===8)p.textContent='Ödeme kuruluşundan onay bekleniyor. Bu biraz uzun sürebilir.';setTimeout(sor,2500);}
+      else {t.textContent='Ödemen henüz doğrulanmadı';p.textContent='Kartından çekim yapıldıysa siparişin kısa süre içinde onaylanır ve e-postana bilgi gelir. Sorun olursa sipariş numaranla bize yaz.';nk.hidden=false;nk.textContent='Sipariş no: '+no;ik.replaceChildren();bt.replaceChildren(dugme('sozlesmeler/iletisim.html','Bize yaz',true));}
+    }).catch(function(){if(++deneme<48)setTimeout(sor,3000);});
+  })();
+}
+})();
+</script>
+</body>
+</html>

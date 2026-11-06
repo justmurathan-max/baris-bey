@@ -1,0 +1,54 @@
+[
+  {
+    "kod": "ss",
+    "ad": "Satışın Şifreleri Online Eğitim Seti",
+    "kisa": "Online eğitim seti ve imzalı kitap",
+    "icerik": [
+      "9,5 saat video anlatım (online)",
+      "9,5 saat sesli anlatım (online)",
+      "13 koçluk videosu (online)",
+      "PDF eğitim notları (online)",
+      "İmzalı Satışın Şifreleri kitabı (kargoyla)"
+    ],
+    "dijital": true,
+    "kargo": true,
+    "fiyat": 9797,
+    "kargo_ucreti": 0,
+    "en_fazla": 1,
+    "kategori": "Online eğitim",
+    "gorsel": "img/hero-armsup.webp"
+  },
+  {
+    "kod": "gus",
+    "ad": "Gayrimenkulün Usta Satışçıları Online Eğitim Seti",
+    "kisa": "Online eğitim seti",
+    "icerik": [
+      "10 saat video anlatım (online)",
+      "10 saat sesli anlatım (online, indirilebilir)",
+      "PDF eğitim notları (online, indirilebilir)"
+    ],
+    "dijital": true,
+    "kargo": false,
+    "fiyat": 9797,
+    "kargo_ucreti": 0,
+    "en_fazla": 1,
+    "kategori": "Online eğitim",
+    "gorsel": "img/banner.webp"
+  },
+  {
+    "kod": "kitap",
+    "ad": "Satışın Şifreleri ile Sonucu Satmak",
+    "kisa": "İmzalı kitap",
+    "icerik": [
+      "İmzalı basılı kitap",
+      "Türkiye içine kargo"
+    ],
+    "dijital": false,
+    "kargo": true,
+    "fiyat": null,
+    "kargo_ucreti": null,
+    "en_fazla": 10,
+    "kategori": "Kitap",
+    "gorsel": "img/kitap.webp"
+  }
+]
