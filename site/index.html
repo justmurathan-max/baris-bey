@@ -677,47 +677,52 @@ button{cursor:pointer}
 @media (max-width:600px){.ro-g{grid-template-columns:1fr}.ro-c{aspect-ratio:16/11}}
 
 /* =================== AKADEMİ YÖNTEMİ =================== */
-.mth{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(40px,5vw,72px);border-radius:28px;overflow:hidden;background:var(--g0);color:var(--tx)}
-.mth-i{position:relative;padding:clamp(22px,2.4vw,36px);display:grid;gap:14px;align-content:start;border:0;border-right:1px solid rgba(0,0,0,.08);background:none;font:inherit;color:inherit;text-align:left;width:100%;cursor:pointer}
-.mth-i:hover{background:#ECECE7}
-.mth-i[aria-expanded=true]{background:#fff}
-.mth-d{display:block;padding-right:28px}
-.mth-x{position:absolute;top:clamp(18px,2vw,30px);right:clamp(16px,1.8vw,26px);width:34px;height:34px;border-radius:50%;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.1);transition:transform .35s cubic-bezier(.16,1,.3,1),background-color .2s}
-.mth-x::before,.mth-x::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.6px;border-radius:2px;background:#000;transform:translate(-50%,-50%)}
-.mth-x::after{transform:translate(-50%,-50%) rotate(90deg)}
-.mth-i[aria-expanded=true] .mth-x{transform:rotate(45deg);background:#000}
-.mth-i[aria-expanded=true] .mth-x::before,.mth-i[aria-expanded=true] .mth-x::after{background:#fff}
-.mth-i.kz{border-right:0;background:var(--red2);color:#fff}
-.mth-i.kz .mth-n{color:rgba(255,255,255,.7)}
-.mth-i.kz:hover,.mth-i.kz[aria-expanded=true]{background:#A50F19}
-.mth-i.kz .mth-x{background:rgba(255,255,255,.16);box-shadow:none}
-.mth-i.kz .mth-x::before,.mth-i.kz .mth-x::after{background:#fff}
-.mth-i.kz[aria-expanded=true] .mth-x{background:#fff}
-.mth-i.kz[aria-expanded=true] .mth-x::before,.mth-i.kz[aria-expanded=true] .mth-x::after{background:var(--red2)}
-.mth-p{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.6fr);gap:clamp(20px,3vw,52px);align-items:center;padding:clamp(20px,3vw,44px);background:#fff;border-top:1px solid rgba(0,0,0,.08);animation:mthIn .55s cubic-bezier(.16,1,.3,1)}
-@keyframes mthIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.mth-i::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:currentColor;opacity:.35;transform:scaleX(0);transform-origin:left;pointer-events:none}
-.mth-i.auto::after{animation:mthBar 2s linear forwards}
-@keyframes mthBar{to{transform:scaleX(1)}}
-.mth-p.sw>*{animation:mthSw .45s cubic-bezier(.16,1,.3,1)}
-@keyframes mthSw{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.mth-pt{display:grid;gap:14px;justify-items:start;align-content:center}
-.mth-pt .lbl{color:var(--red)}
-.mth-pt p{margin:0;color:var(--mu);font-size:16.5px;line-height:1.6;max-width:46ch}
-.mth-fig{margin:0;display:grid;gap:10px;min-width:0}
-.mth-big{display:block;width:100%;padding:0;border:0;border-radius:16px;overflow:hidden;background:#0B0B0C;cursor:zoom-in;box-shadow:0 30px 60px -30px rgba(0,0,0,.35),0 0 0 1px rgba(0,0,0,.08)}
-.mth-big img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top left}
-.mth-fig figcaption{font-size:14px;color:var(--mu)}
-@media (max-width:900px){.mth-p{grid-template-columns:1fr}}
+/* Solda dört adım (sekme), sağda sabit boyutlu ekran görüntüsü: adım değişince sayfa kaymaz. */
+.ym{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,96px);align-items:center;margin-top:clamp(40px,5vw,72px)}
+.ym-l{display:grid}
+.ym-s{position:relative;display:grid;grid-template-columns:clamp(34px,3vw,48px) minmax(0,1fr);column-gap:14px;align-items:baseline;width:100%;padding:clamp(18px,1.8vw,26px) 0;border:0;border-top:1px solid var(--ln);background:none;color:var(--mu2);text-align:left;font:inherit;cursor:pointer;transition:color .25s}
+.ym-s:last-child{border-bottom:1px solid var(--ln)}
+.ym-s::before{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:var(--tx);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.ym-s[aria-selected=true]{color:var(--tx)}
+.ym-s[aria-selected=true]::before{transform:scaleX(1)}
+.ym-s.oto::before{transition:none;animation:ymBar 2s linear forwards}
+@keyframes ymBar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.ym-s.kz::before{background:var(--red)}
+.ym-s.kz[aria-selected=true] .ym-w{color:var(--red)}
+.ym-s:focus-visible{outline-offset:6px;border-radius:4px}
+.ym-n{font:500 13px/1 var(--fd);font-variant-numeric:tabular-nums;color:#717179}
+.ym-s[aria-selected=true] .ym-n{color:var(--tx)}
+.ym-a{display:grid;gap:6px;min-width:0}
+.ym-w{font:500 clamp(26px,2.5vw,42px)/1.02 var(--fd);letter-spacing:-.038em;transition:color .25s}
+.ym-d{font-size:15px;line-height:1.5;color:#717179;transition:color .25s}
+.ym-s[aria-selected=true] .ym-d{color:var(--mu)}
+@media (hover:hover){.ym-s:not([aria-selected=true]):hover{color:#3A3A40}.ym-s:not([aria-selected=true]):hover .ym-d{color:var(--mu)}}
+.ym-f{margin:0;display:grid;gap:16px;min-width:0}
+.ym-sahne{position:relative;display:block;width:100%;padding:clamp(10px,1.4vw,22px);border:0;border-radius:clamp(18px,2vw,28px);background:var(--g0);cursor:zoom-in}
+.ym-ek{position:relative;display:block;aspect-ratio:16/10;border-radius:clamp(8px,1vw,14px);overflow:hidden;background:#0B0B0C;box-shadow:0 30px 60px -30px rgba(0,0,0,.35),0 0 0 1px rgba(0,0,0,.06)}
+.ym-ek img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top left;opacity:0;transition:opacity .55s var(--ease)}
+.ym-ek img.on{opacity:1}
+.ym-z{position:absolute;right:clamp(18px,2.2vw,34px);bottom:clamp(18px,2.2vw,34px);display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;background:rgba(11,11,12,.74);color:#fff;font:500 12.5px/1 var(--fb);opacity:0;transition:opacity .2s;pointer-events:none}
+.ym-z svg{width:14px;height:14px}
+.ym-sahne:hover .ym-z,.ym-sahne:focus-visible .ym-z{opacity:1}
+.ym-c{display:grid;padding:0 4px}
+.ym-c>span{grid-area:1/1;display:block;font-size:15.5px;line-height:1.55;color:var(--mu);opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
+.ym-c>span.on{opacity:1;visibility:visible;transition:opacity .35s .12s}
+.ym-c b{display:block;margin-bottom:4px;font:600 18px/1.3 var(--fd);letter-spacing:-.015em;color:var(--tx)}
 .dlg.shot{width:min(1320px,100%);padding:12px 12px 16px;display:grid;gap:12px}
 .dlg.shot img{display:block;width:100%;height:auto;border-radius:14px}
 .dlg.shot p{margin:0 6px;color:var(--mu);font-size:14.5px}
-.mth-n{font:500 13px/1 var(--fd);color:var(--mu);font-variant-numeric:tabular-nums}
-.mth-w{font:400 clamp(28px,2.7vw,48px)/.9 var(--fc);letter-spacing:.012em}
-.mth-d{margin:0;font-size:15px;line-height:1.5;color:var(--mu)}
-.mth-i.kz .mth-d{color:rgba(255,255,255,.92)}
-@media (max-width:1000px){.mth{grid-template-columns:repeat(2,minmax(0,1fr))}.mth-i:nth-child(2){border-right:0}.mth-i:nth-child(-n+2){border-bottom:1px solid rgba(0,0,0,.08)}}
-@media (max-width:560px){.mth{grid-template-columns:1fr}.mth-i{border-right:0;border-bottom:1px solid rgba(0,0,0,.08)}}
+@media (max-width:960px){
+  .ym{grid-template-columns:1fr;gap:18px}
+  .ym-l{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .ym-s{display:block;padding:14px 2px 12px;border-top:0;border-bottom:1px solid var(--ln);text-align:center}
+  .ym-s::before{top:auto;bottom:-1px}
+  .ym-n{display:block;margin-bottom:7px;font-size:11.5px}
+  .ym-w{font-size:clamp(12px,3.4vw,19px);letter-spacing:-.02em}
+  .ym-d{display:none}
+  .ym-z{opacity:1}
+}
+@media (prefers-reduced-motion:reduce){.ym-ek img,.ym-c>span,.ym-s::before{transition:none}}
 
 /* =================== EĞİTİM KATALOĞU =================== */
 .kt-h{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:24px clamp(32px,6vw,112px);align-items:end;margin-bottom:clamp(32px,4vw,56px)}
@@ -1018,12 +1023,27 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
       <p class="lead">RE/MAX ofisleri için mentor liderliğinde, 12 aylık eğitim ve performans programı. Her eğitim aynı dört adımla ilerler.</p>
     </div>
 
-    <div class="mth" id="mth" aria-label="Akademinin yöntemi">
-      <button class="mth-i" type="button" data-step="0" aria-expanded="false" aria-controls="mthP"><span class="mth-n">01</span><span class="mth-w">ÖĞREN</span><span class="mth-d">Tanıtım ve ana eğitim videoları. Eğitim Notları en başta dağıtılır.</span><span class="mth-x" aria-hidden="true"></span></button>
-      <button class="mth-i" type="button" data-step="1" aria-expanded="false" aria-controls="mthP"><span class="mth-n">02</span><span class="mth-w">İÇSELLEŞTİR</span><span class="mth-d">Koçluk videosu ve koçluk soruları, eğitimin bittiği gün.</span><span class="mth-x" aria-hidden="true"></span></button>
-      <button class="mth-i" type="button" data-step="2" aria-expanded="false" aria-controls="mthP"><span class="mth-n">03</span><span class="mth-w">UYGULA</span><span class="mth-d">Gelişim ve Kazanç Aktiviteleri; mentor ofisine uyarlar.</span><span class="mth-x" aria-hidden="true"></span></button>
-      <button class="mth-i kz" type="button" data-step="3" aria-expanded="false" aria-controls="mthP"><span class="mth-n">04</span><span class="mth-w">KAZAN</span><span class="mth-d">Mentor onaylar, sertifika gelir. Hepsini bitirene Masterclass Akademi Sertifikası.</span><span class="mth-x" aria-hidden="true"></span></button>
-      <div class="mth-p" id="mthP" role="region" aria-label="Programdan görüntüler" hidden></div>
+    <div class="ym" id="ym">
+      <div class="ym-l" role="tablist" aria-label="Akademinin dört adımı" aria-orientation="vertical">
+        <button class="ym-s" type="button" role="tab" id="ym-t0" aria-selected="true" aria-controls="ym-p" tabindex="0" data-step="0"><span class="ym-n">01</span><span class="ym-a"><b class="ym-w">Öğren</b><span class="ym-d">Tanıtım ve ana eğitim videoları. Eğitim Notları en başta dağıtılır.</span></span></button>
+        <button class="ym-s" type="button" role="tab" id="ym-t1" aria-selected="false" aria-controls="ym-p" tabindex="-1" data-step="1"><span class="ym-n">02</span><span class="ym-a"><b class="ym-w">İçselleştir</b><span class="ym-d">Koçluk videosu ve koçluk soruları, eğitimin bittiği gün.</span></span></button>
+        <button class="ym-s" type="button" role="tab" id="ym-t2" aria-selected="false" aria-controls="ym-p" tabindex="-1" data-step="2"><span class="ym-n">03</span><span class="ym-a"><b class="ym-w">Uygula</b><span class="ym-d">Gelişim ve Kazanç Aktiviteleri; mentor ofisine uyarlar.</span></span></button>
+        <button class="ym-s kz" type="button" role="tab" id="ym-t3" aria-selected="false" aria-controls="ym-p" tabindex="-1" data-step="3"><span class="ym-n">04</span><span class="ym-a"><b class="ym-w">Kazan</b><span class="ym-d">Mentor onaylar, sertifika gelir. Hepsini bitirene Masterclass Akademi Sertifikası.</span></span></button>
+      </div>
+      <figure class="ym-f" id="ym-p" role="tabpanel" aria-labelledby="ym-t0">
+        <button class="ym-sahne" type="button" aria-label="Görüntüyü büyüt"><span class="ym-ek">
+          <img class="on" src="img/akademi/ogren-2.webp" alt="Mentor paneli: sıradaki oturum tek tıkla başlar" width="1600" height="1000" loading="lazy" decoding="async">
+          <img src="img/akademi/icsel-2.webp" alt="Eğitim sayfası: dört aşama ve aşamaya göre açılan belgeler" width="1600" height="1000" loading="lazy" decoding="async">
+          <img src="img/akademi/uygula-2.webp" alt="Görev takibi: katılım, koçluk ve aktiviteler" width="1600" height="1000" loading="lazy" decoding="async">
+          <img src="img/akademi/kazan-2.webp" alt="Başarı Sertifikası: numara ve QR kodla doğrulanır" width="1600" height="1000" loading="lazy" decoding="async">
+        </span><span class="ym-z" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg>Büyüt</span></button>
+        <figcaption class="ym-c">
+          <span class="on"><b>Grup oturumu</b>Mentor eğitimi grubuyla aynı ekranda başlatır. Bölümler sırayla akar; video bitmeden sonraki bölüm açılmaz, katılım tek dokunuşla işaretlenir.</span>
+          <span><b>Koçluk aynı gün</b>Ana videolar bitince koçluk ve içselleştirme videosu açılır. Koçluk soruları eğitimin bittiği gün grupla çalışılır; tamamlayan danışmanlar tek tek işaretlenir.</span>
+          <span><b>Sahada uygulama</b>Gelişim ve Kazanç Aktiviteleri oturumda dağıtılır, tarihleri o günden sayılır. Mentor aktiviteleri ofisine uyarlar, görev takibinde kimin neyi yaptığını görür.</span>
+          <span><b>Sertifika</b>Mentor onaylayınca sertifika üretilir: Katılım, Başarı ve bütün ana eğitimleri bitirene Masterclass Akademi Sertifikası. Her sertifikanın numarası ve QR kodu var, sitede doğrulanır.</span>
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -1914,64 +1934,56 @@ TR.forEach(function(t){LINKS.push([t.t,'katalog',t.r]);});renderSearch('');
 
 
 
-/* ---------- Akademinin dört adımı: imleç gelince (dokunmatikte dokununca) programdan görüntü ---------- */
-var STEPS=[
-  {k:'01 · Öğren',t:'Grup oturumu',d:'Mentor eğitimi grubuyla aynı ekranda başlatır. Bölümler sırayla akar; video bitmeden sonraki bölüm açılmaz. Katılım tek dokunuşla işaretlenir, Eğitim Notları en başta dağıtılır.',img:'img/akademi/ogren-2.webp',c:'Mentor paneli: sıradaki oturum tek tıkla başlar'},
-  {k:'02 · İçselleştir',t:'Koçluk aynı gün',d:'Ana videolar bitince koçluk ve içselleştirme videosu açılır. Koçluk soruları eğitimin bittiği gün grupla çalışılır; tamamlayan danışmanlar tek tek işaretlenir.',img:'img/akademi/icsel-2.webp',c:'Eğitim sayfası: dört aşama ve aşamaya göre açılan belgeler'},
-  {k:'03 · Uygula',t:'Sahada uygulama',d:'Gelişim ve Kazanç Aktiviteleri oturumda dağıtılır, tarihleri o günden sayılır. Mentor aktiviteleri ofisine uyarlar, görev takibinde kimin neyi yaptığını görür.',img:'img/akademi/uygula-2.webp',c:'Görev takibi: katılım, koçluk ve aktiviteler'},
-  {k:'04 · Kazan',t:'Sertifika',d:'Mentor onaylayınca sertifika üretilir: Katılım, Başarı ve bütün ana eğitimleri bitirene Masterclass Akademi Sertifikası. Her sertifikanın numarası ve QR kodu var, sitede doğrulanır.',img:'img/akademi/kazan-2.webp',c:'Başarı Sertifikası: numara ve QR kodla doğrulanır'}
-];
-var mth=$('#mth'),mthP=$('#mthP'),mBtns=$$('.mth-i',mth),mOpen=-1,mAt=0,mHov=null,mScr=0;
-function mCols(){return getComputedStyle(mth).gridTemplateColumns.split(' ').filter(Boolean).length||1;}
-function mPlace(){if(mOpen<0)return;var c=mCols(),end=Math.min(mBtns.length-1,Math.floor(mOpen/c)*c+c-1);mBtns[end].after(mthP);}
-function mRender(k){
-  var st=STEPS[k];mthP.replaceChildren();
-  var tx=el('div','mth-pt');tx.append(el('span','lbl',st.k),el('h3','h3',st.t),el('p',null,st.d));
-  var fg=el('figure','mth-fig'),bb=el('button','mth-big');bb.type='button';bb.setAttribute('aria-label','Görüntüyü büyüt');
-  var bi=el('img');bi.src=st.img;bi.alt=st.c;bi.loading='lazy';bb.append(bi);
-  bb.addEventListener('click',function(){var im=$('#ms-img');im.src=bi.currentSrc||bi.src;im.alt=bi.alt;$('#ms-t').textContent=bi.alt;openModal('m-shot');});
-  fg.append(bb,el('figcaption',null,st.c));mthP.append(tx,fg);
-  mthP.classList.remove('sw');void mthP.offsetWidth;mthP.classList.add('sw');
+/* ---------- Akademinin dört adımı: sekmeler ve sabit ekran görüntüsü ----------
+   Bölüm görününce adımlar ikişer saniyede ilerler, Kazan'da durur; ekrandan çıkınca bekler, dönünce sürer.
+   İmleç, dokunma, ok tuşları ya da görüntüye tıklama geçişi durdurur. Görüntü alanının boyu sabit: sayfa kaymaz. */
+(function(){
+var ym=$('#ym');if(!ym)return;
+var yT=$$('.ym-s',ym),yI=$$('.ym-ek img',ym),yC=$$('.ym-c>span',ym),yP=$('#ym-p'),yA=0,yHov=null,yScr=0;
+function ySec(k,odak){
+  if(k!==yA){
+    yA=k;
+    yT.forEach(function(b,i){var on=i===k;b.setAttribute('aria-selected',on?'true':'false');b.tabIndex=on?0:-1;});
+    yI.forEach(function(m,i){m.classList.toggle('on',i===k);});
+    yC.forEach(function(c,i){c.classList.toggle('on',i===k);});
+    yP.setAttribute('aria-labelledby',yT[k].id);
+  }
+  if(odak)yT[k].focus();
 }
-function mShowStep(k,scroll){
-  if(mOpen===k)return;
-  if(mOpen>-1)mBtns[mOpen].setAttribute('aria-expanded','false');
-  mOpen=k;mAt=Date.now();mRender(k);mPlace();mthP.hidden=false;mBtns[k].setAttribute('aria-expanded','true');
-  if(scroll){var r=mthP.getBoundingClientRect();if(r.bottom>innerHeight||r.top<0)mthP.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'});}
-}
-function mHide(){if(mOpen<0)return;mBtns[mOpen].setAttribute('aria-expanded','false');mOpen=-1;mthP.hidden=true;}
-function mHoverStart(k){if(mHov||(mOpen===k&&mAutoDone))return;mHov=setTimeout(function(){mHov=null;if(Date.now()-mScr>250){mAutoStop();if(mOpen!==k)mShowStep(k,false);else mAt=Date.now();}},140);}
-function mHoverStop(){clearTimeout(mHov);mHov=null;}
-mBtns.forEach(function(b,k){
-  b.addEventListener('click',function(){var wasAuto=!mAutoDone;mAutoStop();if(mOpen===k){if(!wasAuto&&Date.now()-mAt>700)mHide();}else mShowStep(k,true);});
-  b.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse'&&canHover())mHoverStart(k);});
-  b.addEventListener('pointermove',function(e){if(e.pointerType==='mouse'&&canHover()&&(e.movementX||e.movementY))mHoverStart(k);});
-  b.addEventListener('pointerleave',mHoverStop);
-});
-window.addEventListener('scroll',function(){mScr=Date.now();mHoverStop();},{passive:true});
-window.addEventListener('resize',mPlace);
-// Dört adım yan yanayken: görününce ikişer saniyede ilerler, Kazan'da durur.
-// Ekrandan çıkınca bekler, dönünce sürer; imleç ya da tıklama gelince tamamen durur.
-var mAuto=null,mAutoDone=false,mAutoK=0,mio=null;
-function mAutoClear(){if(mAuto){clearTimeout(mAuto);mAuto=null;}mBtns.forEach(function(b){b.classList.remove('auto');});}
-function mAutoEnd(){mAutoDone=true;if(mio){mio.disconnect();mio=null;}}
-function mAutoStop(){mAutoClear();mAutoEnd();}
-function mAutoStep(k){
-  mAutoClear();mAutoK=k;
-  if(mOpen!==k)mShowStep(k,false);
-  if(k<mBtns.length-1){void mBtns[k].offsetWidth;mBtns[k].classList.add('auto');mAuto=setTimeout(function(){mAuto=null;mAutoStep(k+1);},2000);}
-  else mAutoEnd();
+var yOto=null,yBitti=false,yio=null;
+function yTemizle(){if(yOto){clearTimeout(yOto);yOto=null;}yT.forEach(function(b){b.classList.remove('oto');});}
+function yBit(){yBitti=true;if(yio){yio.disconnect();yio=null;}}
+function yDur(){yTemizle();yBit();}
+function yAdim(k){
+  yTemizle();ySec(k);
+  if(k<yT.length-1){void yT[k].offsetWidth;yT[k].classList.add('oto');yOto=setTimeout(function(){yOto=null;yAdim(k+1);},2000);}
+  else yBit();
 }
 if(!RM&&'IntersectionObserver' in window){
-  mio=new IntersectionObserver(function(es){
-    var e=es[es.length-1];if(mAutoDone)return;
-    if(!e.isIntersecting){mAutoClear();return;}
-    if(e.intersectionRatio<.55||mAuto)return;
-    if(mCols()<4){mAutoStop();return;}
-    mAuto=setTimeout(function(){mAuto=null;mAutoStep(mAutoK);},500);
-  },{threshold:[0,.6],rootMargin:'0px 0px -15% 0px'});
-  mio.observe(mBtns[0]);
+  yio=new IntersectionObserver(function(es){
+    var e=es[es.length-1];if(yBitti)return;
+    if(!e.isIntersecting){yTemizle();return;}
+    if(e.intersectionRatio<.45||yOto)return;
+    yOto=setTimeout(function(){yOto=null;yAdim(yA);},600);
+  },{threshold:[0,.5],rootMargin:'0px 0px -15% 0px'});
+  yio.observe(ym);
 }
+function yImlec(k){if(yHov||(k===yA&&yBitti))return;yHov=setTimeout(function(){yHov=null;if(Date.now()-yScr>250){yDur();ySec(k);}},120);}
+function yImlecBitti(){clearTimeout(yHov);yHov=null;}
+yT.forEach(function(b,k){
+  b.addEventListener('click',function(){yDur();ySec(k);});
+  b.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse'&&canHover())yImlec(k);});
+  b.addEventListener('pointermove',function(e){if(e.pointerType==='mouse'&&canHover()&&(e.movementX||e.movementY))yImlec(k);});
+  b.addEventListener('pointerleave',yImlecBitti);
+  b.addEventListener('keydown',function(e){
+    var n=yT.length,j=-1;
+    if(e.key==='ArrowDown'||e.key==='ArrowRight')j=(k+1)%n;else if(e.key==='ArrowUp'||e.key==='ArrowLeft')j=(k-1+n)%n;else if(e.key==='Home')j=0;else if(e.key==='End')j=n-1;
+    if(j>-1){e.preventDefault();yDur();ySec(j,true);}
+  });
+});
+window.addEventListener('scroll',function(){yScr=Date.now();yImlecBitti();},{passive:true});
+$('.ym-sahne',ym).addEventListener('click',function(){yDur();var im=yI[yA],ms=$('#ms-img');ms.src=im.currentSrc||im.src;ms.alt=im.alt;$('#ms-t').textContent=im.alt;openModal('m-shot');});
+})();
 })();
 </script>
 <script>/* Kaydırınca beliren yazılar: yalnız işaretlenen öğeler gizlenir, gözlemci yoksa hiçbir şey gizlenmez */
@@ -1980,7 +1992,7 @@ if(!('IntersectionObserver' in window)){D.classList.remove('rv-on');return;}
 var A=function(q,r){return Array.prototype.slice.call((r||document).querySelectorAll(q));};
 var secs=A('main > section.sec, main > section.fin');
 function split(h){if(h.children.length)return false;var ws=h.textContent.trim().split(/\s+/);h.textContent='';ws.forEach(function(w,i){var o=document.createElement('span'),n=document.createElement('span');o.className='w';n.textContent=w;n.style.setProperty('--wi',i);o.appendChild(n);h.appendChild(o);if(i<ws.length-1)h.appendChild(document.createTextNode(' '));});return true;}
-var SEL='.h2,.fin .h1,.h3,.lbl,.ak-mk,.ai-mk,.lead,.ab-ph,.st,.ab-lg,.mth-i,.kc,.ac,.cs,.plan,.plan-n,.ev,.cr,.evl-g,.ts-top,.ts-fig,.ts-ph,.ro-c,.shop .pd,.fin-ph,.fin-t .hs-cta';
+var SEL='.h2,.fin .h1,.h3,.lbl,.ak-mk,.ai-mk,.lead,.ab-ph,.st,.ab-lg,.ym-s,.ym-sahne,.kc,.ac,.cs,.plan,.plan-n,.ev,.cr,.evl-g,.ts-top,.ts-fig,.ts-ph,.ro-c,.shop .pd,.fin-ph,.fin-t .hs-cta';
 var list=[];secs.forEach(function(sec){A(SEL,sec).forEach(function(e){if(list.indexOf(e)<0)list.push(e);});});
 list=list.filter(function(e){for(var p=e.parentElement;p;p=p.parentElement){if(list.indexOf(p)>-1)return false;}return true;});
 list.forEach(function(e){if((e.classList.contains('h2')||e.classList.contains('h1'))&&split(e))e.classList.add('rv-w');e.classList.add('rv');});
