@@ -43,7 +43,7 @@
   color-scheme:light;
   --k2:#131315;--k3:#1C1C1F;--k4:#2A2A2E;
   --g0:#F4F4F1;--g1:#EBEBE7;--g2:#DCDCD7;
-  --tx:#0B0B0C;--mu:#5E5E66;--mu2:#8C8C94;
+  --tx:#0B0B0C;--mu:#5E5E66;--mu2:#6E6E76;
   --mud:rgba(255,255,255,.66);--lnd:rgba(255,255,255,.14);--ln:rgba(0,0,0,.11);
   --red:#E0262E;--red2:#C2141F;--blue:#3653FF;--vio:#7C3AED;--gold:#B8913F;
   --fd:"Inter Tight","Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
@@ -544,7 +544,7 @@ button{cursor:pointer}
 .evl-g{margin:18px 0 2px;font:600 12px/1 var(--fb);letter-spacing:.12em;text-transform:uppercase;color:var(--mu)}
 .cr{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;padding:14px 16px 14px 14px;border-radius:22px;background:var(--g0);transition:box-shadow .3s}
 .cr-d{width:62px;height:62px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;align-content:center;gap:3px;text-align:center}
-.cr.past .cr-d{opacity:.5}
+.cr.past .cr-d{background:var(--mu)}
 .cr-d b{font:600 19px/1 var(--fd);letter-spacing:-.02em}
 .cr-d small{font:700 9.5px/1 var(--fb);letter-spacing:.08em;text-transform:uppercase}
 .cr-t{display:grid;gap:5px;min-width:0}
@@ -593,8 +593,8 @@ button{cursor:pointer}
 .ft{background:#fff;color:var(--tx);border-top:1px solid var(--ln);padding-block:clamp(56px,7vw,104px) 36px}
 .ft-top{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) minmax(0,1.6fr);gap:32px}
 .ft h4{font:600 12px/1 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin:0 0 20px}
-.ft ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
-.ft ul a,.ft ul button{text-decoration:none;color:inherit;font-size:15px;background:none;border:0;padding:0;text-align:left;transition:opacity .2s}
+.ft ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.ft ul a,.ft ul button{display:inline-block;text-decoration:none;color:inherit;font-size:15px;background:none;border:0;padding:3px 0;text-align:left;transition:opacity .2s}
 .ft ul a:hover,.ft ul button:hover{opacity:.66}
 .ft-nw{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;align-content:start}
 .ft-nw p{margin:0;color:var(--mu);font-size:15px;max-width:44ch}
@@ -1268,7 +1268,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
     <p class="dil-not" data-yabanci><svg aria-hidden="true"><use href="#i-g"/></svg><span>El libro y los cursos están en turco. Los precios están en liras turcas y la página de pago está en turco; el libro solo se envía a direcciones de Turquía.</span></p>
     <div class="vsl" id="vsl">
       <div class="vsl-v">
-        <button class="vsl-o" id="vsl-o" type="button" aria-label="Reproducir el vídeo de presentación de Satışın Şifreleri, 17 minutos"><img loading="lazy" decoding="async" src="../img/vsl-satisin-sifreleri.webp" alt="" width="1280" height="720"><span class="vsl-pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="vsl-sure" aria-hidden="true">Presentación · 17 min</span></button>
+        <button class="vsl-o" id="vsl-o" type="button"><img loading="lazy" decoding="async" src="../img/vsl-satisin-sifreleri.webp" alt="" width="1280" height="720"><span class="vsl-pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="sr">Reproducir el vídeo de presentación de Satışın Şifreleri.</span><span class="vsl-sure">Presentación · 17 min</span></button>
       </div>
       <div class="vsl-t">
         <span class="lbl">Curso online</span>
@@ -1476,7 +1476,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
         <span class="tr-sec">Cómo se desarrolla la formación</span>
         <ol class="tr-flow" id="tr-f"></ol>
         <span class="tr-sec" id="tr-cn">Lecciones</span>
-        <ol class="tr-ch" id="tr-ch"></ol>
+        <ol class="tr-ch" id="tr-ch" aria-labelledby="tr-cn"></ol>
         <span class="tr-sec">Tres documentos en cada formación</span>
         <div class="tr-docs">
           <div class="tr-doc"><i>PDF</i><span><b>Apuntes de formación</b><small>Se reparten al inicio de la formación</small></span></div>
@@ -1973,12 +1973,13 @@ function poster(t,i){
   var top=el('span','pc-top');var a=el('span','dm');var dot=el('i');dot.style.setProperty('--c','#FF4D55');a.append(dot,document.createTextNode('Formación '+pad2(i+1)));
   var b=el('span','dm',t.ch.length+' lecciones');top.append(a,b);p.append(top);
   var inn=el('span','pc-in'),lt=el('span','lt');lt.append(el('span','k','BARIŞ KILIÇARSLAN'));
-  t.lt.forEach(function(x){var s=el('span',x[0],x[1]);s.style.fontSize=x[2]+'cqi';if(x[0]==='w')s.style.marginTop='1.15em';lt.append(s);});
-  inn.append(lt);p.append(inn);return p;
+  /* Ş/Ç çengeli alttaki, Ö/Ü/İ noktası üstteki satıra değmesin */
+  var onc='';t.lt.forEach(function(x){var s=el('span',x[0],x[1]);s.style.fontSize=x[2]+'cqi';if(x[0]==='w')s.style.marginTop=/[ŞÇ]/.test(onc)?'2.1em':'1.15em';if(x[0]==='c'&&lt.children.length===1&&/[ÖÜİ]/.test(x[1]))s.style.marginTop='.1em';if(x[0]==='c')onc=x[1];lt.append(s);});
+  inn.append(lt);p.append(inn);p.setAttribute('aria-hidden','true');return p;
 }
 var katGrid=$('#katGrid');
 TR.forEach(function(t,i){
-  var b=el('button','kc');b.type='button';b.setAttribute('data-train',t.id);b.setAttribute('aria-label',t.t+', ver formación');
+  var b=el('button','kc');b.type='button';b.setAttribute('data-train',t.id);
   b.append(poster(t,i),el('span','kc-t',t.t),el('span','kc-r',t.r));katGrid.append(b);
 });
 function openTrain(id){
@@ -1992,6 +1993,8 @@ function openTrain(id){
   var ch=$('#tr-ch');ch.replaceChildren();t.ch.forEach(function(c){var li=el('li');li.append(el('span',null,c[0]),document.createTextNode(c[1]));ch.append(li);});ch.scrollTop=0;
   $('#tr-done').hidden=true;
   openModal('m-train');
+  /* uzun liste klavyeyle de kaydırılabilsin */
+  if(ch.scrollHeight>ch.clientHeight+1)ch.tabIndex=0;else ch.removeAttribute('tabindex');
 }
 $('#tr-play').addEventListener('click',function(){$('#tr-done').hidden=false;});
 TR.forEach(function(t){LINKS.push([t.t,'katalog',t.r]);});renderSearch('');

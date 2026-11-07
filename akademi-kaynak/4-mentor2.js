@@ -135,7 +135,7 @@ function vSertifikalar(ro){
   root.append(ph('Sertifikalar','Video izlemek tek başına yetmez. Katılımı, koçluğu ve aktiviteleri siz onaylarsınız; sertifika hakkı kendiliğinden doğar.'));
   const sam={c:'ayse',tr:'iu',d:new Date(T0)};
   root.append(h('div',{class:'ct3'},[['kat','Videolara katılım ve koçluk soruları tamamlanınca.'],['bas','Uygulamalar yapılıp siz onaylayınca. Daha prestijli.'],['mc','Belirlenen bütün ana eğitimler ve uygulamaları bitince. Gri metalik yaldız ve kabartma baskıya uygun.']].map(([ty,txt])=>
-    h('button',{class:'ctc',type:'button',onclick:()=>openCert(Object.assign({ty},sam,ty==='mc'?{tr:null}:{}),true),'aria-label':CT[ty]+' örneğini aç'},certNode(Object.assign({ty},sam,ty==='mc'?{tr:null}:{})),h('b',null,CT[ty]),h('span',null,txt)))));
+    h('button',{class:'ctc',type:'button',onclick:()=>openCert(Object.assign({ty},sam,ty==='mc'?{tr:null}:{}),true)},(n=>{n.setAttribute('aria-hidden','true');return n;})(certNode(Object.assign({ty},sam,ty==='mc'?{tr:null}:{}))),h('b',null,CT[ty]),h('span',null,txt,h('span',{class:'sr'},' Örneği aç.'))))));
   const rc=readyCerts(),iss=CERT.slice().sort((a,b)=>b.d-a.d);
   root.append(h('div',{class:'bar-row'},seg([['hazir','Basıma hazır',rc.length],['verilen','Verilenler',iss.length],['yol','Masterclass yolu']],srF,k=>{srF=k;rerender();},'Görünüm')));
   if(srF==='hazir'){
@@ -194,7 +194,7 @@ function reportNode(cid,live){
   const c=COM[cid],rs=runsOf(cid).filter(r=>r.st!=='plan'),rep=REP[cid]||(REP[cid]={sh:null,cm:null});
   const pa=privAvg(cid),done=rs.filter(r=>katOk(r,cid)).length,open=rs.reduce((a,r)=>{const d=actDone(r,cid);return a+(d?d.filter(x=>!x).length:0);},0);
   const P=h('div',{class:'paper'});
-  P.append(h('div',{class:'p-hd'},h('div',null,h('div',{class:'p-wm'},'BARIŞ KILIÇARSLAN · MASTERCLASS AKADEMİ'),h('h2',{class:'p-t'},'Danışman gelişim raporu'),h('p',{class:'p-s'},c.n+', '+GRM[c.g].n+', '+OFF.n)),
+  P.append(h('div',{class:'p-hd'},h('div',null,h('div',{class:'p-wm'},h('span',null,'BARIŞ KILIÇARSLAN ·'),' ',h('span',null,'MASTERCLASS AKADEMİ')),h('h2',{class:'p-t'},'Danışman gelişim raporu'),h('p',{class:'p-s'},c.n+', '+GRM[c.g].n+', '+OFF.n)),
     h('div',{style:'display:grid;gap:8px;justify-items:end'},chip('lock','lock','Özel: mentor ve broker'),h('span',{class:'sm mu'},'Hazırlandı: '+ddy(T0)))),
     h('div',{class:'p-kv'},[[done,'Tamamlanan eğitim'],[certsOf(cid).length,'Sertifika'],[open,'Açık aktivite'],[pa?trn(pa):'—','Özel puan ortalaması']].map(([v,l])=>h('div',null,h('b',null,String(v)),h('span',null,l)))));
   P.append(h('section',null,h('h3',null,'Eğitimler'),rs.length?h('ul',{class:'ls'},rs.map(r=>journeyRow(r,cid))):h('p',{class:'mu'},'Henüz eğitime katılmadı.')));

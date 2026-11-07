@@ -10,10 +10,10 @@ en: The book and training sets are in Turkish. Prices are in Turkish lira and th
 es: El libro y los cursos están en turco. Los precios están en liras turcas y la página de pago está en turco; el libro solo se envía a direcciones de Turquía.
 de: Buch und Trainingssets sind auf Türkisch. Die Preise sind in Türkischen Lira, die Bezahlseite ist auf Türkisch; das Buch wird nur an Adressen in der Türkei versendet.
 
-tr: Satışın Şifreleri tanıtım videosunu oynat, 17 dakika
-en: Play the Satışın Şifreleri intro video, 17 minutes
-es: Reproducir el vídeo de presentación de Satışın Şifreleri, 17 minutos
-de: Einführungsvideo zu Satışın Şifreleri abspielen, 17 Minuten
+tr: Satışın Şifreleri tanıtım videosunu oynat.
+en: Play the Satışın Şifreleri intro video.
+es: Reproducir el vídeo de presentación de Satışın Şifreleri.
+de: Einführungsvideo zu Satışın Şifreleri abspielen.
 
 tr: Tanıtım · 17 dk
 en: Intro · 17 min

@@ -93,7 +93,10 @@ async function loadMerkez(){
     SB.from('runs').select('office_id,days').neq('status','iptal'),
     SB.from('site_requests').select('*').order('created_at',{ascending:false}).limit(300)
   ]).catch(e=>[{error:e}]);
-  if(!rq||[o,pr,inv,co,ce,ru,rq].some(r=>r.error)){toast('Ofis bilgileri alınamadı. Sayfayı yenileyin.',6000);return false;}
+  if(!rq||[o,pr,inv,co,ce,ru,rq].some(r=>r.error)){
+    // Örnek ofisler gerçekmiş gibi görünmesin: liste boşalır, üstte uyarı çıkar.
+    ME.dataOk=false;OFFS.splice(0);MCERT.splice(0);REQS.splice(0);
+    toast('Ofis bilgileri alınamadı. Sayfayı yenileyin.',6000);return false;}
   const from=iso(plus(T0,-30)),to=iso(T0),cnt=(rows,id)=>rows.filter(r=>r.office_id===id&&!r.revoked_at).length,nm=x=>x?(x.full_name||x.email):null;
   const list=o.data.map(r=>{
     const staff=pr.data.filter(p=>p.office_id===r.id),invs=inv.data.filter(i=>i.office_id===r.id);
@@ -106,7 +109,8 @@ async function loadMerkez(){
   OFFS.splice(0,OFFS.length,...list);
   const onm=id=>{const x=o.data.find(r=>r.id===id);return x?x.name:'—';};
   MCERT.splice(0,MCERT.length,...ce.data.map(x=>({no:x.no,n:x.holder_name,o:onm(x.office_id),tr:x.training_id,ty:x.kind,d:fromIso(x.issued_on),rev:!!x.revoked_at})));
-  REQS.splice(0,REQS.length,...rq.data.map(x=>{const m=x.meta||{};return{id:x.id,at:new Date(x.created_at),kind:x.kind,name:x.full_name,company:x.company,city:x.city,phone:x.phone,email:x.email,message:x.message,topic:m.topic,size:m.size,mode:m.mode,status:x.status};}));
+  REQS.splice(0,REQS.length,...rq.data.map(x=>{const m=x.meta||{};return{id:x.id,at:new Date(x.created_at),kind:x.kind,name:x.full_name,company:x.company,city:x.city,phone:x.phone,email:x.email,message:x.message,topic:m.topic,size:m.size,mode:m.mode,dil:m.dil,status:x.status};}));
+  ME.dataOk=true;
   return true;
 }
 

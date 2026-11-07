@@ -20,7 +20,7 @@ function openSession(runId,mode,trid){
   const el=$('#ses');el.hidden=false;sesOpen=true;lockBody();
   requestAnimationFrame(()=>el.classList.add('on'));
   SS.scrollCur=true;drawSes();
-  setTimeout(()=>{const f=el.querySelector('.vid-p');if(f)f.focus();},120);
+  setTimeout(()=>{const f=el.querySelector('.vid-p')||el.querySelector('.ses-h .icb');if(f)f.focus();},120);
 }
 const inK=k=>SS.F.map((s,i)=>s.k===k?i:-1).filter(i=>i>=0);
 const allIn=k=>inK(k).every(i=>SS.done.has(i));
@@ -178,8 +178,8 @@ function flowBlock(){
   F.forEach((s,i)=>{
     if(s.k!==last){ul.append(h('li',{class:'sh'},STN[s.k]));last=s.k;}
     const inR=mode==='prev'||range.includes(i),dn=SS.done.has(i),cur=i===SS.idx,lk=!canGo(i);
-    ul.append(h('li',null,h('button',{type:'button','data-i':String(i),class:(dn?'dn ':'')+(lk?'lk ':'')+(!inR?'y1':''),'aria-current':cur?'true':null,'aria-label':stepName(s)+(dn?', izlendi':lk?', kilitli':''),onclick:()=>goStep(i)},
-      h('span',{class:'fs'},dn?ic('tick'):lk?ic('lock'):null),h('span',null,s.c?h('span',{style:'opacity:.6;margin-right:6px'},s.c):null,s.a),h('span',{class:'tm'},!inR&&dn?'1. gün':fmtT(dur(SS.t,i))))));
+    ul.append(h('li',null,h('button',{type:'button','data-i':String(i),class:(dn?'dn ':'')+(lk?'lk ':'')+(!inR?'y1':''),'aria-current':cur?'true':null,onclick:()=>goStep(i)},
+      h('span',{class:'fs'},dn?ic('tick'):lk?ic('lock'):null),h('span',null,s.c?h('span',{class:'cn'},s.c):null,s.a),h('span',{class:'tm'},!inR&&dn?'1. gün':fmtT(dur(SS.t,i))),dn||lk?h('span',{class:'sr'},dn?', izlendi':', kilitli'):null)));
   });
   return h('div',null,h('h3',null,'Akış',h('span',null,mode==='prev'?'%'+prevPct(SS.t.id):range.filter(i=>SS.done.has(i)).length+' / '+range.length)),ul);
 }
@@ -201,7 +201,7 @@ function finishSes(){
   const{r,t}=SS,ids=Object.keys(SS.att),pres=ids.filter(c=>SS.att[c]),last=r.tel||r.dd+1>=r.days.length;
   const L=[['Katılım',pres.length+' / '+ids.length+' danışman'],['Bugünün bölümleri',SS.range.filter(i=>SS.done.has(i)).length+' / '+SS.range.length+' izlendi']];
   if(last&&!r.tel)L.push(['Koçluk',pres.filter(c=>SS.cch[c]).length+' danışman işaretlendi'],['Aktiviteler',SS.docs.akt?'Dağıtıldı':'Dağıtılmadı; sonra görev takibinden dağıtabilirsiniz']);
-  modal({t:'Oturumu bitir',s:t.t+(r.days.length>1&&!r.tel?', '+(r.dd+1)+'. gün':''),w:540,
+  modal({t:'Oturumu bitir',s:t.t+(r.days.length>1&&!r.tel?', '+(r.dd+1)+'. gün':''),w:540,cls:'md-kisa',
     body:h('dl',{class:'kv'},L.flatMap(([a,b])=>[h('dt',null,a),h('dd',null,b)])),
     foot:[btn('btn-o btn-s','Oturuma dön',closeModal),btn('btn-k btn-s','Kaydet ve bitir',()=>{closeModal();commitSes();})]});
 }

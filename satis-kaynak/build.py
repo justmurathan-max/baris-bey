@@ -206,8 +206,8 @@ CSS = """:root{--tx:#0B0B0C;--mu:#5E5E66;--ln:rgba(0,0,0,.11);--g0:#F4F4F1;--blu
 body{margin:0;background:#fff;color:var(--tx);font:400 16px/1.65 var(--fb);-webkit-font-smoothing:antialiased}
 a{color:inherit;text-underline-offset:3px}:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 .yh{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px clamp(16px,3.2vw,56px);background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--ln)}
-.wm{font:800 14px/1 var(--fw);letter-spacing:.16em;text-decoration:none;white-space:nowrap}
-.yh nav{display:flex;gap:20px;font:500 14px/1 var(--fb);white-space:nowrap}.yh nav a{text-decoration:none;color:var(--mu)}.yh nav a:hover{color:var(--tx)}
+.wm{font:800 14px/1 var(--fw);letter-spacing:.16em;text-decoration:none;white-space:nowrap;padding:6px 0;margin:-6px 0}
+.yh nav{display:flex;gap:20px;font:500 14px/1 var(--fb);white-space:nowrap}.yh nav a{text-decoration:none;color:var(--mu);padding:6px 0;margin:-6px 0}.yh nav a:hover{color:var(--tx)}
 .yw{max-width:1200px;margin:0 auto;padding:clamp(28px,5vw,72px) clamp(16px,3.2vw,56px) 80px;display:grid;grid-template-columns:250px minmax(0,1fr);gap:clamp(24px,5vw,80px)}
 .yl{position:sticky;top:88px;align-self:start}.yl ul{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:2px}
 .yl a{display:block;padding:8px 12px;border-radius:9px;text-decoration:none;color:var(--mu);font-size:14.5px;line-height:1.35}

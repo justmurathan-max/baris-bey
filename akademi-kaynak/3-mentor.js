@@ -92,7 +92,7 @@ VIEWS.mentor.egitimler=()=>{
 };
 function trCard(t){
   const [dot,txt]=trLine(t.id),p=prevPct(t.id);
-  return h('button',{class:'tc',type:'button',onclick:()=>go('egitim',t.id),'aria-label':t.t+', '+txt},poster(t),h('span',{class:'tc-t'},t.t),h('span',{class:'tc-s'},dot,txt),
+  return h('button',{class:'tc',type:'button',onclick:()=>go('egitim',t.id)},poster(t),h('span',{class:'tc-t'},t.t),h('span',{class:'tc-s'},dot,txt),
     p>0&&p<100?h('span',{class:'tc-p'},bar(p,'Ön izleme'),'%'+p+' izlendi'):p===100?h('span',{class:'tc-s',style:'color:var(--okT)'},ic('tick'),'Ön izlemeniz tamam'):null);
 }
 function openClassic(c){
@@ -147,7 +147,7 @@ function runsList(t){
 }
 function openDoc(id,k){
   const t=TRM[id],n=DOCN.find(x=>x[0]===k)[1];
-  const paper=h('div',{class:'paper doc-p'},h('div',{class:'doc-cv'},h('div',null,poster(t,{sm:1})),h('div',null,h('div',{class:'p-wm'},'BARIŞ KILIÇARSLAN · MASTERCLASS AKADEMİ'),h('h2',null,n),h('p',null,t.t))));
+  const paper=h('div',{class:'paper doc-p'},h('div',{class:'doc-cv'},h('div',null,poster(t,{sm:1})),h('div',null,h('div',{class:'p-wm'},h('span',null,'BARIŞ KILIÇARSLAN ·'),' ',h('span',null,'MASTERCLASS AKADEMİ')),h('h2',null,n),h('p',null,t.t))));
   if(k==='not'){paper.append(h('div',null,h('span',{class:'ex'},'Örnek düzen')),h('p',{class:'sm mu',style:'margin:0'},'Her bölümde aklınızda kalanı ve sahada deneyeceğinizi yazın.'));flow(t).filter(s=>s.k==='ana').forEach(s=>paper.append(h('div',{class:'nl'},h('b',null,stepName(s)),h('i'),h('i'))));}
   if(k==='koc'){paper.append(h('div',null,h('span',{class:'ex'},'Örnek düzen')),h('p',{class:'sm mu',style:'margin:0'},'Ana videolar bitince, eğitimin tamamlandığı gün mentorla çalışılır.'));['Bu eğitimden sahada hemen uygulayacağın üç şey ne?','Hangi bölüm seni en çok zorladı, neden?','Bu hafta hangi müşteriyle, hangi cümleyle başlayacaksın?','Bir ay sonra hangi sonucu görmek istiyorsun?'].forEach(q=>paper.append(h('div',{class:'nl'},h('b',null,q),h('i'),h('i'),h('i'))));}
   if(k==='akt'){paper.append(h('p',{class:'sm mu',style:'margin:0'},OFFACT[id]?'Ofisinizin sürümü.':'Örnek aktiviteler. Ofisinize uyarlayabilirsiniz.'));actTpl(id).forEach(([ty,tx,nn],i)=>paper.append(h('div',{class:'nl'},h('b',null,(i+1)+'. '+tx),h('span',{class:'sm mu'},ty+', '+dueLabel(nn)),h('i'))));paper.append(h('div',{class:'q'},'Mentor onayı ve tarih',h('small',null,'Mentor işaretleyince Başarı Sertifikası hakkı doğar.')));}
@@ -178,7 +178,7 @@ function vTakvim(ro){
   const cal=h('div',{class:'cal'});
   for(let i=0;i<rows*7;i++){const d=plus(start,i);
     const cell=h('div',{class:(d.getMonth()!==calM?'o ':'')+(sameDay(d,T0)?'tod':'')},h('span',{class:'dn'},String(d.getDate())));
-    sessionsOn(d).forEach(({r,i:k})=>cell.append(h('button',{class:'ev'+(df(d)<0?' past':''),type:'button',style:'--gc:'+GRM[r.g].c,onclick:()=>openSes(r.id,k),'aria-label':TRM[r.tr].t+', '+GRM[r.g].n+', '+dd(d)},(r.tel?'Telafi: ':'')+TRM[r.tr].s+(r.days.length>1?' '+(k+1)+'/'+r.days.length:''),h('small',null,r.tel?names(r.mem):GRM[r.g].n))));
+    sessionsOn(d).forEach(({r,i:k})=>cell.append(h('button',{class:'ev'+(df(d)<0?' past':''),type:'button',style:'--gc:'+GRM[r.g].c,onclick:()=>openSes(r.id,k)},(r.tel?'Telafi: ':'')+TRM[r.tr].s+(r.days.length>1?' '+(k+1)+'/'+r.days.length:''),h('small',null,r.tel?names(r.mem):GRM[r.g].n),h('span',{class:'sr'},', '+dd(d)))));
     cal.append(cell);}
   const mv=n=>{calM+=n;if(calM<0){calM=11;calY--;}if(calM>11){calM=0;calY++;}rerender();};
   const left=h('section',{class:'pn'},
@@ -320,7 +320,7 @@ function privSection(id,rs,ro){
 function bizSection(id,ro){
   const v=BIZ[id]||(BIZ[id]=[0,0,0,0]);
   return h('div',{class:'sec'},h('div',{class:'sec-t'},h('h3',null,'İş sonuçları'),h('span',{class:'sm mu'},'İsteğe bağlı, bu ay')),
-    h('div',{class:'g4',style:'grid-template-columns:repeat(2,minmax(0,1fr))'},BZN.map((n,i)=>{const val=h('b',{'aria-live':'polite'},String(v[i]));
+    h('div',{class:'g4 ctr-g'},BZN.map((n,i)=>{const val=h('b',{'aria-live':'polite'},String(v[i]));
       const ch=d=>{v[i]=Math.max(0,v[i]+d);val.textContent=String(v[i]);};
       return h('div',{class:'ctr'},h('span',{class:'t'},n),ro?null:h('button',{type:'button','aria-label':n+' azalt',onclick:()=>ch(-1)},ic('minus')),val,ro?null:h('button',{type:'button','aria-label':n+' artır',onclick:()=>ch(1)},ic('plus')));})),
     h('p',{class:'sec-n',style:'margin:0'},'Girmek zorunlu değil. Girilirse rapora ve karşılaştırmaya eklenir.'));

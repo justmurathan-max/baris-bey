@@ -115,7 +115,7 @@ VIEWS.merkez.basvurular=()=>{
     h('td',{'data-l':'Tür'},RQK[r.kind]||r.kind),
     h('td',null,h('div',{class:'t'},h('b',null,r.name||r.email||'—'),r.company?h('span',{class:'sm mu',style:'display:block'},r.company+(r.city?', '+r.city:'')):null)),
     h('td',{'data-l':'İletişim'},[r.phone,r.email].filter(Boolean).join(' · ')||'—'),
-    h('td',{'data-l':'Ayrıntı',class:'sm'},[r.topic,r.size,r.mode,r.message].filter(Boolean).join(' · ')||'—'),
+    h('td',{'data-l':'Ayrıntı',class:'sm'},[r.dil&&(({en:'İngilizce',es:'İspanyolca',de:'Almanca'})[r.dil]||r.dil)+' sayfadan',r.topic,r.size,r.mode,r.message].filter(Boolean).join(' · ')||'—'),
     h('td',{class:'r'},r.status==='yeni'?btn('btn-k btn-xs','İşlendi',()=>setReq(r,'islendi')):btn('btn-g btn-xs','Yeniye al',()=>setReq(r,'yeni'))))));
   root.append(h('section',{class:'pn'},h('div',{class:'tw'},h('table',{class:'tbl rsp'},h('thead',null,h('tr',null,['Tarih','Tür','Kişi','İletişim','Ayrıntı',''].map(x=>h('th',null,x)))),tb))));
   return root;
@@ -163,7 +163,7 @@ function vidChip(t){
 const vidText=v=>'Vimeo’da '+v.have+' / '+v.n+' bölüm'+(v.miss.length?'. Eksik: '+v.miss.join(', '):'')+(v.priv?'. '+v.priv+' video özel; gizlilik ayarı değişince sitede oynar':'')+'.';
 function openTrAdmin(id){
   const t=TRM[id],m=MAT[id];
-  const row=(ok,n,s,on)=>h('li',null,h('span',{class:'li-i '+(ok?'ok':'wait')},ic(ok?'tick':'clock')),h('div',{class:'t'},h('b',null,n),h('span',null,s)),ok?chip('ok',null,'Yüklü'):btn('btn-k btn-xs','Yükle',on));
+  const row=(ok,n,s,on)=>h('li',null,h('span',{class:'li-i '+(ok?'ok':'wait')},ic(ok?'tick':'clock')),h('div',{class:'t'},h('b',null,n),h('span',null,s)),ok?chip('ok',null,'Yüklü'):btn('btn-k btn-xs','Yükle',realM()?()=>toast('Belge ve video yükleme bir sonraki adımda açılacak.'):on));
   const draw=()=>[h('div',{class:'sec'},h('div',{class:'sec-t'},h('h3',null,'Videolar')),h('ul',{class:'ls'},
       (()=>{const v=vidStat(t),ok=!v.miss.length&&!v.priv;return h('li',null,h('span',{class:'li-i '+(ok?'ok':'wait')},ic(ok?'tick':'clock')),h('div',{class:'t'},h('b',null,'Ana eğitim videoları'),h('span',null,vidText(v))),chip(ok?'ok':'wait',null,ok?'Hazır':(v.miss.length?'Eksik':'Ayar bekliyor')));})(),
       row(m.ext,'Tanıtım, koçluk ve uygulama videoları','Barış Kılıçarslan’dan gelecek',()=>{m.ext=1;toast('Videolar yüklendi.');openTrAdmin(id);rerender();}))),
@@ -179,13 +179,13 @@ function openNewTraining(){
     h('div',{class:'fld'},h('label',{for:'ntR'},'Hedeflenen sonuç'),h('input',{id:'ntR',type:'text',placeholder:'Tek cümle, sonucu anlatsın',oninput:e=>{v.r=e.target.value;}})),
     h('div',{class:'fld'},h('label',{for:'ntC'},'Bölümler'),h('textarea',{id:'ntC',rows:'6',placeholder:'Her satıra bir bölüm. Örnek: XX01 Giriş',oninput:e=>{v.ch=e.target.value;}})),
     h('div',{class:'fld'},h('span',{class:'lab'},'Erişim'),h('div',{class:'opt'},[[true,'Aboneliğe dahil','Bütün üye ofislerde açılır'],[false,'Ayrı satılır','Üyelere avantajlı fiyatla sunulabilir']].map(([k,b,s])=>h('label',{class:'oc'},h('input',{type:'radio',name:'ntInc',checked:k===v.inc||null,onchange:()=>{v.inc=k;}}),h('span',{class:'t'},h('b',null,b),h('span',null,s))))))),
-    foot:[btn('btn-o','Vazgeç',closeDrawer),btn('btn-k','Taslak olarak ekle',()=>{if(v.t.trim().length<3){toast('Eğitim adını yazın.');return;}NEWTR.push({t:v.t.trim(),r:v.r.trim(),ch:v.ch.split('\n').filter(x=>x.trim()).length,inc:v.inc});closeDrawer();toast(v.t.trim()+' taslak olarak eklendi.');rerender();})]});
+    foot:[btn('btn-o','Vazgeç',closeDrawer),btn('btn-k','Taslak olarak ekle',()=>{if(realM()){toast('Yeni eğitim ekleme bir sonraki adımda açılacak.');return;}if(v.t.trim().length<3){toast('Eğitim adını yazın.');return;}NEWTR.push({t:v.t.trim(),r:v.r.trim(),ch:v.ch.split('\n').filter(x=>x.trim()).length,inc:v.inc});closeDrawer();toast(v.t.trim()+' taslak olarak eklendi.');rerender();})]});
 }
 const OTHERCERT=[{no:'MA-26-00188',n:'Gökhan Arslan',o:'RE/MAX Örnek Ofis Çankaya',tr:'iu',ty:'bas',d:D(-64)},{no:'MA-26-00203',n:'Sevgi Kara',o:'RE/MAX Örnek Ofis Bornova',tr:'pa',ty:'kat',d:D(-51)},{no:'MA-26-00247',n:'Onur Çelik',o:'RE/MAX Örnek Ofis Muratpaşa',tr:'kb',ty:'kat',d:D(-22)}];
 function findCert(no){
   no=no.trim().toLocaleUpperCase('tr');
   if(realM())return MCERT.find(c=>c.no===no)||null;
-  const x=CERT.find(c=>c.no===no);if(x)return{n:COM[x.c].n,o:OFF.n,tr:x.tr,ty:x.ty,d:x.d,no:x.no};
+  const x=CERT.find(c=>c.no===no);if(x)return{n:COM[x.c]?COM[x.c].n:(x.hn||'—'),o:OFF.n,tr:x.tr,ty:x.ty,d:x.d,no:x.no};
   return OTHERCERT.find(c=>c.no===no)||null;
 }
 function verifyBox(){

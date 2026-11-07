@@ -135,11 +135,22 @@ function navLabel(){const n=NAV[S.role].find(x=>x[0]===S.page);return n?n[1]:S.p
 function render(top){
   const y=window.scrollY;
   let v;try{v=VIEWS[S.role][S.page](S.arg);}catch(e){console.error(e);v=h('div',{class:'empty'},h('b',null,'Bu sayfa açılamadı'),String(e.message||e));}
-  $('#pg').replaceChildren(v);shell();
+  $('#pg').replaceChildren(v);shell();scrollKeys($('#pg'));
   if(top){window.scrollTo(0,0);$('#pg').focus({preventScroll:true});}else window.scrollTo(0,y);
   scheduleSync();
 }
 const rerender=()=>render(false);
+// Klavyeyle kaydırılabilsin: içinde odaklanacak öğe olmayan kaydırmalı tablo ya da pencere gövdesi odak alır.
+function scrollKeys(root){
+  if(!root)return;
+  root.querySelectorAll('.tw,.md-b,.dr-b').forEach(e=>{
+    const sc=e.scrollWidth>e.clientWidth+1||e.scrollHeight>e.clientHeight+1;
+    const fo=e.querySelector('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])');
+    if(sc&&!fo){if(!e.hasAttribute('tabindex')){e.tabIndex=0;e.dataset.kk='1';}}
+    else if(e.dataset.kk){e.removeAttribute('tabindex');delete e.dataset.kk;}
+  });
+}
+let rsT=0;window.addEventListener('resize',()=>{clearTimeout(rsT);rsT=setTimeout(()=>{scrollKeys($('#pg'));scrollKeys($('#md'));scrollKeys($('#dr'));},200);});
 function shell(){
   const r=S.role,me=meUser();
   $('#sbHome').href='#'+r+'/'+NAV[r][0][0];
@@ -153,7 +164,7 @@ function shell(){
   $('#nav').replaceChildren(...NAV[r].map(([k,l,i])=>{const cur=S.page===k||(k==='egitimler'&&S.page==='egitim');const a=h('a',{href:'#'+r+'/'+k,'aria-current':cur?'page':null},ic(i),l);const n=badge(k);if(n)a.append(h('span',{class:'n','aria-label':n+' bekleyen'},String(n)));return a;}));
   $('#meBtn').replaceChildren(h('span',{class:'av k'},ini(me.n)),h('span',{class:'t'},h('b',null,me.n),h('span',null,roleLabel())),ic('down'));
   $('#crumb').replaceChildren(h('span',{class:'nw'},r==='merkez'?'Akademi merkezi':offName()));
-  const bn=$('#demoBn');if(bn){bn.hidden=!ME||(ME.role!=='merkez'&&ME.dataOk);if(ME&&ME.role!=='merkez'&&!ME.dataOk)fill(bn,h('b',null,'Ofis verileri alınamadı. '),'Bağlantınızı kontrol edip sayfayı yenileyin; bu hâlde yapılan değişiklikler kaydedilmez.');else if(ME)fill(bn,h('b',null,'Örnek veriler. '),ME.role==='merkez'?'Ofisler ve üyelikler gerçek kayıtlardan geliyor; sertifika, güvenlik ve klasik erişim sayfaları şimdilik örnek.':'Girişiniz gerçek; panellerdeki kişi, oturum ve rakamlar şimdilik örnek. Gerçek kayıtlar bir sonraki adımda bağlanacak.');}
+  const bn=$('#demoBn');if(bn){bn.hidden=!ME||(ME.role!=='merkez'&&ME.dataOk);if(ME&&!ME.dataOk)fill(bn,h('b',null,ME.role==='merkez'?'Ofis bilgileri alınamadı. ':'Ofis verileri alınamadı. '),'Bağlantınızı kontrol edip sayfayı yenileyin; bu hâlde yapılan değişiklikler kaydedilmez.');else if(ME)fill(bn,h('b',null,'Örnek sayfalar. '),'Ofisler, üyelikler, sertifikalar ve başvurular gerçek kayıtlardan geliyor; belge yükleme, yeni eğitim, güvenlik ve klasik erişim şimdilik örnek.');}
   const tr=$('#tbR');tr.replaceChildren();
   if(r==='mentor')tr.append(btn('btn-o btn-s',[ic('spark'),'Barış AI'],()=>go('ai')));
   if(r==='merkez'&&S.page!=='ofisler')tr.append(btn('btn-k btn-s',[ic('plus'),'Yeni ofis aç'],()=>openNewOffice()));
@@ -193,7 +204,7 @@ function drawer({t,s,head,body,foot,w}){
     foot&&foot.length?h('div',{class:'dr-f'},foot):null);
   const ov=$('#ov');ov.hidden=false;dr.hidden=false;drOpen=true;lockBody();
   requestAnimationFrame(()=>{ov.classList.add('on');dr.classList.add('on');});
-  setTimeout(()=>{const f=dr.querySelector('[autofocus]')||dr.querySelector('.dr-h .icb');if(f)f.focus();},80);
+  setTimeout(()=>{scrollKeys(dr);const f=dr.querySelector('[autofocus]')||dr.querySelector('.dr-h .icb');if(f)f.focus();},80);
 }
 function closeDrawer(){
   if(!drOpen)return;drOpen=false;const dr=$('#dr'),ov=$('#ov');
@@ -210,7 +221,7 @@ function modal({t,s,body,foot,w,cls}){
     foot&&foot.length?h('div',{class:'md-f'},foot):null));
   md.setAttribute('aria-labelledby','mdT');md.hidden=false;mdOpen=true;lockBody();
   requestAnimationFrame(()=>md.classList.add('on'));
-  setTimeout(()=>{const f=md.querySelector('[autofocus]')||md.querySelector('.md-h .icb');if(f)f.focus();},80);
+  setTimeout(()=>{scrollKeys(md);const f=md.querySelector('[autofocus]')||md.querySelector('.md-h .icb');if(f)f.focus();},80);
 }
 function closeModal(){
   if(!mdOpen)return;mdOpen=false;const md=$('#md');md.classList.remove('on');
@@ -220,7 +231,7 @@ function closeModal(){
 $('#md').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
 $('#ov').addEventListener('click',closeDrawer);
 function confirmBox(t,txt,ok,on,danger){
-  modal({t,body:h('p',{style:'margin:0;font-size:15px;line-height:1.55'},txt),foot:[btn('btn-o btn-s','Vazgeç',closeModal),btn((danger?'btn-r':'btn-k')+' btn-s',ok,()=>{closeModal();on();})],w:480});
+  modal({t,body:h('p',{style:'margin:0;font-size:15px;line-height:1.55'},txt),foot:[btn('btn-o btn-s','Vazgeç',closeModal),btn((danger?'btn-r':'btn-k')+' btn-s',ok,()=>{closeModal();on();})],w:480,cls:'md-kisa'});
 }
 function popup(a,items,o={}){
   closePop();const p=h('div',{class:'pop'+(o.dk?' dk':''),role:'menu'},items);document.body.append(p);popEl=p;
@@ -252,11 +263,12 @@ function copy(txt,msg){const done=()=>toast(msg||'Kopyalandı.');if(navigator.cl
 
 /* =================== BİLEŞENLER =================== */
 function poster(t,o={}){
-  const p=h('span',{class:'pc'+(t.cut?' cut':'')+(o.sm?' sm':''),style:'--tn:'+t.tn+(t.pos?';--pos:'+t.pos:'')});
+  const p=h('span',{class:'pc'+(t.cut?' cut':'')+(o.sm?' sm':''),style:'--tn:'+t.tn+(t.pos?';--pos:'+t.pos:''),'aria-hidden':'true'});
   p.append(h('img',{src:t.img,alt:'',loading:'lazy',decoding:'async'}));
   if(!o.sm)p.append(h('span',{class:'pc-top'},h('span',{class:'dm'},h('i'),t.no?'Eğitim '+pad2(t.no):'Klasik'),h('span',{class:'dm'},t.ch?t.ch.length+' bölüm':'Bonus')));
   const lt=h('span',{class:'lt'},h('span',{class:'k'},'BARIŞ KILIÇARSLAN'));
-  t.lt.forEach(x=>{const s=h('span',{class:x[0]},x[1]);s.style.fontSize=x[2]+'cqi';if(x[0]==='w')s.style.marginTop='1.15em';lt.append(s);});
+  // Ş/Ç çengeli alttaki, Ö/Ü/İ noktası üstteki satıra değmesin
+  let onc='';t.lt.forEach(x=>{const s=h('span',{class:x[0]},x[1]);s.style.fontSize=x[2]+'cqi';if(x[0]==='w')s.style.marginTop=/[ŞÇ]/.test(onc)?'2.1em':'1.15em';if(x[0]==='c'&&lt.children.length===1&&/[ÖÜİ]/.test(x[1]))s.style.marginTop='.1em';if(x[0]==='c')onc=x[1];lt.append(s);});
   p.append(h('span',{class:'pc-in'},lt));
   return p;
 }
