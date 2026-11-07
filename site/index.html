@@ -174,8 +174,12 @@ button{cursor:pointer}
 .mnav-l a[aria-current]{color:var(--tx);font-weight:600}
 
 /* =================== HERO =================== */
-.hero{position:relative;background:#fff;padding:var(--edge) var(--edge) 0}
-.hc{position:relative;height:calc(100svh - var(--hd) - var(--edge));min-height:620px;max-height:960px;border-radius:32px;overflow:hidden;background:#141416;color:#fff;isolation:isolate}
+.hero{position:sticky;top:var(--hero-ust,0px);z-index:0;background:#fff;padding:var(--edge) var(--edge) 0}
+.hc{position:relative;height:calc(100svh - var(--hd) - var(--edge));min-height:620px;max-height:960px;border-radius:32px;overflow:hidden;background:#141416;color:#fff;isolation:isolate;transform:scale(calc(1 - var(--k,0)*.05));transform-origin:50% 30%}
+/* İkinci sayfa birincinin üstüne biner: kahraman yerinde kalır, sonraki bölümler üstünden kayar */
+.hero~*{position:relative;z-index:1}
+.hero+*{border-radius:32px 32px 0 0;box-shadow:0 -34px 70px -40px rgba(0,0,0,.45)}
+.hc::after{content:"";position:absolute;inset:0;z-index:30;background:#000;opacity:calc(var(--k,0)*.55);pointer-events:none}
 .hs{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 1s ease,visibility 0s 1s}
 .hs.on{opacity:1;visibility:visible;transition:opacity 1s ease}
 .hs>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.07);transition:transform 9s var(--ease)}
@@ -222,6 +226,7 @@ button{cursor:pointer}
 }
 @media (max-width:640px){
   .hero{padding:8px 8px 0}
+  .hero+*{border-radius:24px 24px 0 0}
   .hc{height:min(78svh,660px);min-height:540px;border-radius:24px}
   .hs-c{left:20px;right:20px;bottom:26px}
   .hs-c .h1{font-size:clamp(34px,10vw,46px)}
@@ -304,13 +309,20 @@ button{cursor:pointer}
 .ab-k{color:var(--red)}
 .ab-st{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px clamp(20px,3vw,40px);width:100%}
 .ab-st .st b{font-size:clamp(34px,3.4vw,58px)}
-.ab-st .st span{margin-top:10px;font-size:15px}
-.ab-lg{display:flex;flex-wrap:wrap;align-items:center;gap:18px 30px}
-.ab-lg img{width:auto;opacity:.7}
+.ab-st .st>span{margin-top:10px;font-size:15px}
+/* Referanslar: kahramanın hemen altında, ikinci sayfanın başında */
+.refs{background:#fff}
+.refs-in{display:flex;align-items:center;gap:clamp(24px,4vw,72px);padding-block:clamp(30px,3.4vw,52px);border-bottom:1px solid var(--ln)}
+.refs-l{flex:none;max-width:15ch;margin:0;font:600 12px/1.45 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:var(--mu)}
+.refs-g{flex:1;display:flex;align-items:center;justify-content:space-between;gap:20px clamp(20px,3vw,48px);margin:0;padding:0;list-style:none}
+.refs-g li{display:flex;align-items:center;justify-content:center}
+.refs-g img{display:block;height:var(--h);width:auto;filter:grayscale(1);opacity:.8;transition:opacity .2s}
+.refs-g li:hover img{opacity:1}
+@media (max-width:760px){.refs-in{flex-direction:column;align-items:stretch;gap:22px;text-align:center}.refs-l{max-width:none}.refs-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px 16px}.refs-g img{height:calc(var(--h)*.74)}}
 @media (max-width:900px){.ab-g{grid-template-columns:1fr}.ab-ph{aspect-ratio:1;max-height:none}}
 .st{border-top:1px solid rgba(0,0,0,.16);padding-top:16px}
 .st b{display:block;font:500 clamp(34px,4.6vw,84px)/.95 var(--fd);letter-spacing:-.05em;font-variant-numeric:tabular-nums;white-space:nowrap}
-.st span{display:block;margin-top:12px;color:var(--mu);font-size:15.5px}
+.st>span{display:block;margin-top:12px;color:var(--mu);font-size:15.5px}
 .case{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);margin-top:clamp(48px,6vw,96px);border-radius:32px;overflow:hidden;background:#0E0E10;color:#fff}
 .case-ph{position:relative;min-height:420px}
 .case-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:28% 22%}
@@ -353,7 +365,8 @@ button{cursor:pointer}
 @media (min-width:1001px){.ai-g>.cs{order:-1}}
 .ai-l{display:grid;gap:22px;justify-items:start;container-type:inline-size}
 /* Barış AI adı: sütun genişliğine göre büyür, hep tek satır */
-.ai-ad{display:flex;align-items:center;gap:.14em;margin:0 0 6px;font:500 clamp(40px,4.5vw,86px)/.92 var(--fd);font:500 min(16.8cqi,95px)/.92 var(--fd);letter-spacing:-.018em;white-space:nowrap}
+.ai-ad{display:flex;align-items:center;gap:.2em;margin:0 0 6px;font:500 clamp(28px,3.15vw,60px)/.92 var(--fd);font:500 min(11.76cqi,66.5px)/.92 var(--fd);letter-spacing:.01em;white-space:nowrap}
+.ai-ad>span:first-child{text-transform:uppercase}
 .ai-ad .ai-chip{height:1.62em;padding:0 .34em;border-radius:.3em;font:800 .44em/1 var(--fw);letter-spacing:.03em;transform:translateY(.05em)}
 .ai-alt{margin:0;font:500 clamp(22px,2.1vw,34px)/1.12 var(--fd);letter-spacing:-.015em;text-wrap:balance}
 .ai-chip{display:inline-grid;place-items:center;height:24px;padding:0 8px;border-radius:7px;background:#000;color:#fff;font:800 12.5px/1 var(--fw);letter-spacing:.06em}
@@ -361,9 +374,10 @@ button{cursor:pointer}
 .cs-h{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid rgba(0,0,0,.08)}
 .cs-who{display:flex;align-items:center;gap:12px;min-width:0}
 .cs-av{width:42px;height:42px;border-radius:50%;object-fit:cover;flex:none;background:var(--g1)}
-.ai-fo{margin:8px 0 0;width:100%;aspect-ratio:1200/925;border-radius:24px;overflow:hidden;background:#EFEFEF}
-.ai-fo img{display:block;width:100%;height:100%;object-fit:cover}
-@media (max-width:1000px){.ai-fo{aspect-ratio:16/9}.ai-fo img{object-position:50% 45%}}
+/* Fotoğraf kart gibi değil, sayfaya gömülü: kenarları beyaza erir */
+.ai-fo{margin:8px 0 0;width:100%;aspect-ratio:1200/925}
+.ai-fo img{display:block;width:100%;height:100%;object-fit:cover;filter:brightness(1.05);-webkit-mask-image:linear-gradient(90deg,transparent,#000 16%,#000 84%,transparent),linear-gradient(180deg,transparent,#000 16%,#000 80%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 16%,#000 84%,transparent),linear-gradient(180deg,transparent,#000 16%,#000 80%,transparent);mask-composite:intersect}
+@media (max-width:1000px){.ai-fo{aspect-ratio:16/9}.ai-fo img{object-position:50% 45%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent),linear-gradient(180deg,transparent,#000 7%,#000 82%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent),linear-gradient(180deg,transparent,#000 7%,#000 82%,transparent)}}
 .cs-who b{display:block;font:600 16px/1.2 var(--fb)}
 .cs-who span{display:block;font-size:13px;color:var(--mu);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cs-who>div{min-width:0}
@@ -746,7 +760,7 @@ button{cursor:pointer}
 .ym-sahne:hover .ym-z,.ym-sahne:focus-visible .ym-z{opacity:1}
 .ym-c{display:grid;padding:0 4px}
 .ym-c>span{grid-area:1/1;display:block;font-size:15.5px;line-height:1.55;color:var(--mu);opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
-.ym-c>span.on{opacity:1;visibility:visible;transition:opacity .35s .12s}
+.ym-c>span.on{opacity:1;visibility:visible;transition:opacity .35s .3s}
 .ym-c b{display:block;margin-bottom:4px;font:600 18px/1.3 var(--fd);letter-spacing:-.015em;color:var(--tx)}
 .dlg.shot{width:min(1320px,100%);padding:12px 12px 16px;display:grid;gap:12px}
 .dlg.shot img{display:block;width:100%;height:auto;border-radius:14px}
@@ -1027,6 +1041,21 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
   </div>
 </section>
 
+<!-- REFERANSLAR -->
+<section class="refs" aria-labelledby="refs-l">
+  <div class="wrap refs-in">
+    <p class="refs-l" id="refs-l">Eğitim verdiği kurumlardan</p>
+    <ul class="refs-g">
+      <li><img loading="lazy" decoding="async" src="img/logo-hilton.png" alt="Hilton" width="289" height="110" style="--h:34px"></li>
+      <li><img loading="lazy" decoding="async" src="img/logo-3m.png" alt="3M" width="208" height="110" style="--h:31px"></li>
+      <li><img loading="lazy" decoding="async" src="img/logo-arcelik.png" alt="Arçelik" width="405" height="99" style="--h:30px"></li>
+      <li><img loading="lazy" decoding="async" src="img/logo-hp.png" alt="HP" width="110" height="110" style="--h:42px"></li>
+      <li><img loading="lazy" decoding="async" src="img/logo-aksigorta.png" alt="Aksigorta" width="425" height="63" style="--h:21px"></li>
+      <li><img loading="lazy" decoding="async" src="img/logo-anadolujet.png" alt="AnadoluJet" width="436" height="31" style="--h:16px"></li>
+    </ul>
+  </div>
+</section>
+
 <!-- HAKKINDA -->
 <section class="sec wh" id="hakkinda">
   <div class="wrap ab-g">
@@ -1040,14 +1069,6 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
         <div class="st"><b>200.000+</b><span>katılımcı</span></div>
         <div class="st"><b>200+</b><span>kurum</span></div>
         <div class="st"><b>%97,4</b><span>katılımcı memnuniyeti</span></div>
-      </div>
-      <div class="ab-lg" aria-label="Eğitim verdiği kurumlardan">
-        <img loading="lazy" decoding="async" src="img/logo-hilton.png" alt="Hilton" style="height:24px">
-        <img loading="lazy" decoding="async" src="img/logo-3m.png" alt="3M" style="height:22px">
-        <img loading="lazy" decoding="async" src="img/logo-arcelik.png" alt="Arçelik" style="height:21px">
-        <img loading="lazy" decoding="async" src="img/logo-hp.png" alt="HP" style="height:30px">
-        <img loading="lazy" decoding="async" src="img/logo-aksigorta.png" alt="Aksigorta" style="height:15px">
-        <img loading="lazy" decoding="async" src="img/logo-anadolujet.png" alt="AnadoluJet" style="height:11px">
       </div>
       <button class="btn btn-k" type="button" data-open="m-bio">Barış’ı tanı</button>
     </div>
@@ -1090,6 +1111,20 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
 <!-- EĞİTİM KATALOĞU -->
 <section class="sec wh" id="katalog">
   <div class="wrap">
+    <p class="dil-not" data-yabanci hidden><svg aria-hidden="true"><use href="#i-g"/></svg><span>Kitap ve eğitim setleri Türkçedir. Fiyatlar Türk lirasıdır, ödeme sayfası Türkçedir; kitap yalnız Türkiye içindeki adreslere gönderilir.</span></p>
+    <div class="vsl" id="vsl">
+      <div class="vsl-v">
+        <button class="vsl-o" id="vsl-o" type="button"><img loading="lazy" decoding="async" src="img/vsl-satisin-sifreleri.webp" alt="" width="1280" height="720"><span class="vsl-pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="sr">Satışın Şifreleri tanıtım videosunu oynat.</span><span class="vsl-sure">Tanıtım · 17 dk</span></button>
+      </div>
+      <div class="vsl-t">
+        <span class="lbl">Online eğitim seti</span>
+        <h3 class="h3">Satışın Şifreleri</h3>
+        <p>Satmaktan çok satın aldırmaya odaklı set: Sonucu Satmak, Önce Kendine Sat, Ethos, Logos, Pathos ve Kendini Satmak. Önce 17 dakikalık tanıtımı izle, sonra karar ver.</p>
+        <ul class="ck"><li><svg aria-hidden="true"><use href="#i-k"/></svg>9,5 saat video ve 9,5 saat sesli anlatım</li><li><svg aria-hidden="true"><use href="#i-k"/></svg>13 koçluk videosu ve PDF eğitim notları</li><li><svg aria-hidden="true"><use href="#i-k"/></svg>İmzalı kitap, 5 iş günü içinde kargoda</li></ul>
+        <p class="vsl-f"><b class="vsl-fy" data-u="ss">9.797 TL</b><small>KDV dâhil</small></p>
+        <div class="vsl-cta"><a class="btn btn-k" href="odeme.html?urun=ss">Satın al</a><button class="btn btn-ok" type="button" data-open="m-apply">Ekip olarak başla</button></div>
+      </div>
+    </div>
     <div class="kt-h">
       <h2 class="h2">Sahada kazanca götüren on eğitim.</h2>
       <p class="lead">Tanıtımları herkes izleyebilir. Eğitimin tamamı üye ofisin mentoruna ve brokerına açılır.</p>
@@ -1265,19 +1300,6 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
       <p class="lead sh-l">Kitap ve online eğitim setleri. Daha önce alanların erişim hakkı aynen korunur.</p>
     </div>
     <p class="dil-not" data-yabanci hidden><svg aria-hidden="true"><use href="#i-g"/></svg><span>Kitap ve eğitim setleri Türkçedir. Fiyatlar Türk lirasıdır, ödeme sayfası Türkçedir; kitap yalnız Türkiye içindeki adreslere gönderilir.</span></p>
-    <div class="vsl" id="vsl">
-      <div class="vsl-v">
-        <button class="vsl-o" id="vsl-o" type="button"><img loading="lazy" decoding="async" src="img/vsl-satisin-sifreleri.webp" alt="" width="1280" height="720"><span class="vsl-pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="sr">Satışın Şifreleri tanıtım videosunu oynat.</span><span class="vsl-sure">Tanıtım · 17 dk</span></button>
-      </div>
-      <div class="vsl-t">
-        <span class="lbl">Online eğitim seti</span>
-        <h3 class="h3">Satışın Şifreleri</h3>
-        <p>Satmaktan çok satın aldırmaya odaklı set: Sonucu Satmak, Önce Kendine Sat, Ethos, Logos, Pathos ve Kendini Satmak. Önce 17 dakikalık tanıtımı izle, sonra karar ver.</p>
-        <ul class="ck"><li><svg aria-hidden="true"><use href="#i-k"/></svg>9,5 saat video ve 9,5 saat sesli anlatım</li><li><svg aria-hidden="true"><use href="#i-k"/></svg>13 koçluk videosu ve PDF eğitim notları</li><li><svg aria-hidden="true"><use href="#i-k"/></svg>İmzalı kitap, 5 iş günü içinde kargoda</li></ul>
-        <p class="vsl-f"><b class="vsl-fy" data-u="ss">9.797 TL</b><small>KDV dâhil</small></p>
-        <div class="vsl-cta"><a class="btn btn-k" href="odeme.html?urun=ss">Satın al</a><button class="btn btn-ok" type="button" data-open="m-apply">Ekip olarak başla</button></div>
-      </div>
-    </div>
     <div class="shop">
       <button class="pd" type="button" data-prod="kitap" data-cat="kitap">
         <span class="pd-img book"><img loading="lazy" decoding="async" src="img/kitap.webp" alt="Satışın Şifreleri ile Sonucu Satmak kitap kapağı"><span class="badge">İmzalı</span></span>
@@ -2063,9 +2085,9 @@ $('.ym-sahne',ym).addEventListener('click',function(){yDur();var im=yI[yA],ms=$(
 (function(){var D=document.documentElement;if(!D.classList.contains('rv-on'))return;
 if(!('IntersectionObserver' in window)){D.classList.remove('rv-on');return;}
 var A=function(q,r){return Array.prototype.slice.call((r||document).querySelectorAll(q));};
-var secs=A('main > section.sec, main > section.fin');
+var secs=A('main > section.sec, main > section.fin, main > section.refs');
 function split(h){if(h.children.length)return false;var ws=h.textContent.trim().split(/\s+/);h.textContent='';ws.forEach(function(w,i){var o=document.createElement('span'),n=document.createElement('span');o.className='w';n.textContent=w;n.style.setProperty('--wi',i);o.appendChild(n);h.appendChild(o);if(i<ws.length-1)h.appendChild(document.createTextNode(' '));});return true;}
-var SEL='.h2,.fin .h1,.h3,.lbl,.ak-mk,.ai-ad,.ai-alt,.ai-fo,.lead,.ab-ph,.st,.ab-lg,.ym-s,.ym-sahne,.kc,.ac,.cs,.plan,.plan-n,.ev,.cr,.evl-g,.ts-top,.ts-fig,.ts-ph,.ro-c,.vsl,.shop .pd,.fin-ph,.fin-t .hs-cta';
+var SEL='.h2,.fin .h1,.h3,.lbl,.ak-mk,.ai-ad,.ai-alt,.ai-fo,.lead,.ab-ph,.st,.refs-g li,.ym-s,.ym-sahne,.kc,.ac,.cs,.plan,.plan-n,.ev,.cr,.evl-g,.ts-top,.ts-fig,.ts-ph,.ro-c,.vsl,.shop .pd,.fin-ph,.fin-t .hs-cta';
 var list=[];secs.forEach(function(sec){A(SEL,sec).forEach(function(e){if(list.indexOf(e)<0)list.push(e);});});
 list=list.filter(function(e){for(var p=e.parentElement;p;p=p.parentElement){if(list.indexOf(p)>-1)return false;}return true;});
 list.forEach(function(e){if((e.classList.contains('h2')||e.classList.contains('h1'))&&split(e))e.classList.add('rv-w');e.classList.add('rv');});
@@ -2075,6 +2097,61 @@ var io=new IntersectionObserver(function(es){
   v.forEach(function(t,i){t.style.setProperty('--d',(Math.min(i,6)*0.08).toFixed(2)+'s');t.classList.add('rv-in');io.unobserve(t);});
 },{rootMargin:'0px 0px -6% 0px',threshold:0.1});
 list.forEach(function(e){io.observe(e);});
+})();</script>
+<script>/* Rakamlar görününce sıfırdan sayarak artar. Hareket azaltılmışsa ya da gözlemci yoksa son hâli kalır.
+   Biçim sayfadaki yazıdan okunur (1.900+, 1,900+, %97,4, 97.4%), dil sayfalarında da aynı çalışır. */
+(function(){
+var L=Array.prototype.slice.call(document.querySelectorAll('.ab-st .st b'));
+if(!L.length||!('IntersectionObserver' in window))return;
+try{if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;}catch(e){}
+function coz(t){
+  var m=t.match(/\d[\d.,]*\d|\d/);if(!m)return null;
+  var s=m[0],x={on:t.slice(0,m.index),son:t.slice(m.index+s.length),bin:'',ond:'',ondk:0},k=s.match(/[.,](\d+)$/);
+  if(k&&k[1].length!==3){x.ond=s.charAt(s.length-k[1].length-1);x.ondk=k[1].length;s=s.slice(0,s.length-k[1].length-1)+'#'+k[1];}
+  var g=s.match(/[.,]/);if(g)x.bin=g[0];
+  x.v=parseFloat(s.split(x.bin||'#').join(x.bin?'':'#').replace('#','.'));
+  return isNaN(x.v)?null:x;
+}
+function yaz(x,n){
+  var p=n.toFixed(x.ondk).split('.'),i=p[0];
+  if(x.bin)i=i.replace(/\B(?=(\d{3})+(?!\d))/g,x.bin);
+  return x.on+i+(x.ondk?x.ond+p[1]:'')+x.son;
+}
+var hazir=[];
+L.forEach(function(b){
+  var t=b.textContent.trim(),x=coz(t);if(!x)return;
+  var g=document.createElement('span');g.setAttribute('aria-hidden','true');g.textContent=yaz(x,0);
+  var o=document.createElement('span');o.className='sr';o.textContent=t;
+  b.textContent='';b.appendChild(g);b.appendChild(o);hazir.push({b:b,g:g,x:x});
+});
+function say(h,gec){
+  var t0=0,sure=2200;
+  function ad(z){if(!t0)t0=z;var p=Math.min(1,(z-t0)/sure),e=1-Math.pow(1-p,3);h.g.textContent=yaz(h.x,h.x.v*e);if(p<1)requestAnimationFrame(ad);}
+  setTimeout(function(){requestAnimationFrame(ad);},gec);
+}
+var io=new IntersectionObserver(function(es){
+  var s=0;es.forEach(function(e){if(!e.isIntersecting)return;io.unobserve(e.target);hazir.forEach(function(h){if(h.b===e.target){say(h,s*140);s++;}});});
+},{threshold:0.6});
+hazir.forEach(function(h){io.observe(h.b);});
+})();</script>
+<script>/* Birinci sayfa yerinde kalır, ikinci sayfa üstüne biner. Kahraman ekrandan uzunsa önce sonuna kadar kayar, sonra durur. */
+(function(){
+var hero=document.querySelector('.hero'),sh=hero&&hero.nextElementSibling;if(!hero||!sh)return;
+var rm=false,ust=0,boy=1,gor=1,bek=false;
+try{rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}
+function boya(){
+  bek=false;if(rm)return;
+  var k=(ust+boy-sh.getBoundingClientRect().top)/gor;k=k<0?0:k>1?1:k;
+  hero.style.setProperty('--k',k.toFixed(3));
+}
+function olc(){
+  var vh=window.innerHeight;boy=hero.offsetHeight;
+  // Üst menü kayınca boşluk kalmasın: kahraman ekranın en üstünde durur
+  ust=Math.min(0,vh-boy);hero.style.setProperty('--hero-ust',ust+'px');
+  gor=Math.max(1,Math.min(boy,vh-ust));boya();
+}
+window.addEventListener('scroll',function(){if(!bek){bek=true;requestAnimationFrame(boya);}},{passive:true});
+window.addEventListener('resize',olc);window.addEventListener('load',olc);olc();
 })();</script>
 
 </body></html>
