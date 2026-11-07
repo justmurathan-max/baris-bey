@@ -45,8 +45,8 @@
     ],
     "dijital": false,
     "kargo": true,
-    "fiyat": null,
-    "kargo_ucreti": null,
+    "fiyat": 10000,
+    "kargo_ucreti": 0,
     "en_fazla": 10,
     "kategori": "Kitap",
     "gorsel": "img/kitap.webp"

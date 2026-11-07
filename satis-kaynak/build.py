@@ -27,6 +27,11 @@ FONK = KOK / 'supabase' / 'functions' / 'odeme'
 
 S = json.loads((KAYNAK / 'satici.json').read_text(encoding='utf-8'))
 URUNLER = json.loads((KAYNAK / 'urunler.json').read_text(encoding='utf-8'))
+# Kart kabul işaretleri (Visa, Mastercard, American Express); kaynak ve lisans notu dosyanın başında.
+KARTLAR = re.sub(r'<!--.*?-->', '', (KAYNAK / 'kartlar.html').read_text(encoding='utf-8'), flags=re.S).strip()
+KART_CSS = ('.kartlar{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;vertical-align:middle}'
+            '.kart{display:inline-grid;place-items:center;width:42px;height:28px;border-radius:5px;background:#fff;box-shadow:inset 0 0 0 1px rgba(0,0,0,.14)}'
+            '.kart svg{display:block}.kart-amex{background:#006fcf;box-shadow:none}')
 
 ETIKET = {
     'unvan': 'satıcı unvanı', 'adres': 'satıcı adresi', 'telefon': 'telefon', 'eposta': 'e-posta',
@@ -95,7 +100,7 @@ def satici_satiri():
 
 def yasal_altbilgi(onek=''):
     return (f'<footer class="yf"><p>{satici_satiri()}</p><p>© 2026 Barış Kılıçarslan · Ödemeler Türk lirası (TL) ile, lisanslı ödeme kuruluşunun '
-            f'3D Secure güvenli sayfasında alınır. <a href="{onek}index.html">Yasal metinler</a></p></footer>')
+            f'3D Secure güvenli sayfasında alınır. <a href="{onek}index.html">Yasal metinler</a></p><p class="yf-k">{KARTLAR}</p></footer>')
 
 
 def fiyat_metni(u):
@@ -222,7 +227,8 @@ mark.eksik{background:#FFF1B8;color:#6B5200;border-radius:4px;padding:0 5px;font
 .sf{color:var(--mu);font-style:italic}.sf-t{margin:12px 0}
 .ix{list-style:none;padding:0;margin:0;display:grid;gap:12px}.ix a{display:block;padding:18px 20px;border:1px solid var(--ln);border-radius:14px;text-decoration:none}
 .ix a:hover{border-color:var(--tx)}.ix b{display:block;font:600 18px/1.3 var(--fd)}.ix span{color:var(--mu);font-size:14.5px}
-.yf{border-top:1px solid var(--ln);padding:26px clamp(16px,3.2vw,56px);color:var(--mu);font-size:13.5px;line-height:1.6;display:grid;gap:6px}.yf p{margin:0}
+.yf{border-top:1px solid var(--ln);padding:26px clamp(16px,3.2vw,56px);color:var(--mu);font-size:13.5px;line-height:1.6;display:grid;gap:6px}.yf p{margin:0}.yf .yf-k{margin-top:6px}
+""" + KART_CSS + """
 @media (max-width:480px){.yh nav a+a{display:none}}
 @media (max-width:880px){.yw{grid-template-columns:1fr}.yl{position:static;order:2;border-top:1px solid var(--ln);padding-top:22px}.sb div{grid-template-columns:1fr;gap:2px}.yh nav{gap:14px}}
 @media print{.yh,.yl,.yf{display:none}.yw{display:block;padding:0}.ya{max-width:none}}"""
@@ -297,6 +303,7 @@ def main():
         m = blok_degistir(m, '<!--URETILEN:veri-->', '<!--/URETILEN:veri-->',
                           f'<script type="application/json" id="veri">{veri_json}</script>', 'odeme.html')
         m = blok_degistir(m, '<!--URETILEN:altbilgi-->', '<!--/URETILEN:altbilgi-->', yasal_altbilgi('sozlesmeler/'), 'odeme.html')
+        m = blok_degistir(m, '<!--URETILEN:kartlar-->', '<!--/URETILEN:kartlar-->', f'<div class="oz-k">{KARTLAR}</div>', 'odeme.html')
         odeme.write_text(m, encoding='utf-8')
 
     # Ana sayfa: altbilgi, fiyatlar
@@ -309,7 +316,8 @@ def main():
         ('yasal-uyarilar', 'Yasal uyarılar'), ('hakkimizda', 'Hakkımızda'), ('iletisim', 'İletişim')])
     altbilgi = (f'<div class="ft-leg"><span>© 2026 Barış Kılıçarslan</span>{linkler}</div>'
                 f'<p class="ft-sat"><span translate="no">{satici_satiri()}</span><br>'
-                f'<span>Ödemeler Türk lirası (TL) ile, lisanslı ödeme kuruluşunun 3D Secure güvenli sayfasında alınır. Kart bilgileri bu siteye ulaşmaz.</span></p>')
+                f'<span>Ödemeler Türk lirası (TL) ile, lisanslı ödeme kuruluşunun 3D Secure güvenli sayfasında alınır. Kart bilgileri bu siteye ulaşmaz.</span>'
+                f'<span class="ft-kart">{KARTLAR}</span></p>')
     a = blok_degistir(a, '<!--URETILEN:yasal-->', '<!--/URETILEN:yasal-->', altbilgi, 'index.html')
     fiyat = {u['kod']: ({'f': u['fiyat'], 't': tl(u['fiyat'])} if u.get('fiyat') is not None else None) for u in URUNLER}
     a = blok_degistir(a, '/*URETILEN:fiyat*/', '/*/URETILEN:fiyat*/',

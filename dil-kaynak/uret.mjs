@@ -151,6 +151,9 @@ function parcala(src) {
   (function betik(n) {
     for (const c of n.childNodes || []) {
       if (c.tagName === 'script') {
+        // Dış betik: göreli yolu dil klasörüne göre düzelt (ör. js/tally-cal.js → ../js/tally-cal.js)
+        const sa = c.attrs.find((a) => a.name === 'src'), sl = c.sourceCodeLocation && c.sourceCodeLocation.attrs && c.sourceCodeLocation.attrs.src;
+        if (sa && sl) P.push({ tur: 'url', bas: sl.startOffset, son: sl.endOffset, ad: 'src', deger: sa.value });
         const tip = (c.attrs.find((a) => a.name === 'type') || {}).value;
         const t = c.childNodes[0];
         if (!c.attrs.some((a) => a.name === 'src') && (!tip || tip === 'text/javascript') && t && t.value.trim()) {

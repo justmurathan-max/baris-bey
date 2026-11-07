@@ -685,3 +685,8 @@ tr: Sonuç yok. Başka bir kelime dene.
 en: No results. Try another word.
 es: Sin resultados. Prueba con otra palabra.
 de: Keine Treffer. Versuchen Sie ein anderes Wort.
+
+tr: Visa, Mastercard ve American Express ile ödeme
+en: Pay with Visa, Mastercard and American Express
+es: Pago con Visa, Mastercard y American Express
+de: Zahlung mit Visa, Mastercard und American Express

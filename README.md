@@ -105,3 +105,9 @@ Onay gelene kadar ödeme kapalıdır; sayfa "Kartla ödeme çok yakında" der. A
 5. Ödeme kuruluşunun verdiği logo bandını `site/img/` içine koyup altbilgiye ekleyin.
 
 Ödenen siparişler `orders` tablosunda `status = 'odendi'` olur. Online eğitim erişimi ve kitap kargosu şimdilik ekip tarafından verilir; `ops` alanı ekibin notları (erişim, kargo takip no) içindir.
+
+## Tally ve Cal.com
+
+- `site/js/tally-cal.js`: ofis başvurusu, kurumsal talep ve etkinlik pencerelerinde formu Tally'den açar; gönderilen kayıt `site_requests` tablosuna da yazılır, merkezdeki Başvurular sayfası değişmeden çalışır. Başvurudan ve kurumsal talepten sonra aynı pencerede Cal.com takvimi ad, e-posta, telefon ve notla dolu açılır. Tally açılmazsa sitenin kendi formu, Cal.com açılmazsa Cal.com bağlantısı kullanılır. Bülten sitenin kendi formunda kalır. `index.html` sonunda `<script src="js/tally-cal.js" defer></script>` ile yüklenir; yalnız Türkçe sayfada çalışır (Tally formları Türkçe), dil sürümlerinde sitenin çevrilmiş formları kalır.
+- Tally formları Barış Bey'in hesabında: ofis başvurusu `4aBNGk`, kurumsal talep `Eq5bAN`, etkinlik kaydı `aOerkq`. Gizli alanlar: `kaynak`, kurumsalda `konu`, etkinlikte `etkinlik` (lansman için `lansman`, webinar için adı). Formdaki soru başlıkları değişirse `tally-cal.js` içindeki eşleştirme de güncellenmeli.
+- Cal.com görüşmeleri: `baris-kilicarslan-yesokm/akademi-gorusmesi` ve `baris-kilicarslan-yesokm/kurumsal-gorusme`.

@@ -1,5 +1,5 @@
 // satis-kaynak/build.py üretir; elle değiştirmeyin. Fiyatlar TL, KDV dâhil.
-export const SURUM = "2026-11-07.3f72ec1b";
+export const SURUM = "2026-11-07.31d6e497";
 export const SATICI = "Barış Kılıçarslan";
 export type Urun = { ad: string; fiyat: number | null; kargo: boolean; dijital: boolean; kargo_ucreti: number | null; en_fazla: number; kategori: string };
 export const KATALOG: Record<string, Urun> = {
@@ -23,10 +23,10 @@ export const KATALOG: Record<string, Urun> = {
   },
   "kitap": {
     "ad": "Satışın Şifreleri ile Sonucu Satmak",
-    "fiyat": null,
+    "fiyat": 10000,
     "kargo": true,
     "dijital": false,
-    "kargo_ucreti": null,
+    "kargo_ucreti": 0,
     "en_fazla": 10,
     "kategori": "Kitap"
   }
