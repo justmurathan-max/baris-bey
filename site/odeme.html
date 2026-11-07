@@ -75,6 +75,7 @@ mark.eksik{background:#FFF1B8;color:#6B5200;border-radius:4px;padding:0 4px;font
 .gonder{display:grid;gap:12px;margin-top:8px}
 .gonder .btn{width:100%}
 .hata{margin:0;padding:12px 14px;border-radius:10px;background:#FDECEC;color:#8A1117;font-size:14.5px}
+.kapali-n{margin:0 0 20px;padding:14px 16px;border-radius:12px;background:#FFF4D6;color:#4D3800;font-size:14.5px;line-height:1.5}.kapali-n a{color:inherit}
 .oz{position:sticky;top:84px;border:1px solid var(--ln);border-radius:var(--r);padding:clamp(18px,2vw,26px);background:#fff}
 .oz-l{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:14px}
 .oz-l li{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:12px;align-items:start}
@@ -141,6 +142,7 @@ dialog.bel::backdrop{background:rgba(0,0,0,.45)}
   <section aria-labelledby="of-t">
     <a class="geri" href="index.html#magaza">← Mağazaya dön</a>
     <h1 id="of-t">Satın al</h1>
+    <p class="kapali-n" id="kapali-n" role="status" hidden></p>
 
     <form id="sf" novalidate>
       <fieldset class="kt">
@@ -380,6 +382,14 @@ function govde(){
     fatura:kur?{tip:'kurumsal',unvan:v('f-unvan'),vergi_dairesi:v('f-vd'),vergi_no:v('f-vkn')}:{tip:'bireysel',tckn:v('f-tckn')},
     onay:{sozlesme:$('#f-onay').checked,ticari_ileti:$('#f-ileti').checked,surum:V.surum}};
 }
+var kapaliP=null;
+function kapaliMi(){
+  if(DEMO)return Promise.resolve(false);
+  if(!kapaliP)kapaliP=fetch(FN+'/durum').then(function(r){return r.status===404?r.json().then(function(j){return !!j&&j.code==='NOT_FOUND';}):false;}).catch(function(){return false;});
+  return kapaliP;
+}
+function yaziLink(){var a=el('a',null,S.eposta);a.href='mailto:'+S.eposta;return a;}
+function kapaliAdim(){odemeAdimi('Kartla ödeme çok yakında','Ödeme altyapımız onay sürecinde. Açıldığında bu sayfadan satın alabileceksin. Şimdi sipariş vermek istersen '+S.eposta+' adresine yaz.');kilitle(false);}
 function odemeAdimi(baslik,not){$('#sf').hidden=true;var o=$('#op');o.hidden=false;$('#op-t').textContent=baslik;$('#op-n').textContent=not;$('#op-alan').replaceChildren();o.focus();o.scrollIntoView({block:'start'});return $('#op-alan');}
 $('#op-geri').addEventListener('click',function(){$('#op').hidden=true;$('#op-alan').replaceChildren();$('#sf').hidden=false;kilitle(false);});
 $('#sf').addEventListener('submit',function(e){
@@ -393,10 +403,12 @@ $('#sf').addEventListener('submit',function(e){
     kutu.append(el('p',null,'Kart formu (iyzico ya da PayTR)'));var t=el('button','btn','Ödemeyi tamamla (örnek)');t.type='button';t.onclick=function(){sonuc('BK261107DEMO01','onizleme','ok');};kutu.append(t);a.append(kutu);
     return;
   }
+  kapaliMi().then(function(k){
+  if(k){kapaliAdim();return;}
   fetch(FN+'/baslat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(govde())})
     .then(function(r){return r.json().catch(function(){return {hata:'sunucu'};});})
     .then(function(j){
-      if(j.kapali){var a=odemeAdimi('Kartla ödeme çok yakında','Ödeme altyapımız onay sürecinde. Açıldığında bu sayfadan satın alabileceksin. Şimdi sipariş vermek istersen '+(S.eposta||'')+' adresine yaz.');kilitle(false);return;}
+      if(j.kapali){kapaliAdim();return;}
       if(j.saglayici==='paytr'&&j.token){
         var al=odemeAdimi('Kart bilgileri','Ödemen PayTR güvenli ödeme sayfasında alınır. Sipariş no: '+j.no);
         var fr=document.createElement('iframe');fr.id='paytriframe';fr.title='PayTR güvenli ödeme formu';fr.src='https://www.paytr.com/odeme/guvenli/'+encodeURIComponent(j.token);fr.setAttribute('scrolling','no');al.append(fr);
@@ -407,9 +419,13 @@ $('#sf').addEventListener('submit',function(e){
       hata(HATA[j.hata]||HATA.sunucu);kilitle(false);
     })
     .catch(function(){hata('Bağlantı kurulamadı. İnternet bağlantını kontrol edip tekrar dene.');kilitle(false);});
+  });
 });
 
 yenile();
+/* Ödeme fonksiyonu henüz yayında değilse Supabase "function not found" döner. Basit GET (ön kontrol isteği yok) ile
+   bakılır; fonksiyonun kendi 404'ü ({hata:'yol'}) bununla karışmaz. Kapalıysa formun başında söylenir, gönderimde istek atılmaz. */
+kapaliMi().then(function(k){if(!k)return;var n=$('#kapali-n');n.replaceChildren('Kartla ödeme çok yakında açılıyor. Şimdi sipariş vermek istersen ',yaziLink(),' adresine yaz.');n.hidden=false;});
 
 /* ---------- Sonuç ekranı ---------- */
 function sonuc(no,k,d){
