@@ -164,7 +164,7 @@ function shell(){
   $('#nav').replaceChildren(...NAV[r].map(([k,l,i])=>{const cur=S.page===k||(k==='egitimler'&&S.page==='egitim');const a=h('a',{href:'#'+r+'/'+k,'aria-current':cur?'page':null},ic(i),l);const n=badge(k);if(n)a.append(h('span',{class:'n','aria-label':n+' bekleyen'},String(n)));return a;}));
   $('#meBtn').replaceChildren(h('span',{class:'av k'},ini(me.n)),h('span',{class:'t'},h('b',null,me.n),h('span',null,roleLabel())),ic('down'));
   $('#crumb').replaceChildren(h('span',{class:'nw'},r==='merkez'?'Akademi merkezi':offName()));
-  const bn=$('#demoBn');if(bn){bn.hidden=!ME||(ME.role!=='merkez'&&ME.dataOk);if(ME&&!ME.dataOk)fill(bn,h('b',null,ME.role==='merkez'?'Ofis bilgileri alınamadı. ':'Ofis verileri alınamadı. '),'Bağlantınızı kontrol edip sayfayı yenileyin; bu hâlde yapılan değişiklikler kaydedilmez.');else if(ME)fill(bn,h('b',null,'Örnek sayfalar. '),'Ofisler, üyelikler, sertifikalar ve başvurular gerçek kayıtlardan geliyor; belge yükleme, yeni eğitim, güvenlik ve klasik erişim şimdilik örnek.');}
+  const bn=$('#demoBn');if(bn){bn.hidden=!ME||ME.dataOk;if(ME&&!ME.dataOk)fill(bn,h('b',null,ME.role==='merkez'?'Ofis bilgileri alınamadı. ':'Ofis verileri alınamadı. '),'Bağlantınızı kontrol edip sayfayı yenileyin; bu hâlde yapılan değişiklikler kaydedilmez.');}
   const tr=$('#tbR');tr.replaceChildren();
   if(r==='mentor')tr.append(btn('btn-o btn-s',[ic('spark'),'Barış AI'],()=>go('ai')));
   if(r==='merkez'&&S.page!=='ofisler')tr.append(btn('btn-k btn-s',[ic('plus'),'Yeni ofis aç'],()=>openNewOffice()));

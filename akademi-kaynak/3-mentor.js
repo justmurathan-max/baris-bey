@@ -134,7 +134,7 @@ function chapterList(t){
   return ul;
 }
 function docsList(t){
-  return h('div',{class:'docs'},DOCN.map(([k,n,s],i)=>{const ok=MAT[t.id].pdf[i];
+  return h('div',{class:'docs'},DOCN.map(([k,n,s],i)=>{const ok=docOk(t.id,i);
     return h('div',{class:'doc','data-lock':String(!ok)},h('span',{class:'pdf'},'PDF'),h('div',{class:'t'},h('b',null,n),h('span',null,ok?s:'Hazırlanıyor; eklenince burada açılır'),
         k==='akt'?h('button',{class:'lnk',type:'button',style:'margin-top:4px;font-size:13px;justify-self:start',onclick:()=>openActEdit(t.id)},ic('edit'),OFFACT[t.id]?'Ofisinizin sürümünü düzenleyin':'Ofisinize uyarlayın'):null),
       ok?btn('btn-w btn-xs','Aç',()=>openDoc(t.id,k)):null);}));
@@ -146,12 +146,14 @@ function runsList(t){
     return h('li',null,dateBadge(r.days[0]),h('div',{class:'t'},h('b',null,r.tel?'Telafi: '+names(r.mem):GRM[r.g].n),h('span',null,TPL[r.tpl].n+(r.days.length>1?', '+r.days.map(dd).join(' ve '):''))),st);}));
 }
 function openDoc(id,k){
+  // Gerçek girişte yüklenen PDF açılır; aktivite belgesi ofisin listesinden üretilir (varsa PDF'i de sunulur).
+  if(realAny()&&k!=='akt'){pdfAc(id,k);return;}
   const t=TRM[id],n=DOCN.find(x=>x[0]===k)[1];
   const paper=h('div',{class:'paper doc-p'},h('div',{class:'doc-cv'},h('div',null,poster(t,{sm:1})),h('div',null,h('div',{class:'p-wm'},h('span',null,'BARIŞ KILIÇARSLAN ·'),' ',h('span',null,'MASTERCLASS AKADEMİ')),h('h2',null,n),h('p',null,t.t))));
   if(k==='not'){paper.append(h('div',null,h('span',{class:'ex'},'Örnek düzen')),h('p',{class:'sm mu',style:'margin:0'},'Her bölümde aklınızda kalanı ve sahada deneyeceğinizi yazın.'));flow(t).filter(s=>s.k==='ana').forEach(s=>paper.append(h('div',{class:'nl'},h('b',null,stepName(s)),h('i'),h('i'))));}
   if(k==='koc'){paper.append(h('div',null,h('span',{class:'ex'},'Örnek düzen')),h('p',{class:'sm mu',style:'margin:0'},'Ana videolar bitince, eğitimin tamamlandığı gün mentorla çalışılır.'));['Bu eğitimden sahada hemen uygulayacağın üç şey ne?','Hangi bölüm seni en çok zorladı, neden?','Bu hafta hangi müşteriyle, hangi cümleyle başlayacaksın?','Bir ay sonra hangi sonucu görmek istiyorsun?'].forEach(q=>paper.append(h('div',{class:'nl'},h('b',null,q),h('i'),h('i'),h('i'))));}
   if(k==='akt'){paper.append(h('p',{class:'sm mu',style:'margin:0'},OFFACT[id]?'Ofisinizin sürümü.':'Örnek aktiviteler. Ofisinize uyarlayabilirsiniz.'));actTpl(id).forEach(([ty,tx,nn],i)=>paper.append(h('div',{class:'nl'},h('b',null,(i+1)+'. '+tx),h('span',{class:'sm mu'},ty+', '+dueLabel(nn)),h('i'))));paper.append(h('div',{class:'q'},'Mentor onayı ve tarih',h('small',null,'Mentor işaretleyince Başarı Sertifikası hakkı doğar.')));}
-  modal({t:n,s:t.t,body:paper,w:900,foot:[h('span',{class:'sp'},ic('doc'),'Oturumda gruba dağıtılır. Kâğıda basmak için yazdırın.'),k==='akt'?btn('btn-o btn-s',[ic('edit'),'Uyarla'],()=>{closeModal();openActEdit(id);}):null,btn('btn-k btn-s',[ic('print'),'Yazdır'],()=>printNode(paper.cloneNode(true)))]});
+  modal({t:n,s:t.t,body:paper,w:900,foot:[h('span',{class:'sp'},ic('doc'),'Oturumda gruba dağıtılır. Kâğıda basmak için yazdırın.'),k==='akt'&&realAny()&&DOCS[id]&&DOCS[id].akt?btn('btn-o btn-s',[ic('doc'),'Barış Kılıçarslan’ın PDF’i'],()=>pdfAc(id,'akt')):null,k==='akt'?btn('btn-o btn-s',[ic('edit'),'Uyarla'],()=>{closeModal();openActEdit(id);}):null,btn('btn-k btn-s',[ic('print'),'Yazdır'],()=>printNode(paper.cloneNode(true)))]});
 }
 function openActEdit(id){
   const t=TRM[id];let L=actTpl(id).map(x=>x.slice());

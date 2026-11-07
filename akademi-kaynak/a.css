@@ -850,3 +850,7 @@ body.lock .toast{bottom:92px}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
+/* Gerçek kayıtlar: belge satırı düğmeleri, ürün çipleri, klasik erişim araması */
+.doc-a{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.chips{display:flex;gap:4px;flex-wrap:wrap}
+.kl-ara{display:flex;gap:10px 16px;align-items:center;flex-wrap:wrap}

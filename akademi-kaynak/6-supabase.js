@@ -48,8 +48,12 @@ async function enterReal(user){
 }
 
 async function signOutReal(){
-  const sb=SB;ME=null;closeAllLayers();
-  try{if(sb)await sb.auth.signOut();}catch(e){}
+  oturumDurdur();
+  const sb=SB;
+  // Yalnız bu cihazdan çıkılır; aynı hesabın öbür cihazı (sınır izin veriyorsa) açık kalır.
+  try{if(sb&&ME)await sb.rpc('session_close');}catch(e){}
+  ME=null;closeAllLayers();
+  try{if(sb)await sb.auth.signOut({scope:'local'});}catch(e){}
   nav('');lgMsg('Çıkış yaptınız.','ok');
 }
 
@@ -71,10 +75,17 @@ async function boot(){
     CUR='';
   }
   if(session&&session.user){
-    if(await enterReal(session.user)){if(ME.role==='merkez')await loadMerkez();else await loadOffice().catch(()=>false);const want=CUR.split('/')[0];nav(NAV[want]&&roleOk(want)?CUR:ROLE_HOME[ME.role]);}
+    if(await enterReal(session.user)){
+      // Bu cihazın oturumu: başka cihazdan giriş yüzünden kapanmışsa burada durur.
+      if(!await oturumYokla())return;
+      if(ME.role==='merkez')await loadMerkez();else await loadOffice().catch(()=>false);
+      await Promise.all([loadMateryal(),loadAyar(),ME.role==='merkez'?Promise.all([loadTaslak(),loadOturumlar(),loadKlasik()]):null]).catch(()=>{});
+      oturumBaslat();
+      const want=CUR.split('/')[0];nav(NAV[want]&&roleOk(want)?CUR:ROLE_HOME[ME.role]);
+    }
   }else if(authHash){showLogin();lgMsg(fail||'Giriş tamamlanamadı. Yeni bağlantı isteyin.','er');}
   else route();
-  SB.auth.onAuthStateChange(ev=>{if(ev==='SIGNED_OUT'&&ME){ME=null;closeAllLayers();nav('');}});
+  SB.auth.onAuthStateChange(ev=>{if(ev==='SIGNED_OUT'){oturumDurdur();if(ME){ME=null;closeAllLayers();nav('');}}});
 }
 
 /* =================== MERKEZ: GERÇEK OFİSLER =================== */

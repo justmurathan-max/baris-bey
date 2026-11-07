@@ -43,7 +43,7 @@ function drawSes(){
     mode==='prev'?chip('dk','eye','Ön izleme'):h('span',{class:'chip live'},h('i',{class:'live-d'}),'Canlı oturum'),
     mode==='ses'?chip('dk','users','Katılım '+pres+'/'+ids.length):null,
     mode==='ses'?btn('btn-w btn-s','Oturumu bitir',finishSes):btn('btn-w btn-s','Kapat',exitSes));
-  const v=vimOf(st.c),vm=!!(v&&v[2]),seq=mode==='ses'&&!SS.free;
+  const v=stVim(t,st),vm=!!(v&&v[2]),seq=mode==='ses'&&!SS.free;
   const dn=SS.justDone?h('div',{class:'vid-dn'},h('div',null,h('b',null,nx>=0?'Bölüm tamamlandı':(mode==='prev'?'Eğitimin sonuna geldiniz':'Bugünün bölümleri tamamlandı')),
       h('div',{style:'display:flex;gap:8px;flex-wrap:wrap;justify-content:center'},nx>=0?btn('btn-w',['Sonraki bölüm',ic('chev')],()=>goStep(nx)):(mode==='ses'?btn('btn-w','Oturumu bitir',finishSes):btn('btn-w','Kapat',exitSes)),btn('btn-ow',[ic('refresh'),'Tekrar izle'],replay)))):null;
   let vid=null,cap=null;
@@ -58,7 +58,7 @@ function drawSes(){
     vid=h('div',{class:'vid',style:'--pos:'+(t.pos||'50% 25%')},h('img',{src:t.img,alt:''}),
       h('div',{class:'vid-lk'},chip('dk','lock','İndirme kapalı'),seq?chip('dk','clock','Video bitmeden sonraki bölüm açılmaz'):null),
       SS.justDone?null:h('button',{class:'vid-p'+(SS.playing?' pa':''),type:'button','aria-label':SS.playing?'Duraklat':(done?'Tekrar oynat':'Oynat'),onclick:togglePlay},ic(SS.playing?'pause':'play')),
-      h('div',{class:'vid-tl'},h('div',{class:'vid-k'},STN[st.k],st.c?h('span',null,st.c):null,done&&!SS.playing?h('span',{class:'ok-t'},ic('tick'),'İzlendi'):null,st.c&&!vm?h('span',{class:'vst'},v?'Vimeo’da özel; gizlilik ayarı bekleniyor':'Video Vimeo’da henüz yok'):null),h('h2',null,st.a),h('div',{class:'vid-r'},h('div',{class:'bar'},barI),time)),
+      h('div',{class:'vid-tl'},h('div',{class:'vid-k'},STN[st.k],st.c?h('span',null,st.c):null,done&&!SS.playing?h('span',{class:'ok-t'},ic('tick'),'İzlendi'):null,!vm?h('span',{class:'vst'},st.c?(v?'Vimeo’da özel; gizlilik ayarı bekleniyor':'Video Vimeo’da henüz yok'):'Video henüz eklenmedi'):null),h('h2',null,st.a),h('div',{class:'vid-r'},h('div',{class:'bar'},barI),time)),
       dn);
   }
   const ctl=h('div',{class:'ses-ctl'},
@@ -75,7 +75,7 @@ function drawSes(){
     while(vEl.nextSibling)vEl.nextSibling.remove();
     m2.append(...mainK);s2.replaceChildren(...sideK);s2.scrollTop=ys;
   }else{
-    if(vm){vid=vmNode(st,v[0]);if(dn)vid.querySelector('.vid-ov').append(dn);}else vmStop();
+    if(vm){vid=vmNode(st,v[0],v[3]);if(dn)vid.querySelector('.vid-ov').append(dn);}else vmStop();
     const y0=el.scrollTop,ym=(el.querySelector('.ses-m')||{}).scrollTop||0,ys=(el.querySelector('.ses-s')||{}).scrollTop||0;
     el.replaceChildren(head,h('div',{class:'ses-b'},h('div',{class:'ses-m'},vid,...mainK),h('div',{class:'ses-s'},...sideK)));
     el.scrollTop=y0;const m2=el.querySelector('.ses-m'),s2=el.querySelector('.ses-s');if(m2)m2.scrollTop=ym;if(s2)s2.scrollTop=ys;
@@ -111,9 +111,9 @@ function replay(){
 const VMO='https://player.vimeo.com';
 const VM={ifr:null,idx:-1,id:0,ready:false,tmr:0};
 function vmPost(m,v){const w=VM.ifr&&VM.ifr.contentWindow;if(!w)return;try{w.postMessage(v==null?{method:m}:{method:m,value:v},VMO);}catch(e){}}
-function vmNode(st,id){
+function vmNode(st,id,hk){
   vmStop();
-  const ifr=h('iframe',{src:VMO+'/video/'+id+'?dnt=1&title=0&byline=0&portrait=0&pip=0&autopause=0&playsinline=1&api=1',allow:'autoplay; fullscreen; picture-in-picture',allowfullscreen:true,title:stepName(st)});
+  const ifr=h('iframe',{src:VMO+'/video/'+id+'?'+(hk?'h='+hk+'&':'')+'dnt=1&title=0&byline=0&portrait=0&pip=0&autopause=0&playsinline=1&api=1',allow:'autoplay; fullscreen; picture-in-picture',allowfullscreen:true,title:stepName(st)});
   ifr.addEventListener('load',()=>{if(VM.ifr===ifr&&!VM.ready)vmPost('ping');});
   Object.assign(VM,{ifr,idx:SS.idx,id,ready:false});
   VM.tmr=setTimeout(()=>{if(SS&&VM.ifr===ifr&&!VM.ready){SS.vfail=1;drawSes();}},15000);
@@ -161,7 +161,7 @@ function stageCard(st){
 function docsRow(){
   const{t,mode}=SS,anaOk=allIn('ana'),kocOk=allIn('koc');
   const card=(i,k,n,state,act)=>h('div',{class:state==='on'?'on':null},h('div',null,h('b',null,n),h('span',{style:'display:block;margin-top:4px'},state==='lock'?(k==='koc'?'Ana videolar bitince açılır':'Koçluktan sonra açılır'):state==='on'?'Dağıtıldı':'Dağıtıma hazır')),
-    h('div',{style:'display:flex;gap:6px;flex-wrap:wrap'},MAT[t.id].pdf[i]?btn('btn-ow btn-xs','Aç',()=>openDoc(t.id,k),{disabled:(state==='lock'&&mode==='ses')||null}):h('span',{class:'sm',style:'color:var(--mud)'},'Belge hazırlanıyor'),act||null));
+    h('div',{style:'display:flex;gap:6px;flex-wrap:wrap'},docOk(t.id,i)?btn('btn-ow btn-xs','Aç',()=>openDoc(t.id,k),{disabled:(state==='lock'&&mode==='ses')||null}):h('span',{class:'sm',style:'color:var(--mud)'},'Belge hazırlanıyor'),act||null));
   if(mode==='prev')return h('div',{class:'sdoc'},DOCN.map(([k,n],i)=>card(i,k,n,'ready',null)));
   return h('div',{class:'sdoc'},
     card(0,'not','Eğitim Notları',SS.docs.not?'on':'ready',null),

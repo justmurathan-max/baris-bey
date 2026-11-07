@@ -66,6 +66,11 @@ Supabase (Frankfurt). Şema `supabase/migrations/` içindeki göç dosyalarında
 2. `20261103010000_katilim_ve_ofis_durumu.sql`: ilk girişte katılma zamanı; ofis davetten etkine geçer.
 3. `20261103020000_puan_ve_ofis_kilidi.sql`: özel puanda 0 = puanlanmadı; pasif ya da üyeliği bitmiş ofis kilitlenir.
 4. `20261107000000_siparisler.sql`: site satın almaları (`orders`); yalnız `odeme` fonksiyonu yazar, merkez okur.
+5. `20261107100000_oturum_siniri_ve_ayarlar.sql`: eş zamanlı oturum sınırı (`session_open`, `session_close`, `set_session_limit`, `active_sessions`), merkez ayarları (`settings`), yeni eğitim taslakları (`training_drafts`).
+6. `20261107110000_egitim_belgeleri.sql`: eğitim belgeleri (`training_documents`, Storage'da özel `belgeler` kovası ve kuralları) ve ek videolar (`training_videos`).
+7. `20261107120000_klasik_erisim.sql`: klasik erişim listesi (`legacy_access`) ve içe aktarma (`legacy_import`).
+
+Not: 4 numara ödeme açılınca çalıştırılır; 5-7 ondan bağımsızdır.
 
 ### Fonksiyonlar (Supabase Edge Functions)
 
@@ -79,6 +84,9 @@ Fonksiyonlar oturumu kendi kodunda doğrular; panelde "Verify JWT with legacy se
 
 - Merkez girişinde ofisler, üyelikler, başvurular ve sertifika kaydı veritabanından gelir; işlemler doğrudan yazılır.
 - Broker ve mentor girişinde ofisin bütün kayıtları yüklenir (`akademi-kaynak/6-veri.js`). Ekrandaki değişiklikler son kaydedilen hâlle karşılaştırılır, fark birkaç saniye içinde yazılır. Yükleme başarısız olursa hiçbir şey yazılmaz.
+- Eş zamanlı oturum (`akademi-kaynak/6-gercek.js`): her tarayıcı oturumu (Supabase Auth'un `session_id`'si) `user_sessions`'ta bir satırdır. Akademi girişte ve dakikada bir `session_open` çağırır. Aynı hesapla yeni cihazdan girilince sınırı aşan en eski oturum kapanır ve o cihaz en geç bir dakikada çıkış yapar; kapanan oturumun yenileme anahtarı da silinir. Sınır merkezin Güvenlik sayfasından (1 ya da 2 cihaz); oradan açık oturumlar görülür ve kapatılır. Çıkış yalnız o cihazı kapatır.
+- Belgeler: merkez, Eğitimler ve belgeler sayfasında her eğitime üç PDF yükler (en fazla 20 MB) ve tanıtım, koçluk, uygulama videolarının Vimeo bağlantısını girer. Mentor ve broker belgeyi imzalı, süreli bağlantıyla açar; aktivite belgesi ofisin uyarlanmış listesinden üretilir. Önizlemede örnek bayraklar kalır.
+- Klasik erişimler: hak sahiplerinin listesi; kişi eklenir ya da eski sitenin listesi CSV olarak içe aktarılır (aynı e-posta birleşir). Kişilerin izleyeceği yer ayrıca karara bağlanacak.
 
 
 ## Satış ve ödeme

@@ -144,17 +144,22 @@ VIEWS.merkez.egitimler=()=>{
   const tb=h('tbody',null,TR.map(t=>{const m=MAT[t.id];return h('tr',{class:'cl',tabindex:'0',onclick:()=>openTrAdmin(t.id),onkeydown:e=>{if(e.key==='Enter')openTrAdmin(t.id);}},
     h('td',null,h('div',{class:'who'},h('div',{class:'thumb',style:'width:36px'},poster(t,{sm:1})),h('div',{class:'t'},h('b',null,t.t),h('span',null,'Eğitim '+pad2(t.no)+', '+t.ch.length+' bölüm')))),
     h('td',{'data-l':'Ana videolar'},vidChip(t)),
-    h('td',{'data-l':'Diğer videolar'},m.ext?chip('ok','tick','Yüklü'):chip('wait','clock','Bekleniyor')),
+    h('td',{'data-l':'Diğer videolar'},extChip(t)),
     h('td',{'data-l':'Belgeler'},h('span',{class:'dots'},m.pdf.map((x,i)=>dot(x,DOCN[i][1]))),' ',h('span',{class:'sm'},m.pdf.filter(Boolean).length+' / 3')),
     h('td',{'data-l':'Masterclass sertifikası'},MCSET.has(t.id)?chip('gilt','award','Dahil'):chip('ln',null,'Dahil değil')),
     h('td',{class:'r hm'},ic('chev')));}));
-  NEWTR.forEach(n=>tb.append(h('tr',null,h('td',null,h('div',{class:'who'},h('span',{class:'li-i'},ic('book')),h('div',{class:'t'},h('b',null,n.t),h('span',null,n.ch+' bölüm, '+(n.inc?'aboneliğe dahil':'ayrı satılır'))))),h('td',{'data-l':'Ana videolar'},chip('wait','clock','Bekleniyor')),h('td',{'data-l':'Diğer videolar'},chip('wait','clock','Bekleniyor')),h('td',{'data-l':'Belgeler'},h('span',{class:'sm mu'},'0 / 3')),h('td',{'data-l':'Durum'},chip('ln',null,'Taslak')),h('td',{class:'hm'}))));
+  NEWTR.forEach(n=>tb.append(h('tr',null,h('td',null,h('div',{class:'who'},h('span',{class:'li-i'},ic('book')),h('div',{class:'t'},h('b',null,n.t),h('span',null,n.ch+' bölüm, '+(n.inc?'aboneliğe dahil':'ayrı satılır'))))),h('td',{'data-l':'Ana videolar'},chip('wait','clock','Bekleniyor')),h('td',{'data-l':'Diğer videolar'},chip('wait','clock','Bekleniyor')),h('td',{'data-l':'Belgeler'},h('span',{class:'sm mu'},'0 / 3')),h('td',{'data-l':'Durum'},chip('ln',null,'Taslak')),h('td',{class:'r'},realM()&&n.id?btn('btn-g btn-xs','Sil',()=>confirmBox('Taslak silinsin mi?',n.t+' taslağı listeden kalkar.','Sil',()=>taslakSil(n.id),true),{'aria-label':n.t+' taslağını sil'}):null))));
   root.append(h('section',{class:'pn'},h('div',{class:'tw'},h('table',{class:'tbl rsp'},h('thead',null,h('tr',null,['Eğitim','Ana videolar','Diğer videolar','Belgeler','Masterclass sertifikası',''].map(x=>h('th',null,x)))),tb))));
   root.append(h('div',{class:'g2',style:'margin-top:20px'},pn('Klasik Eğitimler',null,h('ul',{class:'ls'},CLS.map(c=>h('li',null,h('div',{class:'thumb'},poster(c,{sm:1})),h('div',{class:'t'},h('b',null,c.t),h('span',null,'Ayrı satış sürer; akademide bonus')),chip('ok','tick','Bonus'))))),
     pn('Masterclass Akademi Sertifikası kapsamı',null,h('div',{class:'st-s'},h('p',{class:'sm mu',style:'margin:0'},'Büyük sertifika, kapsamdaki eğitimlerin hepsinin uygulamaları tamamlanınca verilir. Yeni eğitim eklendikçe kapsamı siz belirlersiniz.'),
-      h('div',{style:'display:flex;flex-wrap:wrap;gap:6px'},TR.map(t=>h('button',{class:'chip '+(MCSET.has(t.id)?'gilt':'ln'),type:'button','aria-pressed':String(MCSET.has(t.id)),style:'border:0;cursor:pointer',onclick:()=>{if(MCSET.has(t.id))MCSET.delete(t.id);else MCSET.add(t.id);rerender();}},MCSET.has(t.id)?ic('tick'):null,t.s)))))));
+      h('div',{style:'display:flex;flex-wrap:wrap;gap:6px'},TR.map(t=>h('button',{class:'chip '+(MCSET.has(t.id)?'gilt':'ln'),type:'button','aria-pressed':String(MCSET.has(t.id)),style:'border:0;cursor:pointer',onclick:async()=>{const on=!MCSET.has(t.id);if(realM()){if(!await kapsamDegistir(t.id,on))return;}else if(on)MCSET.add(t.id);else MCSET.delete(t.id);rerender();}},MCSET.has(t.id)?ic('tick'):null,t.s)))))));
   return root;
 };
+function extChip(t){
+  if(!realM())return MAT[t.id].ext?chip('ok','tick','Yüklü'):chip('wait','clock','Bekleniyor');
+  const n=EXTK.filter(k=>EXTV[t.id]&&EXTV[t.id][k]).length;
+  return n===3?chip('ok','tick','Yüklü'):n?chip('wait','clock',n+' / 3'):chip('wait','clock','Bekleniyor');
+}
 function vidChip(t){
   const v=vidStat(t),lab=(n,w)=>[String(n),h('span',{class:'vx'},' video'),' '+w];
   const c=v.miss.length?chip('wait','clock',lab(v.miss.length,'eksik')):v.priv?chip('wait','lock',lab(v.priv,'özel')):chip('ok','tick','Vimeo’da');
@@ -162,12 +167,28 @@ function vidChip(t){
 }
 const vidText=v=>'Vimeo’da '+v.have+' / '+v.n+' bölüm'+(v.miss.length?'. Eksik: '+v.miss.join(', '):'')+(v.priv?'. '+v.priv+' video özel; gizlilik ayarı değişince sitede oynar':'')+'.';
 function openTrAdmin(id){
-  const t=TRM[id],m=MAT[id];
-  const row=(ok,n,s,on)=>h('li',null,h('span',{class:'li-i '+(ok?'ok':'wait')},ic(ok?'tick':'clock')),h('div',{class:'t'},h('b',null,n),h('span',null,s)),ok?chip('ok',null,'Yüklü'):btn('btn-k btn-xs','Yükle',realM()?()=>toast('Belge ve video yükleme bir sonraki adımda açılacak.'):on));
+  const t=TRM[id],m=MAT[id],R=realM();
+  const row=(ok,n,s,on)=>h('li',null,h('span',{class:'li-i '+(ok?'ok':'wait')},ic(ok?'tick':'clock')),h('div',{class:'t'},h('b',null,n),h('span',null,s)),ok?chip('ok',null,'Yüklü'):btn('btn-k btn-xs','Yükle',on));
+  const extRow=()=>{
+    if(!R)return row(m.ext,'Tanıtım, koçluk ve uygulama videoları','Barış Kılıçarslan’dan gelecek',()=>{m.ext=1;toast('Videolar yüklendi.');openTrAdmin(id);rerender();});
+    const e=EXTV[id]||{},ekli=EXTK.filter(k=>e[k]),ok=ekli.length===3;
+    return h('li',null,h('span',{class:'li-i '+(ok?'ok':'wait')},ic(ok?'tick':'clock')),
+      h('div',{class:'t'},h('b',null,'Tanıtım, koçluk ve uygulama videoları'),h('span',null,ekli.length?ekli.length+' / 3 eklendi: '+ekli.map(k=>EXTN[k].replace(/ videosu$/,'').toLocaleLowerCase('tr')).join(', '):'Barış Kılıçarslan’dan gelecek; Vimeo bağlantısıyla eklenir')),
+      btn('btn-k btn-xs',ekli.length?'Düzenle':'Ekle',()=>openEkVideo(id)));
+  };
+  const docRow=(k,n,s,i)=>{
+    if(!R)return row(m.pdf[i],n,s,()=>{m.pdf[i]=1;toast(n+' yüklendi.');openTrAdmin(id);rerender();});
+    const x=DOCS[id]&&DOCS[id][k];
+    const yukle=b=>dosyaSec(async f=>{b.disabled=true;b.textContent='Yükleniyor…';const ok=await belgeYukle(id,k,f);if(drOpen)openTrAdmin(id);rerender();if(ok)toast(n+' yüklendi.');});
+    if(!x)return h('li',null,h('span',{class:'li-i wait'},ic('clock')),h('div',{class:'t'},h('b',null,n),h('span',null,s+'. PDF, en fazla 20 MB.')),btn('btn-k btn-xs','Yükle',e=>yukle(e.currentTarget),{'aria-label':n+' yükle'}));
+    return h('li',null,h('span',{class:'li-i ok'},ic('tick')),h('div',{class:'t'},h('b',null,n),h('span',null,(x.name||'PDF')+', '+boyut(x.size)+(x.at?', '+dnum(x.at):''))),
+      h('div',{class:'doc-a'},btn('btn-o btn-xs','Aç',()=>pdfAc(id,k),{'aria-label':n+' aç'}),btn('btn-o btn-xs','Değiştir',e=>yukle(e.currentTarget),{'aria-label':n+' değiştir'}),
+        btn('btn-g btn-xs','Kaldır',()=>confirmBox(n+' kaldırılsın mı?','Belge mentorların ekranından da kalkar.','Kaldır',async()=>{if(await belgeKaldir(id,k)){if(drOpen)openTrAdmin(id);rerender();toast(n+' kaldırıldı.');}},true),{'aria-label':n+' kaldır'})));
+  };
   const draw=()=>[h('div',{class:'sec'},h('div',{class:'sec-t'},h('h3',null,'Videolar')),h('ul',{class:'ls'},
       (()=>{const v=vidStat(t),ok=!v.miss.length&&!v.priv;return h('li',null,h('span',{class:'li-i '+(ok?'ok':'wait')},ic(ok?'tick':'clock')),h('div',{class:'t'},h('b',null,'Ana eğitim videoları'),h('span',null,vidText(v))),chip(ok?'ok':'wait',null,ok?'Hazır':(v.miss.length?'Eksik':'Ayar bekliyor')));})(),
-      row(m.ext,'Tanıtım, koçluk ve uygulama videoları','Barış Kılıçarslan’dan gelecek',()=>{m.ext=1;toast('Videolar yüklendi.');openTrAdmin(id);rerender();}))),
-    h('div',{class:'sec'},h('div',{class:'sec-t'},h('h3',null,'Üç belge')),h('ul',{class:'ls'},DOCN.map(([k,n,s],i)=>row(m.pdf[i],n,s,()=>{m.pdf[i]=1;toast(n+' yüklendi.');openTrAdmin(id);rerender();})))),
+      extRow())),
+    h('div',{class:'sec'},h('div',{class:'sec-t'},h('h3',null,'Üç belge')),h('ul',{class:'ls'},DOCN.map(([k,n,s],i)=>docRow(k,n,s,i)))),
     h('div',{class:'sec'},h('div',{class:'sec-t'},h('h3',null,'İhtiyaç değerlendirmesi başlıkları'),h('span',{class:'sm mu'},needItems(t).length+' başlık')),h('ol',{class:'sm',style:'margin:0;padding-left:20px;line-height:1.7'},needItems(t).map(([c,a])=>h('li',null,a)))),
     h('div',{class:'sec'},h('div',{class:'sec-t'},h('h3',null,'Örnek aktiviteler')),h('ol',{class:'act-l'},ACTS[id].map(([ty,tx,n],i)=>h('li',null,h('span',{class:'n'},String(i+1)),h('span',null,tx),h('span',{class:'ty'},ty+', '+dueLabel(n))))),h('p',{class:'sec-n',style:'margin:0'},'Mentorlar bu örnekleri kendi ofislerine uyarlayabilir.'))];
   drawer({t:t.t,s:'Eğitim '+pad2(t.no)+'. Bölüm sırası outline’a göre korunur.',body:draw(),w:600});
@@ -179,7 +200,10 @@ function openNewTraining(){
     h('div',{class:'fld'},h('label',{for:'ntR'},'Hedeflenen sonuç'),h('input',{id:'ntR',type:'text',placeholder:'Tek cümle, sonucu anlatsın',oninput:e=>{v.r=e.target.value;}})),
     h('div',{class:'fld'},h('label',{for:'ntC'},'Bölümler'),h('textarea',{id:'ntC',rows:'6',placeholder:'Her satıra bir bölüm. Örnek: XX01 Giriş',oninput:e=>{v.ch=e.target.value;}})),
     h('div',{class:'fld'},h('span',{class:'lab'},'Erişim'),h('div',{class:'opt'},[[true,'Aboneliğe dahil','Bütün üye ofislerde açılır'],[false,'Ayrı satılır','Üyelere avantajlı fiyatla sunulabilir']].map(([k,b,s])=>h('label',{class:'oc'},h('input',{type:'radio',name:'ntInc',checked:k===v.inc||null,onchange:()=>{v.inc=k;}}),h('span',{class:'t'},h('b',null,b),h('span',null,s))))))),
-    foot:[btn('btn-o','Vazgeç',closeDrawer),btn('btn-k','Taslak olarak ekle',()=>{if(realM()){toast('Yeni eğitim ekleme bir sonraki adımda açılacak.');return;}if(v.t.trim().length<3){toast('Eğitim adını yazın.');return;}NEWTR.push({t:v.t.trim(),r:v.r.trim(),ch:v.ch.split('\n').filter(x=>x.trim()).length,inc:v.inc});closeDrawer();toast(v.t.trim()+' taslak olarak eklendi.');rerender();})]});
+    foot:[btn('btn-o','Vazgeç',closeDrawer),btn('btn-k','Taslak olarak ekle',async e=>{if(v.t.trim().length<3){toast('Eğitim adını yazın.');return;}
+      if(realM()){const b=e.currentTarget;b.disabled=true;const ok=await taslakEkle(v);b.disabled=false;if(!ok){toast('Taslak eklenemedi; tekrar deneyin.',5000);return;}}
+      else NEWTR.push({t:v.t.trim(),r:v.r.trim(),ch:v.ch.split('\n').filter(x=>x.trim()).length,inc:v.inc});
+      closeDrawer();toast(v.t.trim()+' taslak olarak eklendi.');rerender();})]});
 }
 const OTHERCERT=[{no:'MA-26-00188',n:'Gökhan Arslan',o:'RE/MAX Örnek Ofis Çankaya',tr:'iu',ty:'bas',d:D(-64)},{no:'MA-26-00203',n:'Sevgi Kara',o:'RE/MAX Örnek Ofis Bornova',tr:'pa',ty:'kat',d:D(-51)},{no:'MA-26-00247',n:'Onur Çelik',o:'RE/MAX Örnek Ofis Muratpaşa',tr:'kb',ty:'kat',d:D(-22)}];
 function findCert(no){
@@ -204,28 +228,140 @@ VIEWS.merkez.sertifikalar=()=>{
   return root;
 };
 VIEWS.merkez.klasik=()=>{
-  const root=h('div');
-  root.append(ph('Klasik erişimler','2017’den beri sınırsız erişimle satılan Satışın Şifreleri ve Gayrimenkulün Usta Satışçıları kullanıcıları. Hakları aynen korunur.'));
+  const root=h('div'),R=realM();
+  root.append(ph('Klasik erişimler','2017’den beri sınırsız erişimle satılan Satışın Şifreleri ve Gayrimenkulün Usta Satışçıları kullanıcıları. Hakları aynen korunur.',
+    R?[btn('btn-o btn-s',[ic('doc'),'Listeyi içe aktar'],openKlasikIceAktar),btn('btn-k btn-s',[ic('plus'),'Kişi ekle'],()=>openKlasikKisi(null))]:null));
   const n=LEGACY.filter(x=>x.d).length;
-  root.append(h('div',{class:'g2'},
-    pn('Taşıma adımları',h('span',{class:'c'},n+' / '+LEGACY.length),h('div',{class:'st-s'},h('ul',{class:'ls'},LEGACY.map((x,i)=>h('li',null,tick(x.d,v=>{x.d=v?1:0;rerender();},x.t,{dis:i>0&&!LEGACY[i-1].d||null}),h('div',{class:'t'},h('b',null,x.t),h('span',null,['Kullanıcılar, satın alma geçmişi ve erişim hakları','Önce birkaç test kullanıcısıyla','Eski sistem kapanmadan önce','Yeni erişimler doğrulandıktan sonra'][i]))))),
-      h('div',{class:'lockn'},ic('key'),'Eski sınırsız haklar yalnız satın alınan ürünleri kapsar; yeni eğitimlere otomatik erişim vermez.'))),
-    pn('Kullanıcılar',null,empty('Liste henüz aktarılmadı','Eski sitedeki kullanıcı listesi alınınca burada görünür; arama, erişim ve satın alma geçmişiyle.'))));
+  const adim=(x,i)=>tick(x.d,async v=>{const eski=x.d;x.d=v?1:0;
+      if(R&&!await ayarYaz('legacy_steps',LEGACY.map(y=>!!y.d))){x.d=eski;toast('Kaydedilemedi; tekrar deneyin.',5000);}
+      rerender();},x.t,{dis:i>0&&!LEGACY[i-1].d||null});
+  const adimlar=pn('Taşıma adımları',h('span',{class:'c'},n+' / '+LEGACY.length),h('div',{class:'st-s'},h('ul',{class:'ls'},LEGACY.map((x,i)=>h('li',null,adim(x,i),h('div',{class:'t'},h('b',null,x.t),h('span',null,['Kullanıcılar, satın alma geçmişi ve erişim hakları','Önce birkaç test kullanıcısıyla','Eski sistem kapanmadan önce','Yeni erişimler doğrulandıktan sonra'][i]))))),
+      h('div',{class:'lockn'},ic('key'),'Eski sınırsız haklar yalnız satın alınan ürünleri kapsar; yeni eğitimlere otomatik erişim vermez.')));
+  if(!R){root.append(h('div',{class:'g2'},adimlar,pn('Kullanıcılar',null,empty('Liste henüz aktarılmadı','Eski sitedeki kullanıcı listesi alınınca burada görünür; arama, erişim ve satın alma geçmişiyle.'))));return root;}
+  if(!KLS.busy&&Date.now()-KLS.at>60000){KLS.busy=true;loadKlasik().then(()=>{KLS.busy=false;if(S.page==='klasik')rerender();});}
+  const L=KLS.list,acik=L.filter(x=>x.status==='acildi').length;
+  let users;
+  if(!L.length)users=pn('Kullanıcılar',null,empty(KLS.err?'Liste alınamadı':'Liste henüz aktarılmadı',KLS.err?'Bağlantınızı kontrol edip sayfayı yenileyin.':'Eski sitedeki kullanıcı listesini içe aktarın ya da kişileri tek tek ekleyin.',
+    h('div',{style:'display:flex;gap:8px;flex-wrap:wrap;justify-content:center'},btn('btn-o btn-s','Listeyi içe aktar',openKlasikIceAktar),btn('btn-k btn-s','Kişi ekle',()=>openKlasikKisi(null)))));
+  else{
+    const tb=h('tbody'),not=h('p',{class:'sm mu',style:'margin:0',role:'status'});
+    const sat=x=>h('tr',{class:'cl',tabindex:'0',onclick:()=>openKlasikKisi(x),onkeydown:e=>{if(e.key==='Enter')openKlasikKisi(x);}},
+      h('td',null,h('b',null,x.full_name||'—')),
+      h('td',{'data-l':'İletişim'},h('span',{class:'sm'},[x.email,x.phone].filter(Boolean).join(' · '))),
+      h('td',{'data-l':'Ürünler'},x.products&&x.products.length?h('span',{class:'chips'},x.products.map(p=>chip('ln',null,p==='ss'?'Satışın Şifreleri':'GUS'))):h('span',{class:'sm mu'},'Belirtilmedi')),
+      h('td',{'data-l':'Kaynak'},h('span',{class:'sm'},(KLK[x.source]||'')+(x.purchased_on?', '+dnum(fromIso(x.purchased_on)):''))),
+      h('td',{'data-l':'Erişim'},x.status==='acildi'?chip('ok','tick','Açıldı'):chip('wait','clock','Bekliyor')));
+    const ciz=()=>{const q=KLS.q.trim().toLocaleLowerCase('tr'),F=q?L.filter(x=>[x.full_name,x.email,x.phone].some(v=>v&&String(v).toLocaleLowerCase('tr').includes(q))):L;
+      tb.replaceChildren(...F.slice(0,200).map(sat));
+      not.textContent=F.length>200?'İlk 200 kişi gösteriliyor; aramayla daraltın.':q&&!F.length?'Aramaya uyan kişi yok.':'';not.hidden=!not.textContent;};
+    ciz();
+    const ara=h('input',{class:'inp',type:'search',placeholder:'Ad, e-posta ya da telefon',value:KLS.q,'aria-label':'Klasik erişimlerde ara',style:'max-width:320px',oninput:e=>{KLS.q=e.target.value;ciz();}});
+    users=pn('Kullanıcılar',h('span',{class:'c'},String(L.length)),h('div',{class:'st-s'},
+      h('div',{class:'kl-ara'},ara,h('span',{class:'sm mu'},acik+' kişinin erişimi açıldı')),
+      h('div',{class:'tw'},h('table',{class:'tbl rsp'},h('thead',null,h('tr',null,['Ad soyad','İletişim','Ürünler','Kaynak','Erişim'].map(x=>h('th',null,x)))),tb)),not));
+  }
+  root.append(adimlar,h('div',{style:'margin-top:20px'},users));
   return root;
 };
+function openKlasikKisi(x){
+  const v=x?{full_name:x.full_name||'',email:x.email||'',phone:x.phone||'',products:new Set(x.products||[]),purchased_on:x.purchased_on||'',note:x.note||'',status:x.status}
+    :{full_name:'',email:'',phone:'',products:new Set(),purchased_on:'',note:'',status:'bekliyor'};
+  const msg=h('p',{class:'sm',role:'status',style:'margin:0;color:var(--critT)',hidden:true});
+  const fld=(id,l,el)=>h('div',{class:'fld'},h('label',{for:id},l),el);
+  const inp=(id,k,a)=>h('input',Object.assign({class:'inp',id,value:v[k],oninput:e=>{v[k]=e.target.value;}},a||{}));
+  const sw=h('button',{class:'sw lt-sw',type:'button','aria-pressed':String(v.status==='acildi'),'aria-label':'Erişimi açıldı',onclick:()=>{v.status=v.status==='acildi'?'bekliyor':'acildi';sw.setAttribute('aria-pressed',String(v.status==='acildi'));}},h('i'));
+  const body=h('div',{class:'st'},
+    fld('klAd','Ad soyad',inp('klAd','full_name',{type:'text',autofocus:true,maxlength:'200',autocomplete:'off'})),
+    h('div',{class:'fr'},fld('klMail','E-posta',inp('klMail','email',{type:'email',maxlength:'320',autocomplete:'off',spellcheck:'false'})),fld('klTel','Telefon',inp('klTel','phone',{type:'tel',maxlength:'40',autocomplete:'off'}))),
+    h('div',{class:'fld'},h('span',{class:'lab'},'Satın aldığı'),h('div',{class:'opt'},Object.keys(KLU).map(k=>h('label',{class:'oc'},h('input',{type:'checkbox',checked:v.products.has(k)||null,onchange:e=>{if(e.target.checked)v.products.add(k);else v.products.delete(k);}}),h('span',{class:'t'},h('b',null,KLU[k])))))),
+    fld('klTar','Satın alma tarihi',inp('klTar','purchased_on',{type:'date'})),
+    fld('klNot','Not',h('textarea',{class:'inp',id:'klNot',rows:'3',maxlength:'1000',oninput:e=>{v.note=e.target.value;}},v.note)),
+    x?h('div',{class:'tg2'},h('div',{class:'t'},h('b',null,'Erişimi açıldı'),h('span',null,'Kişiye yeni erişim bilgisi verildiyse işaretleyin.')),sw):null,
+    msg);
+  const kaydet=async b=>{
+    const mail=v.email.trim().toLowerCase(),tel=v.phone.trim();
+    const hata=t=>{msg.textContent=t;msg.hidden=false;b.disabled=false;};
+    if(!mail&&!tel)return hata('E-posta ya da telefon yazın.');
+    if(mail&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail))return hata('Geçerli bir e-posta adresi yazın.');
+    b.disabled=true;
+    const row={full_name:v.full_name.trim(),email:mail||null,phone:tel||null,products:[...v.products].sort(),purchased_on:v.purchased_on||null,note:v.note.trim()||null};
+    const r=x?await SB.from('legacy_access').update(Object.assign(row,{status:v.status})).eq('id',x.id).then(q=>q,e=>({error:e}))
+      :await SB.from('legacy_access').insert(Object.assign(row,{source:'elle'})).then(q=>q,e=>({error:e}));
+    if(r.error)return hata(r.error.code==='23505'?'Bu e-posta listede başka bir kişide var.':'Kaydedilemedi; tekrar deneyin.');
+    await loadKlasik();closeDrawer();rerender();toast(x?'Kaydedildi.':'Kişi eklendi.');
+  };
+  drawer({t:x?(x.full_name||x.email||x.phone):'Kişi ekle',s:x?(KLK[x.source]||'')+(x.created_at?', '+dnum(new Date(x.created_at))+' tarihinde eklendi.':'.'):'Klasik erişim hakkı olan bir kişi.',body,w:520,
+    foot:[x?h('button',{class:'lnk mu sp',type:'button',onclick:()=>confirmBox('Kişi silinsin mi?',(x.full_name||x.email||x.phone)+' klasik erişim listesinden çıkar.','Sil',async()=>{if(await klasikSil(x.id)){closeDrawer();rerender();toast('Silindi.');}},true)},'Listeden sil'):h('span',{class:'sp'}),
+      btn('btn-o','Vazgeç',closeDrawer),btn('btn-k','Kaydet',e=>kaydet(e.currentTarget))]});
+}
+function openKlasikIceAktar(){
+  const st={txt:'',urun:'ss'};
+  const bilgi=h('div',{class:'sm',role:'status',style:'min-height:1.5em'});
+  let son=null;
+  const coz=()=>{
+    son=null;
+    if(!st.txt.trim()){bilgi.textContent='';return;}
+    const r=klasikSatirlar(csvCoz(st.txt),st.urun==='ikisi'?['ss','gus']:st.urun==='yok'?[]:[st.urun]);
+    if(r.err){bilgi.replaceChildren(h('span',{style:'color:var(--critT)'},r.err));return;}
+    son=r.rows;
+    const ad=r.rows.slice(0,3).map(x=>x.full_name||x.email||x.phone).join(', ');
+    bilgi.replaceChildren(h('b',null,r.rows.length+' kişi bulundu.'),' ',ad?h('span',{class:'mu'},'İlk kişiler: '+ad+(r.rows.length>3?'…':'')):null,
+      r.urunSutun?h('span',{class:'mu'},' Ürünler sütundan okunur; boş olanlara aşağıdaki seçim yazılır.'):null);
+  };
+  const ta=h('textarea',{class:'inp',id:'klCsv',rows:'8',placeholder:'Ad soyad;E-posta;Telefon;Ürün;Tarih\nAyşe Yılmaz;ayse@ornek.com;0532 000 00 00;Satışın Şifreleri;12.03.2018',spellcheck:'false',oninput:e=>{st.txt=e.target.value;coz();}});
+  const dosya=h('input',{type:'file',id:'klDosya',accept:'.csv,.tsv,.txt,text/csv,text/plain',class:'inp',onchange:e=>{
+    const f=e.target.files&&e.target.files[0];if(!f)return;
+    if(f.size>5*1048576){bilgi.replaceChildren(h('span',{style:'color:var(--critT)'},'Dosya 5 MB’tan büyük olamaz.'));return;}
+    const oku=(enc,sonra)=>{const r=new FileReader();r.onload=()=>sonra(String(r.result||''));r.readAsText(f,enc);};
+    // Türkçe Excel CSV'si çoğu zaman Windows-1254'tür; UTF-8 bozuk çıkarsa onunla okunur.
+    oku('utf-8',t=>{if(/�/.test(t))oku('windows-1254',t2=>{st.txt=t2;ta.value=t2;coz();});else{st.txt=t;ta.value=t;coz();}});
+  }});
+  const urunSec=sel('klUrun',[['ss','Satışın Şifreleri'],['gus','Gayrimenkulün Usta Satışçıları'],['ikisi','İkisi de'],['yok','Belirtme']],st.urun,v=>{st.urun=v;coz();});
+  urunSec.className='inp';
+  const body=h('div',{class:'st'},
+    h('p',{class:'sm mu',style:'margin:0'},'Excel’den CSV olarak kaydedilen dosyayı seçin ya da satırları yapıştırın. İlk satırda sütun adları olsun: Ad soyad, E-posta, Telefon, Ürün, Tarih. Aynı e-posta varsa kayıt birleşir; yeni satır açılmaz.'),
+    h('div',{class:'fld'},h('label',{for:'klDosya'},'Dosya'),dosya),
+    h('div',{class:'fld'},h('label',{for:'klCsv'},'Ya da yapıştırın'),ta),
+    h('div',{class:'fld'},h('label',{for:'klUrun'},'Ürün sütunu boşsa'),urunSec),
+    bilgi);
+  drawer({t:'Listeyi içe aktar',s:'Eski sitedeki kullanıcılar. Kişiler liste olarak kaydedilir; erişim ayrıca açılır.',body,w:600,
+    foot:[btn('btn-o','Vazgeç',closeDrawer),btn('btn-k','İçe aktar',async e=>{
+      if(!son||!son.length){coz();if(!son||!son.length){if(!bilgi.textContent)bilgi.textContent='Önce bir dosya seçin ya da liste yapıştırın.';return;}}
+      const b=e.currentTarget;b.disabled=true;b.textContent='Aktarılıyor…';
+      const r=await klasikIceAktar(son,'eski_site');
+      if(!r){b.disabled=false;b.textContent='İçe aktar';bilgi.replaceChildren(h('span',{style:'color:var(--critT)'},'Aktarılamadı. Bağlantınızı kontrol edip tekrar deneyin.'));return;}
+      closeDrawer();rerender();
+      toast(r.added+' kişi eklendi'+(r.updated?', '+r.updated+' kişi güncellendi':'')+(r.skipped?', '+r.skipped+' satır atlandı (e-posta ya da telefon yok ya da geçersiz)':'')+'.'+(r.err?' Liste yarıda kaldı; kalanı için tekrar deneyin.':''),8000);
+    })]});
+}
 VIEWS.merkez.guvenlik=()=>{
-  const root=h('div');
-  root.append(ph('Güvenlik','Video indirme, eş zamanlı kullanım ve ofis verisinin ayrımı.'));
+  const root=h('div'),R=realM();
+  root.append(ph('Güvenlik','Video indirme, eş zamanlı kullanım ve ofis verisinin ayrımı.',R?[btn('btn-o btn-s',[ic('refresh'),'Yenile'],async()=>{await loadOturumlar();rerender();})]:null));
   const tg=(k,b,s,lock)=>h('div',{class:'tg2'},h('div',{class:'t'},h('b',null,b),h('span',null,s)),h('button',{class:'sw lt-sw',type:'button','aria-pressed':String(!!SEC[k]),'aria-label':b,disabled:lock||null,onclick:()=>{SEC[k]=!SEC[k];rerender();}},h('i')));
-  const cs=sel('secC',[[1,'1 cihaz'],[2,'2 cihaz']],SEC.conc,v=>{SEC.conc=+v;toast('Eş zamanlı oturum sınırı: '+v+' cihaz.');});
+  const cs=sel('secC',[[1,'1 cihaz'],[2,'2 cihaz']],SEC.conc,v=>{
+    const n=+v;
+    if(!R){SEC.conc=n;toast('Eş zamanlı oturum sınırı: '+v+' cihaz.');return;}
+    cs.value=String(SEC.conc);
+    if(n<SEC.conc)confirmBox('Sınır '+n+' cihaz olsun mu?','Bir hesapla açık olan fazla oturumlar hemen kapanır, en yenisi kalır. Sizin bu cihazınız açık kalır.','Uygula',()=>sinirDegistir(n));
+    else sinirDegistir(n);
+  });
   cs.className='inp';cs.style.cssText='width:auto;height:38px';cs.setAttribute('aria-label','Eş zamanlı oturum sınırı');
   const rules=pn('Kurallar',null,h('div',null,
     tg('dl','Video indirme kapalı','Videolar Vimeo’dan yalnız akademi alan adında oynar; indirme bağlantısı yoktur.',true),
     tg('iso','Ofis verisi ayrı','Ofisler birbirinin danışmanlarını, raporlarını ve takvimini görmez.',true),
     tg('priv','Özel değerlendirme yalnız mentor ve broker','Merkez dahil başka kimse görmez.',true),
     h('div',{class:'tg2'},h('div',{class:'t'},h('b',null,'Aynı hesapla eş zamanlı oturum'),h('span',null,'Sınır aşılınca en eski oturum kapanır.')),cs)));
-  const devs=h('ul',{class:'ls'},DEV.map((d,i)=>h('li',null,h('span',{class:'li-i'},ic('device')),h('div',{class:'t'},h('b',null,d.u+', '+d.r),h('span',null,d.o+', '+d.d+', '+d.w)),
+  let devs;
+  if(!R)devs=h('ul',{class:'ls'},DEV.map((d,i)=>h('li',null,h('span',{class:'li-i'},ic('device')),h('div',{class:'t'},h('b',null,d.u+', '+d.r),h('span',null,d.o+', '+d.d+', '+d.w)),
     i?btn('btn-g btn-xs','Oturumu kapat',()=>{DEV.splice(i,1);toast('Oturum kapatıldı.');rerender();}):chip('ok',null,'Şu an'))));
-  root.append(h('div',{class:'g2'},h('div',{class:'st'},rules),pn('Açık oturumlar',null,devs)));
+  else{
+    if(!SESS.busy&&Date.now()-SESS.at>30000)loadOturumlar().then(()=>{if(S.page==='guvenlik')rerender();});
+    const rl=x=>x.role==='merkez'?'Merkez yöneticisi':x.role==='broker'?(x.is_mentor?'Broker ve mentor':'Broker'):'Mentor';
+    devs=SESS.list.length?h('ul',{class:'ls'},SESS.list.map(x=>h('li',null,h('span',{class:'li-i'},ic('device')),
+        h('div',{class:'t'},h('b',null,(x.full_name||x.email)+', '+rl(x)),h('span',null,[x.office_name?x.office_name.replace(/^RE\/MAX\s+/i,''):'Merkez',x.device||'Cihaz bilinmiyor',x.is_current?'Şu an':once(new Date(x.last_seen_at))].join(', '))),
+        x.is_current?chip('ok',null,'Bu cihaz'):btn('btn-g btn-xs','Oturumu kapat',()=>confirmBox('Oturum kapatılsın mı?',(x.full_name||x.email)+' bu cihazda ('+(x.device||'cihaz')+') çıkış yapar; isterse yeniden giriş yapabilir.','Kapat',()=>oturumKapat(x.id)),{'aria-label':(x.full_name||x.email)+' oturumunu kapat'}))))
+      :empty(SESS.err?'Liste alınamadı':'Açık oturum yok',SESS.err?'Bağlantınızı kontrol edip yenileyin.':'Hesaplar giriş yaptıkça burada görünür.');
+  }
+  root.append(h('div',{class:'g2'},h('div',{class:'st'},rules),pn('Açık oturumlar',R&&SESS.list.length?h('span',{class:'c'},String(SESS.list.length)):null,devs)));
   return root;
 };
