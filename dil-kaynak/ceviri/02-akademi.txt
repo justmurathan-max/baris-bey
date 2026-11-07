@@ -1,0 +1,408 @@
+# Akademi, dört adım, eğitim kataloğu ve eğitim penceresi
+
+tr: Ofisinizin kendi satış okulu.
+en: Your office’s own sales school.
+es: La escuela de ventas de tu oficina.
+de: Die eigene Verkaufsschule für Ihr Büro.
+
+tr: RE/MAX ofisleri için mentor liderliğinde, 12 aylık eğitim ve performans programı. Her eğitim aynı dört adımla ilerler.
+en: A mentor-led, 12-month training and performance program for RE/MAX offices. Every training follows the same four steps.
+es: Un programa de formación y rendimiento de 12 meses, guiado por un mentor, para oficinas RE/MAX. Cada formación sigue los mismos cuatro pasos.
+de: Ein mentorgeführtes, 12-monatiges Trainings- und Performance-Programm für RE/MAX-Büros. Jedes Training folgt denselben vier Schritten.
+
+tr: Akademinin dört adımı
+en: The academy’s four steps
+es: Los cuatro pasos de la academia
+de: Die vier Schritte der Akademie
+
+tr: Öğren
+en: Learn
+es: Aprende
+de: Lernen
+
+tr: Tanıtım ve ana eğitim videoları. Eğitim Notları en başta dağıtılır.
+en: Intro and main training videos. Training Notes are handed out at the start.
+es: Vídeos de presentación y de la formación principal. Los Apuntes de formación se reparten al inicio.
+de: Einführungs- und Haupttrainingsvideos. Die Schulungsunterlagen gibt es gleich zu Beginn.
+
+tr: İçselleştir
+en: Internalize
+es: Interioriza
+de: Vertiefen
+
+tr: Koçluk videosu ve koçluk soruları, eğitimin bittiği gün.
+en: Coaching video and coaching questions, on the day the training ends.
+es: Vídeo y preguntas de coaching, el mismo día en que termina la formación.
+de: Coaching-Video und Coaching-Fragen, am Tag, an dem das Training endet.
+
+tr: Uygula
+en: Apply
+es: Aplica
+de: Anwenden
+
+tr: Gelişim ve Kazanç Aktiviteleri; mentor ofisine uyarlar.
+en: Growth and Earnings Activities, adapted by the mentor to the office.
+es: Actividades de Desarrollo y Ganancia; el mentor las adapta a su oficina.
+de: Wachstums- und Ertragsaktivitäten; der Mentor passt sie an sein Büro an.
+
+tr: Kazan
+en: Earn
+es: Gana
+de: Verdienen
+
+tr: Mentor onaylar, sertifika gelir. Hepsini bitirene Masterclass Akademi Sertifikası.
+en: The mentor approves and the certificate follows. Finish them all for the Masterclass Akademi Certificate.
+es: El mentor aprueba y llega el certificado. Quien las termina todas recibe el Certificado Masterclass Akademi.
+de: Der Mentor bestätigt, das Zertifikat folgt. Wer alle abschließt, erhält das Masterclass-Akademi-Zertifikat.
+
+tr: Görüntüyü büyüt
+en: Enlarge image
+es: Ampliar imagen
+de: Bild vergrößern
+
+tr: Mentor paneli: sıradaki oturum tek tıkla başlar
+en: Mentor panel: the next session starts with one click
+es: Panel del mentor: la próxima sesión empieza con un clic
+de: Mentor-Panel: Die nächste Sitzung startet mit einem Klick
+
+tr: Eğitim sayfası: dört aşama ve aşamaya göre açılan belgeler
+en: Training page: four stages and documents that unlock stage by stage
+es: Página de formación: cuatro etapas y documentos que se abren por etapa
+de: Trainingsseite: vier Phasen und Unterlagen, die je Phase freigeschaltet werden
+
+tr: Görev takibi: katılım, koçluk ve aktiviteler
+en: Task tracking: attendance, coaching and activities
+es: Seguimiento de tareas: asistencia, coaching y actividades
+de: Aufgabenverfolgung: Teilnahme, Coaching und Aktivitäten
+
+tr: Başarı Sertifikası: numara ve QR kodla doğrulanır
+en: Certificate of Achievement: verified by number and QR code
+es: Certificado de Logro: se verifica con número y código QR
+de: Erfolgszertifikat: wird per Nummer und QR-Code geprüft
+
+tr: Büyüt
+en: Enlarge
+es: Ampliar
+de: Vergrößern
+
+tr: <0>Grup oturumu</0>Mentor eğitimi grubuyla aynı ekranda başlatır. Bölümler sırayla akar; video bitmeden sonraki bölüm açılmaz, katılım tek dokunuşla işaretlenir.
+en: <0>Group session</0>The mentor starts the training with the group on one screen. Lessons play in order; the next one opens only when the video ends, and attendance is marked with a single tap.
+es: <0>Sesión en grupo</0>El mentor inicia la formación con el grupo en una misma pantalla. Las lecciones se suceden en orden; la siguiente no se abre hasta que termina el vídeo, y la asistencia se marca con un toque.
+de: <0>Gruppensitzung</0>Der Mentor startet das Training mit der Gruppe auf einem Bildschirm. Die Lektionen laufen der Reihe nach; die nächste öffnet sich erst, wenn das Video zu Ende ist, und die Teilnahme wird mit einem Tippen erfasst.
+
+tr: <0>Koçluk aynı gün</0>Ana videolar bitince koçluk ve içselleştirme videosu açılır. Koçluk soruları eğitimin bittiği gün grupla çalışılır; tamamlayan danışmanlar tek tek işaretlenir.
+en: <0>Coaching the same day</0>When the main videos end, the coaching and internalization video opens. The group works through the coaching questions on the day the training ends; agents who complete them are checked off one by one.
+es: <0>Coaching el mismo día</0>Al terminar los vídeos principales se abre el vídeo de coaching e interiorización. Las preguntas de coaching se trabajan en grupo el día en que termina la formación; los asesores que las completan se marcan uno a uno.
+de: <0>Coaching am selben Tag</0>Nach den Hauptvideos öffnet sich das Coaching- und Vertiefungsvideo. Die Coaching-Fragen bearbeitet die Gruppe am Tag, an dem das Training endet; Makler, die sie abschließen, werden einzeln abgehakt.
+
+tr: <0>Sahada uygulama</0>Gelişim ve Kazanç Aktiviteleri oturumda dağıtılır, tarihleri o günden sayılır. Mentor aktiviteleri ofisine uyarlar, görev takibinde kimin neyi yaptığını görür.
+en: <0>Applying it in the field</0>Growth and Earnings Activities are handed out in the session, with deadlines counted from that day. The mentor adapts the activities to the office and sees who has done what in task tracking.
+es: <0>Aplicación sobre el terreno</0>Las Actividades de Desarrollo y Ganancia se reparten en la sesión y sus plazos se cuentan desde ese día. El mentor adapta las actividades a su oficina y ve en el seguimiento de tareas quién ha hecho qué.
+de: <0>Umsetzung in der Praxis</0>Die Wachstums- und Ertragsaktivitäten werden in der Sitzung verteilt, die Fristen laufen ab diesem Tag. Der Mentor passt die Aktivitäten an sein Büro an und sieht in der Aufgabenverfolgung, wer was erledigt hat.
+
+tr: <0>Sertifika</0>Mentor onaylayınca sertifika üretilir: Katılım, Başarı ve bütün ana eğitimleri bitirene Masterclass Akademi Sertifikası. Her sertifikanın numarası ve QR kodu var, sitede doğrulanır.
+en: <0>Certificate</0>Once the mentor approves, the certificate is issued: Participation, Achievement, and the Masterclass Akademi Certificate for those who finish all the main trainings. Every certificate has a number and a QR code and can be verified on the site.
+es: <0>Certificado</0>Cuando el mentor aprueba, se emite el certificado: Participación, Logro y el Certificado Masterclass Akademi para quien termina todas las formaciones principales. Cada certificado tiene número y código QR y se verifica en el sitio.
+de: <0>Zertifikat</0>Sobald der Mentor bestätigt, wird das Zertifikat erstellt: Teilnahme, Erfolg und das Masterclass-Akademi-Zertifikat für alle, die sämtliche Haupttrainings abschließen. Jedes Zertifikat hat eine Nummer und einen QR-Code und lässt sich auf der Website prüfen.
+
+# Katalog
+tr: Sahada kazanca götüren on eğitim.
+en: Ten trainings that lead to earnings in the field.
+es: Diez formaciones que llevan a ganar sobre el terreno.
+de: Zehn Trainings, die in der Praxis zu Ertrag führen.
+
+tr: Tanıtımları herkes izleyebilir. Eğitimin tamamı üye ofisin mentoruna ve brokerına açılır.
+en: Anyone can watch the intros. The full training is open to the mentor and broker of member offices.
+es: Cualquiera puede ver las presentaciones. La formación completa está disponible para el mentor y el broker de las oficinas miembro.
+de: Die Einführungen kann sich jeder ansehen. Das komplette Training steht Mentor und Broker der Mitgliedsbüros offen.
+
+tr: Eğitimler ve tanıtım videoları Türkçedir.
+en: The trainings and intro videos are in Turkish.
+es: Las formaciones y los vídeos de presentación están en turco.
+de: Die Trainings und Einführungsvideos sind auf Türkisch.
+
+tr: Kişisel Başarı Prensiplerinde Ustalık
+en: Mastering Personal Success Principles
+es: Maestría en los principios del éxito personal
+de: Persönliche Erfolgsprinzipien meistern
+
+tr: Hedefini koy, korkunu yönet, özgüvenle sahaya çık.
+en: Set your goal, manage your fear, step into the field with confidence.
+es: Fija tu objetivo, gestiona tu miedo y sal al terreno con confianza.
+de: Ziele setzen, Angst steuern, selbstbewusst in die Praxis gehen.
+
+tr: KB01|Giriş;KB02|Kişisel Motivasyon, Kişisel İlerleme;KB03|İçsel Hedef Belirleme Sanatı 1;KB04|İçsel Hedef Belirleme Sanatı 2;KB05|Kişisel Gelişim Metodolojilerinin Önemi;KB06|Özgüven Gelişimi;KB07|3B Gelişim;KB08|Rahatlık Bölgesi Gelişimi;KB09|Korku Yönetimi Gelişimi;KB10|Geri Bildirimde Gelişmek;KB11|Çevre Yönetiminde Gelişmek;KB14|Kişisel Dönüşüm: Mantalite Eğitimleri;KB15|İki Çeşit Mantalite;KB16|Mantalitenin Yapı Taşları: Başarı İnançları;KB17|İnanç Değişiminin 5 Adımı
+en: KB01|Introduction;KB02|Personal Motivation, Personal Progress;KB03|The Art of Inner Goal Setting 1;KB04|The Art of Inner Goal Setting 2;KB05|Why Personal Development Methods Matter;KB06|Building Self-Confidence;KB07|3D Growth;KB08|Growing Your Comfort Zone;KB09|Learning to Manage Fear;KB10|Growing Through Feedback;KB11|Growing Through Managing Your Circle;KB14|Personal Transformation: Mindset Training;KB15|Two Kinds of Mindset;KB16|The Building Blocks of Mindset: Success Beliefs;KB17|5 Steps to Changing a Belief
+es: KB01|Introducción;KB02|Motivación personal, progreso personal;KB03|El arte de fijar metas internas 1;KB04|El arte de fijar metas internas 2;KB05|La importancia de los métodos de desarrollo personal;KB06|Desarrollar la confianza en uno mismo;KB07|Desarrollo en 3D;KB08|Ampliar la zona de confort;KB09|Aprender a gestionar el miedo;KB10|Crecer con el feedback;KB11|Crecer gestionando tu entorno;KB14|Transformación personal: formación de mentalidad;KB15|Dos tipos de mentalidad;KB16|Los pilares de la mentalidad: creencias de éxito;KB17|5 pasos para cambiar una creencia
+de: KB01|Einführung;KB02|Persönliche Motivation, persönlicher Fortschritt;KB03|Die Kunst der inneren Zielsetzung 1;KB04|Die Kunst der inneren Zielsetzung 2;KB05|Warum Methoden der Persönlichkeitsentwicklung zählen;KB06|Selbstvertrauen aufbauen;KB07|Entwicklung in 3D;KB08|Die Komfortzone erweitern;KB09|Angst steuern lernen;KB10|Durch Feedback wachsen;KB11|Am eigenen Umfeld wachsen;KB14|Persönliche Transformation: Mindset-Training;KB15|Zwei Arten von Mindset;KB16|Die Bausteine des Mindsets: Erfolgsüberzeugungen;KB17|5 Schritte zur Veränderung einer Überzeugung
+
+tr: Kişisel Marka ve Müşteri Bulmada Ustalık
+en: Mastering Personal Branding and Prospecting
+es: Maestría en marca personal y captación de clientes
+de: Personal Branding und Kundengewinnung meistern
+
+tr: Müşteri havuzunu büyüt, adayları randevuya çevir.
+en: Grow your client pool and turn prospects into appointments.
+es: Haz crecer tu cartera de clientes y convierte a los prospectos en citas.
+de: Kundenstamm ausbauen, Interessenten in Termine verwandeln.
+
+tr: MB01|Geniş Müşteri Havuzu Oluşturmanın Önemi;MB02|Alıcı ve Satıcı Tipleri: Kolay ve Zor Müşteri;MB03|Geniş Müşteri Havuzu Oluşturmanın 2 Yöntemi;KP01|Kişisel Markamızın 4 K’sı;KP02|Müşteri Bulma Kaynakları;KP03|Kişisel Pazarlamada Tanıtımlar ve Sunulan Değerler;KP04-01|Etki Çevresi Kaynağı;KP04-02|Etki Çevresi: Değer Sunarken Dengeyi Yakalamak;SM01|Sosyal Medyada Konumlanma;KP05|Eski Müşterilerimiz;KP06|Dernekler ve Kulüpler;KP07|Yeni İnsanlarla Tanışmak;RD01|Adayları Randevuya Çevirmek İçin İlk Temas Prensipleri;RD02|Randevuya Çevirmede Başarının Mental Sırları
+en: MB01|Why a Large Client Pool Matters;MB02|Buyer and Seller Types: Easy and Difficult Clients;MB03|2 Ways to Build a Large Client Pool;KP01|The 4 Ks of Your Personal Brand;KP02|Sources for Finding Clients;KP03|Promotion and the Value You Offer in Personal Marketing;KP04-01|Your Sphere of Influence as a Source;KP04-02|Sphere of Influence: Finding the Balance When Offering Value;SM01|Positioning Yourself on Social Media;KP05|Our Past Clients;KP06|Associations and Clubs;KP07|Meeting New People;RD01|First-Contact Principles for Turning Prospects into Appointments;RD02|The Mental Secrets of Converting to Appointments
+es: MB01|La importancia de crear una gran cartera de clientes;MB02|Tipos de compradores y vendedores: clientes fáciles y difíciles;MB03|2 métodos para crear una gran cartera de clientes;KP01|Las 4 K de tu marca personal;KP02|Fuentes para encontrar clientes;KP03|Presentación y valor ofrecido en el marketing personal;KP04-01|Tu círculo de influencia como fuente;KP04-02|Círculo de influencia: el equilibrio al aportar valor;SM01|Posicionarse en redes sociales;KP05|Nuestros antiguos clientes;KP06|Asociaciones y clubes;KP07|Conocer gente nueva;RD01|Principios del primer contacto para convertir prospectos en citas;RD02|Los secretos mentales para conseguir citas
+de: MB01|Warum ein großer Kundenstamm wichtig ist;MB02|Käufer- und Verkäufertypen: einfache und schwierige Kunden;MB03|2 Wege zu einem großen Kundenstamm;KP01|Die 4 K Ihrer persönlichen Marke;KP02|Quellen der Kundengewinnung;KP03|Auftritt und Mehrwert im persönlichen Marketing;KP04-01|Das eigene Netzwerk als Quelle;KP04-02|Netzwerk: die Balance beim Bieten von Mehrwert;SM01|Positionierung in sozialen Medien;KP05|Unsere früheren Kunden;KP06|Vereine und Clubs;KP07|Neue Menschen kennenlernen;RD01|Prinzipien des Erstkontakts: Interessenten in Termine verwandeln;RD02|Die mentalen Erfolgsgeheimnisse der Terminvereinbarung
+
+tr: Dolu Danışman Olmada Ustalık
+en: Mastering Being a Fully Prepared Agent
+es: Maestría en ser un asesor bien preparado
+de: Als bestens vorbereiteter Makler überzeugen
+
+tr: Portföy sunumuna hazır git, ilk görüşmede fark yarat.
+en: Arrive ready for the listing presentation and stand out in the first meeting.
+es: Llega preparado a la presentación de captación y marca la diferencia en la primera reunión.
+de: Vorbereitet in die Objektpräsentation gehen und im Erstgespräch überzeugen.
+
+tr: D01|Portföy Sunumu Hazırlıkları;D02|Ön Portföy Paketi;D02-01|Rakip Pazar Analizi;D04|Raporlama ve İletişim Planı
+en: D01|Preparing the Listing Presentation;D02|The Pre-Listing Package;D02-01|Comparative Market Analysis;D04|Reporting and Communication Plan
+es: D01|Preparativos para la presentación de captación;D02|El paquete previo a la captación;D02-01|Análisis comparativo de mercado;D04|Plan de informes y comunicación
+de: D01|Vorbereitung der Objektpräsentation;D02|Das Vorab-Paket für Eigentümer;D02-01|Vergleichende Marktanalyse;D04|Reporting- und Kommunikationsplan
+
+tr: Sahibinden Satılıklarda Ustalık
+en: Mastering For Sale By Owner Listings
+es: Maestría con vendedores particulares
+de: Privatverkäufer gewinnen
+
+tr: Sahibinden satılık ilanını telefonda randevuya çevir.
+en: Turn a for-sale-by-owner listing into an appointment over the phone.
+es: Convierte un anuncio de particular en una cita por teléfono.
+de: Aus einer Privatanzeige am Telefon einen Termin machen.
+
+tr: FSBO 01|Sahibinden Satılıklar Neden Sahibinden Satılık;FSBO 02|Sahibinden Satılıkların Problemleri;FSBO 03|Sahibinden Satılıklarda Farklı FSBO Grupları;FSBO 03-01|FSBO’larla Telefon Görüşmesi;FSBO 04|Telefon Görüşmesinde Çıkabilecek 3 Sonuç;FSBO 05|Telefon Görüşmesinde İtirazlar;FSBO 06|Telefonu Açma Teknikleri;FSBO 07|Alternatif Randevu Alma Yöntemleri;FSBO 08|FSBO Özetleri ve Hareket Planı
+en: FSBO 01|Why Owners Sell By Themselves;FSBO 02|The Problems of Selling Without an Agent;FSBO 03|Different FSBO Groups;FSBO 03-01|Phone Calls with FSBOs;FSBO 04|3 Possible Outcomes of the Call;FSBO 05|Objections on the Phone;FSBO 06|Opening the Call;FSBO 07|Alternative Ways to Get an Appointment;FSBO 08|FSBO Summary and Action Plan
+es: FSBO 01|Por qué los propietarios venden por su cuenta;FSBO 02|Los problemas de vender sin agente;FSBO 03|Los distintos grupos de FSBO;FSBO 03-01|La llamada telefónica con FSBO;FSBO 04|3 resultados posibles de la llamada;FSBO 05|Objeciones en la llamada;FSBO 06|Técnicas para abrir la llamada;FSBO 07|Formas alternativas de conseguir una cita;FSBO 08|Resumen FSBO y plan de acción
+de: FSBO 01|Warum Eigentümer privat verkaufen;FSBO 02|Die Probleme des Privatverkaufs;FSBO 03|Verschiedene FSBO-Gruppen;FSBO 03-01|Das Telefonat mit Privatverkäufern;FSBO 04|3 mögliche Ergebnisse des Telefonats;FSBO 05|Einwände am Telefon;FSBO 06|Techniken für den Gesprächseinstieg;FSBO 07|Alternative Wege zum Termin;FSBO 08|FSBO-Zusammenfassung und Aktionsplan
+
+tr: Portföy Almada Ustalık
+en: Mastering Listing Acquisition
+es: Maestría en la captación de inmuebles
+de: Objektakquise meistern
+
+tr: İlk görüşmede güveni kur, sözleşmeyi iste ve al.
+en: Build trust in the first meeting, ask for the agreement and get it.
+es: Genera confianza en la primera reunión, pide el contrato y consíguelo.
+de: Im Erstgespräch Vertrauen aufbauen, um den Auftrag bitten und ihn bekommen.
+
+tr: PA01|Portföy Almada Ustalık: Giriş;PA02|Birinci Görüşmede Güven ve Yakınlık;PA03|Mülk Analizi;PA04|Birinci Görüşme İtirazları;PA05|Portföy Almada İkinci Görüşme;PA06|Portföy Sunumu Sıralaması: Timeline Detayları;PA07|Portföy Sunumunda Fiyatı ve Pazarlama Planını Sunmak;PA08|Portföy Sunumunda İletişim Planını Sunmak;PA09|Satıcı Kapanışı: Sözleşmeyi İstemek;PA10|Sözleşmeyi Alma Yöntemleri;PA11|Koçluk Soruları
+en: PA01|Mastering Listing Acquisition: Introduction;PA02|Trust and Rapport in the First Meeting;PA03|Property Analysis;PA04|First-Meeting Objections;PA05|The Second Listing Meeting;PA06|Listing Presentation Order: Timeline Details;PA07|Presenting the Price and the Marketing Plan;PA08|Presenting the Communication Plan;PA09|The Seller Close: Asking for the Agreement;PA10|Ways to Win the Agreement;PA11|Coaching Questions
+es: PA01|Maestría en la captación: introducción;PA02|Confianza y cercanía en la primera reunión;PA03|Análisis del inmueble;PA04|Objeciones de la primera reunión;PA05|La segunda reunión de captación;PA06|Orden de la presentación de captación: detalles del timeline;PA07|Presentar el precio y el plan de marketing;PA08|Presentar el plan de comunicación;PA09|El cierre con el vendedor: pedir el contrato;PA10|Formas de conseguir el contrato;PA11|Preguntas de coaching
+de: PA01|Objektakquise meistern: Einführung;PA02|Vertrauen und Nähe im Erstgespräch;PA03|Objektanalyse;PA04|Einwände im Erstgespräch;PA05|Das zweite Akquisegespräch;PA06|Ablauf der Objektpräsentation: Timeline im Detail;PA07|Preis und Marketingplan präsentieren;PA08|Den Kommunikationsplan präsentieren;PA09|Abschluss mit dem Verkäufer: um den Auftrag bitten;PA10|Wege zum Auftrag;PA11|Coaching-Fragen
+
+tr: İtirazlarda Ustalık
+en: Mastering Objections
+es: Maestría en objeciones
+de: Einwände meistern
+
+tr: İtirazı karşıla, değerini koru, işlemi kapat.
+en: Meet the objection, protect your value, close the deal.
+es: Responde a la objeción, protege tu valor y cierra la operación.
+de: Einwände entkräften, den eigenen Wert wahren, das Geschäft abschließen.
+
+tr: İU 01|İtirazlarda Ustalığın Temeli;İU 02|İtirazları Yönetmenin 3 Prensibi;İU 03|Değerde Güçlü Olmak;İU 04|Duruşta Güçlü Olmak;İU 05|Diyaloglarda Güçlü Olmak;İU 06|Hizmet Bedeli İçin Güçlü Diyalog Yöntemleri;İU 07|Gayrimenkul Danışmanlığında 2 Farklı Rekabet;İU 08|“Düşünmek İstiyoruz” İtirazı;İU 09|Sözleşme İtirazlarında Ustalık;İU 10|Koçluk Soruları
+en: İU 01|The Foundation of Handling Objections;İU 02|3 Principles for Managing Objections;İU 03|Being Strong on Value;İU 04|Being Strong in Your Stance;İU 05|Being Strong in Dialogue;İU 06|Strong Dialogues for Your Fee;İU 07|2 Kinds of Competition in Real Estate;İU 08|The “We Want to Think About It” Objection;İU 09|Mastering Contract Objections;İU 10|Coaching Questions
+es: İU 01|La base del manejo de objeciones;İU 02|3 principios para gestionar objeciones;İU 03|Ser fuerte en el valor;İU 04|Ser fuerte en la postura;İU 05|Ser fuerte en el diálogo;İU 06|Diálogos sólidos para tus honorarios;İU 07|2 tipos de competencia en el sector inmobiliario;İU 08|La objeción “Queremos pensarlo”;İU 09|Maestría en las objeciones al contrato;İU 10|Preguntas de coaching
+de: İU 01|Die Grundlage im Umgang mit Einwänden;İU 02|3 Prinzipien für den Umgang mit Einwänden;İU 03|Stark im Wert;İU 04|Stark in der Haltung;İU 05|Stark im Dialog;İU 06|Starke Dialoge für Ihre Provision;İU 07|2 Arten von Wettbewerb in der Immobilienbranche;İU 08|Der Einwand „Wir möchten darüber nachdenken“;İU 09|Einwände zum Maklervertrag meistern;İU 10|Coaching-Fragen
+
+tr: Alıcılarda Ustalık
+en: Mastering Buyers
+es: Maestría con compradores
+de: Käuferbetreuung meistern
+
+tr: Alıcıyı doğru analiz et, teklife ve sonuca ulaştır.
+en: Read the buyer correctly and guide them to an offer and a result.
+es: Analiza bien al comprador y llévalo a la oferta y al resultado.
+de: Käufer richtig einschätzen und zu Angebot und Abschluss führen.
+
+tr: AU 01|Alıcılara Giriş ve Alıcı Deneyimi Süreci;AU 02|Alıcı Tipleri ve Alıcılarda Öncelik Yönetimi;AU 03|Alıcı Analizinde Ustalık;AU 04|Alıcı Telefon Görüşmesinde Ustalık;AU 05|Alıcılarda İlk Yüz Yüze Görüşmede Ustalık;AU 06|Alıcı Ön Sunumunda Ustalık;AU 07|Yer Göstermelerde Ustalık;AU 08|Teklif Sürecinde Ustalık;AU 09|Koçluk Soruları ve Hareket Planı
+en: AU 01|Introduction to Buyers and the Buyer Experience;AU 02|Buyer Types and Prioritizing Buyers;AU 03|Mastering Buyer Analysis;AU 04|Mastering the Buyer Phone Call;AU 05|Mastering the First Face-to-Face Meeting;AU 06|Mastering the Buyer Pre-Presentation;AU 07|Mastering Showings;AU 08|Mastering the Offer Process;AU 09|Coaching Questions and Action Plan
+es: AU 01|Introducción a los compradores y su experiencia;AU 02|Tipos de compradores y gestión de prioridades;AU 03|Maestría en el análisis del comprador;AU 04|Maestría en la llamada con el comprador;AU 05|Maestría en la primera reunión presencial;AU 06|Maestría en la presentación previa al comprador;AU 07|Maestría en las visitas;AU 08|Maestría en el proceso de oferta;AU 09|Preguntas de coaching y plan de acción
+de: AU 01|Einführung: Käufer und das Käufererlebnis;AU 02|Käufertypen und Prioritäten;AU 03|Käuferanalyse meistern;AU 04|Das Telefonat mit Käufern meistern;AU 05|Das erste persönliche Gespräch meistern;AU 06|Die Vorpräsentation für Käufer meistern;AU 07|Besichtigungen meistern;AU 08|Den Angebotsprozess meistern;AU 09|Coaching-Fragen und Aktionsplan
+
+tr: Doğru Fiyatlı Portföy Almada Ustalık
+en: Mastering Correctly Priced Listings
+es: Maestría en captar al precio correcto
+de: Objekte zum richtigen Preis akquirieren
+
+tr: Doğru fiyatla sözleşme al, satılan portföy topla.
+en: Win agreements at the right price and build listings that sell.
+es: Consigue contratos al precio correcto y reúne una cartera que se vende.
+de: Aufträge zum richtigen Preis gewinnen, Objekte sammeln, die sich verkaufen.
+
+tr: DFI 01|Doğru Fiyata İknada Ustalık;DFI 02|Fiyatı Etkileyen Alıcı ve Satıcı Pazarı;DFI 03|Sebep Sonuç İlişkisi;DFI 04|Fiyatı Etkileyen Faktörler;DFI 05|Fiyatı Belirlemede Ustalık;DFI 06|Alternatif Rakip Pazar Analizi Yöntemleri;DFI 07|Fiyat Sunumunda Ustalık;DFI 08|Fiyat Karşılamada Ustalık;DFI 09|“Masrafımız Çok” İtirazı;DFI 10|“Başkaları Daha Yükseğe Satarız Dedi” İtirazı;DFI 11|“Vaktimiz Var, Biraz Yüksek Fiyattan Deneyelim” İtirazı;DFI 12|Pazarlık Payı İtirazı;DFI 13|“Ne Kadar Sürede Satılır?” İtirazı;DFI 14|Fiyat Düzeltme Stratejileri;DFI 15|Fiyatı Kabullenmenin Psikolojik Yolculuğu;DFI 16|Fiyata İknada En Etkili Teknik;DFI 17|Hareket Planı
+en: DFI 01|Mastering Persuasion on the Right Price;DFI 02|How Buyer’s and Seller’s Markets Affect Price;DFI 03|Cause and Effect;DFI 04|Factors That Affect Price;DFI 05|Mastering Price Setting;DFI 06|Alternative Comparative Market Analysis Methods;DFI 07|Mastering the Price Presentation;DFI 08|Mastering Price Responses;DFI 09|The “We Have a Lot of Costs” Objection;DFI 10|The “Others Said They Could Sell Higher” Objection;DFI 11|The “We Have Time, Let’s Try a Bit Higher” Objection;DFI 12|The Negotiation Margin Objection;DFI 13|The “How Long Will It Take to Sell?” Objection;DFI 14|Price Adjustment Strategies;DFI 15|The Psychological Journey of Accepting the Price;DFI 16|The Most Effective Price Persuasion Technique;DFI 17|Action Plan
+es: DFI 01|Maestría en persuadir hacia el precio correcto;DFI 02|Mercado comprador y vendedor: cómo afectan al precio;DFI 03|La relación causa y efecto;DFI 04|Factores que influyen en el precio;DFI 05|Maestría en fijar el precio;DFI 06|Métodos alternativos de análisis comparativo de mercado;DFI 07|Maestría en la presentación del precio;DFI 08|Maestría en responder sobre el precio;DFI 09|La objeción “Tenemos muchos gastos”;DFI 10|La objeción “Otros dijeron que lo venderían más caro”;DFI 11|La objeción “Tenemos tiempo, probemos un poco más alto”;DFI 12|La objeción del margen de negociación;DFI 13|La objeción “¿Cuánto tardará en venderse?”;DFI 14|Estrategias de ajuste de precio;DFI 15|El viaje psicológico de aceptar el precio;DFI 16|La técnica más eficaz para persuadir sobre el precio;DFI 17|Plan de acción
+de: DFI 01|Überzeugen zum richtigen Preis;DFI 02|Käufer- und Verkäufermarkt und ihr Einfluss auf den Preis;DFI 03|Ursache und Wirkung;DFI 04|Faktoren, die den Preis beeinflussen;DFI 05|Den Preis richtig festlegen;DFI 06|Alternative Methoden der vergleichenden Marktanalyse;DFI 07|Die Preispräsentation meistern;DFI 08|Preiseinwände souverän beantworten;DFI 09|Der Einwand „Wir haben hohe Kosten“;DFI 10|Der Einwand „Andere sagten, sie verkaufen teurer“;DFI 11|Der Einwand „Wir haben Zeit, versuchen wir es etwas höher“;DFI 12|Der Einwand zum Verhandlungsspielraum;DFI 13|Der Einwand „Wie lange dauert der Verkauf?“;DFI 14|Strategien zur Preisanpassung;DFI 15|Die psychologische Reise zur Preisakzeptanz;DFI 16|Die wirksamste Technik der Preisüberzeugung;DFI 17|Aktionsplan
+
+tr: İşlem Kapanışta Ustalık
+en: Mastering the Close
+es: Maestría en el cierre de operaciones
+de: Den Abschluss meistern
+
+tr: Kapanışı ilk görüşmeden kur, işlemi sonuca bağla.
+en: Set up the close from the first meeting and see the deal through.
+es: Prepara el cierre desde la primera reunión y lleva la operación a buen término.
+de: Den Abschluss ab dem Erstgespräch vorbereiten und das Geschäft zum Ziel führen.
+
+tr: CLOSING 01|Kapanış Çizgisi;CLOSING 02|Kapanışta Ustalık Mantalitesi;CLOSING 03|Üç Farklı Kapanış;CLOSING 04|Kapanış Açılışla Başlar;CLOSING 05|Kapanış Süreçle Devam Eder;CLOSING 06|Taktiksel Empatide Rüya ve Kabus Sınırlar;CLOSING 07|Mesaj Ustası ve Kapanış Ustası;CLOSING 08|Teklif ve Kontra Teklif Yönetimi;CLOSING 09|Alternatif Kapanış Teknikleri;CLOSING 10|Baskı Kapanışı, Geri Bildirim Kapanışı;CLOSING 11|Koçluk Soruları, Hareket Planı
+en: CLOSING 01|The Closing Line;CLOSING 02|The Mindset of Closing Mastery;CLOSING 03|Three Different Closes;CLOSING 04|The Close Starts with the Opening;CLOSING 05|The Close Continues Through the Process;CLOSING 06|Dream and Nightmare Limits in Tactical Empathy;CLOSING 07|Message Master and Closing Master;CLOSING 08|Managing Offers and Counteroffers;CLOSING 09|Alternative Closing Techniques;CLOSING 10|The Pressure Close and the Feedback Close;CLOSING 11|Coaching Questions, Action Plan
+es: CLOSING 01|La línea de cierre;CLOSING 02|La mentalidad del maestro del cierre;CLOSING 03|Tres cierres diferentes;CLOSING 04|El cierre empieza con la apertura;CLOSING 05|El cierre continúa durante el proceso;CLOSING 06|Límites de sueño y pesadilla en la empatía táctica;CLOSING 07|Maestro del mensaje y maestro del cierre;CLOSING 08|Gestión de ofertas y contraofertas;CLOSING 09|Técnicas alternativas de cierre;CLOSING 10|Cierre por presión, cierre por feedback;CLOSING 11|Preguntas de coaching, plan de acción
+de: CLOSING 01|Die Abschlusslinie;CLOSING 02|Das Mindset der Abschlussmeisterschaft;CLOSING 03|Drei verschiedene Abschlüsse;CLOSING 04|Der Abschluss beginnt mit dem Einstieg;CLOSING 05|Der Abschluss setzt sich im Prozess fort;CLOSING 06|Traum- und Albtraumgrenzen in taktischer Empathie;CLOSING 07|Meister der Botschaft und Meister des Abschlusses;CLOSING 08|Angebote und Gegenangebote steuern;CLOSING 09|Alternative Abschlusstechniken;CLOSING 10|Druck-Abschluss, Feedback-Abschluss;CLOSING 11|Coaching-Fragen, Aktionsplan
+
+tr: Beyin Yönetiminde Ustalık
+en: Mastering Brain Management
+es: Maestría en la gestión del cerebro
+de: Das eigene Gehirn steuern
+
+tr: Dikkatini koru, gününü yönet, üretkenliğini artır.
+en: Protect your focus, manage your day, increase your productivity.
+es: Protege tu atención, gestiona tu día y aumenta tu productividad.
+de: Fokus schützen, den Tag steuern, produktiver werden.
+
+tr: BYU 01|Beynimizi Keşfediyoruz;BYU 02|Yeni Dünyanın Dijital Rahatsızlıkları ve Dikkat Dağıtıcıları;BYU 03|Üretkenliğin 4 Ana Kuralı;BYU 04|Süper Güçlerimiz ve Kriptonitlerimiz;BYU 05|Sıradışı Üretkenlik İçin Yap, Vazgeç, Delege Et Modeli;BYU 06|Üretkenlik Planımda Sabah ve Akşam Rutinleri;BYU 07|Beynimizi Yönetme Uygulamaları ve Formları;BYU 08|Koçluk Soruları
+en: BYU 01|Discovering Our Brain;BYU 02|The Digital Disorders and Distractions of the New World;BYU 03|The 4 Main Rules of Productivity;BYU 04|Our Superpowers and Our Kryptonite;BYU 05|The Do, Drop, Delegate Model for Extraordinary Productivity;BYU 06|Morning and Evening Routines in My Productivity Plan;BYU 07|Brain Management Exercises and Forms;BYU 08|Coaching Questions
+es: BYU 01|Descubrimos nuestro cerebro;BYU 02|Los trastornos digitales y las distracciones del mundo nuevo;BYU 03|Las 4 reglas principales de la productividad;BYU 04|Nuestros superpoderes y nuestra kriptonita;BYU 05|El modelo Hacer, Descartar, Delegar para una productividad extraordinaria;BYU 06|Rutinas de mañana y noche en mi plan de productividad;BYU 07|Ejercicios y formularios para gestionar el cerebro;BYU 08|Preguntas de coaching
+de: BYU 01|Unser Gehirn entdecken;BYU 02|Digitale Störungen und Ablenkungen der neuen Welt;BYU 03|Die 4 Grundregeln der Produktivität;BYU 04|Unsere Superkräfte und unser Kryptonit;BYU 05|Das Modell Tun, Lassen, Delegieren für außergewöhnliche Produktivität;BYU 06|Morgen- und Abendroutinen in meinem Produktivitätsplan;BYU 07|Übungen und Formulare zur Gehirnsteuerung;BYU 08|Coaching-Fragen
+
+# Eğitim kartı ve penceresi
+tr: bölüm
+en: lessons
+es: lecciones
+de: Lektionen
+
+tr: , eğitimi incele
+en: , view training
+es: , ver formación
+de: , Training ansehen
+
+tr: Masterclass Akademi · Eğitim
+en: Masterclass Akademi · Training
+es: Masterclass Akademi · Formación
+de: Masterclass Akademi · Training
+
+tr: Masterclass Akademi · Eğitim 01
+en: Masterclass Akademi · Training 01
+es: Masterclass Akademi · Formación 01
+de: Masterclass Akademi · Training 01
+
+tr: Eğitim
+en: Training
+es: Formación
+de: Training
+
+tr: Tek gün ya da iki yarım gün
+en: One full day or two half days
+es: Un día completo o dos medios días
+de: Ein ganzer Tag oder zwei halbe Tage
+
+tr: Mentor eşliğinde grup
+en: Mentor-led group
+es: Grupo guiado por el mentor
+de: Gruppe mit Mentor
+
+tr: ÖĞREN
+en: LEARN
+es: APRENDE
+de: LERNEN
+
+tr: İÇSELLEŞTİR
+en: INTERNALIZE
+es: INTERIORIZA
+de: VERTIEFEN
+
+tr: UYGULA
+en: APPLY
+es: APLICA
+de: ANWENDEN
+
+tr: KAZAN
+en: EARN
+es: GANA
+de: VERDIENEN
+
+tr: Koçluk ve içselleştirme videosu, koçluk soruları
+en: Coaching and internalization video, coaching questions
+es: Vídeo de coaching e interiorización, preguntas de coaching
+de: Coaching- und Vertiefungsvideo, Coaching-Fragen
+
+tr: Gelişim ve kazanç aktiviteleri
+en: Growth and earnings activities
+es: Actividades de desarrollo y ganancia
+de: Wachstums- und Ertragsaktivitäten
+
+tr: Katılım ve Başarı Sertifikası
+en: Certificates of Participation and Achievement
+es: Certificados de Participación y de Logro
+de: Teilnahme- und Erfolgszertifikat
+
+tr: Bölümler (
+en: Lessons (
+es: Lecciones (
+de: Lektionen (
+
+tr: Bölümler
+en: Lessons
+es: Lecciones
+de: Lektionen
+
+tr: Eğitimin akışı
+en: How the training runs
+es: Cómo se desarrolla la formación
+de: Ablauf des Trainings
+
+tr: Eğitim Notları
+en: Training Notes
+es: Apuntes de formación
+de: Schulungsunterlagen
+
+tr: Eğitimin başında dağıtılır
+en: Handed out at the start of the training
+es: Se reparten al inicio de la formación
+de: Werden zu Beginn des Trainings verteilt
+
+tr: Koçluk ve İçselleştirme Soruları
+en: Coaching and Internalization Questions
+es: Preguntas de coaching e interiorización
+de: Coaching- und Vertiefungsfragen
+
+tr: Ana videolar bitince, aynı gün çalışılır
+en: Worked through the same day, once the main videos end
+es: Se trabajan el mismo día, al terminar los vídeos principales
+de: Am selben Tag bearbeitet, nach den Hauptvideos
+
+tr: Gelişim ve Kazanç Aktiviteleri
+en: Growth and Earnings Activities
+es: Actividades de Desarrollo y Ganancia
+de: Wachstums- und Ertragsaktivitäten
+
+tr: Koçluktan sonra; mentor ofisine uyarlar
+en: After coaching, adapted by the mentor to the office
+es: Después del coaching; el mentor las adapta a su oficina
+de: Nach dem Coaching; der Mentor passt sie an sein Büro an
+
+tr: Tanıtımı izle
+en: Watch the intro
+es: Ver la presentación
+de: Einführung ansehen
+
+tr: Ofisiniz için teklif isteyin
+en: Request a proposal for your office
+es: Solicita una propuesta para tu oficina
+de: Angebot für Ihr Büro anfragen
+
+tr: Bu bir demo.
+en: This is a demo.
+es: Esto es una demostración.
+de: Dies ist eine Demo.
+
+tr: Gerçek sitede eğitimin tanıtım videosu burada oynar. Eğitimin tamamı yalnız üye ofisin mentoruna ve brokerına açılır.
+en: On the live site, the training’s intro video plays here. The full training is open only to the mentor and broker of member offices.
+es: En el sitio real, aquí se reproduce el vídeo de presentación de la formación. La formación completa solo está disponible para el mentor y el broker de las oficinas miembro.
+de: Auf der echten Website läuft hier das Einführungsvideo des Trainings. Das komplette Training steht nur Mentor und Broker der Mitgliedsbüros offen.

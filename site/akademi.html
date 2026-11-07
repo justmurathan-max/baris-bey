@@ -2524,7 +2524,7 @@ VIEWS.merkez.basvurular=()=>{
     h('td',{'data-l':'Tür'},RQK[r.kind]||r.kind),
     h('td',null,h('div',{class:'t'},h('b',null,r.name||r.email||'—'),r.company?h('span',{class:'sm mu',style:'display:block'},r.company+(r.city?', '+r.city:'')):null)),
     h('td',{'data-l':'İletişim'},[r.phone,r.email].filter(Boolean).join(' · ')||'—'),
-    h('td',{'data-l':'Ayrıntı',class:'sm'},[r.topic,r.size,r.mode,r.message].filter(Boolean).join(' · ')||'—'),
+    h('td',{'data-l':'Ayrıntı',class:'sm'},[r.dil&&(({en:'İngilizce',es:'İspanyolca',de:'Almanca'})[r.dil]||r.dil)+' sayfadan',r.topic,r.size,r.mode,r.message].filter(Boolean).join(' · ')||'—'),
     h('td',{class:'r'},r.status==='yeni'?btn('btn-k btn-xs','İşlendi',()=>setReq(r,'islendi')):btn('btn-g btn-xs','Yeniye al',()=>setReq(r,'yeni'))))));
   root.append(h('section',{class:'pn'},h('div',{class:'tw'},h('table',{class:'tbl rsp'},h('thead',null,h('tr',null,['Tarih','Tür','Kişi','İletişim','Ayrıntı',''].map(x=>h('th',null,x)))),tb))));
   return root;
@@ -2746,7 +2746,7 @@ async function loadMerkez(){
   OFFS.splice(0,OFFS.length,...list);
   const onm=id=>{const x=o.data.find(r=>r.id===id);return x?x.name:'—';};
   MCERT.splice(0,MCERT.length,...ce.data.map(x=>({no:x.no,n:x.holder_name,o:onm(x.office_id),tr:x.training_id,ty:x.kind,d:fromIso(x.issued_on),rev:!!x.revoked_at})));
-  REQS.splice(0,REQS.length,...rq.data.map(x=>{const m=x.meta||{};return{id:x.id,at:new Date(x.created_at),kind:x.kind,name:x.full_name,company:x.company,city:x.city,phone:x.phone,email:x.email,message:x.message,topic:m.topic,size:m.size,mode:m.mode,status:x.status};}));
+  REQS.splice(0,REQS.length,...rq.data.map(x=>{const m=x.meta||{};return{id:x.id,at:new Date(x.created_at),kind:x.kind,name:x.full_name,company:x.company,city:x.city,phone:x.phone,email:x.email,message:x.message,topic:m.topic,size:m.size,mode:m.mode,dil:m.dil,status:x.status};}));
   return true;
 }
 

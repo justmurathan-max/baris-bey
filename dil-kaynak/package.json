@@ -1,0 +1,8 @@
+{
+  "name": "baris-kilicarslan-dil",
+  "private": true,
+  "type": "module",
+  "description": "Türkçe ana sayfadan /en/, /es/, /de/ sayfalarını üretir.",
+  "scripts": { "uret": "node uret.mjs", "liste": "node uret.mjs --liste" },
+  "dependencies": { "acorn": "^8.12.0", "parse5": "^7.1.2" }
+}

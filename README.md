@@ -5,7 +5,8 @@ Barış Kılıçarslan'ın tanıtım sitesi ve giriş sonrası Masterclass Akade
 ## Klasörler
 
 - `site/`: Vercel'in yayınladığı klasör.
-  - `index.html`: tanıtım sitesi.
+  - `index.html`: tanıtım sitesi (Türkçe, ana sayfa).
+  - `en/`, `es/`, `de/`: İngilizce, İspanyolca ve Almanca site. Elle düzenlenmez; `dil-kaynak/` ile Türkçe sayfadan üretilir.
   - `akademi.html`: giriş sonrası akademi (mentor, broker ve merkez panelleri). Elle düzenlenmez; `akademi-kaynak/` içinden üretilir.
   - `img/`: görseller.
   - `odeme.html`: online eğitim setleri ve kitap için satın alma sayfası (`/odeme`).
@@ -15,6 +16,7 @@ Barış Kılıçarslan'ın tanıtım sitesi ve giriş sonrası Masterclass Akade
   - `js/qr.js`: sertifikalardaki QR için qrcode-generator (1.4.4, MIT), npm'den olduğu gibi.
   - `vercel.json`, `robots.txt`: taslağı arama motorlarına kapatır.
 - `satis-kaynak/`: satıcı bilgileri (`satici.json`), ürün ve fiyatlar (`urunler.json`), yasal metinler (`metinler/*.md`) ve bunlardan sayfaları üreten `build.py`.
+- `dil-kaynak/`: dil sayfalarını üreten `uret.mjs` ve çeviriler (`ceviri/*.txt`).
 - `akademi-kaynak/`: akademinin parçaları.
   - `a.html` iskelet, `a.css` stiller, `1-core.js` … `7-init.js` uygulama.
   - `1-core.js` içindeki `VIM` listesi bölüm kodlarını Vimeo videolarına bağlar: `[video kimliği, süre (sn), sitede oynar mı]`.
@@ -26,6 +28,22 @@ python3 akademi-kaynak/build.py
 ```
 
 `site/akademi.html` yeniden yazılır.
+
+## Dil sayfaları
+
+Türkçe `site/index.html` asıl sayfadır; İngilizce, İspanyolca ve Almanca sayfalar ondan üretilir. Türkçe sayfada bir metin değişince ya da yeni metin eklenince:
+
+```
+cd dil-kaynak && npm install    # bir kez
+node dil-kaynak/uret.mjs         # site/en, site/es, site/de yeniden yazılır
+node dil-kaynak/uret.mjs --eksik # çevirisi olmayan metinler dil-kaynak/eksik.txt dosyasına
+```
+
+- Çeviriler `dil-kaynak/ceviri/*.txt` dosyalarında, `tr:` satırının altında `en:`, `es:`, `de:` satırlarıyla durur. `=` satırı "her dilde aynı" demektir (adlar, markalar, kapak yazıları). Biçim `uret.mjs` dosyasının başında anlatılır.
+- Çevirisi olmayan metin varsa komut sayfaları yine yazar ama eksikleri listeler ve hata koduyla biter. `satis-kaynak/build.py` de sonunda bu komutu çalıştırır.
+- Sözleşmeler, ödeme sayfası, akademi ve sertifika doğrulama Türkçe kalır; dil sayfalarında bunu söyleyen kısa notlar görünür (`data-yabanci`).
+- Dil sayfalarından gelen form kayıtlarına sayfanın dili yazılır (`meta.dil`); merkez panelinde "İngilizce sayfadan" gibi görünür.
+- Alan adı değişince `uret.mjs` içindeki `SITE_URL` ve Türkçe sayfadaki `canonical`, `hreflang`, `og:url` adresleri birlikte değişmeli.
 
 ## Yayın
 
@@ -72,7 +90,7 @@ Mağazadaki "Satın al" `odeme.html?urun=<kod>` sayfasını açar. Alıcı bilgi
 1. `satis-kaynak/satici.json`: unvan, adres, vergi dairesi ve no, MERSİS, telefon, e-posta, kargo firması, teslim süreleri. Boş (`null`) alanlar sitede sarı işaretle görünür.
 2. `satis-kaynak/urunler.json`: ürünler ve KDV dâhil fiyatlar. Fiyatı `null` olan ürün satılmaz ("Yakında satışta").
 3. `satis-kaynak/metinler/*.md`: yasal metinler. `{{eposta}}` gibi alanlar `satici.json`'dan, `[[alici_ad]]` gibi alanlar sipariş sırasında dolar.
-4. `python3 satis-kaynak/build.py`: `site/sozlesmeler/`, `site/odeme.html` içindeki veri, ana sayfanın altbilgisi ve fiyatları, `supabase/functions/odeme/katalog.ts` yeniden yazılır. Sunucu fiyatı tarayıcıdan değil bu katalogdan hesaplar; fiyat değişince fonksiyon da yeniden yüklenmeli.
+4. `python3 satis-kaynak/build.py`: `site/sozlesmeler/`, `site/odeme.html` içindeki veri, ana sayfanın altbilgisi ve fiyatları, `supabase/functions/odeme/katalog.ts` ve dil sayfaları yeniden yazılır. Sunucu fiyatı tarayıcıdan değil bu katalogdan hesaplar; fiyat değişince fonksiyon da yeniden yüklenmeli.
 
 ### Ödeme kuruluşunu açmak
 

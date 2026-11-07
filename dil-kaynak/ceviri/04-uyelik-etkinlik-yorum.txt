@@ -1,0 +1,520 @@
+# Üyelik, etkinlikler, yorumlar, roller, programlar
+
+tr: Ofisiniz için üyelik.
+en: Membership for your office.
+es: Membresía para tu oficina.
+de: Mitgliedschaft für Ihr Büro.
+
+tr: Akademi herkese açık değil. Başvurudan sonra görüşme ve sözleşmeyle ofis hesabı açılır; broker ve mentor davetle girer.
+en: The academy isn’t open to everyone. After you apply, the office account is opened following a meeting and a contract; the broker and mentor join by invitation.
+es: La academia no está abierta a todo el mundo. Tras la solicitud, la cuenta de la oficina se abre después de una reunión y un contrato; el broker y el mentor entran por invitación.
+de: Die Akademie ist nicht für alle offen. Nach der Bewerbung wird das Bürokonto nach einem Gespräch und Vertragsabschluss eingerichtet; Broker und Mentor erhalten eine Einladung.
+
+tr: Akademi üyeliği
+en: Academy membership
+es: Membresía de la academia
+de: Akademie-Mitgliedschaft
+
+tr: 12 ay · ofis bazında
+en: 12 months · per office
+es: 12 meses · por oficina
+de: 12 Monate · pro Büro
+
+tr: Ofisler için
+en: For offices
+es: Para oficinas
+de: Für Büros
+
+tr: Bütün eğitimler, 12 ay boyunca
+en: All trainings, for 12 months
+es: Todas las formaciones, durante 12 meses
+de: Alle Trainings, 12 Monate lang
+
+tr: Her eğitimde üç belge
+en: Three documents with every training
+es: Tres documentos en cada formación
+de: Drei Unterlagen zu jedem Training
+
+tr: Mentor paneli, gelişim raporu ve sertifikalar
+en: Mentor panel, progress report and certificates
+es: Panel del mentor, informe de progreso y certificados
+de: Mentor-Panel, Entwicklungsbericht und Zertifikate
+
+tr: Barış AI ile prova ve sorular
+en: Rehearsals and questions with Barış AI
+es: Ensayos y preguntas con Barış AI
+de: Übungen und Fragen mit Barış AI
+
+tr: Bonus: Satışın Şifreleri ve Gayrimenkulün Usta Satışçıları
+en: Bonus: Satışın Şifreleri and Gayrimenkulün Usta Satışçıları
+es: Extra: Satışın Şifreleri y Gayrimenkulün Usta Satışçıları
+de: Bonus: Satışın Şifreleri und Gayrimenkulün Usta Satışçıları
+
+tr: Danışman sayısına göre kademeler
+en: Tiers by number of agents
+es: Niveles según el número de asesores
+de: Stufen nach Anzahl der Makler
+
+tr: 1-25 danışman
+en: 1-25 agents
+es: 1-25 asesores
+de: 1-25 Makler
+
+tr: Ofis büyüklüğüne göre<0>Teklifle · ikinci yıl yenileme avantajı</0>
+en: Based on office size<0>By proposal · second-year renewal advantage</0>
+es: Según el tamaño de la oficina<0>Con propuesta · ventaja de renovación el segundo año</0>
+de: Je nach Bürogröße<0>Auf Angebot · Vorteil bei Verlängerung im zweiten Jahr</0>
+
+tr: Teklif isteyin
+en: Request a proposal
+es: Solicita una propuesta
+de: Angebot anfragen
+
+tr: Tek eğitim
+en: Single training
+es: Formación individual
+de: Einzeltraining
+
+tr: Ofisinize seçtiğiniz bir eğitim
+en: One training of your choice for your office
+es: Una formación a elegir para tu oficina
+de: Ein Training Ihrer Wahl für Ihr Büro
+
+tr: Sabit bedel
+en: Fixed fee
+es: Precio fijo
+de: Festpreis
+
+tr: Katalogdan seçtiğiniz eğitim
+en: A training you choose from the catalog
+es: La formación que elijas del catálogo
+de: Ein Training Ihrer Wahl aus dem Katalog
+
+tr: Eğitimin üç belgesi
+en: The training’s three documents
+es: Los tres documentos de la formación
+de: Die drei Unterlagen des Trainings
+
+tr: Mentor eşliğinde grup uygulaması
+en: Mentor-led group practice
+es: Práctica en grupo guiada por el mentor
+de: Gruppenpraxis mit Mentor
+
+tr: Eğitim başına<0>Teklifle</0>
+en: Per training<0>By proposal</0>
+es: Por formación<0>Con propuesta</0>
+de: Pro Training<0>Auf Angebot</0>
+
+tr: Eğitim seçin
+en: Choose a training
+es: Elige una formación
+de: Training auswählen
+
+tr: Lansmana katılan ofislere 48 saatlik kurucu ofis fiyatı. Fiyatlar lansmanda açıklanır.
+en: Offices that attend the launch get a founding-office price for 48 hours. Prices will be announced at the launch.
+es: Las oficinas que asistan al lanzamiento tendrán un precio de oficina fundadora durante 48 horas. Los precios se anunciarán en el lanzamiento.
+de: Büros, die am Launch teilnehmen, erhalten 48 Stunden lang einen Gründerbüro-Preis. Die Preise werden beim Launch bekannt gegeben.
+
+# Etkinlikler
+tr: Yaklaşan etkinlikler
+en: Upcoming events
+es: Próximos eventos
+de: Kommende Events
+
+tr: Barış Kılıçarslan sahnede
+en: Barış Kılıçarslan on stage
+es: Barış Kılıçarslan en el escenario
+de: Barış Kılıçarslan auf der Bühne
+
+tr: LANSMAN · İSTANBUL 2027
+en: LAUNCH · ISTANBUL 2027
+es: LANZAMIENTO · ESTAMBUL 2027
+de: LAUNCH · ISTANBUL 2027
+
+tr: Salonda ve canlı yayında
+en: In the hall and on livestream
+es: En la sala y en directo
+de: Im Saal und im Livestream
+
+tr: Masterclass Akademi lansmanı
+en: Masterclass Akademi launch
+es: Lanzamiento de Masterclass Akademi
+de: Launch der Masterclass Akademi
+
+tr: Ofis sahipleri İstanbul’da aynı salonda, Türkiye canlı yayında. Akademi, Barış AI ve mentor sistemi ilk kez birlikte sahnede.
+en: Office owners together in one hall in Istanbul, with a livestream across Turkey. The academy, Barış AI and the mentor system on stage together for the first time.
+es: Los dueños de oficina, juntos en una sala de Estambul, y toda Turquía en directo. La academia, Barış AI y el sistema de mentores, por primera vez juntos en el escenario.
+de: Büroinhaber gemeinsam in einem Saal in Istanbul, die ganze Türkei im Livestream. Akademie, Barış AI und das Mentorensystem erstmals gemeinsam auf der Bühne.
+
+tr: Tarih
+en: Date
+es: Fecha
+de: Datum
+
+tr: Yer
+en: Venue
+es: Lugar
+de: Ort
+
+tr: İstanbul ve canlı yayın
+en: Istanbul and livestream
+es: Estambul y en directo
+de: Istanbul und Livestream
+
+tr: Katılım
+en: Attendance
+es: Asistencia
+de: Teilnahme
+
+tr: Davetiye ile
+en: By invitation
+es: Con invitación
+de: Mit Einladung
+
+tr: Davetiye iste
+en: Request an invitation
+es: Solicitar invitación
+de: Einladung anfragen
+
+tr: Tarih kesinleşince size haber verelim.
+en: We’ll let you know once the date is confirmed.
+es: Te avisaremos en cuanto se confirme la fecha.
+de: Wir melden uns, sobald der Termin feststeht.
+
+tr: Ön kayıt ol
+en: Pre-register
+es: Preinscríbete
+de: Voranmelden
+
+tr: Ön kayıt
+en: Pre-register
+es: Preinscripción
+de: Voranmelden
+
+tr: Gönderilemedi. Bağlantınızı kontrol edip tekrar deneyin.
+en: Couldn’t send. Check your connection and try again.
+es: No se pudo enviar. Comprueba tu conexión e inténtalo de nuevo.
+de: Senden fehlgeschlagen. Bitte prüfen Sie Ihre Verbindung und versuchen Sie es erneut.
+
+tr: Gayrimenkulde Yüksek Kazanç Prensipleri 1
+en: High-Income Principles in Real Estate 1
+es: Principios de altos ingresos en el sector inmobiliario 1
+de: Prinzipien für hohes Einkommen in der Immobilienbranche 1
+
+tr: Türkiye geneli işe alım semineri
+en: Nationwide recruitment seminar
+es: Seminario de captación de talento en toda Turquía
+de: Landesweites Recruiting-Seminar
+
+tr: Canlı yayın
+en: Livestream
+es: En directo
+de: Livestream
+
+tr: Online · Tarih yakında
+en: Online · Date coming soon
+es: Online · Fecha próximamente
+de: Online · Termin folgt
+
+tr: Masterclass Akademi lansman haftası
+en: Masterclass Akademi launch week
+es: Semana de lanzamiento de Masterclass Akademi
+de: Launch-Woche der Masterclass Akademi
+
+tr: İstanbul · Salonda ve canlı yayında
+en: Istanbul · In the hall and on livestream
+es: Estambul · En la sala y en directo
+de: Istanbul · Im Saal und im Livestream
+
+tr: Tamamlandı
+en: Completed
+es: Completado
+de: Abgeschlossen
+
+tr: Geçmiş etkinlikler
+en: Past events
+es: Eventos pasados
+de: Vergangene Events
+
+tr: Seminer
+en: Seminar
+es: Seminario
+de: Seminar
+
+tr: Lansman
+en: Launch
+es: Lanzamiento
+de: Launch
+
+# Programlar (master class pencereleri)
+tr: Gayrimenkulde Yüksek Kazanç Prensipleri
+en: High-Income Principles in Real Estate
+es: Principios de altos ingresos en el sector inmobiliario
+de: Prinzipien für hohes Einkommen in der Immobilienbranche
+
+tr: Gayrimenkulde bir üst seviyeye geçmenin prensipleri. Portföy almaktan kapanışa, yüksek kazanan danışmanın her gün yaptığı işler.
+en: The principles of moving up a level in real estate. From winning listings to closing, the things high-earning agents do every day.
+es: Los principios para subir de nivel en el sector inmobiliario. De la captación al cierre, lo que hace cada día el asesor que gana mucho.
+de: Die Prinzipien für den nächsten Schritt in der Immobilienbranche. Von der Akquise bis zum Abschluss: was Top-Verdiener unter den Maklern jeden Tag tun.
+
+tr: Ofisinize özel, salonda
+en: In person, tailored to your office
+es: Presencial, a medida de tu oficina
+de: Vor Ort, auf Ihr Büro zugeschnitten
+
+tr: Ekipçe katılım, Türkçe ya da İngilizce
+en: For the whole team, in Turkish or English
+es: Para todo el equipo, en turco o en inglés
+de: Für das ganze Team, auf Türkisch oder Englisch
+
+tr: Son uygulama: 25 Eylül 2026, RE/MAX Deniz
+en: Last run: 25 September 2026, RE/MAX Deniz
+es: Última edición: 25 de septiembre de 2026, RE/MAX Deniz
+de: Zuletzt: 25. September 2026, RE/MAX Deniz
+
+tr: Master class · 2. seviye
+en: Master class · Level 2
+es: Master class · Nivel 2
+de: Master class · Stufe 2
+
+tr: UPGRADE: Yüksek Kazanç Ustalığı
+en: UPGRADE: Mastering High Income
+es: UPGRADE: Maestría en altos ingresos
+de: UPGRADE: Hohes Einkommen meistern
+
+tr: Yüksek Kazanç Prensipleri’nin ikinci seviyesi. Yüksek kazancı tek seferlik başarı olmaktan çıkarıp alışkanlığa çevirir.
+en: The second level of High-Income Principles. It turns high income from a one-off success into a habit.
+es: El segundo nivel de Principios de altos ingresos. Convierte los altos ingresos de un éxito puntual en un hábito.
+de: Die zweite Stufe der Prinzipien für hohes Einkommen. Sie macht hohes Einkommen vom einmaligen Erfolg zur Gewohnheit.
+
+tr: Yüksek Kazanç Prensipleri’nden sonra
+en: After High-Income Principles
+es: Después de Principios de altos ingresos
+de: Nach den Prinzipien für hohes Einkommen
+
+tr: Son uygulama: 26 Eylül 2026, RE/MAX Deniz
+en: Last run: 26 September 2026, RE/MAX Deniz
+es: Última edición: 26 de septiembre de 2026, RE/MAX Deniz
+de: Zuletzt: 26. September 2026, RE/MAX Deniz
+
+tr: Lüks Konutta Personal Branding
+en: Personal Branding in Luxury Real Estate
+es: Personal Branding en vivienda de lujo
+de: Personal Branding im Luxussegment
+
+tr: Yeni lüks. Yeni müşteri. Yeni biz. Lüks konutta kişisel marka ve network ile iş potansiyelini büyütmek.
+en: The new luxury. The new client. The new us. Growing your business potential in luxury real estate through personal branding and networking.
+es: El nuevo lujo. El nuevo cliente. El nuevo nosotros. Hacer crecer tu potencial de negocio en vivienda de lujo con marca personal y networking.
+de: Neuer Luxus. Neue Kunden. Ein neues Wir. Mit Personal Branding und Netzwerk das Geschäftspotenzial im Luxussegment ausbauen.
+
+tr: Lüks konut danışmanları için
+en: For luxury real estate agents
+es: Para asesores de vivienda de lujo
+de: Für Makler im Luxussegment
+
+tr: Viyana’daki uluslararası Collection sertifika programından
+en: From the international Collection certification program in Vienna
+es: Del programa internacional de certificación Collection en Viena
+de: Aus dem internationalen Collection-Zertifizierungsprogramm in Wien
+
+tr: Son uygulama: 23 Eylül 2026, RE/MAX Collection Club
+en: Last run: 23 September 2026, RE/MAX Collection Club
+es: Última edición: 23 de septiembre de 2026, RE/MAX Collection Club
+de: Zuletzt: 23. September 2026, RE/MAX Collection Club
+
+tr: Program
+en: Program
+es: Programa
+de: Programm
+
+tr: Ofisine getir
+en: Bring it to your office
+es: Llévalo a tu oficina
+de: In Ihr Büro holen
+
+tr: Takvimi gör
+en: See the calendar
+es: Ver el calendario
+de: Kalender ansehen
+
+# Yorumlar (İngilizce özgün sözler büyük harf düzeltilerek)
+tr: Sahneden sonra
+en: After the stage
+es: Después del escenario
+de: Nach der Bühne
+
+tr: Önceki yorum
+en: Previous testimonial
+es: Testimonio anterior
+de: Vorherige Stimme
+
+tr: Sonraki yorum
+en: Next testimonial
+es: Siguiente testimonio
+de: Nächste Stimme
+
+tr: Barış Türkiye’de herkesten fazla danışman yetiştirdi. Her yıl büyüyor, işini seviyor ve gittiği her yere değer katıyor.
+en: Barış trained agents more than anybody in Turkey. He grows every year, loves what he does and he brings value wherever he goes.
+es: Barış ha formado a más asesores que nadie en Turquía. Crece cada año, ama lo que hace y aporta valor allá donde va.
+de: Barış hat in der Türkei mehr Makler ausgebildet als jeder andere. Er wächst jedes Jahr, liebt, was er tut, und schafft Mehrwert, wo immer er hinkommt.
+
+tr: Bölge Direktörü, RE/MAX Türkiye
+en: Regional Director, RE/MAX Türkiye
+es: Director Regional, RE/MAX Türkiye
+de: Regionaldirektor, RE/MAX Türkiye
+
+tr: Oturumunda 1.400 danışman ve broker vardı. Kişiliğini, içeriğini ve dinamik anlatımını çok sevdik. Onu mutlaka yeniden davet edeceğiz.
+en: We had 1,400 agents and brokers in his session and we loved his personality, his great content and his dynamic delivery. For sure we will invite him again to inspire our people.
+es: En su sesión había 1.400 asesores y brokers. Nos encantaron su personalidad, su gran contenido y su forma dinámica de presentar. Sin duda volveremos a invitarlo para inspirar a nuestra gente.
+de: In seiner Session saßen 1.400 Makler und Broker, und wir waren begeistert von seiner Persönlichkeit, seinen starken Inhalten und seinem dynamischen Vortrag. Wir werden ihn ganz sicher wieder einladen, um unsere Leute zu inspirieren.
+
+tr: Bölge Direktörü, RE/MAX Arjantin
+en: Regional Director, RE/MAX Argentina
+es: Director Regional, RE/MAX Argentina
+de: Regionaldirektor, RE/MAX Argentina
+
+tr: Art of Persuasion · Rosario, Arjantin
+en: Art of Persuasion · Rosario, Argentina
+es: Art of Persuasion · Rosario, Argentina
+de: Art of Persuasion · Rosario, Argentinien
+
+tr: RE/MAX Arjantin
+en: RE/MAX Argentina
+es: RE/MAX Argentina
+de: RE/MAX Argentina
+
+tr: Braveology muhteşemdi. Oturumdan sonra bütün danışman ve brokerlarımız işe sarılmak için ilham aldı. Barış sahnede de sahne dışında da harikaydı.
+en: Braveology was absolutely great. All of our agents and brokers were inspired to take work after the session. Barış was great on the stage and off the stage.
+es: Braveology fue increíble. Después de la sesión, todos nuestros asesores y brokers se sintieron inspirados para ponerse a trabajar. Barış estuvo genial dentro y fuera del escenario.
+de: Braveology war absolut großartig. Nach der Session waren alle unsere Makler und Broker motiviert, sich an die Arbeit zu machen. Barış war auf und neben der Bühne großartig.
+
+tr: Bölge Direktörü, RE/MAX Romanya
+en: Regional Director, RE/MAX Romania
+es: Director Regional, RE/MAX Romania
+de: Regionaldirektor, RE/MAX Romania
+
+tr: Braveology · Cluj-Napoca, Romanya
+en: Braveology · Cluj-Napoca, Romania
+es: Braveology · Cluj-Napoca, Rumanía
+de: Braveology · Cluj-Napoca, Rumänien
+
+tr: RE/MAX Romanya
+en: RE/MAX Romania
+es: RE/MAX Romania
+de: RE/MAX Romania
+
+tr: Barış çok ilham verici ve bir o kadar samimi. Liderlik konusunda müthiş bir enerji yayıyor, salonu içine çekiyor.
+en: Barış was very inspiring and down to earth. He projects a lot of energy about leadership and engages the audience.
+es: Barış es muy inspirador y, a la vez, muy cercano. Transmite una energía enorme sobre el liderazgo y atrapa al público.
+de: Barış ist sehr inspirierend und dabei bodenständig. Er strahlt beim Thema Führung enorme Energie aus und zieht das Publikum mit.
+
+tr: Kurucu ve Sahibi, RE/MAX Central
+en: Founder and Owner, RE/MAX Central
+es: Fundador y propietario, RE/MAX Central
+de: Gründer und Inhaber, RE/MAX Central
+
+tr: Leadology · Las Vegas, ABD
+en: Leadology · Las Vegas, USA
+es: Leadology · Las Vegas, EE. UU.
+de: Leadology · Las Vegas, USA
+
+tr: Barış, lüks konut uzmanları için mükemmel bir eğitmen.
+en: Barış is the perfect trainer for luxury home experts.
+es: Barış es el formador perfecto para los expertos en vivienda de lujo.
+de: Barış ist der perfekte Trainer für Experten im Luxussegment.
+
+tr: RE/MAX Dolcevita, Roma
+en: RE/MAX Dolcevita, Rome
+es: RE/MAX Dolcevita, Roma
+de: RE/MAX Dolcevita, Rom
+
+tr: Collection Sertifika Programı · Viyana, Avusturya
+en: Collection Certification Program · Vienna, Austria
+es: Programa de certificación Collection · Viena, Austria
+de: Collection-Zertifizierungsprogramm · Wien, Österreich
+
+tr: Barış Bey’in semineri muhteşemdi, sadece içimizden birisi böylesine bize özel bir sunum yapabilirdi. Tüm çalışanlarımız çok motive oldu.
+en: Barış’s seminar was magnificent; only one of our own could have given a presentation so tailored to us. All our employees were highly motivated.
+es: El seminario de Barış fue magnífico; solo alguien de los nuestros podría haber hecho una presentación tan a nuestra medida. Toda nuestra plantilla salió muy motivada.
+de: Das Seminar von Barış war großartig; nur jemand aus unseren eigenen Reihen hätte eine so genau auf uns zugeschnittene Präsentation halten können. Alle unsere Mitarbeitenden waren hochmotiviert.
+
+tr: İnsan Kaynakları, Hilton Dalaman
+en: Human Resources, Hilton Dalaman
+es: Recursos Humanos, Hilton Dalaman
+de: Personalabteilung, Hilton Dalaman
+
+tr: Kurumsal seminer · Dalaman
+en: Corporate seminar · Dalaman
+es: Seminario corporativo · Dalaman
+de: Firmenseminar · Dalaman
+
+# Roller
+tr: Altı rol, tek hedef: sonuç.
+en: Six roles, one goal: results.
+es: Seis roles, un objetivo: resultados.
+de: Sechs Rollen, ein Ziel: Ergebnisse.
+
+tr: Gayrimenkul ekiplerinden kurumsal salonlara, kongre sahnelerinden birebir çalışmalara.
+en: From real estate teams to corporate halls, from convention stages to one-to-one work.
+es: De los equipos inmobiliarios a las salas corporativas, de los escenarios de congresos al trabajo individual.
+de: Von Immobilienteams bis zu Firmensälen, von Kongressbühnen bis zur Einzelarbeit.
+
+tr: Gayrimenkul eğitmeni
+en: Real estate trainer
+es: Formador inmobiliario
+de: Immobilientrainer
+
+tr: Power Start, Power Camp ve RE/MAX sahnelerinde danışman yetiştiren programlar.
+en: Programs that develop agents on the Power Start, Power Camp and RE/MAX stages.
+es: Programas que forman asesores en los escenarios de Power Start, Power Camp y RE/MAX.
+de: Programme, die auf den Bühnen von Power Start, Power Camp und RE/MAX Makler ausbilden.
+
+tr: Kurumsal eğitmen
+en: Corporate trainer
+es: Formador corporativo
+de: Unternehmenstrainer
+
+tr: Hilton’dan Arçelik’e, 200’den fazla kurumda satış, motivasyon ve liderlik.
+en: Sales, motivation and leadership at more than 200 organizations, from Hilton to Arçelik.
+es: Ventas, motivación y liderazgo en más de 200 organizaciones, de Hilton a Arçelik.
+de: Vertrieb, Motivation und Führung in mehr als 200 Organisationen, von Hilton bis Arçelik.
+
+tr: Uluslararası konuşmacı
+en: International speaker
+es: Conferenciante internacional
+de: Internationaler Redner
+
+tr: Arjantin, Romanya, ABD, Avusturya ve Yunanistan sahnelerinde.
+en: On stages in Argentina, Romania, the USA, Austria and Greece.
+es: En escenarios de Argentina, Rumanía, EE. UU., Austria y Grecia.
+de: Auf Bühnen in Argentinien, Rumänien, den USA, Österreich und Griechenland.
+
+tr: Kongre ve açılış konuşmacısı
+en: Convention and opening speaker
+es: Conferenciante de congresos e inauguraciones
+de: Redner für Kongresse und Auftakte
+
+tr: Kongre, yıl açılışı ve lansman sahneleri için Türkçe ve İngilizce konuşmalar.
+en: Talks in Turkish and English for conventions, annual kick-offs and launch events.
+es: Conferencias en turco e inglés para congresos, inicios de año y lanzamientos.
+de: Vorträge auf Türkisch und Englisch für Kongresse, Jahresauftakte und Launch-Events.
+
+tr: Birebir çalışma
+en: One-to-one work
+es: Trabajo individual
+de: Einzelarbeit
+
+tr: Kişiye özel, birebir mentorluk çalışmaları.
+en: Personalized one-to-one mentoring.
+es: Mentoría individual y personalizada.
+de: Individuelles Mentoring, ganz persönlich.
+
+tr: Ofisler için 12 aylık akademi
+en: 12-month academy for offices
+es: Academia de 12 meses para oficinas
+de: 12-monatige Akademie für Büros
+
+tr: Mentor liderliğinde, sonuca odaklı eğitim ve performans platformu.
+en: A mentor-led, results-focused training and performance platform.
+es: Plataforma de formación y rendimiento orientada a resultados y guiada por un mentor.
+de: Mentorgeführte, ergebnisorientierte Trainings- und Performance-Plattform.

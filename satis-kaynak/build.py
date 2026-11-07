@@ -308,7 +308,8 @@ def main():
         ('gizlilik-ve-cerez-politikasi', 'Gizlilik ve çerezler'), ('uyelik-sozlesmesi', 'Üyelik sözleşmesi'),
         ('yasal-uyarilar', 'Yasal uyarılar'), ('hakkimizda', 'Hakkımızda'), ('iletisim', 'İletişim')])
     altbilgi = (f'<div class="ft-leg"><span>© 2026 Barış Kılıçarslan</span>{linkler}</div>'
-                f'<p class="ft-sat">{satici_satiri()}<br>Ödemeler Türk lirası (TL) ile, lisanslı ödeme kuruluşunun 3D Secure güvenli sayfasında alınır. Kart bilgileri bu siteye ulaşmaz.</p>')
+                f'<p class="ft-sat"><span translate="no">{satici_satiri()}</span><br>'
+                f'<span>Ödemeler Türk lirası (TL) ile, lisanslı ödeme kuruluşunun 3D Secure güvenli sayfasında alınır. Kart bilgileri bu siteye ulaşmaz.</span></p>')
     a = blok_degistir(a, '<!--URETILEN:yasal-->', '<!--/URETILEN:yasal-->', altbilgi, 'index.html')
     fiyat = {u['kod']: ({'f': u['fiyat'], 't': tl(u['fiyat'])} if u.get('fiyat') is not None else None) for u in URUNLER}
     a = blok_degistir(a, '/*URETILEN:fiyat*/', '/*/URETILEN:fiyat*/',
@@ -333,6 +334,23 @@ def main():
 
     print(f'{len(sayfalar)} sayfa + dizin yazıldı, sürüm {surum}')
     print('eksik alanlar:', ', '.join(EKSIK) if EKSIK else 'yok')
+    dil_sayfalari()
+
+
+def dil_sayfalari():
+    """İngilizce, İspanyolca ve Almanca sayfalar Türkçe ana sayfadan üretilir (dil-kaynak/uret.mjs)."""
+    import shutil
+    import subprocess
+    uretici = KOK / 'dil-kaynak' / 'uret.mjs'
+    if not (uretici.exists() and (KOK / 'dil-kaynak' / 'node_modules').exists() and shutil.which('node')):
+        print('Not: dil sayfaları güncellenmedi. Bir kez: cd dil-kaynak && npm install; sonra: node dil-kaynak/uret.mjs')
+        return
+    r = subprocess.run(['node', str(uretici)], capture_output=True, text=True)
+    print('dil sayfaları:', ' '.join(r.stdout.split()))
+    if r.returncode:
+        print('UYARI: dil sayfalarında çevirisi olmayan metin var; dil-kaynak/ceviri dosyalarına ekleyin.')
+        if r.stderr.strip():
+            print(r.stderr.strip()[-800:])
 
 
 if __name__ == '__main__':

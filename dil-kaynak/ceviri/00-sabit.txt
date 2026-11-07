@@ -1,0 +1,315 @@
+# Her dilde aynı kalanlar: adlar, markalar, kapak yazıları, özgün İngilizce yorumlar.
+# Eğitim kapaklarındaki büyük yazılar (BAŞARI, PORTFÖY…) kapak tasarımıdır, Türkçe kalır.
+
+tr: Barış Kılıçarslan
+=
+
+tr: Barış Kılıçarslan · Masterclass Akademi
+=
+
+tr: MASTERCLASS
+=
+
+tr: Akademi
+=
+
+tr: BARIŞ KILIÇARSLAN
+=
+
+tr: Masterclass Akademi
+=
+
+tr: Barış AI
+=
+
+tr: Barış
+=
+
+tr: AI
+=
+
+tr: Keynote Speaker
+=
+
+tr: International Speaker
+=
+
+tr: Corporate Trainer
+=
+
+tr: Real Estate Trainer
+=
+
+tr: Private Mentoring
+=
+
+tr: Real Estate Trainer, Corporate Trainer, International Speaker, Keynote Speaker, Private Mentoring
+=
+
+tr: Hilton
+=
+
+tr: Arçelik
+=
+
+tr: HP
+=
+
+tr: Aksigorta
+=
+
+tr: AnadoluJet
+=
+
+tr: Instagram
+=
+
+tr: Facebook
+=
+
+tr: PDF
+=
+
+tr: Master class
+=
+
+tr: © 2026 Barış Kılıçarslan
+=
+
+tr: Satışın Şifreleri
+=
+
+tr: Satışın Şifreleri ile Sonucu Satmak
+=
+
+tr: Satışın Şifreleri, Gayrimenkulün Usta Satışçıları
+=
+
+tr: Gayrimenkulün Usta Satışçıları
+=
+
+tr: Satışın
+=
+
+tr: ŞİFRELERİ
+=
+
+tr: GAYRİMENKULÜN
+=
+
+tr: USTA
+=
+
+tr: Satışçıları
+=
+
+# Eğitim kapakları
+tr: Kişisel
+=
+
+tr: BAŞARI
+=
+
+tr: PRENSİPLERİ
+=
+
+tr: Kişisel Marka ve
+=
+
+tr: MÜŞTERİ
+=
+
+tr: BULMA USTALIĞI
+=
+
+tr: DANIŞMAN
+=
+
+tr: OLMADA USTALIK
+=
+
+tr: PORTFÖY
+=
+
+tr: ALMADA USTALIK
+=
+
+tr: İtirazlarda
+=
+
+tr: Alıcılarda
+=
+
+tr: Doğru
+=
+
+tr: FİYAT
+=
+
+tr: PORTFÖY ALMADA USTALIK
+=
+
+tr: İşlem
+=
+
+tr: KAPANIŞ
+=
+
+tr: YÖNETİMİ
+=
+
+# Kişi ve kurum adları
+tr: Murat Goldştayn
+=
+
+tr: Sebastian Sosa
+=
+
+tr: Razvan Cuc
+=
+
+tr: Andrea Frigo
+=
+
+tr: Marco Tilesi
+=
+
+tr: İlkay Erginöz
+=
+
+tr: İE
+=
+
+tr: Hilton Dalaman
+=
+
+tr: RE/MAX Türkiye
+=
+
+tr: RE/MAX Central
+=
+
+tr: RE/MAX Dolcevita
+=
+
+tr: RE/MAX Collection Club
+=
+
+tr: RE/MAX Master
+=
+
+tr: RE/MAX Deniz · Sahne Sende Coffee
+=
+
+tr: Ayça Aral
+=
+
+tr: Ulvi Kocailik
+=
+
+tr: Can Alisbah
+=
+
+tr: Erhan Vardar
+=
+
+tr: Evren Topal
+=
+
+tr: Evrim Kırmızıtaş
+=
+
+tr: Hasan Can
+=
+
+tr: Bülent Diker
+=
+
+tr: MasterPlan
+=
+
+tr: 2026 MasterPlan
+=
+
+tr: Webinar
+=
+
+# Yorumların özgün İngilizce halleri (sayfada gösterilmiyor, veri olarak duruyor)
+tr: BARIŞ trained agents more than anybody in TURKEY. He grows every year, loves what he does and he brings value wherever he goes.
+=
+
+tr: We had 1400 Agents and Brokers in his session and we loved his personality, his great content and his dynamic delivery. For sure we will invite him again to inspire our people.
+=
+
+tr: Braveology was absolutely great. All of our agents and brokers were inspired to take work after the session. Barış was great on the stage and off the stage. We will definitely call him for our next convention.
+=
+
+tr: BARIŞ was very inspiring and down to earth. He projects a lot of energy about leadership and engages the audience.
+=
+
+tr: BARIŞ is perfect trainer for LUXURY HOME EXPERTS.
+=
+
+# Betikte metin gibi görünen ama kod parçasıyla çevrilen dizgiler
+atla: emlakçıya
+atla: eşimle
+atla: güven
+atla: Şub
+atla: Ağu
+atla: Tanıtım ve motivasyon, ardından
+atla: bölümlük ana eğitim
+
+# Ay kısaltmaları (etkinlik takvimi)
+kod: var MS=['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'];
+en: var MS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+es: var MS=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+de: var MS=['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+
+# Küçük harfe çevirme (arama ve Barış AI örnek cevap eşleşmesi)
+kod: toLocaleLowerCase('tr')
+en: toLocaleLowerCase('en')
+es: toLocaleLowerCase('es')
+de: toLocaleLowerCase('de')
+
+# Barış AI örnek mod: sorudaki anahtar kelime, hazır soruların çevirisinde geçen kelime olmalı
+kod: {k:'komisyon',a:
+en: {k:'commission',a:
+es: {k:'comisión',a:
+de: {k:'provision',a:
+
+kod: {k:'emlakçıya',a:
+en: {k:'three agents',a:
+es: {k:'tres inmobiliarias',a:
+de: {k:'drei makler',a:
+
+kod: {k:'eşimle',a:
+en: {k:'spouse',a:
+es: {k:'pareja',a:
+de: {k:'partner',a:
+
+kod: {k:'güven',a:
+en: {k:'trust',a:
+es: {k:'confianza',a:
+de: {k:'vertrauen',a:
+
+# Eğitim penceresindeki akış satırı (sayı cümlenin ortasında)
+kod: 'Tanıtım ve motivasyon, ardından '+n+' bölümlük ana eğitim'
+en: 'Intro and motivation, then a '+n+'-lesson main training'
+es: 'Presentación y motivación, luego la formación principal de '+n+' lecciones'
+de: 'Einführung und Motivation, danach das Haupttraining mit '+n+' Lektionen'
+
+# Rakam biçimleri (Hakkında)
+kod: <b>1.900+</b>
+en: <b>1,900+</b>
+es: <b>1.900+</b>
+de: <b>1.900+</b>
+
+kod: <b>200.000+</b>
+en: <b>200,000+</b>
+es: <b>200.000+</b>
+de: <b>200.000+</b>
+
+kod: <b>%97,4</b>
+en: <b>97.4%</b>
+es: <b>97,4 %</b>
+de: <b>97,4 %</b>

@@ -1,0 +1,363 @@
+# Sayfa başı, üst menü, mega menüler, açılış, Hakkında
+
+tr: Barış Kılıçarslan: uluslararası gayrimenkul satış eğitmeni. Masterclass Akademi, Barış AI ve mentor paneli.
+en: Barış Kılıçarslan: international real estate sales trainer. Masterclass Akademi, Barış AI and the mentor panel.
+es: Barış Kılıçarslan: formador internacional de ventas inmobiliarias. Masterclass Akademi, Barış AI y el panel del mentor.
+de: Barış Kılıçarslan: internationaler Trainer für Immobilienvertrieb. Masterclass Akademi, Barış AI und das Mentor-Panel.
+
+tr: Eğitim izlemek için değil, sonuç alıp kazanmak için. RE/MAX ofisleri için 12 aylık Masterclass Akademi, Ocak 2027’de açılıyor.
+en: Training for results and earnings, not for watching. Masterclass Akademi, a 12-month academy for RE/MAX offices, opens in January 2027.
+es: Formación para resultados e ingresos, no para mirar. Masterclass Akademi, la academia de 12 meses para oficinas RE/MAX, abre en enero de 2027.
+de: Training für Ergebnisse und Einkommen, nicht zum Zuschauen. Die Masterclass Akademi, ein 12-monatiges Programm für RE/MAX-Büros, startet im Januar 2027.
+
+tr: Barış Kılıçarslan sahnede; Masterclass Akademi, Ocak 2027
+en: Barış Kılıçarslan on stage; Masterclass Akademi, January 2027
+es: Barış Kılıçarslan en el escenario; Masterclass Akademi, enero de 2027
+de: Barış Kılıçarslan auf der Bühne; Masterclass Akademi, Januar 2027
+
+tr: Ana menü
+en: Main menu
+es: Menú principal
+de: Hauptmenü
+
+tr: RE/MAX ofisleri için 12 aylık akademi
+en: A 12-month academy for RE/MAX offices
+es: Academia de 12 meses para oficinas RE/MAX
+de: 12-monatige Akademie für RE/MAX-Büros
+
+tr: Eğitim kataloğu
+en: Training catalog
+es: Catálogo de formaciones
+de: Trainingskatalog
+
+tr: On eğitim, tanıtımları ve bölümleri
+en: Ten trainings, their intros and lessons
+es: Diez formaciones, sus presentaciones y lecciones
+de: Zehn Trainings mit Einführungen und Lektionen
+
+tr: Üyelik
+en: Membership
+es: Membresía
+de: Mitgliedschaft
+
+tr: 12 aylık ofis üyeliği ve tek eğitim
+en: 12-month office membership and single trainings
+es: Membresía de oficina de 12 meses y formación individual
+de: 12-monatige Büromitgliedschaft und Einzeltrainings
+
+tr: Sor ve prova yap
+en: Ask and rehearse
+es: Pregunta y ensaya
+de: Fragen und üben
+
+tr: Masterclass Akademi Ocak 2027’de açılıyor
+en: Masterclass Akademi opens in January 2027
+es: Masterclass Akademi abre en enero de 2027
+de: Die Masterclass Akademi startet im Januar 2027
+
+tr: Konuşmalar
+en: Speaking
+es: Conferencias
+de: Vorträge
+
+tr: Kongre, yıl açılışı ve lansman sahneleri
+en: Conventions, annual kick-offs and launch events
+es: Congresos, inicios de año y lanzamientos
+de: Kongresse, Jahresauftakte und Launch-Events
+
+tr: Arjantin’den Romanya’ya, sahneden sonra
+en: From Argentina to Romania, after the stage
+es: De Argentina a Rumanía, después del escenario
+de: Von Argentinien bis Rumänien, nach der Bühne
+
+tr: Kongre konuşması
+en: Convention keynote
+es: Conferencia en congreso
+de: Kongressvortrag
+
+tr: Konuşma teklifi isteyin
+en: Request a speaking proposal
+es: Solicita una propuesta de conferencia
+de: Vortragsangebot anfragen
+
+tr: Tarih, ülke ve katılımcı sayısıyla
+en: With date, country and audience size
+es: Con fecha, país y número de asistentes
+de: Mit Datum, Land und Teilnehmerzahl
+
+tr: Sahnede Barış Kılıçarslan
+en: Barış Kılıçarslan on stage
+es: Barış Kılıçarslan en el escenario
+de: Barış Kılıçarslan auf der Bühne
+
+tr: Kurumsal
+en: Corporate
+es: Empresas
+de: Unternehmen
+
+tr: Satış, motivasyon ve liderlik eğitimleri
+en: Sales, motivation and leadership training
+es: Formación en ventas, motivación y liderazgo
+de: Trainings zu Vertrieb, Motivation und Führung
+
+tr: Salonda ve ofiste gayrimenkul programları
+en: Real estate programs in the hall and at the office
+es: Programas inmobiliarios en sala y en la oficina
+de: Immobilienprogramme im Saal und im Büro
+
+tr: Birebir mentorluk
+en: One-to-one mentoring
+es: Mentoría individual
+de: Einzelmentoring
+
+tr: Broker ve ofis sahipleriyle birebir
+en: One-to-one with brokers and office owners
+es: En persona, con brokers y dueños de oficina
+de: Persönlich mit Brokern und Büroinhabern
+
+tr: Satış
+en: Sales
+es: Ventas
+de: Vertrieb
+
+tr: Tarih ve teklif isteyin
+en: Ask for dates and a proposal
+es: Pide fechas y una propuesta
+de: Termin und Angebot anfragen
+
+tr: Etkinlikler
+en: Events
+es: Eventos
+de: Events
+
+tr: Etkinlik takvimi
+en: Event calendar
+es: Calendario de eventos
+de: Eventkalender
+
+tr: Yaklaşan ve geçmiş etkinlikler
+en: Upcoming and past events
+es: Eventos próximos y pasados
+de: Kommende und vergangene Events
+
+tr: Aralık webinarı
+en: December webinar
+es: Webinar de diciembre
+de: Dezember-Webinar
+
+tr: Online, tarih yakında açıklanacak
+en: Online, date to be announced soon
+es: Online, la fecha se anunciará pronto
+de: Online, Termin folgt in Kürze
+
+tr: Akademi lansmanı
+en: Academy launch
+es: Lanzamiento de la academia
+de: Akademie-Launch
+
+tr: Ocak 2027, İstanbul ve canlı yayın
+en: January 2027, Istanbul and livestream
+es: Enero de 2027, Estambul y en directo
+de: Januar 2027, Istanbul und Livestream
+
+tr: Lansman davetiyeni ayır
+en: Reserve your launch invitation
+es: Reserva tu invitación al lanzamiento
+de: Einladung zum Launch sichern
+
+tr: Mağaza
+en: Store
+es: Tienda
+de: Shop
+
+tr: Gelişim ve Kazanç Mağazası
+en: Growth and Earnings Store
+es: Tienda de Desarrollo y Ganancias
+de: Shop für Wachstum und Ertrag
+
+tr: Kısa, odaklı eğitimler ve paketler
+en: Short, focused trainings and bundles
+es: Formaciones breves y enfocadas, y paquetes
+de: Kurze, fokussierte Trainings und Pakete
+
+tr: Kitaplar
+en: Books
+es: Libros
+de: Bücher
+
+tr: Klasik Eğitimler
+en: Classic trainings
+es: Formaciones clásicas
+de: Klassische Trainings
+
+tr: Satışın Şifreleri, imzalı
+en: Satışın Şifreleri, signed
+es: Satışın Şifreleri, firmado
+de: Satışın Şifreleri, signiert
+
+tr: Hakkında
+en: About
+es: Sobre Barış
+de: Über Barış
+
+tr: Hikaye
+en: Story
+es: Historia
+de: Werdegang
+
+tr: Royal Caribbean’dan RE/MAX sahnelerine
+en: From Royal Caribbean to RE/MAX stages
+es: De Royal Caribbean a los escenarios de RE/MAX
+de: Von Royal Caribbean auf die RE/MAX-Bühnen
+
+tr: Yorumlar
+en: Testimonials
+es: Testimonios
+de: Stimmen
+
+tr: Dünyadan ofis liderleri
+en: Office leaders from around the world
+es: Líderes de oficina de todo el mundo
+de: Büroleiter aus aller Welt
+
+tr: Altı rol
+en: Six roles
+es: Seis roles
+de: Sechs Rollen
+
+tr: Sahnede, salonda ve birebir
+en: On stage, in the room and one-to-one
+es: En el escenario, en la sala y en persona
+de: Auf der Bühne, im Saal und persönlich
+
+tr: Barış Kılıçarslan kimdir?
+en: Who is Barış Kılıçarslan?
+es: ¿Quién es Barış Kılıçarslan?
+de: Wer ist Barış Kılıçarslan?
+
+tr: Sitede ara
+en: Search the site
+es: Buscar en el sitio
+de: Website durchsuchen
+
+tr: Giriş yap
+en: Log in
+es: Iniciar sesión
+de: Anmelden
+
+tr: Hemen başla
+en: Get started
+es: Empieza ya
+de: Jetzt starten
+
+tr: Menüyü aç
+en: Open menu
+es: Abrir menú
+de: Menü öffnen
+
+tr: Menüyü kapat
+en: Close menu
+es: Cerrar menú
+de: Menü schließen
+
+tr: Akademiye giriş
+en: Academy login
+es: Acceso a la academia
+de: Akademie-Login
+
+# Açılış
+tr: Öne çıkanlar
+en: Highlights
+es: Destacados
+de: Highlights
+
+tr: Barış Kılıçarslan sahnede, kollarını açmış gülümsüyor
+en: Barış Kılıçarslan on stage, smiling with open arms
+es: Barış Kılıçarslan en el escenario, sonriendo con los brazos abiertos
+de: Barış Kılıçarslan auf der Bühne, lächelnd mit offenen Armen
+
+tr: Ocak 2027
+en: January 2027
+es: Enero de 2027
+de: Januar 2027
+
+tr: Eğitim izlemek için değil, sonuç alıp kazanmak için.
+en: Training for results and earnings, not for watching.
+es: Formación para resultados e ingresos, no para mirar.
+de: Training für Ergebnisse und Einkommen, nicht zum Zuschauen.
+
+tr: Akademiyi keşfet
+en: Explore the academy
+es: Descubre la academia
+de: Akademie entdecken
+
+tr: Eğitimleri gör
+en: See the trainings
+es: Ver las formaciones
+de: Trainings ansehen
+
+tr: Sıradaki etkinlik
+en: Next event
+es: Próximo evento
+de: Nächstes Event
+
+tr: Aralık webinarı ön kaydı
+en: December webinar pre-registration
+es: Preinscripción al webinar de diciembre
+de: Voranmeldung zum Dezember-Webinar
+
+tr: Aralık<0>webinarı</0>
+en: December<0>webinar</0>
+es: Diciembre<0>webinar</0>
+de: Dezember<0>Webinar</0>
+
+tr: Aralık webinarı ve paneli
+en: December webinar and panel
+es: Webinar y panel de diciembre
+de: Dezember-Webinar mit Panel
+
+tr: Aralık 2026 · Online · Tarih yakında
+en: December 2026 · Online · Date coming soon
+es: Diciembre de 2026 · Online · Fecha próximamente
+de: Dezember 2026 · Online · Termin folgt
+
+# Hakkında
+tr: Royal Caribbean’dan RE/MAX sahnelerine.
+en: From Royal Caribbean to RE/MAX stages.
+es: De Royal Caribbean a los escenarios de RE/MAX.
+de: Von Royal Caribbean auf die RE/MAX-Bühnen.
+
+tr: Mühendislikle başladı. Royal Caribbean’da altı yıl boyunca 24 ülkede satış ve müşteri ilişkileri yönetti, Miami’de eğitmen oldu. Türkiye’ye dönünce RE/MAX Türkiye ile çalışmaya başladı. Bugün tek bir işi var: satış ekiplerinin sahada sonuç alması.
+en: He started out in engineering. At Royal Caribbean he managed sales and customer relations in 24 countries for six years and became a trainer in Miami. Back in Turkey, he began working with RE/MAX Türkiye. Today he has one job: helping sales teams get results in the field.
+es: Empezó en la ingeniería. En Royal Caribbean dirigió ventas y atención al cliente en 24 países durante seis años y se convirtió en formador en Miami. De vuelta en Turquía, empezó a trabajar con RE/MAX Türkiye. Hoy tiene un solo objetivo: que los equipos de ventas logren resultados sobre el terreno.
+de: Er begann in der Technik. Bei Royal Caribbean leitete er sechs Jahre lang Vertrieb und Kundenbeziehungen in 24 Ländern und wurde in Miami Trainer. Zurück in der Türkei begann er die Zusammenarbeit mit RE/MAX Türkiye. Heute hat er nur eine Aufgabe: dass Vertriebsteams in der Praxis Ergebnisse erzielen.
+
+tr: gün eğitim ve seminer
+en: days of training and seminars
+es: días de formación y seminarios
+de: Tage Training und Seminare
+
+tr: katılımcı
+en: participants
+es: participantes
+de: Teilnehmende
+
+tr: kurum
+en: organizations
+es: organizaciones
+de: Organisationen
+
+tr: katılımcı memnuniyeti
+en: participant satisfaction
+es: satisfacción de los participantes
+de: Teilnehmerzufriedenheit
+
+tr: Eğitim verdiği kurumlardan
+en: Some of the organizations he has trained
+es: Algunas de las organizaciones que ha formado
+de: Einige der Organisationen, die er trainiert hat
+
+tr: Barış’ı tanı
+en: Meet Barış
+es: Conoce a Barış
+de: Barış kennenlernen

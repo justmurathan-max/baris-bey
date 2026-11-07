@@ -1,0 +1,687 @@
+# Mağaza, son çağrı, alt bilgi, pencereler, arama
+
+tr: Kitap ve online eğitim setleri. Daha önce alanların erişim hakkı aynen korunur.
+en: Books and online training sets. Anyone who bought before keeps their access.
+es: Libros y cursos online. Quienes ya compraron conservan su acceso.
+de: Bücher und Online-Trainingssets. Wer schon gekauft hat, behält seinen Zugang.
+
+tr: Kitap ve eğitim setleri Türkçedir. Fiyatlar Türk lirasıdır, ödeme sayfası Türkçedir; kitap yalnız Türkiye içindeki adreslere gönderilir.
+en: The book and training sets are in Turkish. Prices are in Turkish lira and the checkout page is in Turkish; the book ships only to addresses in Turkey.
+es: El libro y los cursos están en turco. Los precios están en liras turcas y la página de pago está en turco; el libro solo se envía a direcciones de Turquía.
+de: Buch und Trainingssets sind auf Türkisch. Die Preise sind in Türkischen Lira, die Bezahlseite ist auf Türkisch; das Buch wird nur an Adressen in der Türkei versendet.
+
+tr: Satışın Şifreleri tanıtım videosunu oynat, 17 dakika
+en: Play the Satışın Şifreleri intro video, 17 minutes
+es: Reproducir el vídeo de presentación de Satışın Şifreleri, 17 minutos
+de: Einführungsvideo zu Satışın Şifreleri abspielen, 17 Minuten
+
+tr: Tanıtım · 17 dk
+en: Intro · 17 min
+es: Presentación · 17 min
+de: Einführung · 17 Min.
+
+tr: Online eğitim seti
+en: Online training set
+es: Curso online
+de: Online-Trainingsset
+
+tr: Satmaktan çok satın aldırmaya odaklı set: Sonucu Satmak, Önce Kendine Sat, Ethos, Logos, Pathos ve Kendini Satmak. Önce 17 dakikalık tanıtımı izle, sonra karar ver.
+en: A set focused on helping people buy rather than selling to them: Selling the Result, Sell to Yourself First, Ethos, Logos, Pathos and Selling Yourself. Watch the 17-minute intro first, then decide.
+es: Un curso centrado en hacer que el cliente compre en lugar de venderle: Vender el resultado, Véndete primero a ti mismo, Ethos, Logos, Pathos y Venderte a ti mismo. Mira primero la presentación de 17 minutos y luego decide.
+de: Ein Set, das darauf setzt, Kunden kaufen zu lassen, statt zu verkaufen: Das Ergebnis verkaufen, Verkauf es zuerst dir selbst, Ethos, Logos, Pathos und Sich selbst verkaufen. Sehen Sie sich zuerst die 17-minütige Einführung an, dann entscheiden Sie.
+
+tr: 9,5 saat video ve 9,5 saat sesli anlatım
+en: 9.5 hours of video and 9.5 hours of audio
+es: 9,5 horas de vídeo y 9,5 horas de audio
+de: 9,5 Stunden Video und 9,5 Stunden Audio
+
+tr: 13 koçluk videosu ve PDF eğitim notları
+en: 13 coaching videos and PDF training notes
+es: 13 vídeos de coaching y apuntes en PDF
+de: 13 Coaching-Videos und PDF-Schulungsunterlagen
+
+tr: İmzalı kitap, 5 iş günü içinde kargoda
+en: Signed book, shipped within 5 business days
+es: Libro firmado, enviado en 5 días laborables
+de: Signiertes Buch, Versand innerhalb von 5 Werktagen
+
+tr: KDV dâhil
+en: VAT included
+es: IVA incluido
+de: inkl. MwSt.
+
+tr: Satın al
+en: Buy now
+es: Comprar
+de: Kaufen
+
+tr: Ekip olarak başla
+en: Start as a team
+es: Empezar en equipo
+de: Als Team starten
+
+tr: Satışın Şifreleri ile Sonucu Satmak kitap kapağı
+en: Book cover of Satışın Şifreleri ile Sonucu Satmak
+es: Portada del libro Satışın Şifreleri ile Sonucu Satmak
+de: Buchcover von Satışın Şifreleri ile Sonucu Satmak
+
+tr: İmzalı
+en: Signed
+es: Firmado
+de: Signiert
+
+tr: Kitap · İknanın 12 şifresi
+en: Book · The 12 codes of persuasion
+es: Libro · Los 12 códigos de la persuasión
+de: Buch · Die 12 Codes der Überzeugung
+
+tr: Fiyatı yakında
+en: Price coming soon
+es: Precio próximamente
+de: Preis folgt
+
+tr: İncele
+en: View
+es: Ver
+de: Ansehen
+
+tr: Çok satan
+en: Bestseller
+es: Más vendido
+de: Bestseller
+
+tr: Online eğitim seti · 9,5 saat
+en: Online training set · 9.5 hours
+es: Curso online · 9,5 horas
+de: Online-Trainingsset · 9,5 Stunden
+
+tr: Online eğitim seti · 6 röportaj
+en: Online training set · 6 interviews
+es: Curso online · 6 entrevistas
+de: Online-Trainingsset · 6 Interviews
+
+tr: Yeni
+en: New
+es: Nuevo
+de: Neu
+
+tr: Ofisler için 12 aylık üyelik
+en: 12-month membership for offices
+es: Membresía de 12 meses para oficinas
+de: 12-monatige Mitgliedschaft für Büros
+
+tr: Satışın Şifreleri tanıtım videosu
+en: Satışın Şifreleri intro video
+es: Vídeo de presentación de Satışın Şifreleri
+de: Einführungsvideo zu Satışın Şifreleri
+
+# Ürün pencereleri
+tr: Ürün
+en: Product
+es: Producto
+de: Produkt
+
+tr: Kitap
+en: Book
+es: Libro
+de: Buch
+
+tr: İçgüdüsel, mantıksal ve duygusal iknanın 12 şifresi. Satmaktan çok satın aldırmak üzerine, sahada denenmiş ve keyifle okunan bir satış kitabı.
+en: The 12 codes of instinctive, logical and emotional persuasion. A field-tested, enjoyable sales book about helping people buy rather than selling to them.
+es: Los 12 códigos de la persuasión instintiva, lógica y emocional. Un libro de ventas probado sobre el terreno y ameno, sobre hacer que el cliente compre en lugar de venderle.
+de: Die 12 Codes instinktiver, logischer und emotionaler Überzeugung. Ein praxiserprobtes, unterhaltsames Verkaufsbuch darüber, Menschen kaufen zu lassen, statt ihnen etwas zu verkaufen.
+
+tr: İmzalı kitap
+en: Signed book
+es: Libro firmado
+de: Signiertes Buch
+
+tr: Satışın Şifreleri online setiyle birlikte gelir
+en: Included with the Satışın Şifreleri online set
+es: Incluido con el curso online Satışın Şifreleri
+de: Im Online-Set Satışın Şifreleri enthalten
+
+tr: Bu kitap satış şampiyonu olmak isteyenler için yazılmış.
+en: This book was written for anyone who wants to become a sales champion.
+es: Este libro está escrito para quienes quieren ser campeones de ventas.
+de: Dieses Buch ist für alle geschrieben, die Verkaufschampion werden wollen.
+
+tr: Dünya Gayrimenkul Şampiyonu, RE/MAX
+en: World Real Estate Champion, RE/MAX
+es: Campeón mundial inmobiliario, RE/MAX
+de: Weltmeister im Immobilienverkauf, RE/MAX
+
+tr: Satış konusunda en iyisi olmak istiyorsanız sadece çalışmak yeterli değil. Fark yaratan detaylarla satışta başarının sırlarını öğrenmek istiyorsanız elinizdeki eğlenceli kitabı okuyun derim.
+en: If you want to be the best at sales, hard work alone isn’t enough. If you want to learn the secrets of sales success through the details that make the difference, my advice is: read this fun book.
+es: Si quieres ser el mejor en ventas, no basta con trabajar. Si quieres aprender los secretos del éxito en ventas a través de los detalles que marcan la diferencia, mi consejo es que leas este libro tan ameno.
+de: Wer im Verkauf der Beste sein will, dem reicht harte Arbeit allein nicht. Wer die Erfolgsgeheimnisse des Verkaufs an den Details lernen will, die den Unterschied machen, dem rate ich: Lesen Sie dieses unterhaltsame Buch.
+
+tr: Türkiye Satış Birincisi Ekibin Lideri, Borusan Oto
+en: Leader of Turkey’s No. 1 Sales Team, Borusan Oto
+es: Líder del equipo n.º 1 en ventas de Turquía, Borusan Oto
+de: Leiter des Verkaufsteams Nr. 1 der Türkei, Borusan Oto
+
+tr: Satmaktan çok satın aldırmaya odaklı set. Sonucu Satmak, Önce Kendine Sat, Ethos, Logos, Pathos ve Kendini Satmak bölümleri.
+en: A set focused on helping people buy rather than selling to them. Modules: Selling the Result, Sell to Yourself First, Ethos, Logos, Pathos and Selling Yourself.
+es: Un curso centrado en hacer que el cliente compre en lugar de venderle. Módulos: Vender el resultado, Véndete primero a ti mismo, Ethos, Logos, Pathos y Venderte a ti mismo.
+de: Ein Set, das darauf setzt, Kunden kaufen zu lassen, statt zu verkaufen. Module: Das Ergebnis verkaufen, Verkauf es zuerst dir selbst, Ethos, Logos, Pathos und Sich selbst verkaufen.
+
+tr: 9,5 saat video anlatım
+en: 9.5 hours of video
+es: 9,5 horas de vídeo
+de: 9,5 Stunden Video
+
+tr: 9,5 saat sesli anlatım
+en: 9.5 hours of audio
+es: 9,5 horas de audio
+de: 9,5 Stunden Audio
+
+tr: 13 koçluk videosu
+en: 13 coaching videos
+es: 13 vídeos de coaching
+de: 13 Coaching-Videos
+
+tr: PDF eğitim notları ve imzalı kitap
+en: PDF training notes and a signed book
+es: Apuntes de formación en PDF y libro firmado
+de: PDF-Schulungsunterlagen und signiertes Buch
+
+tr: Türkiye’nin usta gayrimenkul satışçılarıyla birebir sohbetler. Sahadan gelen ve ertesi gün sahada kullanılan bilgi.
+en: One-on-one conversations with Turkey’s master real estate sellers. Knowledge that comes from the field and is put to use in the field the very next day.
+es: Conversaciones cara a cara con los grandes vendedores inmobiliarios de Turquía. Conocimiento que viene del terreno y se aplica al día siguiente.
+de: Gespräche unter vier Augen mit den Meistern des Immobilienverkaufs in der Türkei. Wissen aus der Praxis, das schon am nächsten Tag in der Praxis wirkt.
+
+tr: 10 saat video anlatım
+en: 10 hours of video
+es: 10 horas de vídeo
+de: 10 Stunden Video
+
+tr: 10 saat sesli anlatım, indirilebilir
+en: 10 hours of audio, downloadable
+es: 10 horas de audio, descargables
+de: 10 Stunden Audio zum Download
+
+tr: PDF eğitim notları, indirilebilir
+en: PDF training notes, downloadable
+es: Apuntes de formación en PDF, descargables
+de: PDF-Schulungsunterlagen zum Download
+
+tr: Mentor liderliğinde uygulanan 12 aylık eğitim ve performans platformu. Davetle girilir, ekipçe izlenir, sahada uygulanır.
+en: A mentor-led, 12-month training and performance platform. Entry by invitation, watched as a team, applied in the field.
+es: Plataforma de formación y rendimiento de 12 meses guiada por un mentor. Se entra por invitación, se ve en equipo y se aplica sobre el terreno.
+de: Mentorgeführte, 12-monatige Trainings- und Performance-Plattform. Zugang auf Einladung, im Team angesehen, in der Praxis umgesetzt.
+
+tr: Akademideki bütün eğitimler
+en: Every training in the academy
+es: Todas las formaciones de la academia
+de: Alle Trainings der Akademie
+
+tr: Barış AI ile grup provası ve sorular
+en: Group rehearsals and questions with Barış AI
+es: Ensayos en grupo y preguntas con Barış AI
+de: Gruppenübungen und Fragen mit Barış AI
+
+tr: Akademiyi gör
+en: See the academy
+es: Ver la academia
+de: Akademie ansehen
+
+tr: Yakında satışta
+en: On sale soon
+es: Pronto a la venta
+de: Bald erhältlich
+
+# Gayrimenkulün Usta Satışçıları röportajları
+tr: Paylaşım Şampiyonu Olmanın Sırları
+en: Secrets of Becoming a Co-Brokering Champion
+es: Los secretos para ser campeón de las operaciones compartidas
+de: Die Geheimnisse eines Champions bei Gemeinschaftsgeschäften
+
+tr: Ticari Gayrimenkulde Başarının Sırları
+en: Secrets of Success in Commercial Real Estate
+es: Los secretos del éxito en el inmobiliario comercial
+de: Erfolgsgeheimnisse bei Gewerbeimmobilien
+
+tr: Cesur Gayrimenkul Danışmanlığı
+en: Courageous Real Estate Consulting
+es: Asesoría inmobiliaria valiente
+de: Mutige Immobilienberatung
+
+tr: Kapalı Bölge Uzmanlığı ile Başarıda Süreklilik
+en: Lasting Success Through Farm-Area Expertise
+es: Éxito constante gracias a la especialización en una zona
+de: Dauerhafter Erfolg durch Gebietsspezialisierung
+
+tr: İlişki Kurma ve Dijital Pazarlama Ustalığı
+en: Mastering Relationship Building and Digital Marketing
+es: Maestría en crear relaciones y en marketing digital
+de: Beziehungsaufbau und digitales Marketing meistern
+
+tr: Büyük İşler İçin Büyük Düşünmek
+en: Thinking Big for Big Deals
+es: Pensar en grande para grandes operaciones
+de: Groß denken für große Geschäfte
+
+tr: 50 dk
+en: 50 min
+es: 50 min
+de: 50 Min.
+
+tr: 1 saat
+en: 1 hour
+es: 1 hora
+de: 1 Std.
+
+tr: 56 dk
+en: 56 min
+es: 56 min
+de: 56 Min.
+
+# Son çağrı ve alt bilgi
+tr: Olağanüstü bir yıla hazır mısın?
+en: Ready for an extraordinary year?
+es: ¿Listo para un año extraordinario?
+de: Bereit für ein außergewöhnliches Jahr?
+
+tr: Şimdi tam zamanı. Ofisine en uygun yolu birlikte seçelim.
+en: Now is the time. Let’s choose the best path for your office together.
+es: Es el momento. Elijamos juntos el mejor camino para tu oficina.
+de: Jetzt ist der richtige Zeitpunkt. Wählen wir gemeinsam den besten Weg für Ihr Büro.
+
+tr: Ofisim için başvur
+en: Apply for my office
+es: Solicitar para mi oficina
+de: Für mein Büro bewerben
+
+tr: Kurumsal teklif iste
+en: Request a corporate proposal
+es: Pedir propuesta para empresas
+de: Firmenangebot anfragen
+
+tr: Destek
+en: Support
+es: Ayuda
+de: Support
+
+tr: İletişim
+en: Contact
+es: Contacto
+de: Kontakt
+
+tr: Sahadan notlar
+en: Notes from the field
+es: Notas desde el terreno
+de: Notizen aus der Praxis
+
+tr: Ayda bir e-posta: Barış’tan bir teknik, bir prova senaryosu ve yaklaşan etkinlikler.
+en: One email a month: a technique from Barış, a rehearsal scenario and upcoming events.
+es: Un correo al mes: una técnica de Barış, un escenario de ensayo y los próximos eventos.
+de: Eine E-Mail im Monat: eine Technik von Barış, ein Übungsszenario und kommende Events.
+
+tr: E-posta
+en: Email
+es: Correo electrónico
+de: E-Mail
+
+tr: E-posta adresin
+en: Your email address
+es: Tu correo electrónico
+de: Ihre E-Mail-Adresse
+
+tr: Kaydol
+en: Subscribe
+es: Suscribirme
+de: Abonnieren
+
+tr: Teşekkürler, listeye eklendiniz.
+en: Thanks, you’re on the list.
+es: Gracias, ya estás en la lista.
+de: Danke, Sie stehen jetzt auf der Liste.
+
+tr: Mesafeli satış sözleşmesi
+en: Distance sales contract
+es: Contrato de venta a distancia
+de: Fernabsatzvertrag
+
+tr: Ön bilgilendirme formu
+en: Pre-contract information form
+es: Formulario de información previa
+de: Vorvertragliche Informationen
+
+tr: İptal ve iade
+en: Cancellation and refunds
+es: Cancelación y devoluciones
+de: Widerruf und Rückerstattung
+
+tr: Teslimat
+en: Delivery
+es: Entrega
+de: Lieferung
+
+tr: KVKK aydınlatma metni
+en: Privacy notice (KVKK)
+es: Aviso de privacidad (KVKK)
+de: Datenschutzhinweis (KVKK)
+
+tr: Gizlilik ve çerezler
+en: Privacy and cookies
+es: Privacidad y cookies
+de: Datenschutz und Cookies
+
+tr: Üyelik sözleşmesi
+en: Membership agreement
+es: Contrato de membresía
+de: Mitgliedschaftsvertrag
+
+tr: Yasal uyarılar
+en: Legal notices
+es: Avisos legales
+de: Rechtliche Hinweise
+
+tr: Hakkımızda
+en: About us
+es: Quiénes somos
+de: Über uns
+
+tr: Ödemeler Türk lirası (TL) ile, lisanslı ödeme kuruluşunun 3D Secure güvenli sayfasında alınır. Kart bilgileri bu siteye ulaşmaz.
+en: Payments are taken in Turkish lira (TL) on the 3D Secure page of a licensed payment provider. Card details never reach this site.
+es: Los pagos se cobran en liras turcas (TL) en la página segura 3D Secure de una entidad de pago autorizada. Los datos de la tarjeta nunca llegan a este sitio.
+de: Zahlungen erfolgen in Türkischen Lira (TL) über die 3D-Secure-Seite eines lizenzierten Zahlungsdienstleisters. Kartendaten erreichen diese Website nie.
+
+tr: Sözleşmeler, yasal metinler ve ödeme sayfası Türkçedir.
+en: Contracts, legal texts and the checkout page are in Turkish.
+es: Los contratos, los textos legales y la página de pago están en turco.
+de: Verträge, Rechtstexte und die Bezahlseite sind auf Türkisch.
+
+# Pencereler
+tr: Kapat
+en: Close
+es: Cerrar
+de: Schließen
+
+tr: Merkez yöneticisi, broker ve mentor aynı yerden girer. Davet e-postasındaki adresinizi yazın; şifre yok, giriş bağlantısı e-postanıza gelir.
+en: Head office managers, brokers and mentors all log in here. Enter the address from your invitation email; there’s no password, a login link is sent to your inbox.
+es: El responsable central, los brokers y los mentores entran desde el mismo sitio. Escribe la dirección de tu correo de invitación; no hay contraseña, el enlace de acceso te llega por correo.
+de: Zentrale, Broker und Mentoren melden sich an derselben Stelle an. Geben Sie die Adresse aus Ihrer Einladungs-E-Mail ein; es gibt kein Passwort, der Anmeldelink kommt per E-Mail.
+
+tr: Giriş ekranına git
+en: Go to the login screen
+es: Ir a la pantalla de acceso
+de: Zur Anmeldung
+
+tr: Danışmanlara ayrı hesap açılmaz; eğitimler mentor eşliğinde grup oturumunda izlenir.
+en: Agents don’t get separate accounts; trainings are watched in a mentor-led group session.
+es: Los asesores no tienen cuenta propia; las formaciones se ven en una sesión de grupo guiada por el mentor.
+de: Makler erhalten kein eigenes Konto; die Trainings laufen in einer Gruppensitzung mit dem Mentor.
+
+tr: Ofisiniz için başvurun
+en: Apply for your office
+es: Solicita para tu oficina
+de: Bewerben Sie sich für Ihr Büro
+
+tr: Masterclass Akademi herkese açık değil. Başvuruları Barış Kılıçarslan kendisi değerlendirir.
+en: Masterclass Akademi isn’t open to everyone. Barış Kılıçarslan reviews every application himself.
+es: Masterclass Akademi no está abierta a todo el mundo. Barış Kılıçarslan revisa personalmente cada solicitud.
+de: Die Masterclass Akademi ist nicht für alle offen. Barış Kılıçarslan prüft jede Bewerbung persönlich.
+
+tr: Ofis adı
+en: Office name
+es: Nombre de la oficina
+de: Name des Büros
+
+tr: Ofisinizin adı
+en: Your office’s name
+es: El nombre de tu oficina
+de: Name Ihres Büros
+
+tr: Şehir
+en: City
+es: Ciudad
+de: Stadt
+
+tr: İstanbul
+en: Istanbul
+es: Estambul
+de: Istanbul
+
+tr: Danışman sayısı
+en: Number of agents
+es: Número de asesores
+de: Anzahl der Makler
+
+tr: Ad soyad
+en: Full name
+es: Nombre y apellidos
+de: Vor- und Nachname
+
+tr: Adınız
+en: Your name
+es: Tu nombre
+de: Ihr Name
+
+tr: Telefon
+en: Phone
+es: Teléfono
+de: Telefon
+
+tr: 05xx xxx xx xx
+en: Include country code
+es: Con prefijo internacional
+de: Mit Ländervorwahl
+
+tr: Başvuruyu gönder
+en: Send application
+es: Enviar solicitud
+de: Bewerbung senden
+
+tr: Başvurunuz alındı.
+en: Your application has been received.
+es: Hemos recibido tu solicitud.
+de: Ihre Bewerbung ist eingegangen.
+
+tr: Akademi ekibi en kısa sürede sizi arayacak. Onaylanan ofise üyelik sözleşmesi gönderilir; broker ve mentor davetle girer.
+en: The academy team will call you shortly. Approved offices receive a membership agreement; the broker and mentor join by invitation.
+es: El equipo de la academia te llamará lo antes posible. La oficina aprobada recibe el contrato de membresía; el broker y el mentor entran por invitación.
+de: Das Akademie-Team ruft Sie in Kürze an. Bestätigte Büros erhalten den Mitgliedschaftsvertrag; Broker und Mentor erhalten eine Einladung.
+
+tr: Lansman davetiyesi
+en: Launch invitation
+es: Invitación al lanzamiento
+de: Einladung zum Launch
+
+tr: İstanbul’daki salonda mı olacaksınız, canlı yayından mı izleyeceksiniz?
+en: Will you be in the hall in Istanbul, or watching the livestream?
+es: ¿Estarás en la sala de Estambul o lo verás en directo?
+de: Sind Sie im Saal in Istanbul dabei oder schauen Sie im Livestream zu?
+
+tr: Ofis
+en: Office
+es: Oficina
+de: Büro
+
+tr: Salonda, İstanbul
+en: In the hall, Istanbul
+es: En la sala, Estambul
+de: Im Saal, Istanbul
+
+tr: Canlı yayından
+en: Via livestream
+es: En directo
+de: Im Livestream
+
+tr: Talebiniz alındı.
+en: Your request has been received.
+es: Hemos recibido tu solicitud.
+de: Ihre Anfrage ist eingegangen.
+
+tr: Davetiye ve etkinlik bilgileri için sizinle iletişime geçeceğiz.
+en: We’ll be in touch with the invitation and event details.
+es: Nos pondremos en contacto contigo con la invitación y los detalles del evento.
+de: Wir melden uns mit der Einladung und den Eventdetails.
+
+tr: Konuyu ve kitleyi yazın, aynı gün dönüş yapılır.
+en: Tell us the topic and audience, and we’ll get back to you the same day.
+es: Cuéntanos el tema y el público, y te respondemos el mismo día.
+de: Nennen Sie uns Thema und Publikum, wir antworten noch am selben Tag.
+
+tr: Kurum
+en: Organization
+es: Organización
+de: Organisation
+
+tr: Kurum adı
+en: Organization name
+es: Nombre de la organización
+de: Name der Organisation
+
+tr: Kişi sayısı
+en: Number of people
+es: Número de personas
+de: Anzahl Personen
+
+tr: 1-20 kişi
+en: 1-20 people
+es: 1-20 personas
+de: 1-20 Personen
+
+tr: 21-80 kişi
+en: 21-80 people
+es: 21-80 personas
+de: 21-80 Personen
+
+tr: 81-300 kişi
+en: 81-300 people
+es: 81-300 personas
+de: 81-300 Personen
+
+tr: 300+ kişi
+en: 300+ people
+es: 300+ personas
+de: 300+ Personen
+
+tr: Konu
+en: Topic
+es: Tema
+de: Thema
+
+tr: Gayrimenkul danışmanlığı
+en: Real estate consulting
+es: Asesoría inmobiliaria
+de: Immobilienberatung
+
+tr: Lüks konut satışı
+en: Luxury home sales
+es: Venta de vivienda de lujo
+de: Verkauf von Luxusimmobilien
+
+tr: Motivasyon ve liderlik
+en: Motivation and leadership
+es: Motivación y liderazgo
+de: Motivation und Führung
+
+tr: Not
+en: Note
+es: Nota
+de: Notiz
+
+tr: Tarih aralığı, şehir, kitle
+en: Date range, city, audience
+es: Fechas, ciudad, público
+de: Zeitraum, Stadt, Publikum
+
+tr: Talebi gönder
+en: Send request
+es: Enviar solicitud
+de: Anfrage senden
+
+tr: Barış Kılıçarslan’ın ekibi sizi arayıp konu, kişi sayısı ve tarihi konuşacak.
+en: Barış Kılıçarslan’s team will call you to discuss the topic, audience size and date.
+es: El equipo de Barış Kılıçarslan te llamará para hablar del tema, el número de personas y la fecha.
+de: Das Team von Barış Kılıçarslan ruft Sie an, um Thema, Teilnehmerzahl und Termin zu besprechen.
+
+# Hikaye penceresi
+tr: Barış Kılıçarslan, mühendislikle başladığı öğrenim hayatını işletmeyle tamamladı. Bilkent Sport International Genel Merkezi’nde Müşteri İlişkileri ve Halkla İlişkiler bölümlerinde çalıştı, yöneticilik yaptı.
+en: Barış Kılıçarslan began his studies in engineering and completed them in business administration. At the headquarters of Bilkent Sport International he worked in the Customer Relations and Public Relations departments, also in management roles.
+es: Barış Kılıçarslan empezó sus estudios en ingeniería y los terminó en administración de empresas. En la sede central de Bilkent Sport International trabajó en los departamentos de Atención al Cliente y Relaciones Públicas, también en puestos de dirección.
+de: Barış Kılıçarslan begann sein Studium in der Technik und schloss es in Betriebswirtschaft ab. In der Zentrale von Bilkent Sport International arbeitete er in den Bereichen Kundenbeziehungen und Öffentlichkeitsarbeit, auch in leitender Funktion.
+
+tr: Altı yıl boyunca Royal Caribbean International ile Kuzey Amerika, Güney Amerika ve Karayipler’de 24 farklı ülkede müşteri ilişkileri, yiyecek içecek ve satış bölümlerinde çalıştı, yöneticilik yaptı. Miami’de Radiance of the Seas Royal Training Academy’nin eğitimcinin eğitimi programını tamamladı ve eğitmenliğe başladı.
+en: For six years he worked with Royal Caribbean International in 24 countries across North America, South America and the Caribbean, in customer relations, food and beverage, and sales, including in management roles. In Miami he completed the train-the-trainer program of the Radiance of the Seas Royal Training Academy and began working as a trainer.
+es: Durante seis años trabajó con Royal Caribbean International en 24 países de Norteamérica, Sudamérica y el Caribe, en atención al cliente, alimentos y bebidas, y ventas, también en puestos de dirección. En Miami completó el programa de formación de formadores de la Radiance of the Seas Royal Training Academy y empezó a trabajar como formador.
+de: Sechs Jahre lang arbeitete er für Royal Caribbean International in 24 Ländern in Nordamerika, Südamerika und der Karibik in Kundenbetreuung, Gastronomie und Vertrieb, auch in leitender Funktion. In Miami schloss er das Train-the-Trainer-Programm der Radiance of the Seas Royal Training Academy ab und wurde Trainer.
+
+tr: Türkiye’ye dönerek uzmanlık alanı olarak sıcak satış, gayrimenkul satışı ve motivasyonu seçti; RE/MAX Türkiye ve İzgören Akademi ile çalışmaya başladı. Ahmet Şerif İzgören’den DVK, Anthony Robbins’ten UPW, Jack Canfield’dan BTS ve NLP’nin kurucusu Richard Bandler’dan Uluslararası NLP Uygulayıcısı eğitimlerini aldı.
+en: Back in Turkey, he chose face-to-face sales, real estate sales and motivation as his fields and began working with RE/MAX Türkiye and İzgören Akademi. He completed DVK with Ahmet Şerif İzgören, UPW with Anthony Robbins, BTS with Jack Canfield and the International NLP Practitioner training with NLP co-founder Richard Bandler.
+es: De vuelta en Turquía, eligió como especialidad la venta presencial, la venta inmobiliaria y la motivación, y empezó a trabajar con RE/MAX Türkiye e İzgören Akademi. Se formó en DVK con Ahmet Şerif İzgören, en UPW con Anthony Robbins, en BTS con Jack Canfield y como International NLP Practitioner con Richard Bandler, cofundador de la PNL.
+de: Zurück in der Türkei wählte er den persönlichen Verkauf, den Immobilienverkauf und Motivation als Fachgebiete und begann die Zusammenarbeit mit RE/MAX Türkiye und der İzgören Akademi. Er absolvierte DVK bei Ahmet Şerif İzgören, UPW bei Anthony Robbins, BTS bei Jack Canfield und die Ausbildung zum International NLP Practitioner bei NLP-Mitbegründer Richard Bandler.
+
+tr: Türkiye, Kuzey Amerika, Avusturya, Almanya, Yunanistan, Arjantin ve Romanya’da sunumlar yaptı. 1.900 günden fazla eğitim ve seminerle yüzlerce kuruma hizmet verdi, sunumlarına 200.000’in üzerinde kişi katıldı. Satış, motivasyon, gayrimenkul danışmanlığı ve lüks konut satışı üzerine Türkçe ve İngilizce konuşuyor. Programlarında katılımcı memnuniyeti %97,4.
+en: He has presented in Turkey, North America, Austria, Germany, Greece, Argentina and Romania. With more than 1,900 days of training and seminars he has worked with hundreds of organizations, and over 200,000 people have attended his sessions. He speaks in Turkish and English on sales, motivation, real estate consulting and luxury home sales. Participant satisfaction in his programs is 97.4%.
+es: Ha dado presentaciones en Turquía, Norteamérica, Austria, Alemania, Grecia, Argentina y Rumanía. Con más de 1.900 días de formación y seminarios ha trabajado para cientos de organizaciones, y más de 200.000 personas han asistido a sus sesiones. Da conferencias en turco e inglés sobre ventas, motivación, asesoría inmobiliaria y venta de vivienda de lujo. La satisfacción de los participantes en sus programas es del 97,4 %.
+de: Er hat in der Türkei, Nordamerika, Österreich, Deutschland, Griechenland, Argentinien und Rumänien vorgetragen. Mit mehr als 1.900 Trainings- und Seminartagen hat er Hunderte Organisationen begleitet, über 200.000 Menschen haben seine Vorträge besucht. Er spricht auf Türkisch und Englisch über Vertrieb, Motivation, Immobilienberatung und den Verkauf von Luxusimmobilien. Die Teilnehmerzufriedenheit in seinen Programmen liegt bei 97,4 %.
+
+# Arama
+tr: Ara
+en: Search
+es: Buscar
+de: Suche
+
+tr: Ne arıyorsun?
+en: What are you looking for?
+es: ¿Qué buscas?
+de: Wonach suchen Sie?
+
+tr: Ofisinizin kendi satış okulu
+en: Your office’s own sales school
+es: La escuela de ventas de tu oficina
+de: Die eigene Verkaufsschule für Ihr Büro
+
+tr: Öğren, içselleştir, uygula, kazan
+en: Learn, internalize, apply, earn
+es: Aprende, interioriza, aplica, gana
+de: Lernen, vertiefen, anwenden, verdienen
+
+tr: İstanbul, Ocak 2027
+en: Istanbul, January 2027
+es: Estambul, enero de 2027
+de: Istanbul, Januar 2027
+
+tr: Aralık webinarı, lansman ve geçmiş etkinlikler
+en: December webinar, launch and past events
+es: Webinar de diciembre, lanzamiento y eventos pasados
+de: Dezember-Webinar, Launch und vergangene Events
+
+tr: Barış Kılıçarslan kimdir
+en: Who Barış Kılıçarslan is
+es: Quién es Barış Kılıçarslan
+de: Wer Barış Kılıçarslan ist
+
+tr: Sonuçlar
+en: Results
+es: Resultados
+de: Ergebnisse
+
+tr: Yirmi yılın rakamları
+en: Twenty years in numbers
+es: Veinte años en cifras
+de: Zwanzig Jahre in Zahlen
+
+tr: Kurumsal eğitim ve konuşma
+en: Corporate training and speaking
+es: Formación y conferencias para empresas
+de: Firmentrainings und Vorträge
+
+tr: Online eğitim seti ve kitap
+en: Online training set and book
+es: Curso online y libro
+de: Online-Trainingsset und Buch
+
+tr: Ustalarla birebir sohbetler
+en: One-on-one conversations with the masters
+es: Conversaciones cara a cara con los maestros
+de: Gespräche unter vier Augen mit den Meistern
+
+tr: Sonuç yok. Başka bir kelime dene.
+en: No results. Try another word.
+es: Sin resultados. Prueba con otra palabra.
+de: Keine Treffer. Versuchen Sie ein anderes Wort.
