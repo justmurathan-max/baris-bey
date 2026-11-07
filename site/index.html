@@ -176,8 +176,10 @@ button{cursor:pointer}
 /* =================== HERO =================== */
 .hero{position:sticky;top:var(--hero-ust,0px);z-index:0;background:#fff;padding:var(--edge) var(--edge) 0}
 .hc{position:relative;height:calc(100svh - var(--hd) - var(--edge));min-height:620px;max-height:960px;border-radius:32px;overflow:hidden;background:#141416;color:#fff;isolation:isolate;transform:scale(calc(1 - var(--k,0)*.05));transform-origin:50% 30%}
-/* İkinci sayfa birincinin üstüne biner: kahraman yerinde kalır, sonraki bölümler üstünden kayar */
-.hero~*{position:relative;z-index:1}
+/* İkinci sayfa birincinin üstüne biner: kahraman yalnız ilk iki sayfanın içinde (.kat1) yerinde kalır.
+   Üstten geçen bölümler de sticky (top yok, yapışmaz) ve ayrı katman: Safari yukarı kayarken
+   yapışık kahramanı bunların üstüne çizmesin (WebKit'in bilinen z-index hatası). */
+.hero~*{position:-webkit-sticky;position:sticky;z-index:1;will-change:transform}
 .hero+*{border-radius:32px 32px 0 0;box-shadow:0 -34px 70px -40px rgba(0,0,0,.45)}
 .hc::after{content:"";position:absolute;inset:0;z-index:30;background:#000;opacity:calc(var(--k,0)*.55);pointer-events:none}
 .hs{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 1s ease,visibility 0s 1s}
@@ -1015,7 +1017,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
 </div>
 
 <main>
-
+<div class="kat1">
 <!-- HERO -->
 <section class="hero" aria-label="Öne çıkanlar">
   <div class="hc">
@@ -1074,6 +1076,8 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
     </div>
   </div>
 </section>
+
+</div>
 
 <!-- AKADEMİ -->
 <section class="sec wh" id="akademi">
@@ -2085,7 +2089,7 @@ $('.ym-sahne',ym).addEventListener('click',function(){yDur();var im=yI[yA],ms=$(
 (function(){var D=document.documentElement;if(!D.classList.contains('rv-on'))return;
 if(!('IntersectionObserver' in window)){D.classList.remove('rv-on');return;}
 var A=function(q,r){return Array.prototype.slice.call((r||document).querySelectorAll(q));};
-var secs=A('main > section.sec, main > section.fin, main > section.refs');
+var secs=A('section.sec, section.fin, section.refs');
 function split(h){if(h.children.length)return false;var ws=h.textContent.trim().split(/\s+/);h.textContent='';ws.forEach(function(w,i){var o=document.createElement('span'),n=document.createElement('span');o.className='w';n.textContent=w;n.style.setProperty('--wi',i);o.appendChild(n);h.appendChild(o);if(i<ws.length-1)h.appendChild(document.createTextNode(' '));});return true;}
 var SEL='.h2,.fin .h1,.h3,.lbl,.ak-mk,.ai-ad,.ai-alt,.ai-fo,.lead,.ab-ph,.st,.refs-g li,.ym-s,.ym-sahne,.kc,.ac,.cs,.plan,.plan-n,.ev,.cr,.evl-g,.ts-top,.ts-fig,.ts-ph,.ro-c,.vsl,.shop .pd,.fin-ph,.fin-t .hs-cta';
 var list=[];secs.forEach(function(sec){A(SEL,sec).forEach(function(e){if(list.indexOf(e)<0)list.push(e);});});
