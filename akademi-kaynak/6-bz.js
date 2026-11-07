@@ -67,7 +67,7 @@ VIEWS.merkez.ofisler=()=>{
     h('td',{'data-l':'Mentor'},o.mn||(o.br?h('span',{class:'mu'},'Broker üstleniyor'):h('span',{class:'mu'},'—'))),
     h('td',{'data-l':'Kademe'},o.tier),
     h('td',{'data-l':'Danışman',class:'num'},String(o.cons)),
-    h('td',{'data-l':'Tamamlama'},o.st==='aktif'?h('div',{class:'prg',style:'min-width:120px'},bar(o.comp,'Tamamlama'),h('span',{class:'num sm'},'%'+o.comp)):h('span',{class:'mu'},'—')),
+    h('td',{'data-l':'Tamamlama'},o.st==='aktif'&&o.comp!=null?h('div',{class:'prg',style:'min-width:120px','data-tip':KOMP_T},bar(o.comp,'Tamamlama'),h('span',{class:'num sm'},'%'+o.comp)):h('span',{class:'mu','data-tip':o.st==='aktif'?'Henüz biten eğitim yok':null},'—')),
     h('td',{'data-l':'Durum'},o.st==='davet'?chip('wait','mail','Davet gönderildi'):ofsDays(o)<=60?chip('wait','clock',ofsDays(o)+' gün kaldı'):chip('ok','tick','Aktif')),
     h('td',{class:'r hm'},ic('chev')))));
   root.append(h('section',{class:'pn'},h('div',{class:'tw'},h('table',{class:'tbl rsp'},h('thead',null,h('tr',null,['Ofis','Broker','Mentor','Kademe','Danışman','Tamamlama','Durum',''].map(x=>h('th',null,x)))),tb))));
@@ -77,7 +77,8 @@ function openOffice(id){
   const o=OFFS.find(x=>x.id===id);
   const body=[h('dl',{class:'kv'},h('dt',null,'Şehir'),h('dd',null,o.city),h('dt',null,'Broker'),h('dd',null,o.br||'Davet bekleniyor'),h('dt',null,'Mentor'),h('dd',null,o.mn||(o.br?'Broker üstleniyor':'—')),h('dt',null,'Kademe'),h('dd',null,o.tier+' danışman'),h('dt',null,'Üyelik'),h('dd',null,o.start?ddy(o.start)+' – '+ddy(o.end):'Davet kabul edilince başlar'))];
   if(o.st==='aktif')body.push(h('div',{class:'sec'},h('div',{class:'sec-t'},h('h3',null,'Kullanım ve gelişim özeti')),
-    h('div',{class:'p-kv',style:'margin-top:0'},[[o.cons,'Aktif danışman'],[o.ses,'Son 30 gün oturum'],['%'+o.comp,'Eğitim tamamlama'],[o.cert,'Sertifika']].map(([v,l])=>h('div',null,h('b',null,String(v)),h('span',null,l)))),
+    h('div',{class:'p-kv',style:'margin-top:0'},[[o.cons,'Aktif danışman'],[o.ses,'Son 30 gün oturum'],[o.comp!=null?'%'+o.comp:'—','Eğitim tamamlama'],[o.cert,'Sertifika']].map(([v,l])=>h('div',null,h('b',null,String(v)),h('span',null,l)))),
+    h('p',{class:'sec-n',style:'margin:0'},KOMP_T+(o.comp==null?' Bu ofiste henüz biten eğitim yok.':'')),
     h('div',{class:'lockn'},ic('lock'),'Mentorun özel 1-5 puanları ve notları yalnız o ofisin mentoru ve brokerı içindir; merkezde görünmez.')));
   const foot=[];
   if(o.st==='davet')foot.push(btn('btn-k btn-s',[ic('mail'),'Daveti yeniden gönder'],()=>{if(realM()){closeDrawer();resendReal(o);return;}o.inv=new Date(T0);closeDrawer();toast('Davet yeniden gönderildi.');rerender();}));
@@ -333,6 +334,54 @@ function openKlasikIceAktar(){
       closeDrawer();rerender();
       toast(r.added+' kişi eklendi'+(r.updated?', '+r.updated+' kişi güncellendi':'')+(r.skipped?', '+r.skipped+' satır atlandı (e-posta ya da telefon yok ya da geçersiz)':'')+'.'+(r.err?' Liste yarıda kaldı; kalanı için tekrar deneyin.':''),8000);
     })]});
+}
+VIEWS.merkez.ekip=()=>{
+  const root=h('div'),R=realM();
+  root.append(ph('Merkez ekibi','Akademi merkezini yöneten kişiler. Herkesin kendi hesabı olmalı: cihaz sınırı hesap başına geçerli, aynı hesabı kullananlar birbirini oturumdan çıkarır.',[btn('btn-k btn-s',[ic('plus'),'Yönetici davet et'],openEkipDavet)]));
+  if(R&&!EKIP.busy&&Date.now()-EKIP.at>30000)loadEkip().then(()=>{if(S.page==='ekip')rerender();});
+  const kisi=(ad,eposta,durum,me,acts)=>h('li',null,h('span',{class:'av','aria-hidden':'true'},ini(ad||eposta||'?')),h('div',{class:'t'},h('b',null,(ad||eposta)+(me?' (siz)':'')),h('span',null,eposta||'')),durum,acts&&acts.length?h('div',{class:'doc-a'},acts):null);
+  const yenidenGonder=x=>btn('btn-o btn-xs','Yeniden gönder',async e=>{e.currentTarget.disabled=true;const r=await ekipYenidenGonder(x.email);rerender();toast(inviteMsg(r,''),r.results&&r.results.length&&r.results.every(y=>y.ok)?4000:9000);},{'aria-label':(x.full_name||x.email)+' davetini yeniden gönder'});
+  let L;
+  if(!R)L=[kisi(meUser().n,'merkez@ornek.com',chip('ok','tick','Etkin'),true),
+    kisi('Örnek Yönetici','yonetici@ornek.com',chip('wait','mail','Davet bekliyor'),false,[btn('btn-o btn-xs','Yeniden gönder',()=>toast('Davet yeniden gönderildi.'))])];
+  else L=EKIP.list.map(x=>{
+      const me=!!ME&&x.id===ME.id,bek=!x.joined_at,acts=[];
+      const durum=!x.active?chip('ln',null,'Pasif'):bek?chip('wait','mail','Davet bekliyor'):chip('ok','tick','Etkin');
+      if(!me&&x.active&&bek)acts.push(yenidenGonder(x));
+      if(!me)acts.push(x.active
+        ?btn('btn-g btn-xs','Pasif yap',()=>confirmBox('Hesap pasif yapılsın mı?',(x.full_name||x.email)+' merkeze giremez; açık oturumları hemen kapanır. İstediğinizde yeniden etkinleştirebilirsiniz.','Pasif yap',async()=>{if(await ekipEtkin(x.id,false)){rerender();toast('Hesap pasif yapıldı.');}},true),{'aria-label':(x.full_name||x.email)+' hesabını pasif yap'})
+        :btn('btn-o btn-xs','Etkinleştir',async()=>{if(await ekipEtkin(x.id,true)){rerender();toast('Hesap etkinleştirildi.');}},{'aria-label':(x.full_name||x.email)+' hesabını etkinleştir'}));
+      return kisi(x.full_name,x.email,durum,me,acts);
+    }).concat(EKIP.bekleyen.map(x=>kisi(x.full_name,x.email,chip('wait','clock','E-posta gönderilemedi'),false,[yenidenGonder(x),
+      btn('btn-g btn-xs','Sil',()=>confirmBox('Davet silinsin mi?',x.email+' adresine davet gönderilmeyecek.','Sil',async()=>{if(await ekipDavetSil(x.email)){rerender();toast('Davet silindi.');}},true),{'aria-label':x.email+' davetini sil'})])));
+  root.append(h('div',{class:'g2'},
+    pn('Yöneticiler',h('span',{class:'c'},String(L.length)),L.length?h('ul',{class:'ls'},L):empty(EKIP.err?'Liste alınamadı':'Henüz kimse yok',EKIP.err?'Bağlantınızı kontrol edip sayfayı yenileyin.':null)),
+    pn('Nasıl çalışır',null,h('ul',{class:'ls'},[
+      ['mail','Davet edilen kişiye giriş bağlantısı e-postayla gider; şifre yoktur.'],
+      ['shield','Yönetici bütün ofisleri, üyelikleri, başvuruları ve sertifikaları görür; mentorun özel puanlarını görmez.'],
+      ['device','Her hesap Güvenlik sayfasındaki cihaz sınırına tabidir.'],
+      ['lock','Pasif yapılan hesap merkeze giremez, açık oturumları hemen kapanır. Kendi hesabınızı pasif yapamazsınız.']
+    ].map(([i,t])=>h('li',null,h('span',{class:'li-i'},ic(i)),h('div',{class:'t'},h('span',null,t))))))));
+  return root;
+};
+function openEkipDavet(){
+  const v={ad:'',eposta:''};
+  const msg=h('p',{class:'sm',role:'status',style:'margin:0;color:var(--critT)',hidden:true});
+  const body=h('div',{class:'st'},
+    h('p',{class:'sm mu',style:'margin:0'},'Yeni yönetici e-postasındaki bağlantıyla girer. Mail servisi bağlı değilse davet kaydedilir; e-posta sonra "Yeniden gönder"le gider.'),
+    h('div',{class:'fld'},h('label',{for:'ekAd'},'Ad soyad'),h('input',{id:'ekAd',class:'inp',type:'text',autofocus:true,maxlength:'120',autocomplete:'off',oninput:e=>{v.ad=e.target.value;}})),
+    h('div',{class:'fld'},h('label',{for:'ekMail'},'E-posta'),h('input',{id:'ekMail',class:'inp',type:'email',maxlength:'320',autocomplete:'off',spellcheck:'false',oninput:e=>{v.eposta=e.target.value;}})),
+    msg);
+  drawer({t:'Yönetici davet et',s:'Merkez ekibine yeni hesap.',body,w:480,foot:[btn('btn-o','Vazgeç',closeDrawer),btn('btn-k','Davet gönder',async e=>{
+    const eposta=v.eposta.trim().toLowerCase(),hata=t=>{msg.textContent=t;msg.hidden=false;};
+    if(v.ad.trim().length<2)return hata('Ad soyad yazın.');
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(eposta))return hata('Geçerli bir e-posta adresi yazın.');
+    if(!realM()){closeDrawer();toast(v.ad.trim()+' davet edildi.');return;}
+    const b=e.currentTarget;b.disabled=true;b.textContent='Gönderiliyor…';
+    const r=await ekipDavet(v.ad.trim(),eposta);
+    if(r.err){b.disabled=false;b.textContent='Davet gönder';return hata('Davet gönderilemedi; biraz sonra yeniden deneyin.');}
+    closeDrawer();rerender();toast(inviteMsg(r,''),r.results&&r.results.length&&r.results.every(x=>x.ok)?4000:9000);
+  })]});
 }
 VIEWS.merkez.guvenlik=()=>{
   const root=h('div'),R=realM();

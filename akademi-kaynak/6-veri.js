@@ -159,4 +159,4 @@ window.addEventListener('pagehide',()=>{if(realO()&&SYNC.snap)syncNow();});
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'&&realO()&&SYNC.snap)syncNow();});
 // Yalnız otomatik denemeler için: sayfa yüklenmeden önce window.__AK_TEST konursa iç durum görünür.
 if(window.__AK_TEST)window.__AKD={GR,CO,RUNS,ATT,CCH,ACT,TELAFI,SC,NEED,BIZ,REP,CERT,PREV,OFFACT,OFF,PPL,SYNC,syncNow,scheduleSync,mkAct,RM,get ME(){return ME;},
-  MAT,DOCS,EXTV,MCSET,NEWTR,SEC,LEGACY,SESS,KLS,OTR,oturumYokla,loadMateryal,csvCoz,klasikSatirlar,vimeoCoz};
+  MAT,DOCS,EXTV,MCSET,NEWTR,SEC,LEGACY,SESS,KLS,OTR,EKIP,OFFS,oturumYokla,loadMateryal,csvCoz,klasikSatirlar,vimeoCoz};

@@ -284,3 +284,32 @@ function klasikSatirlar(rows,varsayilan){
   }).filter(x=>x.email||x.phone);
   return{rows:out,urunSutun:iUrun>=0};
 }
+
+/* ---------- Merkez ekibi ---------- */
+const KOMP_T='Tamamlama: biten eğitimlerde bütün günlere katılıp koçluğu tamamlayan danışmanların oranı.';
+const EKIP={list:[],bekleyen:[],at:0,err:false,busy:false};
+async function loadEkip(){
+  if(!realM()||EKIP.busy)return;
+  EKIP.busy=true;
+  const [p,i]=await Promise.all([
+    SB.from('profiles').select('id,full_name,email,active,joined_at,created_at').eq('role','merkez').order('created_at'),
+    SB.from('invitations').select('email,full_name,invited_at').eq('role','merkez').is('user_id',null).order('invited_at')
+  ]).catch(e=>[{error:e},{error:e}]);
+  EKIP.err=!!(p.error||i.error);
+  if(!p.error)EKIP.list=p.data||[];
+  // E-postası gönderilemeyen davet: hesabı henüz açılmamış kişi
+  if(!i.error)EKIP.bekleyen=(i.data||[]).filter(x=>!EKIP.list.some(y=>String(y.email||'').toLowerCase()===String(x.email).toLowerCase()));
+  EKIP.busy=false;EKIP.at=Date.now();
+}
+async function ekipDavet(ad,eposta){const r=await inviteCall({merkez:true,invites:[{email:eposta,full_name:ad}]});await loadEkip();return r;}
+async function ekipYenidenGonder(eposta){const r=await inviteCall({merkez:true,resend:true,email:eposta});await loadEkip();return r;}
+async function ekipDavetSil(eposta){
+  const{error}=await SB.from('invitations').delete().eq('role','merkez').is('user_id',null).eq('email',eposta).then(x=>x,e=>({error:e}));
+  if(error){toast('Davet silinemedi.',5000);return false;}
+  await loadEkip();return true;
+}
+async function ekipEtkin(id,on){
+  const{error}=await SB.rpc('set_merkez_active',{p_id:id,p_active:on}).then(x=>x,e=>({error:e}));
+  if(error){toast('Değiştirilemedi; tekrar deneyin.',5000);return false;}
+  await Promise.all([loadEkip(),loadOturumlar()]);return true;
+}

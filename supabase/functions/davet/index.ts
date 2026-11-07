@@ -1,4 +1,5 @@
 // Merkez yöneticisinin açtığı ofise broker ve mentor davetini gönderir ya da yeniden gönderir.
+// { merkez: true } ile merkez ekibine yeni yönetici davet eder ya da bekleyen daveti yeniden gönderir.
 // Çağıranın oturumu doğrulanır; yalnız etkin merkez yöneticisi kullanabilir.
 // Gizli anahtar yalnız Supabase'in kendi ortamından okunur; depoda ve tarayıcıda yoktur.
 import { createClient } from 'npm:@supabase/supabase-js@2';
@@ -39,12 +40,15 @@ Deno.serve(async (req) => {
   const token = (req.headers.get('authorization') ?? '').replace(/^Bearer\s+/i, '');
   const { data: who, error: whoErr } = await admin.auth.getUser(token);
   if (whoErr || !who?.user) return reply(401, { error: 'oturum' });
-  const { data: me } = await admin.from('profiles').select('role, active').eq('id', who.user.id).maybeSingle();
+  const callerId = who.user.id;
+  const { data: me } = await admin.from('profiles').select('role, active').eq('id', callerId).maybeSingle();
   if (!me || !me.active || me.role !== 'merkez') return reply(403, { error: 'yetki' });
 
   let body: {
     office_id?: string;
+    merkez?: boolean;
     resend?: boolean;
+    email?: string;
     invites?: { email?: string; role?: string; full_name?: string }[];
   };
   try {
@@ -52,8 +56,6 @@ Deno.serve(async (req) => {
   } catch {
     return reply(400, { error: 'istek' });
   }
-  const { data: office } = await admin.from('offices').select('id').eq('id', String(body.office_id ?? '')).maybeSingle();
-  if (!office) return reply(404, { error: 'ofis' });
 
   const redirectTo = (origin && SITES.includes(origin) ? origin : SITES[0]) + '/akademi.html';
   const results: Result[] = [];
@@ -75,6 +77,48 @@ Deno.serve(async (req) => {
     return reason;
   }
 
+  // Yeni davet: aynı adrese açık kalmış eski davet varsa yerine yenisi; zaten hesabı olan adrese kayıt bırakmaz
+  async function invite(officeId: string | null, it: { email?: string; role?: string; full_name?: string }, roles: string[]) {
+    const email = String(it.email ?? '').trim().toLowerCase();
+    const role = officeId ? String(it.role ?? '') : 'merkez';
+    const name = String(it.full_name ?? '').trim().slice(0, 120) || null;
+    if (!MAIL.test(email) || !roles.includes(role)) {
+      results.push({ email, role, ok: false, reason: 'gecersiz' });
+      return;
+    }
+    await admin.from('invitations').delete().is('user_id', null).eq('email', email);
+    const { error: insErr } = await admin.from('invitations')
+      .insert({ office_id: officeId, email, role, full_name: name, invited_by: callerId });
+    if (insErr) {
+      results.push({ email, role, ok: false, reason: 'kayit' });
+      return;
+    }
+    const reason = await send(email, role);
+    if (reason === 'kayitli') await admin.from('invitations').delete().is('user_id', null).eq('email', email);
+  }
+
+  // Merkez ekibi
+  if (body.merkez) {
+    if (body.resend) {
+      const email = String(body.email ?? '').trim().toLowerCase();
+      const { data: inv } = await admin.from('invitations').select('email, user_id').is('office_id', null)
+        .eq('role', 'merkez').eq('email', email).order('invited_at', { ascending: false }).limit(1).maybeSingle();
+      if (!inv) return reply(404, { error: 'davet' });
+      if (inv.user_id) {
+        const { data: u } = await admin.auth.admin.getUserById(inv.user_id);
+        if (u?.user?.email_confirmed_at) return reply(200, { results: [] });
+      }
+      await send(inv.email, 'merkez');
+    } else {
+      for (const it of (body.invites ?? []).slice(0, 4)) await invite(null, it, ['merkez']);
+    }
+    return reply(200, { results });
+  }
+
+  // Ofis: broker ve mentor
+  const { data: office } = await admin.from('offices').select('id').eq('id', String(body.office_id ?? '')).maybeSingle();
+  if (!office) return reply(404, { error: 'ofis' });
+
   if (body.resend) {
     // Henüz girmemiş herkese yeniden gönder
     const { data: inv } = await admin.from('invitations').select('email, role, user_id').eq('office_id', office.id);
@@ -86,26 +130,7 @@ Deno.serve(async (req) => {
       await send(i.email, i.role);
     }
   } else {
-    for (const it of (body.invites ?? []).slice(0, 4)) {
-      const email = String(it.email ?? '').trim().toLowerCase();
-      const role = String(it.role ?? '');
-      const name = String(it.full_name ?? '').trim().slice(0, 120) || null;
-      if (!MAIL.test(email) || !ROLES.includes(role)) {
-        results.push({ email, role, ok: false, reason: 'gecersiz' });
-        continue;
-      }
-      // Aynı adrese açık kalmış eski davet varsa yerine yenisi
-      await admin.from('invitations').delete().is('user_id', null).eq('email', email);
-      const { error: insErr } = await admin.from('invitations')
-        .insert({ office_id: office.id, email, role, full_name: name, invited_by: who.user.id });
-      if (insErr) {
-        results.push({ email, role, ok: false, reason: 'kayit' });
-        continue;
-      }
-      const reason = await send(email, role);
-      // Zaten hesabı olan adrese davet kaydı bırakma
-      if (reason === 'kayitli') await admin.from('invitations').delete().is('user_id', null).eq('email', email);
-    }
+    for (const it of (body.invites ?? []).slice(0, 4)) await invite(office.id, it, ROLES);
   }
 
   if (results.some((r) => r.ok)) {

@@ -79,7 +79,7 @@ async function boot(){
       // Bu cihazın oturumu: başka cihazdan giriş yüzünden kapanmışsa burada durur.
       if(!await oturumYokla())return;
       if(ME.role==='merkez')await loadMerkez();else await loadOffice().catch(()=>false);
-      await Promise.all([loadMateryal(),loadAyar(),ME.role==='merkez'?Promise.all([loadTaslak(),loadOturumlar(),loadKlasik()]):null]).catch(()=>{});
+      await Promise.all([loadMateryal(),loadAyar(),ME.role==='merkez'?Promise.all([loadTaslak(),loadOturumlar(),loadKlasik(),loadEkip()]):null]).catch(()=>{});
       oturumBaslat();
       const want=CUR.split('/')[0];nav(NAV[want]&&roleOk(want)?CUR:ROLE_HOME[ME.role]);
     }
@@ -95,15 +95,18 @@ const addYear=d=>{const x=new Date(d);x.setFullYear(x.getFullYear()+1);return x;
 // Ofisleri ve sayılarını veritabanından alıp merkez ekranlarının kullandığı listeye koyar.
 async function loadMerkez(){
   if(!realM())return false;
-  const [o,pr,inv,co,ce,ru,rq]=await Promise.all([
+  const [o,pr,inv,co,ce,ru,rq,cp]=await Promise.all([
     SB.from('offices').select('id,name,city,tier,status,membership_start,membership_end,invited_at,created_at').order('created_at'),
     SB.from('profiles').select('office_id,role,full_name,email').not('office_id','is',null),
     SB.from('invitations').select('office_id,email,role,full_name'),
     SB.from('consultants').select('office_id').is('left_on',null),
     SB.from('certificates').select('no,holder_name,office_id,training_id,kind,issued_on,revoked_at'),
     SB.from('runs').select('office_id,days').neq('status','iptal'),
-    SB.from('site_requests').select('*').order('created_at',{ascending:false}).limit(300)
+    SB.from('site_requests').select('*').order('created_at',{ascending:false}).limit(300),
+    SB.rpc('office_completion')
   ]).catch(e=>[{error:e}]);
+  // Tamamlama oranı ayrı hesaplanır; alınamazsa ofisler yine gelir, oran "—" görünür.
+  const komp={};if(cp&&!cp.error&&Array.isArray(cp.data))cp.data.forEach(x=>{if(x.finished>0)komp[x.office_id]=Math.round(100*x.completed/x.finished);});
   if(!rq||[o,pr,inv,co,ce,ru,rq].some(r=>r.error)){
     // Örnek ofisler gerçekmiş gibi görünmesin: liste boşalır, üstte uyarı çıkar.
     ME.dataOk=false;OFFS.splice(0);MCERT.splice(0);REQS.splice(0);
@@ -115,7 +118,7 @@ async function loadMerkez(){
     const ses=ru.data.filter(x=>x.office_id===r.id).reduce((a,x)=>a+(x.days||[]).filter(d=>d>=from&&d<=to).length,0);
     return{id:r.id,n:r.name,city:r.city||'—',br:nm(b),mn:nm(m),tier:r.tier||'1–25',cons:cnt(co.data,r.id),
       start:r.membership_start?fromIso(r.membership_start):null,end:r.membership_end?fromIso(r.membership_end):null,
-      ses,st:r.status==='aktif'?'aktif':r.status==='pasif'?'pasif':'davet',comp:0,cert:cnt(ce.data,r.id),inv:new Date(r.invited_at||r.created_at)};
+      ses,st:r.status==='aktif'?'aktif':r.status==='pasif'?'pasif':'davet',comp:komp[r.id]!=null?komp[r.id]:null,cert:cnt(ce.data,r.id),inv:new Date(r.invited_at||r.created_at)};
   });
   OFFS.splice(0,OFFS.length,...list);
   const onm=id=>{const x=o.data.find(r=>r.id===id);return x?x.name:'—';};

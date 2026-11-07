@@ -102,7 +102,7 @@ function badge(k){
 const NAV={
   mentor:[['panel','Panel','home'],['egitimler','Eğitimler','book'],['takvim','Takvim','cal'],['danismanlar','Danışmanlar','users'],['ihtiyac','İhtiyaç analizi','gauge'],['gorevler','Görev takibi','check'],['sertifikalar','Sertifikalar','award'],['raporlar','Gelişim raporları','doc'],['ai','Barış AI','spark']],
   broker:[['ozet','Ofis özeti','home'],['takvim','Takvim','cal'],['danismanlar','Danışmanlar','users'],['ihtiyac','İhtiyaç analizi','gauge'],['raporlar','Gelişim raporları','doc'],['sertifikalar','Sertifikalar','award'],['uyelik','Üyelik','card']],
-  merkez:[['genel','Genel bakış','home'],['ofisler','Ofisler','building'],['uyelikler','Üyelikler','card'],['egitimler','Eğitimler ve belgeler','book'],['sertifikalar','Sertifikalar','award'],['klasik','Klasik erişimler','key'],['guvenlik','Güvenlik','shield'],['basvurular','Başvurular','mail']]
+  merkez:[['genel','Genel bakış','home'],['ofisler','Ofisler','building'],['uyelikler','Üyelikler','card'],['egitimler','Eğitimler ve belgeler','book'],['sertifikalar','Sertifikalar','award'],['klasik','Klasik erişimler','key'],['guvenlik','Güvenlik','shield'],['ekip','Merkez ekibi','users'],['basvurular','Başvurular','mail']]
 };
 const S={role:null,page:null,arg:null,asBroker:false};
 const VIEWS={mentor:{},broker:{},merkez:{}};

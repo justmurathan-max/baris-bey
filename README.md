@@ -69,12 +69,13 @@ Supabase (Frankfurt). Şema `supabase/migrations/` içindeki göç dosyalarında
 5. `20261107100000_oturum_siniri_ve_ayarlar.sql`: eş zamanlı oturum sınırı (`session_open`, `session_close`, `set_session_limit`, `active_sessions`), merkez ayarları (`settings`), yeni eğitim taslakları (`training_drafts`).
 6. `20261107110000_egitim_belgeleri.sql`: eğitim belgeleri (`training_documents`, Storage'da özel `belgeler` kovası ve kuralları) ve ek videolar (`training_videos`).
 7. `20261107120000_klasik_erisim.sql`: klasik erişim listesi (`legacy_access`) ve içe aktarma (`legacy_import`).
+8. `20261108000000_merkez_ekibi_ve_tamamlama.sql`: ofislerin eğitim tamamlama oranı (`office_completion`) ve merkez yöneticisini pasif/etkin yapma (`set_merkez_active`).
 
-Not: 4 numara ödeme açılınca çalıştırılır; 5-7 ondan bağımsızdır.
+Not: 4 numara ödeme açılınca çalıştırılır; 5-8 ondan bağımsızdır.
 
 ### Fonksiyonlar (Supabase Edge Functions)
 
-- `davet`: merkez yöneticisinin açtığı ofise broker ve mentor daveti gönderir, yeniden gönderir.
+- `davet`: merkez yöneticisinin açtığı ofise broker ve mentor daveti gönderir, yeniden gönderir; `{ merkez: true }` ile merkez ekibine yeni yönetici davet eder ya da bekleyen daveti yeniden gönderir.
 - `odeme`: satın almayı kaydeder, ödemeyi PayTR ya da iyzico ile başlatır, ödeme sonucunu işler. Ayrıntı aşağıda, "Satış ve ödeme".
 - `baris-ai`: grup provasında müşteriyi oynar ve provayı değerlendirir (Claude). Çalışması için Supabase'te Edge Functions > Secrets altına `ANTHROPIC_API_KEY` eklenmeli; isteğe bağlı `BARIS_AI_MODEL` modeli değiştirir. Anahtar yokken akademi sabit prova akışını kullanır.
 
@@ -86,6 +87,8 @@ Fonksiyonlar oturumu kendi kodunda doğrular; panelde "Verify JWT with legacy se
 - Broker ve mentor girişinde ofisin bütün kayıtları yüklenir (`akademi-kaynak/6-veri.js`). Ekrandaki değişiklikler son kaydedilen hâlle karşılaştırılır, fark birkaç saniye içinde yazılır. Yükleme başarısız olursa hiçbir şey yazılmaz.
 - Eş zamanlı oturum (`akademi-kaynak/6-gercek.js`): her tarayıcı oturumu (Supabase Auth'un `session_id`'si) `user_sessions`'ta bir satırdır. Akademi girişte ve dakikada bir `session_open` çağırır. Aynı hesapla yeni cihazdan girilince sınırı aşan en eski oturum kapanır ve o cihaz en geç bir dakikada çıkış yapar; kapanan oturumun yenileme anahtarı da silinir. Sınır merkezin Güvenlik sayfasından (1 ya da 2 cihaz); oradan açık oturumlar görülür ve kapatılır. Çıkış yalnız o cihazı kapatır.
 - Belgeler: merkez, Eğitimler ve belgeler sayfasında her eğitime üç PDF yükler (en fazla 20 MB) ve tanıtım, koçluk, uygulama videolarının Vimeo bağlantısını girer. Mentor ve broker belgeyi imzalı, süreli bağlantıyla açar; aktivite belgesi ofisin uyarlanmış listesinden üretilir. Önizlemede örnek bayraklar kalır.
+- Merkez ekibi: merkez yöneticileri listelenir, yeni yönetici `davet` fonksiyonuyla davet edilir, bekleyen davet yeniden gönderilir ya da silinir, başka bir yönetici pasif/etkin yapılır (pasif olanın açık oturumları kapanır; kimse kendi hesabını pasif yapamaz).
+- Eğitim tamamlama (merkezin ofisler listesi): biten, telafi olmayan oturumlarda bütün günlere katılıp koçluğu tamamlayan danışmanların oranı; biten eğitim yoksa "—".
 - Klasik erişimler: hak sahiplerinin listesi; kişi eklenir ya da eski sitenin listesi CSV olarak içe aktarılır (aynı e-posta birleşir). Kişilerin izleyeceği yer ayrıca karara bağlanacak.
 
 

@@ -1339,7 +1339,7 @@ function badge(k){
 const NAV={
   mentor:[['panel','Panel','home'],['egitimler','Eğitimler','book'],['takvim','Takvim','cal'],['danismanlar','Danışmanlar','users'],['ihtiyac','İhtiyaç analizi','gauge'],['gorevler','Görev takibi','check'],['sertifikalar','Sertifikalar','award'],['raporlar','Gelişim raporları','doc'],['ai','Barış AI','spark']],
   broker:[['ozet','Ofis özeti','home'],['takvim','Takvim','cal'],['danismanlar','Danışmanlar','users'],['ihtiyac','İhtiyaç analizi','gauge'],['raporlar','Gelişim raporları','doc'],['sertifikalar','Sertifikalar','award'],['uyelik','Üyelik','card']],
-  merkez:[['genel','Genel bakış','home'],['ofisler','Ofisler','building'],['uyelikler','Üyelikler','card'],['egitimler','Eğitimler ve belgeler','book'],['sertifikalar','Sertifikalar','award'],['klasik','Klasik erişimler','key'],['guvenlik','Güvenlik','shield'],['basvurular','Başvurular','mail']]
+  merkez:[['genel','Genel bakış','home'],['ofisler','Ofisler','building'],['uyelikler','Üyelikler','card'],['egitimler','Eğitimler ve belgeler','book'],['sertifikalar','Sertifikalar','award'],['klasik','Klasik erişimler','key'],['guvenlik','Güvenlik','shield'],['ekip','Merkez ekibi','users'],['basvurular','Başvurular','mail']]
 };
 const S={role:null,page:null,arg:null,asBroker:false};
 const VIEWS={mentor:{},broker:{},merkez:{}};
@@ -2514,7 +2514,7 @@ VIEWS.merkez.ofisler=()=>{
     h('td',{'data-l':'Mentor'},o.mn||(o.br?h('span',{class:'mu'},'Broker üstleniyor'):h('span',{class:'mu'},'—'))),
     h('td',{'data-l':'Kademe'},o.tier),
     h('td',{'data-l':'Danışman',class:'num'},String(o.cons)),
-    h('td',{'data-l':'Tamamlama'},o.st==='aktif'?h('div',{class:'prg',style:'min-width:120px'},bar(o.comp,'Tamamlama'),h('span',{class:'num sm'},'%'+o.comp)):h('span',{class:'mu'},'—')),
+    h('td',{'data-l':'Tamamlama'},o.st==='aktif'&&o.comp!=null?h('div',{class:'prg',style:'min-width:120px','data-tip':KOMP_T},bar(o.comp,'Tamamlama'),h('span',{class:'num sm'},'%'+o.comp)):h('span',{class:'mu','data-tip':o.st==='aktif'?'Henüz biten eğitim yok':null},'—')),
     h('td',{'data-l':'Durum'},o.st==='davet'?chip('wait','mail','Davet gönderildi'):ofsDays(o)<=60?chip('wait','clock',ofsDays(o)+' gün kaldı'):chip('ok','tick','Aktif')),
     h('td',{class:'r hm'},ic('chev')))));
   root.append(h('section',{class:'pn'},h('div',{class:'tw'},h('table',{class:'tbl rsp'},h('thead',null,h('tr',null,['Ofis','Broker','Mentor','Kademe','Danışman','Tamamlama','Durum',''].map(x=>h('th',null,x)))),tb))));
@@ -2524,7 +2524,8 @@ function openOffice(id){
   const o=OFFS.find(x=>x.id===id);
   const body=[h('dl',{class:'kv'},h('dt',null,'Şehir'),h('dd',null,o.city),h('dt',null,'Broker'),h('dd',null,o.br||'Davet bekleniyor'),h('dt',null,'Mentor'),h('dd',null,o.mn||(o.br?'Broker üstleniyor':'—')),h('dt',null,'Kademe'),h('dd',null,o.tier+' danışman'),h('dt',null,'Üyelik'),h('dd',null,o.start?ddy(o.start)+' – '+ddy(o.end):'Davet kabul edilince başlar'))];
   if(o.st==='aktif')body.push(h('div',{class:'sec'},h('div',{class:'sec-t'},h('h3',null,'Kullanım ve gelişim özeti')),
-    h('div',{class:'p-kv',style:'margin-top:0'},[[o.cons,'Aktif danışman'],[o.ses,'Son 30 gün oturum'],['%'+o.comp,'Eğitim tamamlama'],[o.cert,'Sertifika']].map(([v,l])=>h('div',null,h('b',null,String(v)),h('span',null,l)))),
+    h('div',{class:'p-kv',style:'margin-top:0'},[[o.cons,'Aktif danışman'],[o.ses,'Son 30 gün oturum'],[o.comp!=null?'%'+o.comp:'—','Eğitim tamamlama'],[o.cert,'Sertifika']].map(([v,l])=>h('div',null,h('b',null,String(v)),h('span',null,l)))),
+    h('p',{class:'sec-n',style:'margin:0'},KOMP_T+(o.comp==null?' Bu ofiste henüz biten eğitim yok.':'')),
     h('div',{class:'lockn'},ic('lock'),'Mentorun özel 1-5 puanları ve notları yalnız o ofisin mentoru ve brokerı içindir; merkezde görünmez.')));
   const foot=[];
   if(o.st==='davet')foot.push(btn('btn-k btn-s',[ic('mail'),'Daveti yeniden gönder'],()=>{if(realM()){closeDrawer();resendReal(o);return;}o.inv=new Date(T0);closeDrawer();toast('Davet yeniden gönderildi.');rerender();}));
@@ -2780,6 +2781,54 @@ function openKlasikIceAktar(){
       closeDrawer();rerender();
       toast(r.added+' kişi eklendi'+(r.updated?', '+r.updated+' kişi güncellendi':'')+(r.skipped?', '+r.skipped+' satır atlandı (e-posta ya da telefon yok ya da geçersiz)':'')+'.'+(r.err?' Liste yarıda kaldı; kalanı için tekrar deneyin.':''),8000);
     })]});
+}
+VIEWS.merkez.ekip=()=>{
+  const root=h('div'),R=realM();
+  root.append(ph('Merkez ekibi','Akademi merkezini yöneten kişiler. Herkesin kendi hesabı olmalı: cihaz sınırı hesap başına geçerli, aynı hesabı kullananlar birbirini oturumdan çıkarır.',[btn('btn-k btn-s',[ic('plus'),'Yönetici davet et'],openEkipDavet)]));
+  if(R&&!EKIP.busy&&Date.now()-EKIP.at>30000)loadEkip().then(()=>{if(S.page==='ekip')rerender();});
+  const kisi=(ad,eposta,durum,me,acts)=>h('li',null,h('span',{class:'av','aria-hidden':'true'},ini(ad||eposta||'?')),h('div',{class:'t'},h('b',null,(ad||eposta)+(me?' (siz)':'')),h('span',null,eposta||'')),durum,acts&&acts.length?h('div',{class:'doc-a'},acts):null);
+  const yenidenGonder=x=>btn('btn-o btn-xs','Yeniden gönder',async e=>{e.currentTarget.disabled=true;const r=await ekipYenidenGonder(x.email);rerender();toast(inviteMsg(r,''),r.results&&r.results.length&&r.results.every(y=>y.ok)?4000:9000);},{'aria-label':(x.full_name||x.email)+' davetini yeniden gönder'});
+  let L;
+  if(!R)L=[kisi(meUser().n,'merkez@ornek.com',chip('ok','tick','Etkin'),true),
+    kisi('Örnek Yönetici','yonetici@ornek.com',chip('wait','mail','Davet bekliyor'),false,[btn('btn-o btn-xs','Yeniden gönder',()=>toast('Davet yeniden gönderildi.'))])];
+  else L=EKIP.list.map(x=>{
+      const me=!!ME&&x.id===ME.id,bek=!x.joined_at,acts=[];
+      const durum=!x.active?chip('ln',null,'Pasif'):bek?chip('wait','mail','Davet bekliyor'):chip('ok','tick','Etkin');
+      if(!me&&x.active&&bek)acts.push(yenidenGonder(x));
+      if(!me)acts.push(x.active
+        ?btn('btn-g btn-xs','Pasif yap',()=>confirmBox('Hesap pasif yapılsın mı?',(x.full_name||x.email)+' merkeze giremez; açık oturumları hemen kapanır. İstediğinizde yeniden etkinleştirebilirsiniz.','Pasif yap',async()=>{if(await ekipEtkin(x.id,false)){rerender();toast('Hesap pasif yapıldı.');}},true),{'aria-label':(x.full_name||x.email)+' hesabını pasif yap'})
+        :btn('btn-o btn-xs','Etkinleştir',async()=>{if(await ekipEtkin(x.id,true)){rerender();toast('Hesap etkinleştirildi.');}},{'aria-label':(x.full_name||x.email)+' hesabını etkinleştir'}));
+      return kisi(x.full_name,x.email,durum,me,acts);
+    }).concat(EKIP.bekleyen.map(x=>kisi(x.full_name,x.email,chip('wait','clock','E-posta gönderilemedi'),false,[yenidenGonder(x),
+      btn('btn-g btn-xs','Sil',()=>confirmBox('Davet silinsin mi?',x.email+' adresine davet gönderilmeyecek.','Sil',async()=>{if(await ekipDavetSil(x.email)){rerender();toast('Davet silindi.');}},true),{'aria-label':x.email+' davetini sil'})])));
+  root.append(h('div',{class:'g2'},
+    pn('Yöneticiler',h('span',{class:'c'},String(L.length)),L.length?h('ul',{class:'ls'},L):empty(EKIP.err?'Liste alınamadı':'Henüz kimse yok',EKIP.err?'Bağlantınızı kontrol edip sayfayı yenileyin.':null)),
+    pn('Nasıl çalışır',null,h('ul',{class:'ls'},[
+      ['mail','Davet edilen kişiye giriş bağlantısı e-postayla gider; şifre yoktur.'],
+      ['shield','Yönetici bütün ofisleri, üyelikleri, başvuruları ve sertifikaları görür; mentorun özel puanlarını görmez.'],
+      ['device','Her hesap Güvenlik sayfasındaki cihaz sınırına tabidir.'],
+      ['lock','Pasif yapılan hesap merkeze giremez, açık oturumları hemen kapanır. Kendi hesabınızı pasif yapamazsınız.']
+    ].map(([i,t])=>h('li',null,h('span',{class:'li-i'},ic(i)),h('div',{class:'t'},h('span',null,t))))))));
+  return root;
+};
+function openEkipDavet(){
+  const v={ad:'',eposta:''};
+  const msg=h('p',{class:'sm',role:'status',style:'margin:0;color:var(--critT)',hidden:true});
+  const body=h('div',{class:'st'},
+    h('p',{class:'sm mu',style:'margin:0'},'Yeni yönetici e-postasındaki bağlantıyla girer. Mail servisi bağlı değilse davet kaydedilir; e-posta sonra "Yeniden gönder"le gider.'),
+    h('div',{class:'fld'},h('label',{for:'ekAd'},'Ad soyad'),h('input',{id:'ekAd',class:'inp',type:'text',autofocus:true,maxlength:'120',autocomplete:'off',oninput:e=>{v.ad=e.target.value;}})),
+    h('div',{class:'fld'},h('label',{for:'ekMail'},'E-posta'),h('input',{id:'ekMail',class:'inp',type:'email',maxlength:'320',autocomplete:'off',spellcheck:'false',oninput:e=>{v.eposta=e.target.value;}})),
+    msg);
+  drawer({t:'Yönetici davet et',s:'Merkez ekibine yeni hesap.',body,w:480,foot:[btn('btn-o','Vazgeç',closeDrawer),btn('btn-k','Davet gönder',async e=>{
+    const eposta=v.eposta.trim().toLowerCase(),hata=t=>{msg.textContent=t;msg.hidden=false;};
+    if(v.ad.trim().length<2)return hata('Ad soyad yazın.');
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(eposta))return hata('Geçerli bir e-posta adresi yazın.');
+    if(!realM()){closeDrawer();toast(v.ad.trim()+' davet edildi.');return;}
+    const b=e.currentTarget;b.disabled=true;b.textContent='Gönderiliyor…';
+    const r=await ekipDavet(v.ad.trim(),eposta);
+    if(r.err){b.disabled=false;b.textContent='Davet gönder';return hata('Davet gönderilemedi; biraz sonra yeniden deneyin.');}
+    closeDrawer();rerender();toast(inviteMsg(r,''),r.results&&r.results.length&&r.results.every(x=>x.ok)?4000:9000);
+  })]});
 }
 VIEWS.merkez.guvenlik=()=>{
   const root=h('div'),R=realM();
@@ -3099,6 +3148,35 @@ function klasikSatirlar(rows,varsayilan){
   return{rows:out,urunSutun:iUrun>=0};
 }
 
+/* ---------- Merkez ekibi ---------- */
+const KOMP_T='Tamamlama: biten eğitimlerde bütün günlere katılıp koçluğu tamamlayan danışmanların oranı.';
+const EKIP={list:[],bekleyen:[],at:0,err:false,busy:false};
+async function loadEkip(){
+  if(!realM()||EKIP.busy)return;
+  EKIP.busy=true;
+  const [p,i]=await Promise.all([
+    SB.from('profiles').select('id,full_name,email,active,joined_at,created_at').eq('role','merkez').order('created_at'),
+    SB.from('invitations').select('email,full_name,invited_at').eq('role','merkez').is('user_id',null).order('invited_at')
+  ]).catch(e=>[{error:e},{error:e}]);
+  EKIP.err=!!(p.error||i.error);
+  if(!p.error)EKIP.list=p.data||[];
+  // E-postası gönderilemeyen davet: hesabı henüz açılmamış kişi
+  if(!i.error)EKIP.bekleyen=(i.data||[]).filter(x=>!EKIP.list.some(y=>String(y.email||'').toLowerCase()===String(x.email).toLowerCase()));
+  EKIP.busy=false;EKIP.at=Date.now();
+}
+async function ekipDavet(ad,eposta){const r=await inviteCall({merkez:true,invites:[{email:eposta,full_name:ad}]});await loadEkip();return r;}
+async function ekipYenidenGonder(eposta){const r=await inviteCall({merkez:true,resend:true,email:eposta});await loadEkip();return r;}
+async function ekipDavetSil(eposta){
+  const{error}=await SB.from('invitations').delete().eq('role','merkez').is('user_id',null).eq('email',eposta).then(x=>x,e=>({error:e}));
+  if(error){toast('Davet silinemedi.',5000);return false;}
+  await loadEkip();return true;
+}
+async function ekipEtkin(id,on){
+  const{error}=await SB.rpc('set_merkez_active',{p_id:id,p_active:on}).then(x=>x,e=>({error:e}));
+  if(error){toast('Değiştirilemedi; tekrar deneyin.',5000);return false;}
+  await Promise.all([loadEkip(),loadOturumlar()]);return true;
+}
+
 /* =================== GİRİŞ: SUPABASE =================== */
 // Yayınlanabilir anahtar tarayıcıda durmak için yapılmıştır, gizli değildir; veriyi satır kuralları korur.
 // Gizli anahtar (secret) asla buraya ya da depoya konmaz.
@@ -3179,7 +3257,7 @@ async function boot(){
       // Bu cihazın oturumu: başka cihazdan giriş yüzünden kapanmışsa burada durur.
       if(!await oturumYokla())return;
       if(ME.role==='merkez')await loadMerkez();else await loadOffice().catch(()=>false);
-      await Promise.all([loadMateryal(),loadAyar(),ME.role==='merkez'?Promise.all([loadTaslak(),loadOturumlar(),loadKlasik()]):null]).catch(()=>{});
+      await Promise.all([loadMateryal(),loadAyar(),ME.role==='merkez'?Promise.all([loadTaslak(),loadOturumlar(),loadKlasik(),loadEkip()]):null]).catch(()=>{});
       oturumBaslat();
       const want=CUR.split('/')[0];nav(NAV[want]&&roleOk(want)?CUR:ROLE_HOME[ME.role]);
     }
@@ -3195,15 +3273,18 @@ const addYear=d=>{const x=new Date(d);x.setFullYear(x.getFullYear()+1);return x;
 // Ofisleri ve sayılarını veritabanından alıp merkez ekranlarının kullandığı listeye koyar.
 async function loadMerkez(){
   if(!realM())return false;
-  const [o,pr,inv,co,ce,ru,rq]=await Promise.all([
+  const [o,pr,inv,co,ce,ru,rq,cp]=await Promise.all([
     SB.from('offices').select('id,name,city,tier,status,membership_start,membership_end,invited_at,created_at').order('created_at'),
     SB.from('profiles').select('office_id,role,full_name,email').not('office_id','is',null),
     SB.from('invitations').select('office_id,email,role,full_name'),
     SB.from('consultants').select('office_id').is('left_on',null),
     SB.from('certificates').select('no,holder_name,office_id,training_id,kind,issued_on,revoked_at'),
     SB.from('runs').select('office_id,days').neq('status','iptal'),
-    SB.from('site_requests').select('*').order('created_at',{ascending:false}).limit(300)
+    SB.from('site_requests').select('*').order('created_at',{ascending:false}).limit(300),
+    SB.rpc('office_completion')
   ]).catch(e=>[{error:e}]);
+  // Tamamlama oranı ayrı hesaplanır; alınamazsa ofisler yine gelir, oran "—" görünür.
+  const komp={};if(cp&&!cp.error&&Array.isArray(cp.data))cp.data.forEach(x=>{if(x.finished>0)komp[x.office_id]=Math.round(100*x.completed/x.finished);});
   if(!rq||[o,pr,inv,co,ce,ru,rq].some(r=>r.error)){
     // Örnek ofisler gerçekmiş gibi görünmesin: liste boşalır, üstte uyarı çıkar.
     ME.dataOk=false;OFFS.splice(0);MCERT.splice(0);REQS.splice(0);
@@ -3215,7 +3296,7 @@ async function loadMerkez(){
     const ses=ru.data.filter(x=>x.office_id===r.id).reduce((a,x)=>a+(x.days||[]).filter(d=>d>=from&&d<=to).length,0);
     return{id:r.id,n:r.name,city:r.city||'—',br:nm(b),mn:nm(m),tier:r.tier||'1–25',cons:cnt(co.data,r.id),
       start:r.membership_start?fromIso(r.membership_start):null,end:r.membership_end?fromIso(r.membership_end):null,
-      ses,st:r.status==='aktif'?'aktif':r.status==='pasif'?'pasif':'davet',comp:0,cert:cnt(ce.data,r.id),inv:new Date(r.invited_at||r.created_at)};
+      ses,st:r.status==='aktif'?'aktif':r.status==='pasif'?'pasif':'davet',comp:komp[r.id]!=null?komp[r.id]:null,cert:cnt(ce.data,r.id),inv:new Date(r.invited_at||r.created_at)};
   });
   OFFS.splice(0,OFFS.length,...list);
   const onm=id=>{const x=o.data.find(r=>r.id===id);return x?x.name:'—';};
@@ -3428,7 +3509,7 @@ window.addEventListener('pagehide',()=>{if(realO()&&SYNC.snap)syncNow();});
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'&&realO()&&SYNC.snap)syncNow();});
 // Yalnız otomatik denemeler için: sayfa yüklenmeden önce window.__AK_TEST konursa iç durum görünür.
 if(window.__AK_TEST)window.__AKD={GR,CO,RUNS,ATT,CCH,ACT,TELAFI,SC,NEED,BIZ,REP,CERT,PREV,OFFACT,OFF,PPL,SYNC,syncNow,scheduleSync,mkAct,RM,get ME(){return ME;},
-  MAT,DOCS,EXTV,MCSET,NEWTR,SEC,LEGACY,SESS,KLS,OTR,oturumYokla,loadMateryal,csvCoz,klasikSatirlar,vimeoCoz};
+  MAT,DOCS,EXTV,MCSET,NEWTR,SEC,LEGACY,SESS,KLS,OTR,EKIP,OFFS,oturumYokla,loadMateryal,csvCoz,klasikSatirlar,vimeoCoz};
 
 /* =================== BAŞLAT =================== */
 $('#meBtn').addEventListener('click',e=>openMe(e.currentTarget));
