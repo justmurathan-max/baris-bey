@@ -289,8 +289,8 @@ button{cursor:pointer}
 /* =================== SONUÇ =================== */
 /* HAKKINDA */
 .ab-g{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(32px,6vw,112px);align-items:center}
-.ab-ph{position:relative;border-radius:32px;background:var(--g0);aspect-ratio:4/5;max-height:700px;overflow:hidden;display:flex;justify-content:center;align-items:flex-end}
-.ab-ph img{height:93%;width:auto;max-width:none}
+.ab-ph{position:relative;border-radius:32px;background:#F7F7F7;aspect-ratio:4/5;max-height:700px;overflow:hidden}
+.ab-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0%}
 .ab-c{display:grid;gap:26px;justify-items:start}
 .ab-k{color:var(--red)}
 .ab-st{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px clamp(20px,3vw,40px);width:100%}
@@ -352,6 +352,9 @@ button{cursor:pointer}
 .cs-h{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid rgba(0,0,0,.08)}
 .cs-who{display:flex;align-items:center;gap:12px;min-width:0}
 .cs-av{width:42px;height:42px;border-radius:50%;object-fit:cover;flex:none;background:var(--g1)}
+.ai-fo{margin:8px 0 0;width:100%;aspect-ratio:1200/925;border-radius:24px;overflow:hidden;background:#EFEFEF}
+.ai-fo img{display:block;width:100%;height:100%;object-fit:cover}
+@media (max-width:1000px){.ai-fo{aspect-ratio:16/9}.ai-fo img{object-position:50% 45%}}
 .cs-who b{display:block;font:600 16px/1.2 var(--fb)}
 .cs-who span{display:block;font-size:13px;color:var(--mu);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cs-who>div{min-width:0}
@@ -651,8 +654,9 @@ button{cursor:pointer}
 .pq figcaption b{color:#000;font-weight:600;margin-right:6px}
 .bio{display:grid;gap:14px;margin-top:6px}
 .bio p{margin:0;color:#333;font-size:15.5px;line-height:1.6}
-.bio-h{display:flex;align-items:center;gap:16px;margin-bottom:6px}
-.bio-h img{width:76px;height:76px;border-radius:50%;object-fit:cover}
+.bio-ph{position:sticky;top:0;background:#F7F7F7}
+.bio-ph>img{object-position:50% 12%}
+@media (max-width:760px){.bio-ph{position:relative}}
 .sin{width:100%;height:58px;border-radius:999px;border:1px solid #D6D6D1;padding:0 22px;font:400 17px var(--fb);outline:none;margin-top:6px}
 .sin:focus{border-color:#000}
 .sl{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:2px;max-height:52vh;overflow-y:auto}
@@ -895,7 +899,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
             <a href="#uyelik"><b>Üyelik</b><span>12 aylık ofis üyeliği ve tek eğitim</span></a>
             <a href="#baris-ai"><b>Barış AI</b><span>Sor ve prova yap</span></a>
           </div>
-          <a class="dd-f" href="#akademi"><img loading="lazy" decoding="async" src="img/collection.webp" alt="" style="object-position:50% 16%"><span>Masterclass Akademi Ocak 2027’de açılıyor</span></a>
+          <a class="dd-f" href="#akademi"><img loading="lazy" decoding="async" src="img/foto/menu-akademi.webp" alt="" style="object-position:50% 30%"><span>Masterclass Akademi Ocak 2027’de açılıyor</span></a>
         </div>
       </li>
       <li class="mi">
@@ -906,7 +910,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
             <a href="#yorumlar"><b>International Speaker</b><span>Arjantin’den Romanya’ya, sahneden sonra</span></a>
             <a href="#roller" data-corp="Kongre konuşması"><b>Konuşma teklifi isteyin</b><span>Tarih, ülke ve katılımcı sayısıyla</span></a>
           </div>
-          <a class="dd-f" href="#roller"><img loading="lazy" decoding="async" src="img/upgrade.webp" alt="" style="object-position:50% 12%"><span>Sahnede Barış Kılıçarslan</span></a>
+          <a class="dd-f" href="#roller"><img loading="lazy" decoding="async" src="img/stage.webp" alt="" style="object-position:30% 30%"><span>Sahnede Barış Kılıçarslan</span></a>
         </div>
       </li>
       <li class="mi">
@@ -917,7 +921,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
             <a href="#katalog"><b>Real Estate Trainer</b><span>Salonda ve ofiste gayrimenkul programları</span></a>
             <a href="#roller" data-corp="Birebir mentorluk"><b>Private Mentoring</b><span>Broker ve ofis sahipleriyle birebir</span></a>
           </div>
-          <a class="dd-f" href="#roller" data-corp="Satış"><img loading="lazy" decoding="async" src="img/mic.webp" alt="" style="object-position:50% 14%"><span>Tarih ve teklif isteyin</span></a>
+          <a class="dd-f" href="#roller" data-corp="Satış"><img loading="lazy" decoding="async" src="img/foto/menu-kurumsal.webp" alt="" style="object-position:50% 20%"><span>Tarih ve teklif isteyin</span></a>
         </div>
       </li>
       <li class="mi">
@@ -928,7 +932,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
             <a href="#takvim"><b>Aralık webinarı</b><span>Online, tarih yakında açıklanacak</span></a>
             <a href="#etkinlikler"><b>Akademi lansmanı</b><span>Ocak 2027, İstanbul ve canlı yayın</span></a>
           </div>
-          <a class="dd-f" href="#etkinlikler"><img loading="lazy" decoding="async" src="img/hero-armsup.webp" alt="" style="object-position:50% 20%"><span>Lansman davetiyeni ayır</span></a>
+          <a class="dd-f" href="#etkinlikler"><img loading="lazy" decoding="async" src="img/foto/menu-etkinlik.webp" alt="" style="object-position:50% 30%"><span>Lansman davetiyeni ayır</span></a>
         </div>
       </li>
       <li class="mi">
@@ -951,7 +955,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
             <a href="#yorumlar"><b>Yorumlar</b><span>Dünyadan ofis liderleri</span></a>
             <a href="#roller"><b>Altı rol</b><span>Sahnede, salonda ve birebir</span></a>
           </div>
-          <a class="dd-f" href="#hakkinda"><img loading="lazy" decoding="async" src="img/point.webp" alt="" style="object-position:50% 10%"><span>Barış Kılıçarslan kimdir?</span></a>
+          <a class="dd-f" href="#hakkinda"><img loading="lazy" decoding="async" src="img/foto/menu-hakkinda.webp" alt="" style="object-position:50% 30%"><span>Barış Kılıçarslan kimdir?</span></a>
         </div>
       </li>
     </ul>
@@ -1013,7 +1017,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
 <!-- HAKKINDA -->
 <section class="sec wh" id="hakkinda">
   <div class="wrap ab-g">
-    <div class="ab-ph"><img loading="lazy" decoding="async" src="img/baris-boy.webp" alt="Barış Kılıçarslan"></div>
+    <div class="ab-ph"><img loading="lazy" decoding="async" src="img/foto/hakkinda-kollar.webp" alt="Barış Kılıçarslan" width="1120" height="1400"></div>
     <div class="ab-c">
       <span class="lbl ab-k">Barış Kılıçarslan</span>
       <h2 class="h2">Royal Caribbean’dan RE/MAX sahnelerine.</h2>
@@ -1088,11 +1092,12 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
       <h2 class="ai-ad"><span>Barış</span> <span class="ai-chip">AI</span></h2>
       <p class="ai-alt">Sahada takıldığın an Barış yanında.</p>
       <p class="lead">Danışman takıldığı yeri sorar ya da müşteriyle konuşmadan önce prova yapar. Barış AI, Barış’ın yaklaşımıyla cevap verir ve provayı puanlar.</p>
+      <figure class="ai-fo"><img loading="lazy" decoding="async" src="img/foto/ai-robot.webp" alt="Barış Kılıçarslan ve bir robot, yapbozun iki parçasını birleştiriyor" width="1200" height="925"></figure>
     </div>
 
     <div class="cs" aria-label="Barış AI demosu">
       <div class="cs-h">
-        <div class="cs-who"><img loading="lazy" decoding="async" class="cs-av" src="img/baris-portre.webp" alt=""><div><b>Barış AI</b><span>Barış Kılıçarslan’ın eğitim çerçevesiyle</span></div></div>
+        <div class="cs-who"><img loading="lazy" decoding="async" class="cs-av" src="img/foto/ai-avatar.webp" alt=""><div><b>Barış AI</b><span>Barış Kılıçarslan’ın eğitim çerçevesiyle</span></div></div>
         <span class="cs-st" id="aiStatus" data-mode="wait"><i></i><span>Bağlanıyor</span></span>
       </div>
       <div class="cs-tabs" role="tablist" aria-label="Mod">
@@ -1215,7 +1220,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
           <figcaption class="ts-who"><span class="ts-av" id="tsAv"></span><span><b id="tsName"></b><small id="tsRole"></small><small id="tsPlace"></small></span></figcaption>
         </figure>
       </div>
-      <div class="ts-ph"><img loading="lazy" decoding="async" src="img/point.webp" alt="Barış Kılıçarslan"></div>
+      <div class="ts-ph"><img loading="lazy" decoding="async" src="img/foto/yorum-oturan.webp" alt="Barış Kılıçarslan" width="992" height="1240"></div>
     </div>
   </div>
 </section>
@@ -1228,12 +1233,12 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
       <p class="lead">Gayrimenkul ekiplerinden kurumsal salonlara, kongre sahnelerinden birebir çalışmalara.</p>
     </div>
     <div class="ro-g">
-      <a class="ro-c" href="#katalog" style="--pos:34% 24%"><img loading="lazy" decoding="async" src="img/stage.webp" alt=""><span class="ro-k">Gayrimenkul eğitmeni</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Real Estate Trainer</b><span class="ro-s">Power Start, Power Camp ve RE/MAX sahnelerinde danışman yetiştiren programlar.</span></a>
+      <a class="ro-c" href="#katalog" style="--pos:50% 30%"><img loading="lazy" decoding="async" src="img/foto/rol-gayrimenkul.webp" alt=""><span class="ro-k">Gayrimenkul eğitmeni</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Real Estate Trainer</b><span class="ro-s">Power Start, Power Camp ve RE/MAX sahnelerinde danışman yetiştiren programlar.</span></a>
       <button class="ro-c" type="button" data-corp="Satış" style="--pos:50% 12%"><img loading="lazy" decoding="async" src="img/mic.webp" alt=""><span class="ro-k">Kurumsal eğitmen</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Corporate Trainer</b><span class="ro-s">Hilton’dan Arçelik’e, 200’den fazla kurumda satış, motivasyon ve liderlik.</span></button>
-      <a class="ro-c" href="#yorumlar" style="--pos:50% 22%"><img loading="lazy" decoding="async" src="img/hero-armsup.webp" alt=""><span class="ro-k">Uluslararası konuşmacı</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>International Speaker</b><span class="ro-s">Arjantin, Romanya, ABD, Avusturya ve Yunanistan sahnelerinde.</span></a>
-      <button class="ro-c" type="button" data-corp="Kongre konuşması" style="--pos:50% 10%"><img loading="lazy" decoding="async" src="img/upgrade.webp" alt=""><span class="ro-k">Kongre ve açılış konuşmacısı</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Keynote Speaker</b><span class="ro-s">Kongre, yıl açılışı ve lansman sahneleri için Türkçe ve İngilizce konuşmalar.</span></button>
+      <a class="ro-c" href="#yorumlar" style="--pos:50% 30%"><img loading="lazy" decoding="async" src="img/foto/rol-uluslararasi.webp" alt=""><span class="ro-k">Uluslararası konuşmacı</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>International Speaker</b><span class="ro-s">Arjantin, Romanya, ABD, Avusturya ve Yunanistan sahnelerinde.</span></a>
+      <button class="ro-c" type="button" data-corp="Kongre konuşması" style="--pos:50% 30%"><img loading="lazy" decoding="async" src="img/foto/rol-keynote.webp" alt=""><span class="ro-k">Kongre ve açılış konuşmacısı</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Keynote Speaker</b><span class="ro-s">Kongre, yıl açılışı ve lansman sahneleri için Türkçe ve İngilizce konuşmalar.</span></button>
       <button class="ro-c" type="button" data-corp="Birebir mentorluk" style="--pos:20% 50%"><img loading="lazy" decoding="async" src="img/banner.webp" alt=""><span class="ro-k">Birebir çalışma</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Private Mentoring</b><span class="ro-s">Kişiye özel, birebir mentorluk çalışmaları.</span></button>
-      <a class="ro-c ak" href="#akademi" style="--pos:50% 12%"><img loading="lazy" decoding="async" src="img/collection.webp" alt=""><span class="ro-k">Ofisler için 12 aylık akademi</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Masterclass Akademi</b><span class="ro-s">Mentor liderliğinde, sonuca odaklı eğitim ve performans platformu.</span></a>
+      <a class="ro-c ak" href="#akademi" style="--pos:50% 25%"><img loading="lazy" decoding="async" src="img/foto/rol-akademi.webp" alt=""><span class="ro-k">Ofisler için 12 aylık akademi</span><span class="ro-go"><svg aria-hidden="true"><use href="#i-r"/></svg></span><b>Masterclass Akademi</b><span class="ro-s">Mentor liderliğinde, sonuca odaklı eğitim ve performans platformu.</span></a>
     </div>
   </div>
 </section>
@@ -1287,7 +1292,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
       <p class="lead">Şimdi tam zamanı. Ofisine en uygun yolu birlikte seçelim.</p>
       <div class="hs-cta"><button class="btn btn-k" type="button" data-open="m-apply">Ofisim için başvur</button><button class="btn btn-ok" type="button" data-corp="Satış">Kurumsal teklif iste</button></div>
     </div>
-    <div class="fin-ph"><img loading="lazy" decoding="async" src="img/upgrade.webp" alt="Barış Kılıçarslan"></div>
+    <div class="fin-ph"><img loading="lazy" decoding="async" src="img/foto/son-cagri.webp" alt="Barış Kılıçarslan" width="1200" height="900"></div>
   </div>
 </section>
 </main>
@@ -1388,14 +1393,20 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
 </div>
 
 <div class="md" id="m-bio" hidden>
-  <div class="dlg wide" role="dialog" aria-modal="true" aria-labelledby="mb-t" style="width:min(760px,100%)">
+  <div class="dlg wide" role="dialog" aria-modal="true" aria-labelledby="mb-t">
     <button class="x" type="button" aria-label="Kapat"><svg aria-hidden="true"><use href="#i-x"/></svg></button>
-    <div class="bio-h"><img loading="lazy" decoding="async" src="img/baris-portre.webp" alt=""><div><span class="lbl" style="color:var(--red)">Hikaye</span><h3 id="mb-t" style="margin:8px 0 0">Barış Kılıçarslan</h3></div></div>
-    <div class="bio">
-      <p>Barış Kılıçarslan, mühendislikle başladığı öğrenim hayatını işletmeyle tamamladı. Bilkent Sport International Genel Merkezi’nde Müşteri İlişkileri ve Halkla İlişkiler bölümlerinde çalıştı, yöneticilik yaptı.</p>
-      <p>Altı yıl boyunca Royal Caribbean International ile Kuzey Amerika, Güney Amerika ve Karayipler’de 24 farklı ülkede müşteri ilişkileri, yiyecek içecek ve satış bölümlerinde çalıştı, yöneticilik yaptı. Miami’de Radiance of the Seas Royal Training Academy’nin eğitimcinin eğitimi programını tamamladı ve eğitmenliğe başladı.</p>
-      <p>Türkiye’ye dönerek uzmanlık alanı olarak sıcak satış, gayrimenkul satışı ve motivasyonu seçti; RE/MAX Türkiye ve İzgören Akademi ile çalışmaya başladı. Ahmet Şerif İzgören’den DVK, Anthony Robbins’ten UPW, Jack Canfield’dan BTS ve NLP’nin kurucusu Richard Bandler’dan Uluslararası NLP Uygulayıcısı eğitimlerini aldı.</p>
-      <p>Türkiye, Kuzey Amerika, Avusturya, Almanya, Yunanistan, Arjantin ve Romanya’da sunumlar yaptı. 1.900 günden fazla eğitim ve seminerle yüzlerce kuruma hizmet verdi, sunumlarına 200.000’in üzerinde kişi katıldı. Satış, motivasyon, gayrimenkul danışmanlığı ve lüks konut satışı üzerine Türkçe ve İngilizce konuşuyor. Programlarında katılımcı memnuniyeti %97,4.</p>
+    <div class="mdg">
+      <div class="mdg-ph bio-ph"><img loading="lazy" decoding="async" src="img/foto/hikaye-oturan.webp" alt="Barış Kılıçarslan" width="800" height="1000"></div>
+      <div class="mdg-c">
+        <span class="lbl">Hikaye</span>
+        <h3 id="mb-t">Barış Kılıçarslan</h3>
+        <div class="bio">
+          <p>Barış Kılıçarslan, mühendislikle başladığı öğrenim hayatını işletmeyle tamamladı. Bilkent Sport International Genel Merkezi’nde Müşteri İlişkileri ve Halkla İlişkiler bölümlerinde çalıştı, yöneticilik yaptı.</p>
+          <p>Altı yıl boyunca Royal Caribbean International ile Kuzey Amerika, Güney Amerika ve Karayipler’de 24 farklı ülkede müşteri ilişkileri, yiyecek içecek ve satış bölümlerinde çalıştı, yöneticilik yaptı. Miami’de Radiance of the Seas Royal Training Academy’nin eğitimcinin eğitimi programını tamamladı ve eğitmenliğe başladı.</p>
+          <p>Türkiye’ye dönerek uzmanlık alanı olarak sıcak satış, gayrimenkul satışı ve motivasyonu seçti; RE/MAX Türkiye ve İzgören Akademi ile çalışmaya başladı. Ahmet Şerif İzgören’den DVK, Anthony Robbins’ten UPW, Jack Canfield’dan BTS ve NLP’nin kurucusu Richard Bandler’dan Uluslararası NLP Uygulayıcısı eğitimlerini aldı.</p>
+          <p>Türkiye, Kuzey Amerika, Avusturya, Almanya, Yunanistan, Arjantin ve Romanya’da sunumlar yaptı. 1.900 günden fazla eğitim ve seminerle yüzlerce kuruma hizmet verdi, sunumlarına 200.000’in üzerinde kişi katıldı. Satış, motivasyon, gayrimenkul danışmanlığı ve lüks konut satışı üzerine Türkçe ve İngilizce konuşuyor. Programlarında katılımcı memnuniyeti %97,4.</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -1611,7 +1622,7 @@ $$('form[data-demo]').forEach(function(f){f.addEventListener('submit',function(e
 var PROGS={
   yk:{k:'Master class',t:'Gayrimenkulde Yüksek Kazanç Prensipleri',img:'img/stage.webp',pos:'36% 26%',d:'Gayrimenkulde bir üst seviyeye geçmenin prensipleri. Portföy almaktan kapanışa, yüksek kazanan danışmanın her gün yaptığı işler.',ul:['Ofisinize özel, salonda','Ekipçe katılım, Türkçe ya da İngilizce','Son uygulama: 25 Eylül 2026, RE/MAX Deniz'],topic:'Gayrimenkul danışmanlığı'},
   up:{k:'Master class · 2. seviye',t:'UPGRADE: Yüksek Kazanç Ustalığı',img:'img/upgrade.webp',pos:'50% 12%',d:'Yüksek Kazanç Prensipleri’nin ikinci seviyesi. Yüksek kazancı tek seferlik başarı olmaktan çıkarıp alışkanlığa çevirir.',ul:['Yüksek Kazanç Prensipleri’nden sonra','Ofisinize özel, salonda','Son uygulama: 26 Eylül 2026, RE/MAX Deniz'],topic:'Gayrimenkul danışmanlığı'},
-  pb:{k:'RE/MAX Collection Club',t:'Lüks Konutta Personal Branding',img:'img/point.webp',pos:'50% 12%',d:'Yeni lüks. Yeni müşteri. Yeni biz. Lüks konutta kişisel marka ve network ile iş potansiyelini büyütmek.',ul:['Lüks konut danışmanları için','Viyana’daki uluslararası Collection sertifika programından','Son uygulama: 23 Eylül 2026, RE/MAX Collection Club'],topic:'Lüks konut satışı'}
+  pb:{k:'RE/MAX Collection Club',t:'Lüks Konutta Personal Branding',img:'img/foto/program-marka.webp',pos:'50% 20%',d:'Yeni lüks. Yeni müşteri. Yeni biz. Lüks konutta kişisel marka ve network ile iş potansiyelini büyütmek.',ul:['Lüks konut danışmanları için','Viyana’daki uluslararası Collection sertifika programından','Son uygulama: 23 Eylül 2026, RE/MAX Collection Club'],topic:'Lüks konut satışı'}
 };
 function fillCk(ul,arr){ul.replaceChildren();arr.forEach(function(x){var li=el('li');li.append(ico('i-k',18),document.createTextNode(x));ul.append(li);});}
 function openProg(k){var p=PROGS[k];if(!p)return;var im=$('#mp-img');im.src=p.img;im.style.objectPosition=p.pos;$('#mp-k').textContent=p.k;$('#mp-t').textContent=p.t;$('#mp-d').textContent=p.d;fillCk($('#mp-ul'),p.ul);$('#mp-cta').setAttribute('data-corp',p.topic);openModal('m-prog');}
@@ -1918,7 +1929,7 @@ function chs(str){return str.split(';').map(function(x){return x.split('|');});}
 var TR=[
   {id:'kb',t:'Kişisel Başarı Prensiplerinde Ustalık',img:'img/hero-armsup.webp',pos:'50% 16%',tn:'#5A0A12',lt:[['s','Kişisel',15],['c','BAŞARI',27],['w','PRENSİPLERİ',4.4]],r:'Hedefini koy, korkunu yönet, özgüvenle sahaya çık.',
    ch:chs('KB01|Giriş;KB02|Kişisel Motivasyon, Kişisel İlerleme;KB03|İçsel Hedef Belirleme Sanatı 1;KB04|İçsel Hedef Belirleme Sanatı 2;KB05|Kişisel Gelişim Metodolojilerinin Önemi;KB06|Özgüven Gelişimi;KB07|3B Gelişim;KB08|Rahatlık Bölgesi Gelişimi;KB09|Korku Yönetimi Gelişimi;KB10|Geri Bildirimde Gelişmek;KB11|Çevre Yönetiminde Gelişmek;KB14|Kişisel Dönüşüm: Mantalite Eğitimleri;KB15|İki Çeşit Mantalite;KB16|Mantalitenin Yapı Taşları: Başarı İnançları;KB17|İnanç Değişiminin 5 Adımı')},
-  {id:'mb',t:'Kişisel Marka ve Müşteri Bulmada Ustalık',img:'img/point.webp',pos:'50% 10%',tn:'#0B1E5C',lt:[['s','Kişisel Marka ve',10.5],['c','MÜŞTERİ',23],['w','BULMA USTALIĞI',4.2]],r:'Müşteri havuzunu büyüt, adayları randevuya çevir.',
+  {id:'mb',t:'Kişisel Marka ve Müşteri Bulmada Ustalık',img:'img/foto/kapak-marka.webp',pos:'50% 12%',tn:'#0B1E5C',lt:[['s','Kişisel Marka ve',10.5],['c','MÜŞTERİ',23],['w','BULMA USTALIĞI',4.2]],r:'Müşteri havuzunu büyüt, adayları randevuya çevir.',
    ch:chs('MB01|Geniş Müşteri Havuzu Oluşturmanın Önemi;MB02|Alıcı ve Satıcı Tipleri: Kolay ve Zor Müşteri;MB03|Geniş Müşteri Havuzu Oluşturmanın 2 Yöntemi;KP01|Kişisel Markamızın 4 K’sı;KP02|Müşteri Bulma Kaynakları;KP03|Kişisel Pazarlamada Tanıtımlar ve Sunulan Değerler;KP04-01|Etki Çevresi Kaynağı;KP04-02|Etki Çevresi: Değer Sunarken Dengeyi Yakalamak;SM01|Sosyal Medyada Konumlanma;KP05|Eski Müşterilerimiz;KP06|Dernekler ve Kulüpler;KP07|Yeni İnsanlarla Tanışmak;RD01|Adayları Randevuya Çevirmek İçin İlk Temas Prensipleri;RD02|Randevuya Çevirmede Başarının Mental Sırları')},
   {id:'dd',t:'Dolu Danışman Olmada Ustalık',img:'img/collection.webp',pos:'50% 12%',tn:'#4A3205',lt:[['s','Dolu',16],['c','DANIŞMAN',20],['w','OLMADA USTALIK',4.2]],r:'Portföy sunumuna hazır git, ilk görüşmede fark yarat.',
    ch:chs('D01|Portföy Sunumu Hazırlıkları;D02|Ön Portföy Paketi;D02-01|Rakip Pazar Analizi;D04|Raporlama ve İletişim Planı')},
@@ -1930,11 +1941,11 @@ var TR=[
    ch:chs('İU 01|İtirazlarda Ustalığın Temeli;İU 02|İtirazları Yönetmenin 3 Prensibi;İU 03|Değerde Güçlü Olmak;İU 04|Duruşta Güçlü Olmak;İU 05|Diyaloglarda Güçlü Olmak;İU 06|Hizmet Bedeli İçin Güçlü Diyalog Yöntemleri;İU 07|Gayrimenkul Danışmanlığında 2 Farklı Rekabet;İU 08|“Düşünmek İstiyoruz” İtirazı;İU 09|Sözleşme İtirazlarında Ustalık;İU 10|Koçluk Soruları')},
   {id:'au',t:'Alıcılarda Ustalık',img:'img/banner.webp',pos:'21% 46%',tn:'#0D2A1A',lt:[['s','Alıcılarda',14],['c','USTALIK',23]],r:'Alıcıyı doğru analiz et, teklife ve sonuca ulaştır.',
    ch:chs('AU 01|Alıcılara Giriş ve Alıcı Deneyimi Süreci;AU 02|Alıcı Tipleri ve Alıcılarda Öncelik Yönetimi;AU 03|Alıcı Analizinde Ustalık;AU 04|Alıcı Telefon Görüşmesinde Ustalık;AU 05|Alıcılarda İlk Yüz Yüze Görüşmede Ustalık;AU 06|Alıcı Ön Sunumunda Ustalık;AU 07|Yer Göstermelerde Ustalık;AU 08|Teklif Sürecinde Ustalık;AU 09|Koçluk Soruları ve Hareket Planı')},
-  {id:'dfi',t:'Doğru Fiyatlı Portföy Almada Ustalık',img:'img/baris-portre.webp',pos:'50% 40%',tn:'#08153A',lt:[['s','Doğru',16],['c','FİYAT',28],['w','PORTFÖY ALMADA USTALIK',3.4]],r:'Doğru fiyatla sözleşme al, satılan portföy topla.',
+  {id:'dfi',t:'Doğru Fiyatlı Portföy Almada Ustalık',img:'img/foto/kapak-dogru-fiyat.webp',pos:'50% 15%',tn:'#08153A',lt:[['s','Doğru',16],['c','FİYAT',28],['w','PORTFÖY ALMADA USTALIK',3.4]],r:'Doğru fiyatla sözleşme al, satılan portföy topla.',
    ch:chs('DFI 01|Doğru Fiyata İknada Ustalık;DFI 02|Fiyatı Etkileyen Alıcı ve Satıcı Pazarı;DFI 03|Sebep Sonuç İlişkisi;DFI 04|Fiyatı Etkileyen Faktörler;DFI 05|Fiyatı Belirlemede Ustalık;DFI 06|Alternatif Rakip Pazar Analizi Yöntemleri;DFI 07|Fiyat Sunumunda Ustalık;DFI 08|Fiyat Karşılamada Ustalık;DFI 09|“Masrafımız Çok” İtirazı;DFI 10|“Başkaları Daha Yükseğe Satarız Dedi” İtirazı;DFI 11|“Vaktimiz Var, Biraz Yüksek Fiyattan Deneyelim” İtirazı;DFI 12|Pazarlık Payı İtirazı;DFI 13|“Ne Kadar Sürede Satılır?” İtirazı;DFI 14|Fiyat Düzeltme Stratejileri;DFI 15|Fiyatı Kabullenmenin Psikolojik Yolculuğu;DFI 16|Fiyata İknada En Etkili Teknik;DFI 17|Hareket Planı')},
   {id:'cl',t:'İşlem Kapanışta Ustalık',img:'img/roportaj-3.webp',pos:'16% 50%',tn:'#3B2405',lt:[['s','İşlem',16],['c','KAPANIŞ',23],['w','USTALIK',4.6]],r:'Kapanışı ilk görüşmeden kur, işlemi sonuca bağla.',
    ch:chs('CLOSING 01|Kapanış Çizgisi;CLOSING 02|Kapanışta Ustalık Mantalitesi;CLOSING 03|Üç Farklı Kapanış;CLOSING 04|Kapanış Açılışla Başlar;CLOSING 05|Kapanış Süreçle Devam Eder;CLOSING 06|Taktiksel Empatide Rüya ve Kabus Sınırlar;CLOSING 07|Mesaj Ustası ve Kapanış Ustası;CLOSING 08|Teklif ve Kontra Teklif Yönetimi;CLOSING 09|Alternatif Kapanış Teknikleri;CLOSING 10|Baskı Kapanışı, Geri Bildirim Kapanışı;CLOSING 11|Koçluk Soruları, Hareket Planı')},
-  {id:'byu',t:'Beyin Yönetiminde Ustalık',img:'img/baris-boy.webp',cut:true,tn:'#000',lt:[['s','Beyin',16],['c','YÖNETİMİ',20],['w','USTALIK',4.6]],r:'Dikkatini koru, gününü yönet, üretkenliğini artır.',
+  {id:'byu',t:'Beyin Yönetiminde Ustalık',img:'img/foto/kapak-beyin.webp',pos:'50% 15%',tn:'#000',lt:[['s','Beyin',16],['c','YÖNETİMİ',20],['w','USTALIK',4.6]],r:'Dikkatini koru, gününü yönet, üretkenliğini artır.',
    ch:chs('BYU 01|Beynimizi Keşfediyoruz;BYU 02|Yeni Dünyanın Dijital Rahatsızlıkları ve Dikkat Dağıtıcıları;BYU 03|Üretkenliğin 4 Ana Kuralı;BYU 04|Süper Güçlerimiz ve Kriptonitlerimiz;BYU 05|Sıradışı Üretkenlik İçin Yap, Vazgeç, Delege Et Modeli;BYU 06|Üretkenlik Planımda Sabah ve Akşam Rutinleri;BYU 07|Beynimizi Yönetme Uygulamaları ve Formları;BYU 08|Koçluk Soruları')}
 ];
 function pad2(n){return String(n).padStart(2,'0');}
@@ -2034,7 +2045,7 @@ if(!('IntersectionObserver' in window)){D.classList.remove('rv-on');return;}
 var A=function(q,r){return Array.prototype.slice.call((r||document).querySelectorAll(q));};
 var secs=A('main > section.sec, main > section.fin');
 function split(h){if(h.children.length)return false;var ws=h.textContent.trim().split(/\s+/);h.textContent='';ws.forEach(function(w,i){var o=document.createElement('span'),n=document.createElement('span');o.className='w';n.textContent=w;n.style.setProperty('--wi',i);o.appendChild(n);h.appendChild(o);if(i<ws.length-1)h.appendChild(document.createTextNode(' '));});return true;}
-var SEL='.h2,.fin .h1,.h3,.lbl,.ak-mk,.ai-ad,.ai-alt,.lead,.ab-ph,.st,.ab-lg,.ym-s,.ym-sahne,.kc,.ac,.cs,.plan,.plan-n,.ev,.cr,.evl-g,.ts-top,.ts-fig,.ts-ph,.ro-c,.vsl,.shop .pd,.fin-ph,.fin-t .hs-cta';
+var SEL='.h2,.fin .h1,.h3,.lbl,.ak-mk,.ai-ad,.ai-alt,.ai-fo,.lead,.ab-ph,.st,.ab-lg,.ym-s,.ym-sahne,.kc,.ac,.cs,.plan,.plan-n,.ev,.cr,.evl-g,.ts-top,.ts-fig,.ts-ph,.ro-c,.vsl,.shop .pd,.fin-ph,.fin-t .hs-cta';
 var list=[];secs.forEach(function(sec){A(SEL,sec).forEach(function(e){if(list.indexOf(e)<0)list.push(e);});});
 list=list.filter(function(e){for(var p=e.parentElement;p;p=p.parentElement){if(list.indexOf(p)>-1)return false;}return true;});
 list.forEach(function(e){if((e.classList.contains('h2')||e.classList.contains('h1'))&&split(e))e.classList.add('rv-w');e.classList.add('rv');});
