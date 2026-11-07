@@ -317,6 +317,7 @@ def main():
         a, n = re.subn(r'(<em class="pd-p" data-u="' + u['kod'] + r'">)(.*?)(</em>)', lambda m: m.group(1) + esc(fiyat_metni(u)) + m.group(3), a)
         if n != 1:
             sys.exit(f'index.html: {u["kod"]} fiyat yeri {n} kez bulundu')
+        a = re.sub(r'(<b class="vsl-fy" data-u="' + u['kod'] + r'">)(.*?)(</b>)', lambda m: m.group(1) + esc(fiyat_metni(u)) + m.group(3), a)
     ana.write_text(a, encoding='utf-8')
 
     # Sunucunun fiyat listesi

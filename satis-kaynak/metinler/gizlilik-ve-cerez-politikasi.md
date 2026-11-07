@@ -22,6 +22,8 @@ Kartla yapılan ödemeler, lisanslı ödeme kuruluşunun güvenli ödeme sayfas�
 - **Açılış tercihi (oturum depolaması):** Açılış animasyonunun aynı ziyarette tekrar gösterilmemesi için. Tarayıcı kapanınca silinir.
 - **Akademi oturumu (yerel depolama):** Masterclass Akademi’ye giriş yaptığınızda oturumunuzun açık kalması için. Çıkış yaptığınızda silinir.
 
+Sitedeki videolar Vimeo üzerinden, izleme kapalı (do not track) olarak oynatılır; video oynatıcısı yalnızca videoyu başlattığınızda yüklenir.
+
 Ödeme sırasında açılan ödeme kuruluşu sayfası güvenlik amacıyla kendi çerezlerini kullanabilir; bu çerezler ilgili kuruluşun politikasına tabidir. Tarayıcınızın ayarlarından çerezleri silebilir ya da engelleyebilirsiniz; zorunlu kayıtları engellemeniz durumunda sitenin bazı bölümleri çalışmayabilir.
 
 Sitede ileride ölçüm ya da pazarlama amaçlı çerez kullanılırsa bu çerezler yalnızca onayınızla çalıştırılır ve bu politika güncellenir.
