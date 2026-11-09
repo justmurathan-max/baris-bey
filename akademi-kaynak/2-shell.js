@@ -158,7 +158,7 @@ function shell(){
   if(r==='merkez')org.append(h('b',null,'Akademi merkezi'),h('span',null,OFFS.filter(o=>o.st==='aktif').length+' aktif ofis'));
   else{
     org.append(h('b',null,offName()),h('span',null,r==='broker'?'Broker paneli':(S.asBroker?'Broker, mentor görevinde':'Mentor paneli')));
-    if(r==='broker')org.append(btn('btn-ow btn-xs',[ic('swap'),'Mentor görevini üstlen'],()=>{S.asBroker=true;nav('mentor/panel');}));
+    if(r==='broker'&&mentorYok())org.append(btn('btn-ow btn-xs',[ic('swap'),'Mentor görevini üstlen'],()=>{S.asBroker=true;nav('mentor/panel');}));
     if(r==='mentor'&&S.asBroker)org.append(btn('btn-ow btn-xs',[ic('swap'),'Broker paneline dön'],()=>{S.asBroker=false;nav('broker/ozet');}));
   }
   $('#nav').replaceChildren(...NAV[r].map(([k,l,i])=>{const cur=S.page===k||(k==='egitimler'&&S.page==='egitim');const a=h('a',{href:'#'+r+'/'+k,'aria-current':cur?'page':null},ic(i),l);const n=badge(k);if(n)a.append(h('span',{class:'n','aria-label':n+' bekleyen'},String(n)));return a;}));
@@ -190,7 +190,7 @@ function showLogin(){
     [['mentor','Mentor',PPL.mentor.n+', '+OFF.n,'users'],['broker','Broker',PPL.broker.n+', aynı ofis','building'],['merkez','Merkez yöneticisi',PPL.merkez.n+', bütün ofisler','shield']].forEach(([k,l,s,i])=>dm.append(h('button',{class:'rb',type:'button',onclick:()=>{S.asBroker=false;nav(k+'/'+NAV[k][0][0]);}},h('span',{class:'ri'},ic(i)),h('span',{class:'t'},h('b',null,l+' olarak gir'),h('span',null,s)),ic('chev'))));
   }
 }
-$('#lgForm').addEventListener('submit',e=>{e.preventDefault();if(SB){sendLink($('#lgMail').value.trim());return;}const m=$('#lgMail').value.toLocaleLowerCase('tr');const r=/broker/.test(m)?'broker':/merkez|akademi/.test(m)?'merkez':'mentor';S.asBroker=false;nav(r+'/'+NAV[r][0][0]);});
+$('#lgForm').addEventListener('submit',e=>{e.preventDefault();if(SB){if(!$('#lgKod').hidden&&$('#lgCode').value.trim()){kodlaGir();return;}sendLink($('#lgMail').value.trim());return;}const m=$('#lgMail').value.toLocaleLowerCase('tr');const r=/broker/.test(m)?'broker':/merkez|akademi/.test(m)?'merkez':'mentor';S.asBroker=false;nav(r+'/'+NAV[r][0][0]);});
 
 /* =================== KATMANLAR =================== */
 let lastFocus=null,drOpen=false,mdOpen=false,sesOpen=false,popEl=null;

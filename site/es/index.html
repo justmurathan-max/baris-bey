@@ -1128,7 +1128,7 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
         <p>Un curso centrado en hacer que el cliente compre en lugar de venderle: Vender el resultado, Véndete primero a ti mismo, Ethos, Logos, Pathos y Venderte a ti mismo. Mira primero la presentación de 17 minutos y luego decide.</p>
         <ul class="ck"><li><svg aria-hidden="true"><use href="#i-k"/></svg>9,5 horas de vídeo y 9,5 horas de audio</li><li><svg aria-hidden="true"><use href="#i-k"/></svg>13 vídeos de coaching y apuntes en PDF</li><li><svg aria-hidden="true"><use href="#i-k"/></svg>Libro firmado, enviado en 5 días laborables</li></ul>
         <p class="vsl-f"><b class="vsl-fy" data-u="ss">9.797 TL</b><small>IVA incluido</small></p>
-        <div class="vsl-cta"><a class="btn btn-k" href="../odeme.html?urun=ss">Comprar</a><button class="btn btn-ok" type="button" data-open="m-apply">Empezar en equipo</button></div>
+        <div class="vsl-cta"><a class="btn btn-k" href="mailto:info@bariskilicarslan.com?subject=Pedido%3A%20Sat%C4%B1%C5%9F%C4%B1n%20%C5%9Eifreleri">Pedir por correo</a><button class="btn btn-ok" type="button" data-open="m-apply">Empezar en equipo</button></div>
       </div>
     </div>
     <div class="kt-h">
@@ -1692,11 +1692,11 @@ function openProd(k){
   if(p.q)p.q.forEach(function(x){var f=el('figure');var fc=el('figcaption');fc.append(el('b',null,x[1]),document.createTextNode(x[2]));f.append(el('blockquote',null,'“'+x[0]+'”'),fc);q.append(f);});
   var f=FIYAT[k],pf=$('#pr-f'),c1=$('#pr-cta');pf.hidden=!!p.apply;pf.replaceChildren();
   if(!p.apply){if(f){pf.append(f.t);pf.append(el('small',null,'IVA incluido'));}else pf.append('Pronto a la venta');}
-  c1.textContent=p.apply||f?p.c1:'Pronto a la venta';c1.disabled=!p.apply&&!f;
+  c1.textContent=p.apply?p.c1:f?'Pedir por correo':'Pronto a la venta';c1.disabled=!p.apply&&!f;
   var c2=$('#pr-cta2');c2.hidden=!p.c2;if(p.c2)c2.textContent=p.c2;
   openModal('m-prod');
 }
-$('#pr-cta').addEventListener('click',function(){if(PROD[curProd]&&PROD[curProd].apply){openModal('m-apply');return;}if(FIYAT[curProd])location.href='../odeme.html?urun='+encodeURIComponent(curProd);});
+$('#pr-cta').addEventListener('click',function(){if(PROD[curProd]&&PROD[curProd].apply){openModal('m-apply');return;}if(FIYAT[curProd])location.href='mailto:info@bariskilicarslan.com?subject='+encodeURIComponent('Pedido: '+((PROD[curProd]&&PROD[curProd].t)||curProd));});
 $('#pr-cta2').addEventListener('click',function(){if(curProd==='akademi'){closeModal($('#m-prod'),true);goTo('akademi');return;}openModal('m-apply');});
 
 document.addEventListener('click',function(e){

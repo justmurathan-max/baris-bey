@@ -15,8 +15,9 @@ VIEWS.broker.ozet=()=>{
     pn('Yorumunuzu bekleyen raporlar',ac.length?h('span',{class:'c'},String(ac.length)):null,ac.length?h('ul',{class:'ls'},ac.map(c=>h('li',null,av(COM[c]),h('div',{class:'t'},h('b',null,COM[c].n),h('span',null,PPL.mentor.n+' paylaştı, '+ago(REP[c].sh))),btn('btn-k btn-xs','Raporu aç',()=>openReport(c))))):empty('Bekleyen rapor yok','Mentor bir rapor paylaştığında burada görünür.')),
     groupsPanel());
   const right=h('div',{class:'st'},pn('Üyelik',btn('btn-g btn-xs','Ayrıntı',()=>go('uyelik')),membershipMini()),pn('Yaklaşan oturumlar',null,upcomingList()),
-    pn('Mentor',null,h('div',{class:'st-s'},h('div',{class:'who'},h('span',{class:'av k'},ini(PPL.mentor.n)),h('div',{class:'t'},h('b',null,PPL.mentor.n),h('span',null,'Akademiyi ofiste yürütüyor'))),
-      h('p',{class:'sm mu',style:'margin:0'},'Gerekirse mentor görevini siz de üstlenebilirsiniz; aynı panelden yönetirsiniz.'),h('div',null,btn('btn-o btn-s',[ic('swap'),'Mentor görevini üstlen'],()=>{S.asBroker=true;nav('mentor/panel');})))));
+    pn('Mentor',null,mentorYok()
+      ?h('div',{class:'st-s'},h('p',{class:'sm mu',style:'margin:0'},'Ofisinizde mentor yok; eğitimleri siz yürütürsünüz. Oturum, katılım ve koçluk mentor ekranlarında.'),h('div',null,btn('btn-o btn-s',[ic('swap'),'Mentor görevini üstlen'],()=>{S.asBroker=true;nav('mentor/panel');})))
+      :h('div',{class:'st-s'},h('div',{class:'who'},h('span',{class:'av k'},ini(PPL.mentor.n)),h('div',{class:'t'},h('b',null,PPL.mentor.n),h('span',null,'Akademiyi ofiste yürütüyor'))))));
   root.append(h('div',{class:'g2'},left,right));
   return root;
 };
@@ -30,7 +31,7 @@ VIEWS.broker.uyelik=()=>{
       h('p',{class:'sm mu',style:'margin:0'},'Yıl içinde danışman sayısı kademeyi aşarsa değişiklik yenilemede ele alınır. Yeni danışmanlar üyeliğe dahil olur; ayrılanların geçmişi saklanır.'))),
       pn('Üyelikte neler var',null,h('ul',{class:'ls'},[['book','Akademideki bütün eğitimler, aktif üyelikte tekrar tekrar grupla'],['doc','Her eğitimde üç belge'],['users','Mentor paneli, gelişim raporu ve üç sertifika'],['spark','Barış AI ile grup provası'],['key','Klasik Eğitimler, bonus olarak']].map(([i,txt])=>h('li',null,h('span',{class:'li-i'},ic(i)),h('div',{class:'t'},h('span',{style:'color:var(--tx);font-size:14.5px'},txt))))))),
     h('div',{class:'st'},pn('Yenileme',null,h('div',{class:'st-s'},h('ul',{class:'ls'},rem.map(x=>h('li',null,dateBadge(x.d),h('div',{class:'t'},h('b',null,x.n+' gün kala hatırlatma'),h('span',null,'E-posta: broker ve mentor')),df(x.d)<0?chip('ok','tick','Gönderildi'):chip('ln',null,'Planlandı')))),
-      h('p',{class:'sm mu',style:'margin:0'},'İkinci yıl için yenileme avantajı, yenileme döneminde bildirilir.'),h('div',null,btn('btn-k btn-s','Yenileme görüşmesi iste',()=>toast('Talebiniz akademi merkezine iletildi.'))))),
+      h('p',{class:'sm mu',style:'margin:0'},'İkinci yıl için yenileme avantajı, yenileme döneminde bildirilir.'),h('div',null,btn('btn-k btn-s','Yenileme görüşmesi iste',yenilemeIste)))),
       pn('Ek eğitimler',null,h('div',{class:'st-s'},h('p',{class:'sm mu',style:'margin:0'},'Gelişim ve Kazanç Mağazası’ndaki kısa eğitimler akademi üyelerine avantajlı fiyatla sunulur.'),h('div',null,h('a',{class:'btn btn-o btn-s',href:'index.html#magaza'},'Mağazaya git')))))));
   return root;
 };
@@ -85,23 +86,26 @@ function openOffice(id){
   else foot.push(btn('btn-o btn-s',[ic('refresh'),'Üyeliği bir yıl uzat'],()=>{if(realM()){closeDrawer();extendReal(o);return;}o.end=plus(o.end,365);if(o.id==='kdk')OFF.end=o.end;closeDrawer();toast(o.n+' üyeliği '+ddy(o.end)+' tarihine uzatıldı.');rerender();}));
   drawer({t:o.n,s:o.st==='davet'?'Davet '+ago(o.inv)+' gönderildi.':'Aktif üyelik',body,foot});
 }
-function openNewOffice(){
-  const v={n:'',city:'İstanbul',tier:'1–25',start:iso(T0),br:'',brn:'',mn:'',mnn:'',self:false};let busy=false;
+// on: başvurudan açılırsa dolu gelen alanlar ve başvurunun kendisi (ofis açılınca işlendi olur)
+function openNewOffice(on){
+  on=on||{};
+  const v={n:on.n||'',city:on.city||'İstanbul',tier:on.tier||'1–25',start:iso(T0),br:on.br||'',brn:on.brn||'',mn:'',mnn:'',self:false};let busy=false;
+  const bitti=()=>{if(on.req&&on.req.status==='yeni')setReq(on.req,'islendi');};
   const body=h('div',{class:'st'},
-    h('div',{class:'fld'},h('label',{for:'noN'},'Ofis adı'),h('input',{id:'noN',type:'text',placeholder:'RE/MAX ...',autofocus:true,oninput:e=>{v.n=e.target.value;}})),
+    h('div',{class:'fld'},h('label',{for:'noN'},'Ofis adı'),h('input',{id:'noN',type:'text',placeholder:'RE/MAX ...',value:v.n,autofocus:true,oninput:e=>{v.n=e.target.value;}})),
     h('div',{class:'fr'},h('div',{class:'fld'},h('label',{for:'noC'},'Şehir'),h('input',{id:'noC',type:'text',value:v.city,oninput:e=>{v.city=e.target.value;}})),h('div',{class:'fld'},h('label',{for:'noT'},'Kademe'),sel('noT',TIERS.map(x=>[x,x+' danışman']),v.tier,x=>{v.tier=x;}))),
     h('div',{class:'fld'},h('label',{for:'noS'},'Üyelik başlangıcı'),h('input',{id:'noS',type:'date',value:v.start,onchange:e=>{v.start=e.target.value;}}),h('span',{class:'hint'},'Satış görüşme, sözleşme ve ödemeyle yapılır; üyelik 12 ay sürer.')),
-    h('div',{class:'fr'},h('div',{class:'fld'},h('label',{for:'noBn'},'Broker adı soyadı'),h('input',{id:'noBn',type:'text',autocomplete:'off',oninput:e=>{v.brn=e.target.value;}})),h('div',{class:'fld'},h('label',{for:'noB'},'Broker e-postası'),h('input',{id:'noB',type:'email',placeholder:'broker@ofis.com',oninput:e=>{v.br=e.target.value;}}))),
+    h('div',{class:'fr'},h('div',{class:'fld'},h('label',{for:'noBn'},'Broker adı soyadı'),h('input',{id:'noBn',type:'text',autocomplete:'off',value:v.brn,oninput:e=>{v.brn=e.target.value;}})),h('div',{class:'fld'},h('label',{for:'noB'},'Broker e-postası'),h('input',{id:'noB',type:'email',placeholder:'broker@ofis.com',value:v.br,oninput:e=>{v.br=e.target.value;}}))),
     h('div',{class:'fr'},h('div',{class:'fld'},h('label',{for:'noMn'},'Mentor adı soyadı'),h('input',{id:'noMn',type:'text',autocomplete:'off',oninput:e=>{v.mnn=e.target.value;}})),h('div',{class:'fld'},h('label',{for:'noM'},'Mentor e-postası'),h('input',{id:'noM',type:'email',placeholder:'mentor@ofis.com',oninput:e=>{v.mn=e.target.value;}}))),
     h('div',{class:'fld'},h('label',{class:'oc',style:'margin-top:4px'},h('input',{type:'checkbox',onchange:e=>{v.self=e.target.checked;$('#noM').disabled=v.self;$('#noMn').disabled=v.self;}}),h('span',{class:'t'},h('b',null,'Mentor görevini broker üstlenecek'),h('span',null,'Broker iki rolü tek panelden yönetir.')))));
   drawer({t:'Yeni ofis aç',s:'Üyelik açılınca broker ve mentora davet e-postası gider.',body,foot:[btn('btn-o','Vazgeç',closeDrawer),btn('btn-k','Üyeliği aç ve davet gönder',()=>{
     if(v.n.trim().length<3){toast('Ofis adını yazın.');$('#noN').focus();return;}
     if(!/^\S+@\S+\.\S+$/.test(v.br)){toast('Broker e-postasını yazın.');$('#noB').focus();return;}
     if(!v.self&&v.mn.trim()&&!/^\S+@\S+\.\S+$/.test(v.mn.trim())){toast('Mentor e-postasını kontrol edin.');$('#noM').focus();return;}
-    if(realM()){if(busy)return;busy=true;const b=$('#dr .dr-f .btn-k');if(b){b.disabled=true;b.textContent='Açılıyor…';}createOfficeReal(v).then(ok=>{busy=false;if(b){b.disabled=false;b.textContent='Üyeliği aç ve davet gönder';}if(ok){closeDrawer();if(S.page==='ofisler')rerender();else go('ofisler');}});return;}
+    if(realM()){if(busy)return;busy=true;const b=$('#dr .dr-f .btn-k');if(b){b.disabled=true;b.textContent='Açılıyor…';}createOfficeReal(v).then(ok=>{busy=false;if(b){b.disabled=false;b.textContent='Üyeliği aç ve davet gönder';}if(ok){closeDrawer();bitti();if(S.page==='ofisler')rerender();else go('ofisler');}});return;}
     const s=fromIso(v.start||iso(T0));
     OFFS.push({id:'o'+Date.now().toString(36),n:v.n.trim(),city:v.city.trim()||'—',br:null,mn:null,tier:v.tier,cons:0,start:s,end:plus(s,365),ses:0,st:'davet',comp:0,cert:0,inv:new Date(T0)});
-    closeDrawer();toast('Üyelik açıldı; davetler gönderildi.');if(S.page==='ofisler')rerender();else go('ofisler');})]});
+    closeDrawer();bitti();toast('Üyelik açıldı; davetler gönderildi.');if(S.page==='ofisler')rerender();else go('ofisler');})]});
 }
 const RQK={kurumsal:'Kurumsal teklif',ofis:'Ofis başvurusu',davetiye:'Davetiye',bulten:'Bülten',etkinlik:'Etkinlik',iletisim:'İletişim'};
 let rqF='yeni';
@@ -113,14 +117,16 @@ VIEWS.merkez.basvurular=()=>{
   if(!L.length){root.append(h('section',{class:'pn'},empty(rqF==='yeni'?'Yeni başvuru yok':'Kayıt yok')));return root;}
   const tb=h('tbody',null,L.map(r=>h('tr',null,
     h('td',{'data-l':'Tarih'},dnum(r.at)),
-    h('td',{'data-l':'Tür'},RQK[r.kind]||r.kind),
+    h('td',{'data-l':'Tür'},r.tur==='yenileme'?'Yenileme talebi':RQK[r.kind]||r.kind),
     h('td',null,h('div',{class:'t'},h('b',null,r.name||r.email||'—'),r.company?h('span',{class:'sm mu',style:'display:block'},r.company+(r.city?', '+r.city:'')):null)),
     h('td',{'data-l':'İletişim'},[r.phone,r.email].filter(Boolean).join(' · ')||'—'),
     h('td',{'data-l':'Ayrıntı',class:'sm'},[r.dil&&(({en:'İngilizce',es:'İspanyolca',de:'Almanca'})[r.dil]||r.dil)+' sayfadan',r.topic,r.size,r.mode,r.message].filter(Boolean).join(' · ')||'—'),
-    h('td',{class:'r'},r.status==='yeni'?btn('btn-k btn-xs','İşlendi',()=>setReq(r,'islendi')):btn('btn-g btn-xs','Yeniye al',()=>setReq(r,'yeni'))))));
+    h('td',{class:'r'},r.status==='yeni'?h('div',{class:'acts'},r.kind==='ofis'?btn('btn-o btn-xs','Ofis aç',()=>openNewOffice({n:r.company||'',city:r.city||'',brn:r.name||'',br:r.email||'',tier:kademe(r.size),req:r})):null,btn('btn-k btn-xs','İşlendi',()=>setReq(r,'islendi'))):btn('btn-g btn-xs','Yeniye al',()=>setReq(r,'yeni'))))));
   root.append(h('section',{class:'pn'},h('div',{class:'tw'},h('table',{class:'tbl rsp'},h('thead',null,h('tr',null,['Tarih','Tür','Kişi','İletişim','Ayrıntı',''].map(x=>h('th',null,x)))),tb))));
   return root;
 };
+// Başvurudaki danışman sayısından üyelik kademesi
+function kademe(x){const n=parseInt(String(x||'').replace(/[^0-9]+/g,' ').trim().split(' ')[0],10);return !n?'1–25':n<=25?'1–25':n<=75?'26–75':n<=99?'76–99':'100+';}
 async function setReq(r,st){
   if(realM()){const{error}=await SB.from('site_requests').update({status:st}).eq('id',r.id);if(error){toast('Güncellenemedi; tekrar deneyin.');return;}}
   r.status=st;toast(st==='islendi'?'İşlendi olarak işaretlendi.':'Yeni olarak işaretlendi.');rerender();

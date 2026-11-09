@@ -34,7 +34,7 @@ async function loadOffice(){
   const q=t=>SB.from(t).select('*').eq('office_id',oid);
   const R=await Promise.all([
     SB.from('offices').select('id,name,city,tier,membership_start,membership_end').eq('id',oid).maybeSingle(),
-    SB.from('profiles').select('id,role,full_name,email').eq('office_id',oid),
+    SB.from('profiles').select('id,role,full_name,email,active').eq('office_id',oid),
     q('groups'),q('consultants'),q('runs'),q('run_members'),q('attendance'),q('makeups'),q('coaching'),
     q('run_activities'),q('activity_results'),q('private_scores'),q('needs_assessments'),
     SB.from('business_results').select('*').eq('office_id',oid).eq('period',monthKey()),
@@ -45,7 +45,8 @@ async function loadOffice(){
   if(R.length<18||R.some(r=>r.error)){ME.dataOk=false;return false;}
   const [o,pf,gr,co,ru,rm,at,mk,cc,ra,ar,ps,na,br,rp,ce,pv,tp]=R.map(r=>r.data);
   if(o)Object.assign(OFF,{id:o.id,n:o.name,city:o.city||'',tier:o.tier||'1–25',start:dOf(o.membership_start),end:dOf(o.membership_end)});
-  const nm=p=>p?(p.full_name||p.email):'—',bk=pf.find(p=>p.role==='broker'),mt=pf.find(p=>p.role==='mentor');
+  const nm=p=>p?(p.full_name||p.email):'—',bk=pf.find(p=>p.role==='broker'),mt=pf.find(p=>p.role==='mentor'&&p.active!==false);
+  OFF.mentor=!!mt;
   PPL.broker.n=nm(bk);PPL.mentor.n=mt?nm(mt):nm(bk);PPL.merkez.n='Akademi merkezi';
   gr.sort((a,b)=>a.sort-b.sort).forEach(g=>{const x={id:g.id,n:g.name,d:g.description||'',c:g.color||'var(--c1)'};GR.push(x);GRM[x.id]=x;});
   co.sort((a,b)=>String(a.created_at).localeCompare(String(b.created_at))).forEach(c=>{const x={id:c.id,n:c.full_name,g:c.group_id,since:dOf(c.joined_on)||new Date(c.created_at),left:dOf(c.left_on)};CO.push(x);COM[x.id]=x;});

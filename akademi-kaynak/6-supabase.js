@@ -20,11 +20,46 @@ async function sendLink(mail){
   lgBusy(false);
   const code=error&&error.code||'',msg=error&&error.message||'';
   // Hesabı olmayan adres için de aynı cevap: kimin kayıtlı olduğu bu ekrandan anlaşılmasın.
-  if(!error||code==='otp_disabled'||code==='signup_disabled'||/signups? not allowed/i.test(msg))
+  if(!error||code==='otp_disabled'||code==='signup_disabled'||/signups? not allowed/i.test(msg)){
     lgMsg('Bu adres akademide kayıtlıysa giriş bağlantısı birkaç dakika içinde e-postanıza gelir. Gelmezse davet e-postasındaki adresi yazdığınızdan emin olun.','ok');
+    const k=$('#lgKod');if(k)k.hidden=false;
+  }
   else if(error.status===429||/rate limit|security purposes/i.test(msg))
     lgMsg('Kısa sürede çok fazla bağlantı istendi. Birkaç dakika sonra tekrar deneyin.','er');
   else lgMsg('Bağlantı gönderilemedi. Biraz sonra tekrar deneyin.','er');
+}
+
+// E-postadaki kodla giriş: bağlantı başka cihazda açılınca da bu cihazdan girilebilsin.
+async function kodlaGir(){
+  const kod=($('#lgCode').value||'').replace(/\s+/g,''),mail=($('#lgMail').value||'').trim();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)){lgMsg('Önce e-posta adresinizi yazın.','er');$('#lgMail').focus();return;}
+  if(!/^\d{6,10}$/.test(kod)){lgMsg('E-postadaki kodu rakamlarıyla yazın.','er');$('#lgCode').focus();return;}
+  const b=$('#lgCodeBtn');b.disabled=true;b.textContent='Kontrol ediliyor…';
+  let data=null,error=null;
+  try{({data,error}=await SB.auth.verifyOtp({email:mail,token:kod,type:'email'}));}catch(e){error=e||{};}
+  b.disabled=false;b.textContent='Kodla gir';
+  if(error||!data||!data.session){
+    const m=error&&error.message||'';
+    lgMsg(error&&(error.status===429||/rate limit|security purposes/i.test(m))
+      ?'Kısa sürede çok fazla deneme yapıldı. Birkaç dakika sonra tekrar deneyin.'
+      :'Kod geçersiz ya da süresi dolmuş. Kodu kontrol edin ya da yeni bağlantı isteyin.','er');
+    $('#lgCode').focus();return;
+  }
+  $('#lgCode').value='';$('#lgKod').hidden=true;lgMsg('');
+  await girisTamam(data.session.user);
+}
+if($('#lgCodeBtn'))$('#lgCodeBtn').addEventListener('click',kodlaGir);
+
+// Giriş tamamlanınca: hesap, bu cihazın oturumu, veriler ve açılış sayfası.
+async function girisTamam(user){
+  if(!await enterReal(user))return false;
+  // Bu cihazın oturumu: başka cihazdan giriş yüzünden kapanmışsa burada durur.
+  if(!await oturumYokla())return false;
+  if(ME.role==='merkez')await loadMerkez();else await loadOffice().catch(()=>false);
+  await Promise.all([loadMateryal(),loadAyar(),ME.role==='merkez'?Promise.all([loadTaslak(),loadOturumlar(),loadKlasik(),loadEkip()]):null]).catch(()=>{});
+  oturumBaslat();
+  const want=CUR.split('/')[0];nav(NAV[want]&&roleOk(want)?CUR:ROLE_HOME[ME.role]);
+  return true;
 }
 
 async function enterReal(user){
@@ -74,16 +109,8 @@ async function boot(){
     try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}
     CUR='';
   }
-  if(session&&session.user){
-    if(await enterReal(session.user)){
-      // Bu cihazın oturumu: başka cihazdan giriş yüzünden kapanmışsa burada durur.
-      if(!await oturumYokla())return;
-      if(ME.role==='merkez')await loadMerkez();else await loadOffice().catch(()=>false);
-      await Promise.all([loadMateryal(),loadAyar(),ME.role==='merkez'?Promise.all([loadTaslak(),loadOturumlar(),loadKlasik(),loadEkip()]):null]).catch(()=>{});
-      oturumBaslat();
-      const want=CUR.split('/')[0];nav(NAV[want]&&roleOk(want)?CUR:ROLE_HOME[ME.role]);
-    }
-  }else if(authHash){showLogin();lgMsg(fail||'Giriş tamamlanamadı. Yeni bağlantı isteyin.','er');}
+  if(session&&session.user)await girisTamam(session.user);
+  else if(authHash){showLogin();lgMsg(fail||'Giriş tamamlanamadı. Yeni bağlantı isteyin.','er');}
   else route();
   SB.auth.onAuthStateChange(ev=>{if(ev==='SIGNED_OUT'){oturumDurdur();if(ME){ME=null;closeAllLayers();nav('');}}});
 }
@@ -123,7 +150,7 @@ async function loadMerkez(){
   OFFS.splice(0,OFFS.length,...list);
   const onm=id=>{const x=o.data.find(r=>r.id===id);return x?x.name:'—';};
   MCERT.splice(0,MCERT.length,...ce.data.map(x=>({no:x.no,n:x.holder_name,o:onm(x.office_id),tr:x.training_id,ty:x.kind,d:fromIso(x.issued_on),rev:!!x.revoked_at})));
-  REQS.splice(0,REQS.length,...rq.data.map(x=>{const m=x.meta||{};return{id:x.id,at:new Date(x.created_at),kind:x.kind,name:x.full_name,company:x.company,city:x.city,phone:x.phone,email:x.email,message:x.message,topic:m.topic,size:m.size,mode:m.mode,dil:m.dil,status:x.status};}));
+  REQS.splice(0,REQS.length,...rq.data.map(x=>{const m=x.meta||{};return{id:x.id,at:new Date(x.created_at),kind:x.kind,name:x.full_name,company:x.company,city:x.city,phone:x.phone,email:x.email,message:x.message,topic:m.topic,size:m.size,mode:m.mode,dil:m.dil,tur:m.tur,status:x.status};}));
   ME.dataOk=true;
   return true;
 }

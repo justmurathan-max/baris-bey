@@ -90,11 +90,16 @@ Fonksiyonlar oturumu kendi kodunda doğrular; panelde "Verify JWT with legacy se
 - Merkez ekibi: merkez yöneticileri listelenir, yeni yönetici `davet` fonksiyonuyla davet edilir, bekleyen davet yeniden gönderilir ya da silinir, başka bir yönetici pasif/etkin yapılır (pasif olanın açık oturumları kapanır; kimse kendi hesabını pasif yapamaz).
 - Eğitim tamamlama (merkezin ofisler listesi): biten, telafi olmayan oturumlarda bütün günlere katılıp koçluğu tamamlayan danışmanların oranı; biten eğitim yoksa "—".
 - Klasik erişimler: hak sahiplerinin listesi; kişi eklenir ya da eski sitenin listesi CSV olarak içe aktarılır (aynı e-posta birleşir). Kişilerin izleyeceği yer ayrıca karara bağlanacak.
+- Giriş: e-postaya giriş bağlantısı gider; bağlantı hangi cihazda açılırsa giriş orada olur. Bağlantı istendikten sonra giriş ekranında "E-postadaki kod" alanı açılır; kod `verifyOtp({type: 'email'})` ile bu cihazda oturum açar. Bunun için Supabase > Authentication > Emails'teki Magic Link şablonuna `{{ .Token }}` eklenmeli (mail servisi kurulurken Türkçe şablonlarla birlikte). Hesabı olmayanlar için giriş ekranında başvuru ve info@ yönlendirmesi var.
+- Brokerın "Yenileme görüşmesi iste" düğmesi `site_requests`'e `kind = 'iletisim'`, `meta.tur = 'yenileme'` kaydı yazar; merkezin Başvurular sayfasında "Yenileme talebi" olarak görünür. Aynı cihazdan bir gün içinde ikinci kez gönderilmez.
+- Başvurular sayfasında ofis başvurusunun "Ofis aç" düğmesi Yeni ofis aç formunu başvurudaki bilgilerle (ofis adı, şehir, broker, danışman sayısına göre kademe) açar; ofis açılınca başvuru işlendi olur.
+- "Mentor görevini üstlen" yalnız etkin mentoru olmayan ofisin brokerında görünür.
+- Oturumda videosu olmayan bölüm (Vimeo'da olmayan ya da merkezin henüz eklemediği tanıtım, koçluk, uygulama videosu) oynatılmaz ve izlendi sayılmaz; sıralı oturumda geçilebilir. Ön izleme yüzdesi yalnız videosu olan bölümlerden hesaplanır.
 
 
 ## Satış ve ödeme
 
-Mağazadaki "Satın al" `odeme.html?urun=<kod>` sayfasını açar. Alıcı bilgileri ve fatura alınır, Ön Bilgilendirme Formu ile Mesafeli Satış Sözleşmesi alıcının bilgileriyle doldurulup onaylatılır, sonra ödeme ödeme kuruluşunun 3D Secure sayfasında alınır. Kart bilgisi siteye ve veritabanına hiç gelmez.
+Mağazadaki "Satın al" `odeme.html?urun=<kod>` sayfasını açar. İngilizce, İspanyolca ve Almanca sayfalarda ödeme sayfası ve sözleşmeler Türkçe olduğu için bunun yerine info@bariskilicarslan.com'a e-postayla sipariş düğmesi çıkar (`dil-kaynak/uret.mjs`, `satinAlYabanci`). Alıcı bilgileri ve fatura alınır, Ön Bilgilendirme Formu ile Mesafeli Satış Sözleşmesi alıcının bilgileriyle doldurulup onaylatılır, sonra ödeme ödeme kuruluşunun 3D Secure sayfasında alınır. Kart bilgisi siteye ve veritabanına hiç gelmez.
 
 ### Metinleri ve fiyatları değiştirmek
 

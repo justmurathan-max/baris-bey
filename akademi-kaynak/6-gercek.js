@@ -313,3 +313,17 @@ async function ekipEtkin(id,on){
   if(error){toast('Değiştirilemedi; tekrar deneyin.',5000);return false;}
   await Promise.all([loadEkip(),loadOturumlar()]);return true;
 }
+
+/* ---------- Broker: üyelik yenileme talebi ---------- */
+// Talep merkezin Başvurular sayfasına düşer. Aynı cihazdan bir gün içinde ikinci kez gönderilmez.
+async function yenilemeIste(){
+  if(!realO()){toast('Talebiniz akademi merkezine iletildi.');return;}
+  const k='yenileme:'+ME.officeId;let son=0;
+  try{son=+localStorage.getItem(k)||0;}catch(e){}
+  if(Date.now()-son<864e5){toast('Talebiniz iletildi; akademi merkezi sizinle görüşecek.');return;}
+  const{error}=await SB.from('site_requests').insert({kind:'iletisim',full_name:ME.name||null,email:ME.email||null,company:OFF.n||null,city:OFF.city||null,
+    message:'Üyelik yenileme görüşmesi istiyor. Üyelik bitişi: '+ddy(OFF.end)+'.',meta:{tur:'yenileme',office_id:ME.officeId,rol:ME.role}});
+  if(error){toast('Talep iletilemedi; tekrar deneyin.');return;}
+  try{localStorage.setItem(k,String(Date.now()));}catch(e){}
+  toast('Talebiniz akademi merkezine iletildi.');
+}

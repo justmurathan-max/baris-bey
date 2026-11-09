@@ -23,11 +23,13 @@ function openSession(runId,mode,trid){
   setTimeout(()=>{const f=el.querySelector('.vid-p')||el.querySelector('.ses-h .icb');if(f)f.focus();},120);
 }
 const inK=k=>SS.F.map((s,i)=>s.k===k?i:-1).filter(i=>i>=0);
-const allIn=k=>inK(k).every(i=>SS.done.has(i));
+const vidVar=i=>vidOk(SS.t,SS.F[i]);
+// Videosu olmayan bölüm geçişi kilitlemez ama izlendi sayılmaz.
+const allIn=k=>inK(k).every(i=>SS.done.has(i)||!vidVar(i));
 function canGo(j){
   if(SS.mode==='prev'||SS.free)return SS.mode==='prev'||SS.range.includes(j);
   const pos=SS.range.indexOf(j);if(pos<0)return false;
-  return SS.range.slice(0,pos).every(i=>SS.done.has(i));
+  return SS.range.slice(0,pos).every(i=>SS.done.has(i)||!vidVar(i));
 }
 function navIdx(dir){
   if(SS.mode==='prev'){const j=SS.idx+dir;return j>=0&&j<SS.F.length?j:-1;}
@@ -53,17 +55,17 @@ function drawSes(){
       seq?chip('dk','clock','Video bitmeden sonraki bölüm açılmaz'):null,
       SS.vfail?h('p',{class:'vid-er sm',role:'status'},SS.vfail===2?'Bu video şu an oynatılamıyor; Vimeo’daki gizlilik ayarına bakın.':'Video oynatıcısı yüklenemedi. Bağlantıyı kontrol edin'+(mode==='ses'?' ya da serbest geçişi açın.':'.')):null);
   }else{
-    const barI=h('i',{style:'width:'+(SS.prog*100)+'%'}),time=h('time',null,fmtT(SS.prog*d)+' / '+fmtT(d));
-    SS.ui={bar:barI,time};
+    // Videosu olmayan bölüm: oynatılacak bir şey yok; geçilebilir, izlendi sayılmaz.
+    SS.ui={bar:null,time:null};clearInterval(sesTimer);SS.playing=false;
+    const neden=st.c?(v?'Bu video Vimeo’da özel; gizlilik ayarı bekleniyor':'Bu bölümün videosu Vimeo’da henüz yok'):'Bu bölümün videosu henüz eklenmedi';
     vid=h('div',{class:'vid',style:'--pos:'+(t.pos||'50% 25%')},h('img',{src:t.img,alt:''}),
-      h('div',{class:'vid-lk'},chip('dk','lock','İndirme kapalı'),seq?chip('dk','clock','Video bitmeden sonraki bölüm açılmaz'):null),
-      SS.justDone?null:h('button',{class:'vid-p'+(SS.playing?' pa':''),type:'button','aria-label':SS.playing?'Duraklat':(done?'Tekrar oynat':'Oynat'),onclick:togglePlay},ic(SS.playing?'pause':'play')),
-      h('div',{class:'vid-tl'},h('div',{class:'vid-k'},STN[st.k],st.c?h('span',null,st.c):null,done&&!SS.playing?h('span',{class:'ok-t'},ic('tick'),'İzlendi'):null,!vm?h('span',{class:'vst'},st.c?(v?'Vimeo’da özel; gizlilik ayarı bekleniyor':'Video Vimeo’da henüz yok'):'Video henüz eklenmedi'):null),h('h2',null,st.a),h('div',{class:'vid-r'},h('div',{class:'bar'},barI),time)),
-      dn);
+      h('div',{class:'vid-yok',role:'status'},h('b',null,neden),h('span',null,mode==='ses'?'Bu bölümü geçebilirsiniz; izlendi sayılmaz.':'Video eklenince burada oynar.'),
+        nx>=0?btn('btn-w btn-s',[mode==='ses'?'Bölümü geç':'Sonraki bölüm',ic('chev')],()=>goStep(nx)):null),
+      h('div',{class:'vid-tl'},h('div',{class:'vid-k'},STN[st.k],st.c?h('span',null,st.c):null,h('span',{class:'vst'},'Video yok')),h('h2',null,st.a)));
   }
   const ctl=h('div',{class:'ses-ctl'},
     btn('btn-ow btn-s',[ic('left'),'Önceki'],()=>goStep(pv),{disabled:pv<0||null}),
-    btn('btn-w btn-s',['Sonraki bölüm',ic('chev')],()=>goStep(nx),{disabled:nx<0||(mode==='ses'&&!SS.free&&!done)||null}),
+    btn('btn-w btn-s',['Sonraki bölüm',ic('chev')],()=>goStep(nx),{disabled:nx<0||(mode==='ses'&&!SS.free&&!done&&vm)||null}),
     mode==='ses'?h('button',{class:'sw sp',type:'button','aria-pressed':String(SS.free),onclick:()=>{SS.free=!SS.free;drawSes();}},h('i'),'Serbest geçiş, tekrar uygulamada'):h('span',{class:'sp sm',style:'color:var(--mud)'},(SS.idx+1)+' / '+F.length+' video, %'+prevPct(t.id)+' izlendi'));
   const mainK=[cap,ctl,mode==='ses'?stageCard(st):null,docsRow()].filter(Boolean),sideK=[mode==='ses'?attBlock():null,flowBlock(),aiBlock()].filter(Boolean);
   const keep=vm&&VM.ifr&&VM.idx===SS.idx&&VM.id===v[0]&&el.contains(VM.ifr);
@@ -85,6 +87,7 @@ function drawSes(){
 }
 function focusSel(s){const b=$('#ses '+s);if(b)b.focus();}
 function togglePlay(){
+  if(!vidVar(SS.idx))return;
   if(SS.playing){SS.playing=false;clearInterval(sesTimer);}
   else{if(SS.prog>=1)SS.prog=0;SS.justDone=false;SS.playing=true;clearInterval(sesTimer);sesTimer=setInterval(tickVid,100);}
   drawSes();focusSel('.vid-p');
@@ -98,12 +101,13 @@ function tickVid(){
 function goStep(j){
   if(j<0||j>=SS.F.length)return;
   if(!canGo(j)){const e=$('#ses .fl [data-i="'+j+'"]');if(e){e.classList.add('shake');setTimeout(()=>e.classList.remove('shake'),400);}toast(SS.range.includes(j)?'Bu bölüm, önceki video bitince açılır.':'Bu bölüm bugünün oturumunda yok.');return;}
-  clearInterval(sesTimer);SS.playing=false;SS.idx=j;SS.prog=SS.done.has(j)?1:0;SS.justDone=false;SS.vfail=0;SS.scrollCur=true;drawSes();focusSel('.vid-p');
+  clearInterval(sesTimer);SS.playing=false;SS.idx=j;SS.prog=SS.done.has(j)?1:0;SS.justDone=false;SS.vfail=0;SS.scrollCur=true;drawSes();focusSel(vidVar(j)?'.vid-p':'.vid-yok .btn');
 }
 function replay(){
   SS.justDone=false;
   if(VM.ifr&&VM.idx===SS.idx){drawSes();vmPost('setCurrentTime',0);vmPost('play');}
-  else{SS.prog=0;togglePlay();}
+  else if(vidVar(SS.idx)){SS.prog=0;togglePlay();}
+  else drawSes();
 }
 /* ---------- Vimeo oynatıcısı (postMessage) ----------
    Ana eğitim videoları Barış Kılıçarslan'ın Vimeo hesabından gömülür. Video bitince
@@ -179,7 +183,7 @@ function flowBlock(){
     if(s.k!==last){ul.append(h('li',{class:'sh'},STN[s.k]));last=s.k;}
     const inR=mode==='prev'||range.includes(i),dn=SS.done.has(i),cur=i===SS.idx,lk=!canGo(i);
     ul.append(h('li',null,h('button',{type:'button','data-i':String(i),class:(dn?'dn ':'')+(lk?'lk ':'')+(!inR?'y1':''),'aria-current':cur?'true':null,onclick:()=>goStep(i)},
-      h('span',{class:'fs'},dn?ic('tick'):lk?ic('lock'):null),h('span',null,s.c?h('span',{class:'cn'},s.c):null,s.a),h('span',{class:'tm'},!inR&&dn?'1. gün':fmtT(dur(SS.t,i))),dn||lk?h('span',{class:'sr'},dn?', izlendi':', kilitli'):null)));
+      h('span',{class:'fs'},dn?ic('tick'):lk?ic('lock'):null),h('span',null,s.c?h('span',{class:'cn'},s.c):null,s.a),h('span',{class:'tm'},!vidVar(i)?'video yok':!inR&&dn?'1. gün':fmtT(dur(SS.t,i))),dn||lk?h('span',{class:'sr'},dn?', izlendi':', kilitli'):null)));
   });
   return h('div',null,h('h3',null,'Akış',h('span',null,mode==='prev'?'%'+prevPct(SS.t.id):range.filter(i=>SS.done.has(i)).length+' / '+range.length)),ul);
 }
@@ -199,7 +203,8 @@ function endSesQuiet(){
 }
 function finishSes(){
   const{r,t}=SS,ids=Object.keys(SS.att),pres=ids.filter(c=>SS.att[c]),last=r.tel||r.dd+1>=r.days.length;
-  const L=[['Katılım',pres.length+' / '+ids.length+' danışman'],['Bugünün bölümleri',SS.range.filter(i=>SS.done.has(i)).length+' / '+SS.range.length+' izlendi']];
+  const yok=SS.range.filter(i=>!vidVar(i)).length;
+  const L=[['Katılım',pres.length+' / '+ids.length+' danışman'],['Bugünün bölümleri',SS.range.filter(i=>SS.done.has(i)).length+' / '+SS.range.length+' izlendi'+(yok?'; '+yok+' bölümün videosu henüz yok':'')]];
   if(last&&!r.tel)L.push(['Koçluk',pres.filter(c=>SS.cch[c]).length+' danışman işaretlendi'],['Aktiviteler',SS.docs.akt?'Dağıtıldı':'Dağıtılmadı; sonra görev takibinden dağıtabilirsiniz']);
   modal({t:'Oturumu bitir',s:t.t+(r.days.length>1&&!r.tel?', '+(r.dd+1)+'. gün':''),w:540,cls:'md-kisa',
     body:h('dl',{class:'kv'},L.flatMap(([a,b])=>[h('dt',null,a),h('dd',null,b)])),

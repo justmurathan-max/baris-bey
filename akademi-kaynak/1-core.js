@@ -86,6 +86,8 @@ const vimOf=c=>c&&VIM[c]||null;
 // Ek videolar (tanıtım, koçluk, uygulama): gerçek girişte veritabanından gelir. [vimeo, süre, oynar, gizli anahtar]
 const EXTV={};
 const stVim=(t,st)=>st.c?vimOf(st.c):(EXTV[t.id]&&EXTV[t.id][st.k])||null;
+// Bölümün oynatılabilir videosu var mı; yoksa bölüm izlenemez, izlendi de sayılmaz.
+const vidOk=(t,st)=>{const v=stVim(t,st);return !!(v&&v[2]);};
 function vidStat(t){const c=t.ch.map(x=>x[0]),have=c.filter(x=>VIM[x]);return{n:c.length,have:have.length,miss:c.filter(x=>!VIM[x]),priv:have.filter(x=>!VIM[x][2]).length};}
 const CLS=[
   {id:'ss',t:'Satışın Şifreleri',img:'img/hero-armsup.jpg',pos:'50% 24%',tn:'#3A0A0E',lt:[['s','Satışın',17],['c','ŞİFRELERİ',21]],d:'Sonucu Satmak, Önce Kendine Sat, Ethos, Logos, Pathos, Kendini Satmak'},
@@ -139,7 +141,9 @@ const OFFACT={};
 const actTpl=id=>OFFACT[id]||ACTS[id];
 
 /* =================== OFİS VERİSİ =================== */
-const OFF={id:'kdk',n:'RE/MAX Örnek Ofis Kadıköy',city:'İstanbul',tier:'1–25',start:D(-150),end:D(215)};
+const OFF={id:'kdk',n:'RE/MAX Örnek Ofis Kadıköy',city:'İstanbul',tier:'1–25',start:D(-150),end:D(215),mentor:true};
+// Ofisin etkin bir mentoru yoksa eğitimleri broker yürütür ve mentor ekranlarına geçebilir.
+const mentorYok=()=>OFF.mentor===false;
 const PPL={mentor:{n:'Seda Yıldız',r:'Mentor'},broker:{n:'Hakan Demir',r:'Broker'},merkez:{n:'Derya Kaplan',r:'Merkez yöneticisi'}};
 const GR=[{id:'a',n:'Grup A',d:'Deneyimli danışmanlar',c:'var(--c1)'},{id:'b',n:'Grup B',d:'Gelişen danışmanlar',c:'var(--c2)'},{id:'y',n:'Yeni Başlayanlar',d:'İlk yılındaki danışmanlar',c:'var(--c3)'}];
 const GRM={};GR.forEach(g=>GRM[g.id]=g);
@@ -226,7 +230,8 @@ const REP={ayse:{sh:D(-2),cm:null},mert:{sh:D(-2),cm:null},zeynep:{sh:null,cm:nu
 const PREV={};TR.forEach(t=>PREV[t.id]=new Set());
 ['iu','au','pa'].forEach(id=>flow(TRM[id]).forEach((_,i)=>PREV[id].add(i)));
 [['kb',.6],['dfi',.35]].forEach(([id,p])=>{const n=Math.round(flow(TRM[id]).length*p);for(let i=0;i<n;i++)PREV[id].add(i);});
-const prevPct=id=>pct(PREV[id].size,flow(TRM[id]).length);
+// Ön izleme yüzdesi yalnız videosu olan bölümlerden hesaplanır.
+const prevPct=id=>{const t=TRM[id],F=flow(t),ok=F.map((s,i)=>vidOk(t,s)?i:-1).filter(i=>i>=0);return ok.length?pct(ok.filter(i=>PREV[id].has(i)).length,ok.length):pct(PREV[id].size,F.length);};
 
 /* =================== MERKEZ VERİSİ =================== */
 const OFFS=[

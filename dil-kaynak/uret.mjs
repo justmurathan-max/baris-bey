@@ -332,10 +332,33 @@ if (process.argv.includes('--liste') || process.argv.includes('--eksik')) {
   process.exit(0);
 }
 
+// Yabancı dil sayfalarında satın alma: ödeme sayfası ve sözleşmeler Türkçe ve TL ile olduğu için
+// "Satın al" yerine e-postayla sipariş. Konu satırında ürünün adı gider.
+const SIPARIS = {
+  en: { etiket: 'Order by email', konu: 'Order' },
+  es: { etiket: 'Pedir por correo', konu: 'Pedido' },
+  de: { etiket: 'Per E-Mail bestellen', konu: 'Bestellung' },
+};
+function satinAlYabanci(html, kod) {
+  const s = SIPARIS[kod];
+  if (!s) return html;
+  const posta = 'info@bariskilicarslan.com';
+  let n = 0;
+  const say = (re, yeni) => { const once = html; html = html.replace(re, yeni); if (html !== once) n++; };
+  say(/<a class="btn btn-k" href="\.\.\/odeme\.html\?urun=ss">[^<]*<\/a>/,
+    `<a class="btn btn-k" href="mailto:${posta}?subject=${encodeURIComponent(s.konu + ': Satışın Şifreleri')}">${s.etiket}</a>`);
+  say(/location\.href='\.\.\/odeme\.html\?urun='\+encodeURIComponent\(curProd\)/,
+    `location.href='mailto:${posta}?subject='+encodeURIComponent('${s.konu}: '+((PROD[curProd]&&PROD[curProd].t)||curProd))`);
+  say(/c1\.textContent=p\.apply\|\|f\?p\.c1:/, `c1.textContent=p.apply?p.c1:f?'${s.etiket}':`);
+  if (n !== 3) throw new Error(`[${kod}] satın alma bağlantıları bulunamadı (${n}/3); ana sayfadaki ödeme bağlantıları değişmiş olabilir`);
+  if (/odeme\.html/.test(html)) throw new Error(`[${kod}] sayfada hâlâ ödeme sayfasına bağlantı var`);
+  return html;
+}
+
 let hata = false;
 for (let d = 0; d < DILLER.length; d++) {
   const eksik = new Set();
-  const out = uret(src, P, S, d, eksik);
+  const out = satinAlYabanci(uret(src, P, S, d, eksik), DILLER[d].kod);
   const dir = path.join(SITE, DILLER[d].kod);
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'index.html'), out);

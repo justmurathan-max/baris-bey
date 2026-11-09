@@ -88,6 +88,11 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .lg-f>p.lg-msg.ok{background:var(--okB);color:var(--okT)}
 .lg-f>p.lg-msg.er{background:var(--critB);color:var(--critT)}
 .lg-f .btn:disabled{opacity:.6;cursor:wait}
+.lg-kod{display:grid;gap:10px}
+.lg-kod input{font-variant-numeric:tabular-nums}
+.lg-kod input:not(:placeholder-shown){letter-spacing:.18em}
+.lg-f>p.lg-yok{margin:0;font-size:13px;line-height:1.5;color:var(--mu)}
+.lg-yok a{color:var(--tx);text-decoration:underline;text-underline-offset:2px}
 .demo-bn{margin:12px clamp(16px,3vw,40px) 0;max-width:1300px;padding:10px 14px;border-radius:12px;background:var(--warnB);color:var(--warnT);font:500 13.5px/1.45 var(--fb)}
 .demo-bn b{font-weight:700}
 .rb{display:flex;align-items:center;gap:14px;width:100%;padding:12px 14px;border-radius:14px;border:1.5px solid var(--line);background:#fff;text-align:left;transition:border-color .15s,background-color .15s}
@@ -869,6 +874,16 @@ body.lock .toast{bottom:92px}
 .doc-a{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
 .chips{display:flex;gap:4px;flex-wrap:wrap}
 .kl-ara{display:flex;gap:10px 16px;align-items:center;flex-wrap:wrap}
+.acts{display:inline-flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.vid-yok{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);width:min(440px,calc(100% - 40px));display:grid;gap:8px;justify-items:center;text-align:center;padding:18px 20px;border-radius:14px;background:rgba(10,10,10,.74);color:#fff;z-index:1}
+.vid-yok b{font:600 16px/1.35 var(--fb)}
+.vid-yok span{font-size:13.5px;line-height:1.45;color:rgba(255,255,255,.82)}
+.vid-yok .btn{margin-top:4px}
+@media (max-width:700px){
+  .lg-f>p.lg-yok{line-height:1.9}
+  .lg-yok a{padding:4px 0}
+  .oc input{width:24px;height:24px;margin-top:0}
+}
 
 </style>
 </head>
@@ -940,6 +955,11 @@ body.lock .toast{bottom:92px}
       <div class="fld"><label for="lgMail">E-posta</label><input id="lgMail" type="email" placeholder="ad@ofisiniz.com" autocomplete="email" inputmode="email"></div>
       <button class="btn btn-k" type="submit" id="lgBtn">Giriş bağlantısı gönder</button>
       <p class="lg-msg" id="lgMsg" role="status" aria-live="polite" hidden></p>
+      <div class="lg-kod" id="lgKod" hidden>
+        <div class="fld"><label for="lgCode">E-postadaki kod</label><input id="lgCode" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="10" placeholder="6 haneli kod"><span class="hint">Bağlantı başka bir cihazda açılırsa giriş o cihazda olur. Bu cihazdan girmek için e-postadaki kodu yazın.</span></div>
+        <button class="btn btn-o" type="button" id="lgCodeBtn">Kodla gir</button>
+      </div>
+      <p class="lg-yok">Hesabınız yoksa: ofisiniz akademiye katılmak istiyorsa <a href="index.html#akademi">siteden başvurabilirsiniz</a>. Satın aldığınız bir eğitime erişemiyorsanız <a href="mailto:info@bariskilicarslan.com">info@bariskilicarslan.com</a> adresine yazın.</p>
       <div class="lg-demo" id="lgDemo"><span>Önizleme için bir rolle girin</span></div>
     </form>
   </div>
@@ -1067,6 +1087,8 @@ const vimOf=c=>c&&VIM[c]||null;
 // Ek videolar (tanıtım, koçluk, uygulama): gerçek girişte veritabanından gelir. [vimeo, süre, oynar, gizli anahtar]
 const EXTV={};
 const stVim=(t,st)=>st.c?vimOf(st.c):(EXTV[t.id]&&EXTV[t.id][st.k])||null;
+// Bölümün oynatılabilir videosu var mı; yoksa bölüm izlenemez, izlendi de sayılmaz.
+const vidOk=(t,st)=>{const v=stVim(t,st);return !!(v&&v[2]);};
 function vidStat(t){const c=t.ch.map(x=>x[0]),have=c.filter(x=>VIM[x]);return{n:c.length,have:have.length,miss:c.filter(x=>!VIM[x]),priv:have.filter(x=>!VIM[x][2]).length};}
 const CLS=[
   {id:'ss',t:'Satışın Şifreleri',img:'img/hero-armsup.jpg',pos:'50% 24%',tn:'#3A0A0E',lt:[['s','Satışın',17],['c','ŞİFRELERİ',21]],d:'Sonucu Satmak, Önce Kendine Sat, Ethos, Logos, Pathos, Kendini Satmak'},
@@ -1120,7 +1142,9 @@ const OFFACT={};
 const actTpl=id=>OFFACT[id]||ACTS[id];
 
 /* =================== OFİS VERİSİ =================== */
-const OFF={id:'kdk',n:'RE/MAX Örnek Ofis Kadıköy',city:'İstanbul',tier:'1–25',start:D(-150),end:D(215)};
+const OFF={id:'kdk',n:'RE/MAX Örnek Ofis Kadıköy',city:'İstanbul',tier:'1–25',start:D(-150),end:D(215),mentor:true};
+// Ofisin etkin bir mentoru yoksa eğitimleri broker yürütür ve mentor ekranlarına geçebilir.
+const mentorYok=()=>OFF.mentor===false;
 const PPL={mentor:{n:'Seda Yıldız',r:'Mentor'},broker:{n:'Hakan Demir',r:'Broker'},merkez:{n:'Derya Kaplan',r:'Merkez yöneticisi'}};
 const GR=[{id:'a',n:'Grup A',d:'Deneyimli danışmanlar',c:'var(--c1)'},{id:'b',n:'Grup B',d:'Gelişen danışmanlar',c:'var(--c2)'},{id:'y',n:'Yeni Başlayanlar',d:'İlk yılındaki danışmanlar',c:'var(--c3)'}];
 const GRM={};GR.forEach(g=>GRM[g.id]=g);
@@ -1207,7 +1231,8 @@ const REP={ayse:{sh:D(-2),cm:null},mert:{sh:D(-2),cm:null},zeynep:{sh:null,cm:nu
 const PREV={};TR.forEach(t=>PREV[t.id]=new Set());
 ['iu','au','pa'].forEach(id=>flow(TRM[id]).forEach((_,i)=>PREV[id].add(i)));
 [['kb',.6],['dfi',.35]].forEach(([id,p])=>{const n=Math.round(flow(TRM[id]).length*p);for(let i=0;i<n;i++)PREV[id].add(i);});
-const prevPct=id=>pct(PREV[id].size,flow(TRM[id]).length);
+// Ön izleme yüzdesi yalnız videosu olan bölümlerden hesaplanır.
+const prevPct=id=>{const t=TRM[id],F=flow(t),ok=F.map((s,i)=>vidOk(t,s)?i:-1).filter(i=>i>=0);return ok.length?pct(ok.filter(i=>PREV[id].has(i)).length,ok.length):pct(PREV[id].size,F.length);};
 
 /* =================== MERKEZ VERİSİ =================== */
 const OFFS=[
@@ -1395,7 +1420,7 @@ function shell(){
   if(r==='merkez')org.append(h('b',null,'Akademi merkezi'),h('span',null,OFFS.filter(o=>o.st==='aktif').length+' aktif ofis'));
   else{
     org.append(h('b',null,offName()),h('span',null,r==='broker'?'Broker paneli':(S.asBroker?'Broker, mentor görevinde':'Mentor paneli')));
-    if(r==='broker')org.append(btn('btn-ow btn-xs',[ic('swap'),'Mentor görevini üstlen'],()=>{S.asBroker=true;nav('mentor/panel');}));
+    if(r==='broker'&&mentorYok())org.append(btn('btn-ow btn-xs',[ic('swap'),'Mentor görevini üstlen'],()=>{S.asBroker=true;nav('mentor/panel');}));
     if(r==='mentor'&&S.asBroker)org.append(btn('btn-ow btn-xs',[ic('swap'),'Broker paneline dön'],()=>{S.asBroker=false;nav('broker/ozet');}));
   }
   $('#nav').replaceChildren(...NAV[r].map(([k,l,i])=>{const cur=S.page===k||(k==='egitimler'&&S.page==='egitim');const a=h('a',{href:'#'+r+'/'+k,'aria-current':cur?'page':null},ic(i),l);const n=badge(k);if(n)a.append(h('span',{class:'n','aria-label':n+' bekleyen'},String(n)));return a;}));
@@ -1427,7 +1452,7 @@ function showLogin(){
     [['mentor','Mentor',PPL.mentor.n+', '+OFF.n,'users'],['broker','Broker',PPL.broker.n+', aynı ofis','building'],['merkez','Merkez yöneticisi',PPL.merkez.n+', bütün ofisler','shield']].forEach(([k,l,s,i])=>dm.append(h('button',{class:'rb',type:'button',onclick:()=>{S.asBroker=false;nav(k+'/'+NAV[k][0][0]);}},h('span',{class:'ri'},ic(i)),h('span',{class:'t'},h('b',null,l+' olarak gir'),h('span',null,s)),ic('chev'))));
   }
 }
-$('#lgForm').addEventListener('submit',e=>{e.preventDefault();if(SB){sendLink($('#lgMail').value.trim());return;}const m=$('#lgMail').value.toLocaleLowerCase('tr');const r=/broker/.test(m)?'broker':/merkez|akademi/.test(m)?'merkez':'mentor';S.asBroker=false;nav(r+'/'+NAV[r][0][0]);});
+$('#lgForm').addEventListener('submit',e=>{e.preventDefault();if(SB){if(!$('#lgKod').hidden&&$('#lgCode').value.trim()){kodlaGir();return;}sendLink($('#lgMail').value.trim());return;}const m=$('#lgMail').value.toLocaleLowerCase('tr');const r=/broker/.test(m)?'broker':/merkez|akademi/.test(m)?'merkez':'mentor';S.asBroker=false;nav(r+'/'+NAV[r][0][0]);});
 
 /* =================== KATMANLAR =================== */
 let lastFocus=null,drOpen=false,mdOpen=false,sesOpen=false,popEl=null;
@@ -2249,11 +2274,13 @@ function openSession(runId,mode,trid){
   setTimeout(()=>{const f=el.querySelector('.vid-p')||el.querySelector('.ses-h .icb');if(f)f.focus();},120);
 }
 const inK=k=>SS.F.map((s,i)=>s.k===k?i:-1).filter(i=>i>=0);
-const allIn=k=>inK(k).every(i=>SS.done.has(i));
+const vidVar=i=>vidOk(SS.t,SS.F[i]);
+// Videosu olmayan bölüm geçişi kilitlemez ama izlendi sayılmaz.
+const allIn=k=>inK(k).every(i=>SS.done.has(i)||!vidVar(i));
 function canGo(j){
   if(SS.mode==='prev'||SS.free)return SS.mode==='prev'||SS.range.includes(j);
   const pos=SS.range.indexOf(j);if(pos<0)return false;
-  return SS.range.slice(0,pos).every(i=>SS.done.has(i));
+  return SS.range.slice(0,pos).every(i=>SS.done.has(i)||!vidVar(i));
 }
 function navIdx(dir){
   if(SS.mode==='prev'){const j=SS.idx+dir;return j>=0&&j<SS.F.length?j:-1;}
@@ -2279,17 +2306,17 @@ function drawSes(){
       seq?chip('dk','clock','Video bitmeden sonraki bölüm açılmaz'):null,
       SS.vfail?h('p',{class:'vid-er sm',role:'status'},SS.vfail===2?'Bu video şu an oynatılamıyor; Vimeo’daki gizlilik ayarına bakın.':'Video oynatıcısı yüklenemedi. Bağlantıyı kontrol edin'+(mode==='ses'?' ya da serbest geçişi açın.':'.')):null);
   }else{
-    const barI=h('i',{style:'width:'+(SS.prog*100)+'%'}),time=h('time',null,fmtT(SS.prog*d)+' / '+fmtT(d));
-    SS.ui={bar:barI,time};
+    // Videosu olmayan bölüm: oynatılacak bir şey yok; geçilebilir, izlendi sayılmaz.
+    SS.ui={bar:null,time:null};clearInterval(sesTimer);SS.playing=false;
+    const neden=st.c?(v?'Bu video Vimeo’da özel; gizlilik ayarı bekleniyor':'Bu bölümün videosu Vimeo’da henüz yok'):'Bu bölümün videosu henüz eklenmedi';
     vid=h('div',{class:'vid',style:'--pos:'+(t.pos||'50% 25%')},h('img',{src:t.img,alt:''}),
-      h('div',{class:'vid-lk'},chip('dk','lock','İndirme kapalı'),seq?chip('dk','clock','Video bitmeden sonraki bölüm açılmaz'):null),
-      SS.justDone?null:h('button',{class:'vid-p'+(SS.playing?' pa':''),type:'button','aria-label':SS.playing?'Duraklat':(done?'Tekrar oynat':'Oynat'),onclick:togglePlay},ic(SS.playing?'pause':'play')),
-      h('div',{class:'vid-tl'},h('div',{class:'vid-k'},STN[st.k],st.c?h('span',null,st.c):null,done&&!SS.playing?h('span',{class:'ok-t'},ic('tick'),'İzlendi'):null,!vm?h('span',{class:'vst'},st.c?(v?'Vimeo’da özel; gizlilik ayarı bekleniyor':'Video Vimeo’da henüz yok'):'Video henüz eklenmedi'):null),h('h2',null,st.a),h('div',{class:'vid-r'},h('div',{class:'bar'},barI),time)),
-      dn);
+      h('div',{class:'vid-yok',role:'status'},h('b',null,neden),h('span',null,mode==='ses'?'Bu bölümü geçebilirsiniz; izlendi sayılmaz.':'Video eklenince burada oynar.'),
+        nx>=0?btn('btn-w btn-s',[mode==='ses'?'Bölümü geç':'Sonraki bölüm',ic('chev')],()=>goStep(nx)):null),
+      h('div',{class:'vid-tl'},h('div',{class:'vid-k'},STN[st.k],st.c?h('span',null,st.c):null,h('span',{class:'vst'},'Video yok')),h('h2',null,st.a)));
   }
   const ctl=h('div',{class:'ses-ctl'},
     btn('btn-ow btn-s',[ic('left'),'Önceki'],()=>goStep(pv),{disabled:pv<0||null}),
-    btn('btn-w btn-s',['Sonraki bölüm',ic('chev')],()=>goStep(nx),{disabled:nx<0||(mode==='ses'&&!SS.free&&!done)||null}),
+    btn('btn-w btn-s',['Sonraki bölüm',ic('chev')],()=>goStep(nx),{disabled:nx<0||(mode==='ses'&&!SS.free&&!done&&vm)||null}),
     mode==='ses'?h('button',{class:'sw sp',type:'button','aria-pressed':String(SS.free),onclick:()=>{SS.free=!SS.free;drawSes();}},h('i'),'Serbest geçiş, tekrar uygulamada'):h('span',{class:'sp sm',style:'color:var(--mud)'},(SS.idx+1)+' / '+F.length+' video, %'+prevPct(t.id)+' izlendi'));
   const mainK=[cap,ctl,mode==='ses'?stageCard(st):null,docsRow()].filter(Boolean),sideK=[mode==='ses'?attBlock():null,flowBlock(),aiBlock()].filter(Boolean);
   const keep=vm&&VM.ifr&&VM.idx===SS.idx&&VM.id===v[0]&&el.contains(VM.ifr);
@@ -2311,6 +2338,7 @@ function drawSes(){
 }
 function focusSel(s){const b=$('#ses '+s);if(b)b.focus();}
 function togglePlay(){
+  if(!vidVar(SS.idx))return;
   if(SS.playing){SS.playing=false;clearInterval(sesTimer);}
   else{if(SS.prog>=1)SS.prog=0;SS.justDone=false;SS.playing=true;clearInterval(sesTimer);sesTimer=setInterval(tickVid,100);}
   drawSes();focusSel('.vid-p');
@@ -2324,12 +2352,13 @@ function tickVid(){
 function goStep(j){
   if(j<0||j>=SS.F.length)return;
   if(!canGo(j)){const e=$('#ses .fl [data-i="'+j+'"]');if(e){e.classList.add('shake');setTimeout(()=>e.classList.remove('shake'),400);}toast(SS.range.includes(j)?'Bu bölüm, önceki video bitince açılır.':'Bu bölüm bugünün oturumunda yok.');return;}
-  clearInterval(sesTimer);SS.playing=false;SS.idx=j;SS.prog=SS.done.has(j)?1:0;SS.justDone=false;SS.vfail=0;SS.scrollCur=true;drawSes();focusSel('.vid-p');
+  clearInterval(sesTimer);SS.playing=false;SS.idx=j;SS.prog=SS.done.has(j)?1:0;SS.justDone=false;SS.vfail=0;SS.scrollCur=true;drawSes();focusSel(vidVar(j)?'.vid-p':'.vid-yok .btn');
 }
 function replay(){
   SS.justDone=false;
   if(VM.ifr&&VM.idx===SS.idx){drawSes();vmPost('setCurrentTime',0);vmPost('play');}
-  else{SS.prog=0;togglePlay();}
+  else if(vidVar(SS.idx)){SS.prog=0;togglePlay();}
+  else drawSes();
 }
 /* ---------- Vimeo oynatıcısı (postMessage) ----------
    Ana eğitim videoları Barış Kılıçarslan'ın Vimeo hesabından gömülür. Video bitince
@@ -2405,7 +2434,7 @@ function flowBlock(){
     if(s.k!==last){ul.append(h('li',{class:'sh'},STN[s.k]));last=s.k;}
     const inR=mode==='prev'||range.includes(i),dn=SS.done.has(i),cur=i===SS.idx,lk=!canGo(i);
     ul.append(h('li',null,h('button',{type:'button','data-i':String(i),class:(dn?'dn ':'')+(lk?'lk ':'')+(!inR?'y1':''),'aria-current':cur?'true':null,onclick:()=>goStep(i)},
-      h('span',{class:'fs'},dn?ic('tick'):lk?ic('lock'):null),h('span',null,s.c?h('span',{class:'cn'},s.c):null,s.a),h('span',{class:'tm'},!inR&&dn?'1. gün':fmtT(dur(SS.t,i))),dn||lk?h('span',{class:'sr'},dn?', izlendi':', kilitli'):null)));
+      h('span',{class:'fs'},dn?ic('tick'):lk?ic('lock'):null),h('span',null,s.c?h('span',{class:'cn'},s.c):null,s.a),h('span',{class:'tm'},!vidVar(i)?'video yok':!inR&&dn?'1. gün':fmtT(dur(SS.t,i))),dn||lk?h('span',{class:'sr'},dn?', izlendi':', kilitli'):null)));
   });
   return h('div',null,h('h3',null,'Akış',h('span',null,mode==='prev'?'%'+prevPct(SS.t.id):range.filter(i=>SS.done.has(i)).length+' / '+range.length)),ul);
 }
@@ -2425,7 +2454,8 @@ function endSesQuiet(){
 }
 function finishSes(){
   const{r,t}=SS,ids=Object.keys(SS.att),pres=ids.filter(c=>SS.att[c]),last=r.tel||r.dd+1>=r.days.length;
-  const L=[['Katılım',pres.length+' / '+ids.length+' danışman'],['Bugünün bölümleri',SS.range.filter(i=>SS.done.has(i)).length+' / '+SS.range.length+' izlendi']];
+  const yok=SS.range.filter(i=>!vidVar(i)).length;
+  const L=[['Katılım',pres.length+' / '+ids.length+' danışman'],['Bugünün bölümleri',SS.range.filter(i=>SS.done.has(i)).length+' / '+SS.range.length+' izlendi'+(yok?'; '+yok+' bölümün videosu henüz yok':'')]];
   if(last&&!r.tel)L.push(['Koçluk',pres.filter(c=>SS.cch[c]).length+' danışman işaretlendi'],['Aktiviteler',SS.docs.akt?'Dağıtıldı':'Dağıtılmadı; sonra görev takibinden dağıtabilirsiniz']);
   modal({t:'Oturumu bitir',s:t.t+(r.days.length>1&&!r.tel?', '+(r.dd+1)+'. gün':''),w:540,cls:'md-kisa',
     body:h('dl',{class:'kv'},L.flatMap(([a,b])=>[h('dt',null,a),h('dd',null,b)])),
@@ -2462,8 +2492,9 @@ VIEWS.broker.ozet=()=>{
     pn('Yorumunuzu bekleyen raporlar',ac.length?h('span',{class:'c'},String(ac.length)):null,ac.length?h('ul',{class:'ls'},ac.map(c=>h('li',null,av(COM[c]),h('div',{class:'t'},h('b',null,COM[c].n),h('span',null,PPL.mentor.n+' paylaştı, '+ago(REP[c].sh))),btn('btn-k btn-xs','Raporu aç',()=>openReport(c))))):empty('Bekleyen rapor yok','Mentor bir rapor paylaştığında burada görünür.')),
     groupsPanel());
   const right=h('div',{class:'st'},pn('Üyelik',btn('btn-g btn-xs','Ayrıntı',()=>go('uyelik')),membershipMini()),pn('Yaklaşan oturumlar',null,upcomingList()),
-    pn('Mentor',null,h('div',{class:'st-s'},h('div',{class:'who'},h('span',{class:'av k'},ini(PPL.mentor.n)),h('div',{class:'t'},h('b',null,PPL.mentor.n),h('span',null,'Akademiyi ofiste yürütüyor'))),
-      h('p',{class:'sm mu',style:'margin:0'},'Gerekirse mentor görevini siz de üstlenebilirsiniz; aynı panelden yönetirsiniz.'),h('div',null,btn('btn-o btn-s',[ic('swap'),'Mentor görevini üstlen'],()=>{S.asBroker=true;nav('mentor/panel');})))));
+    pn('Mentor',null,mentorYok()
+      ?h('div',{class:'st-s'},h('p',{class:'sm mu',style:'margin:0'},'Ofisinizde mentor yok; eğitimleri siz yürütürsünüz. Oturum, katılım ve koçluk mentor ekranlarında.'),h('div',null,btn('btn-o btn-s',[ic('swap'),'Mentor görevini üstlen'],()=>{S.asBroker=true;nav('mentor/panel');})))
+      :h('div',{class:'st-s'},h('div',{class:'who'},h('span',{class:'av k'},ini(PPL.mentor.n)),h('div',{class:'t'},h('b',null,PPL.mentor.n),h('span',null,'Akademiyi ofiste yürütüyor'))))));
   root.append(h('div',{class:'g2'},left,right));
   return root;
 };
@@ -2477,7 +2508,7 @@ VIEWS.broker.uyelik=()=>{
       h('p',{class:'sm mu',style:'margin:0'},'Yıl içinde danışman sayısı kademeyi aşarsa değişiklik yenilemede ele alınır. Yeni danışmanlar üyeliğe dahil olur; ayrılanların geçmişi saklanır.'))),
       pn('Üyelikte neler var',null,h('ul',{class:'ls'},[['book','Akademideki bütün eğitimler, aktif üyelikte tekrar tekrar grupla'],['doc','Her eğitimde üç belge'],['users','Mentor paneli, gelişim raporu ve üç sertifika'],['spark','Barış AI ile grup provası'],['key','Klasik Eğitimler, bonus olarak']].map(([i,txt])=>h('li',null,h('span',{class:'li-i'},ic(i)),h('div',{class:'t'},h('span',{style:'color:var(--tx);font-size:14.5px'},txt))))))),
     h('div',{class:'st'},pn('Yenileme',null,h('div',{class:'st-s'},h('ul',{class:'ls'},rem.map(x=>h('li',null,dateBadge(x.d),h('div',{class:'t'},h('b',null,x.n+' gün kala hatırlatma'),h('span',null,'E-posta: broker ve mentor')),df(x.d)<0?chip('ok','tick','Gönderildi'):chip('ln',null,'Planlandı')))),
-      h('p',{class:'sm mu',style:'margin:0'},'İkinci yıl için yenileme avantajı, yenileme döneminde bildirilir.'),h('div',null,btn('btn-k btn-s','Yenileme görüşmesi iste',()=>toast('Talebiniz akademi merkezine iletildi.'))))),
+      h('p',{class:'sm mu',style:'margin:0'},'İkinci yıl için yenileme avantajı, yenileme döneminde bildirilir.'),h('div',null,btn('btn-k btn-s','Yenileme görüşmesi iste',yenilemeIste)))),
       pn('Ek eğitimler',null,h('div',{class:'st-s'},h('p',{class:'sm mu',style:'margin:0'},'Gelişim ve Kazanç Mağazası’ndaki kısa eğitimler akademi üyelerine avantajlı fiyatla sunulur.'),h('div',null,h('a',{class:'btn btn-o btn-s',href:'index.html#magaza'},'Mağazaya git')))))));
   return root;
 };
@@ -2532,23 +2563,26 @@ function openOffice(id){
   else foot.push(btn('btn-o btn-s',[ic('refresh'),'Üyeliği bir yıl uzat'],()=>{if(realM()){closeDrawer();extendReal(o);return;}o.end=plus(o.end,365);if(o.id==='kdk')OFF.end=o.end;closeDrawer();toast(o.n+' üyeliği '+ddy(o.end)+' tarihine uzatıldı.');rerender();}));
   drawer({t:o.n,s:o.st==='davet'?'Davet '+ago(o.inv)+' gönderildi.':'Aktif üyelik',body,foot});
 }
-function openNewOffice(){
-  const v={n:'',city:'İstanbul',tier:'1–25',start:iso(T0),br:'',brn:'',mn:'',mnn:'',self:false};let busy=false;
+// on: başvurudan açılırsa dolu gelen alanlar ve başvurunun kendisi (ofis açılınca işlendi olur)
+function openNewOffice(on){
+  on=on||{};
+  const v={n:on.n||'',city:on.city||'İstanbul',tier:on.tier||'1–25',start:iso(T0),br:on.br||'',brn:on.brn||'',mn:'',mnn:'',self:false};let busy=false;
+  const bitti=()=>{if(on.req&&on.req.status==='yeni')setReq(on.req,'islendi');};
   const body=h('div',{class:'st'},
-    h('div',{class:'fld'},h('label',{for:'noN'},'Ofis adı'),h('input',{id:'noN',type:'text',placeholder:'RE/MAX ...',autofocus:true,oninput:e=>{v.n=e.target.value;}})),
+    h('div',{class:'fld'},h('label',{for:'noN'},'Ofis adı'),h('input',{id:'noN',type:'text',placeholder:'RE/MAX ...',value:v.n,autofocus:true,oninput:e=>{v.n=e.target.value;}})),
     h('div',{class:'fr'},h('div',{class:'fld'},h('label',{for:'noC'},'Şehir'),h('input',{id:'noC',type:'text',value:v.city,oninput:e=>{v.city=e.target.value;}})),h('div',{class:'fld'},h('label',{for:'noT'},'Kademe'),sel('noT',TIERS.map(x=>[x,x+' danışman']),v.tier,x=>{v.tier=x;}))),
     h('div',{class:'fld'},h('label',{for:'noS'},'Üyelik başlangıcı'),h('input',{id:'noS',type:'date',value:v.start,onchange:e=>{v.start=e.target.value;}}),h('span',{class:'hint'},'Satış görüşme, sözleşme ve ödemeyle yapılır; üyelik 12 ay sürer.')),
-    h('div',{class:'fr'},h('div',{class:'fld'},h('label',{for:'noBn'},'Broker adı soyadı'),h('input',{id:'noBn',type:'text',autocomplete:'off',oninput:e=>{v.brn=e.target.value;}})),h('div',{class:'fld'},h('label',{for:'noB'},'Broker e-postası'),h('input',{id:'noB',type:'email',placeholder:'broker@ofis.com',oninput:e=>{v.br=e.target.value;}}))),
+    h('div',{class:'fr'},h('div',{class:'fld'},h('label',{for:'noBn'},'Broker adı soyadı'),h('input',{id:'noBn',type:'text',autocomplete:'off',value:v.brn,oninput:e=>{v.brn=e.target.value;}})),h('div',{class:'fld'},h('label',{for:'noB'},'Broker e-postası'),h('input',{id:'noB',type:'email',placeholder:'broker@ofis.com',value:v.br,oninput:e=>{v.br=e.target.value;}}))),
     h('div',{class:'fr'},h('div',{class:'fld'},h('label',{for:'noMn'},'Mentor adı soyadı'),h('input',{id:'noMn',type:'text',autocomplete:'off',oninput:e=>{v.mnn=e.target.value;}})),h('div',{class:'fld'},h('label',{for:'noM'},'Mentor e-postası'),h('input',{id:'noM',type:'email',placeholder:'mentor@ofis.com',oninput:e=>{v.mn=e.target.value;}}))),
     h('div',{class:'fld'},h('label',{class:'oc',style:'margin-top:4px'},h('input',{type:'checkbox',onchange:e=>{v.self=e.target.checked;$('#noM').disabled=v.self;$('#noMn').disabled=v.self;}}),h('span',{class:'t'},h('b',null,'Mentor görevini broker üstlenecek'),h('span',null,'Broker iki rolü tek panelden yönetir.')))));
   drawer({t:'Yeni ofis aç',s:'Üyelik açılınca broker ve mentora davet e-postası gider.',body,foot:[btn('btn-o','Vazgeç',closeDrawer),btn('btn-k','Üyeliği aç ve davet gönder',()=>{
     if(v.n.trim().length<3){toast('Ofis adını yazın.');$('#noN').focus();return;}
     if(!/^\S+@\S+\.\S+$/.test(v.br)){toast('Broker e-postasını yazın.');$('#noB').focus();return;}
     if(!v.self&&v.mn.trim()&&!/^\S+@\S+\.\S+$/.test(v.mn.trim())){toast('Mentor e-postasını kontrol edin.');$('#noM').focus();return;}
-    if(realM()){if(busy)return;busy=true;const b=$('#dr .dr-f .btn-k');if(b){b.disabled=true;b.textContent='Açılıyor…';}createOfficeReal(v).then(ok=>{busy=false;if(b){b.disabled=false;b.textContent='Üyeliği aç ve davet gönder';}if(ok){closeDrawer();if(S.page==='ofisler')rerender();else go('ofisler');}});return;}
+    if(realM()){if(busy)return;busy=true;const b=$('#dr .dr-f .btn-k');if(b){b.disabled=true;b.textContent='Açılıyor…';}createOfficeReal(v).then(ok=>{busy=false;if(b){b.disabled=false;b.textContent='Üyeliği aç ve davet gönder';}if(ok){closeDrawer();bitti();if(S.page==='ofisler')rerender();else go('ofisler');}});return;}
     const s=fromIso(v.start||iso(T0));
     OFFS.push({id:'o'+Date.now().toString(36),n:v.n.trim(),city:v.city.trim()||'—',br:null,mn:null,tier:v.tier,cons:0,start:s,end:plus(s,365),ses:0,st:'davet',comp:0,cert:0,inv:new Date(T0)});
-    closeDrawer();toast('Üyelik açıldı; davetler gönderildi.');if(S.page==='ofisler')rerender();else go('ofisler');})]});
+    closeDrawer();bitti();toast('Üyelik açıldı; davetler gönderildi.');if(S.page==='ofisler')rerender();else go('ofisler');})]});
 }
 const RQK={kurumsal:'Kurumsal teklif',ofis:'Ofis başvurusu',davetiye:'Davetiye',bulten:'Bülten',etkinlik:'Etkinlik',iletisim:'İletişim'};
 let rqF='yeni';
@@ -2560,14 +2594,16 @@ VIEWS.merkez.basvurular=()=>{
   if(!L.length){root.append(h('section',{class:'pn'},empty(rqF==='yeni'?'Yeni başvuru yok':'Kayıt yok')));return root;}
   const tb=h('tbody',null,L.map(r=>h('tr',null,
     h('td',{'data-l':'Tarih'},dnum(r.at)),
-    h('td',{'data-l':'Tür'},RQK[r.kind]||r.kind),
+    h('td',{'data-l':'Tür'},r.tur==='yenileme'?'Yenileme talebi':RQK[r.kind]||r.kind),
     h('td',null,h('div',{class:'t'},h('b',null,r.name||r.email||'—'),r.company?h('span',{class:'sm mu',style:'display:block'},r.company+(r.city?', '+r.city:'')):null)),
     h('td',{'data-l':'İletişim'},[r.phone,r.email].filter(Boolean).join(' · ')||'—'),
     h('td',{'data-l':'Ayrıntı',class:'sm'},[r.dil&&(({en:'İngilizce',es:'İspanyolca',de:'Almanca'})[r.dil]||r.dil)+' sayfadan',r.topic,r.size,r.mode,r.message].filter(Boolean).join(' · ')||'—'),
-    h('td',{class:'r'},r.status==='yeni'?btn('btn-k btn-xs','İşlendi',()=>setReq(r,'islendi')):btn('btn-g btn-xs','Yeniye al',()=>setReq(r,'yeni'))))));
+    h('td',{class:'r'},r.status==='yeni'?h('div',{class:'acts'},r.kind==='ofis'?btn('btn-o btn-xs','Ofis aç',()=>openNewOffice({n:r.company||'',city:r.city||'',brn:r.name||'',br:r.email||'',tier:kademe(r.size),req:r})):null,btn('btn-k btn-xs','İşlendi',()=>setReq(r,'islendi'))):btn('btn-g btn-xs','Yeniye al',()=>setReq(r,'yeni'))))));
   root.append(h('section',{class:'pn'},h('div',{class:'tw'},h('table',{class:'tbl rsp'},h('thead',null,h('tr',null,['Tarih','Tür','Kişi','İletişim','Ayrıntı',''].map(x=>h('th',null,x)))),tb))));
   return root;
 };
+// Başvurudaki danışman sayısından üyelik kademesi
+function kademe(x){const n=parseInt(String(x||'').replace(/[^0-9]+/g,' ').trim().split(' ')[0],10);return !n?'1–25':n<=25?'1–25':n<=75?'26–75':n<=99?'76–99':'100+';}
 async function setReq(r,st){
   if(realM()){const{error}=await SB.from('site_requests').update({status:st}).eq('id',r.id);if(error){toast('Güncellenemedi; tekrar deneyin.');return;}}
   r.status=st;toast(st==='islendi'?'İşlendi olarak işaretlendi.':'Yeni olarak işaretlendi.');rerender();
@@ -3177,6 +3213,20 @@ async function ekipEtkin(id,on){
   await Promise.all([loadEkip(),loadOturumlar()]);return true;
 }
 
+/* ---------- Broker: üyelik yenileme talebi ---------- */
+// Talep merkezin Başvurular sayfasına düşer. Aynı cihazdan bir gün içinde ikinci kez gönderilmez.
+async function yenilemeIste(){
+  if(!realO()){toast('Talebiniz akademi merkezine iletildi.');return;}
+  const k='yenileme:'+ME.officeId;let son=0;
+  try{son=+localStorage.getItem(k)||0;}catch(e){}
+  if(Date.now()-son<864e5){toast('Talebiniz iletildi; akademi merkezi sizinle görüşecek.');return;}
+  const{error}=await SB.from('site_requests').insert({kind:'iletisim',full_name:ME.name||null,email:ME.email||null,company:OFF.n||null,city:OFF.city||null,
+    message:'Üyelik yenileme görüşmesi istiyor. Üyelik bitişi: '+ddy(OFF.end)+'.',meta:{tur:'yenileme',office_id:ME.officeId,rol:ME.role}});
+  if(error){toast('Talep iletilemedi; tekrar deneyin.');return;}
+  try{localStorage.setItem(k,String(Date.now()));}catch(e){}
+  toast('Talebiniz akademi merkezine iletildi.');
+}
+
 /* =================== GİRİŞ: SUPABASE =================== */
 // Yayınlanabilir anahtar tarayıcıda durmak için yapılmıştır, gizli değildir; veriyi satır kuralları korur.
 // Gizli anahtar (secret) asla buraya ya da depoya konmaz.
@@ -3198,11 +3248,46 @@ async function sendLink(mail){
   lgBusy(false);
   const code=error&&error.code||'',msg=error&&error.message||'';
   // Hesabı olmayan adres için de aynı cevap: kimin kayıtlı olduğu bu ekrandan anlaşılmasın.
-  if(!error||code==='otp_disabled'||code==='signup_disabled'||/signups? not allowed/i.test(msg))
+  if(!error||code==='otp_disabled'||code==='signup_disabled'||/signups? not allowed/i.test(msg)){
     lgMsg('Bu adres akademide kayıtlıysa giriş bağlantısı birkaç dakika içinde e-postanıza gelir. Gelmezse davet e-postasındaki adresi yazdığınızdan emin olun.','ok');
+    const k=$('#lgKod');if(k)k.hidden=false;
+  }
   else if(error.status===429||/rate limit|security purposes/i.test(msg))
     lgMsg('Kısa sürede çok fazla bağlantı istendi. Birkaç dakika sonra tekrar deneyin.','er');
   else lgMsg('Bağlantı gönderilemedi. Biraz sonra tekrar deneyin.','er');
+}
+
+// E-postadaki kodla giriş: bağlantı başka cihazda açılınca da bu cihazdan girilebilsin.
+async function kodlaGir(){
+  const kod=($('#lgCode').value||'').replace(/\s+/g,''),mail=($('#lgMail').value||'').trim();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)){lgMsg('Önce e-posta adresinizi yazın.','er');$('#lgMail').focus();return;}
+  if(!/^\d{6,10}$/.test(kod)){lgMsg('E-postadaki kodu rakamlarıyla yazın.','er');$('#lgCode').focus();return;}
+  const b=$('#lgCodeBtn');b.disabled=true;b.textContent='Kontrol ediliyor…';
+  let data=null,error=null;
+  try{({data,error}=await SB.auth.verifyOtp({email:mail,token:kod,type:'email'}));}catch(e){error=e||{};}
+  b.disabled=false;b.textContent='Kodla gir';
+  if(error||!data||!data.session){
+    const m=error&&error.message||'';
+    lgMsg(error&&(error.status===429||/rate limit|security purposes/i.test(m))
+      ?'Kısa sürede çok fazla deneme yapıldı. Birkaç dakika sonra tekrar deneyin.'
+      :'Kod geçersiz ya da süresi dolmuş. Kodu kontrol edin ya da yeni bağlantı isteyin.','er');
+    $('#lgCode').focus();return;
+  }
+  $('#lgCode').value='';$('#lgKod').hidden=true;lgMsg('');
+  await girisTamam(data.session.user);
+}
+if($('#lgCodeBtn'))$('#lgCodeBtn').addEventListener('click',kodlaGir);
+
+// Giriş tamamlanınca: hesap, bu cihazın oturumu, veriler ve açılış sayfası.
+async function girisTamam(user){
+  if(!await enterReal(user))return false;
+  // Bu cihazın oturumu: başka cihazdan giriş yüzünden kapanmışsa burada durur.
+  if(!await oturumYokla())return false;
+  if(ME.role==='merkez')await loadMerkez();else await loadOffice().catch(()=>false);
+  await Promise.all([loadMateryal(),loadAyar(),ME.role==='merkez'?Promise.all([loadTaslak(),loadOturumlar(),loadKlasik(),loadEkip()]):null]).catch(()=>{});
+  oturumBaslat();
+  const want=CUR.split('/')[0];nav(NAV[want]&&roleOk(want)?CUR:ROLE_HOME[ME.role]);
+  return true;
 }
 
 async function enterReal(user){
@@ -3252,16 +3337,8 @@ async function boot(){
     try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}
     CUR='';
   }
-  if(session&&session.user){
-    if(await enterReal(session.user)){
-      // Bu cihazın oturumu: başka cihazdan giriş yüzünden kapanmışsa burada durur.
-      if(!await oturumYokla())return;
-      if(ME.role==='merkez')await loadMerkez();else await loadOffice().catch(()=>false);
-      await Promise.all([loadMateryal(),loadAyar(),ME.role==='merkez'?Promise.all([loadTaslak(),loadOturumlar(),loadKlasik(),loadEkip()]):null]).catch(()=>{});
-      oturumBaslat();
-      const want=CUR.split('/')[0];nav(NAV[want]&&roleOk(want)?CUR:ROLE_HOME[ME.role]);
-    }
-  }else if(authHash){showLogin();lgMsg(fail||'Giriş tamamlanamadı. Yeni bağlantı isteyin.','er');}
+  if(session&&session.user)await girisTamam(session.user);
+  else if(authHash){showLogin();lgMsg(fail||'Giriş tamamlanamadı. Yeni bağlantı isteyin.','er');}
   else route();
   SB.auth.onAuthStateChange(ev=>{if(ev==='SIGNED_OUT'){oturumDurdur();if(ME){ME=null;closeAllLayers();nav('');}}});
 }
@@ -3301,7 +3378,7 @@ async function loadMerkez(){
   OFFS.splice(0,OFFS.length,...list);
   const onm=id=>{const x=o.data.find(r=>r.id===id);return x?x.name:'—';};
   MCERT.splice(0,MCERT.length,...ce.data.map(x=>({no:x.no,n:x.holder_name,o:onm(x.office_id),tr:x.training_id,ty:x.kind,d:fromIso(x.issued_on),rev:!!x.revoked_at})));
-  REQS.splice(0,REQS.length,...rq.data.map(x=>{const m=x.meta||{};return{id:x.id,at:new Date(x.created_at),kind:x.kind,name:x.full_name,company:x.company,city:x.city,phone:x.phone,email:x.email,message:x.message,topic:m.topic,size:m.size,mode:m.mode,dil:m.dil,status:x.status};}));
+  REQS.splice(0,REQS.length,...rq.data.map(x=>{const m=x.meta||{};return{id:x.id,at:new Date(x.created_at),kind:x.kind,name:x.full_name,company:x.company,city:x.city,phone:x.phone,email:x.email,message:x.message,topic:m.topic,size:m.size,mode:m.mode,dil:m.dil,tur:m.tur,status:x.status};}));
   ME.dataOk=true;
   return true;
 }
@@ -3384,7 +3461,7 @@ async function loadOffice(){
   const q=t=>SB.from(t).select('*').eq('office_id',oid);
   const R=await Promise.all([
     SB.from('offices').select('id,name,city,tier,membership_start,membership_end').eq('id',oid).maybeSingle(),
-    SB.from('profiles').select('id,role,full_name,email').eq('office_id',oid),
+    SB.from('profiles').select('id,role,full_name,email,active').eq('office_id',oid),
     q('groups'),q('consultants'),q('runs'),q('run_members'),q('attendance'),q('makeups'),q('coaching'),
     q('run_activities'),q('activity_results'),q('private_scores'),q('needs_assessments'),
     SB.from('business_results').select('*').eq('office_id',oid).eq('period',monthKey()),
@@ -3395,7 +3472,8 @@ async function loadOffice(){
   if(R.length<18||R.some(r=>r.error)){ME.dataOk=false;return false;}
   const [o,pf,gr,co,ru,rm,at,mk,cc,ra,ar,ps,na,br,rp,ce,pv,tp]=R.map(r=>r.data);
   if(o)Object.assign(OFF,{id:o.id,n:o.name,city:o.city||'',tier:o.tier||'1–25',start:dOf(o.membership_start),end:dOf(o.membership_end)});
-  const nm=p=>p?(p.full_name||p.email):'—',bk=pf.find(p=>p.role==='broker'),mt=pf.find(p=>p.role==='mentor');
+  const nm=p=>p?(p.full_name||p.email):'—',bk=pf.find(p=>p.role==='broker'),mt=pf.find(p=>p.role==='mentor'&&p.active!==false);
+  OFF.mentor=!!mt;
   PPL.broker.n=nm(bk);PPL.mentor.n=mt?nm(mt):nm(bk);PPL.merkez.n='Akademi merkezi';
   gr.sort((a,b)=>a.sort-b.sort).forEach(g=>{const x={id:g.id,n:g.name,d:g.description||'',c:g.color||'var(--c1)'};GR.push(x);GRM[x.id]=x;});
   co.sort((a,b)=>String(a.created_at).localeCompare(String(b.created_at))).forEach(c=>{const x={id:c.id,n:c.full_name,g:c.group_id,since:dOf(c.joined_on)||new Date(c.created_at),left:dOf(c.left_on)};CO.push(x);COM[x.id]=x;});
