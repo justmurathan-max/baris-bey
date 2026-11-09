@@ -1,6 +1,6 @@
 // satis-kaynak/build.py üretir; elle değiştirmeyin. Fiyatlar TL, KDV dâhil.
-export const SURUM = "2026-11-07.31d6e497";
-export const SATICI = "Barış Kılıçarslan";
+export const SURUM = "2026-11-09.623be8da";
+export const SATICI = "BARIŞ KILIÇARSLAN KONGRE ORGANİZASYON DANIŞMANLIK TURİZM EĞİTİM HİZMETLERİ TİCARET LİMİTED ŞİRKETİ";
 export type Urun = { ad: string; fiyat: number | null; kargo: boolean; dijital: boolean; kargo_ucreti: number | null; en_fazla: number; kategori: string };
 export const KATALOG: Record<string, Urun> = {
   "ss": {

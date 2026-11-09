@@ -4,12 +4,17 @@ Kullanım:  python3 akademi-kaynak/build.py
 Çıktı:     site/akademi.html
 """
 import glob
+import json
 import os
 
 d = os.path.dirname(os.path.abspath(__file__))
 html = open(os.path.join(d, 'a.html'), encoding='utf-8').read()
 css = open(os.path.join(d, 'a.css'), encoding='utf-8').read()
 js = ''.join(open(f, encoding='utf-8').read() for f in sorted(glob.glob(os.path.join(d, '[0-9]-*.js'))))
+# İletişim e-postası satıcı bilgisinden (satis-kaynak/satici.json)
+eposta = json.load(open(os.path.join(d, '..', 'satis-kaynak', 'satici.json'), encoding='utf-8'))['eposta']
+html = html.replace('{{EPOSTA}}', eposta)
+assert '{{' not in html, 'a.html içinde doldurulmamış yer tutucu var'
 out = html.replace('/*CSS*/', css).replace('/*JS*/', js)
 target = os.path.join(d, '..', 'site', 'akademi.html')
 open(target, 'w', encoding='utf-8').write(out)

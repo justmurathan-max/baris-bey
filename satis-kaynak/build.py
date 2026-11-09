@@ -36,7 +36,7 @@ KART_CSS = ('.kartlar{display:inline-flex;align-items:center;gap:6px;flex-wrap:w
 ETIKET = {
     'unvan': 'satıcı unvanı', 'adres': 'satıcı adresi', 'telefon': 'telefon', 'eposta': 'e-posta',
     'kep': 'KEP adresi', 'mersis': 'MERSİS no', 'vergi_dairesi': 'vergi dairesi', 'vergi_no': 'vergi no',
-    'kargo_firma': 'kargo firması', 'web': 'web adresi',
+    'kargo_firma': 'kargo firması', 'web': 'web adresi', 'adres_acik': 'açık adres',
 }
 EKSIK = []
 
@@ -73,6 +73,9 @@ def deger(anahtar):
         return eksik(anahtar)
     if anahtar == 'eposta':
         return f'<a href="mailto:{esc(v)}">{esc(v)}</a>'
+    if anahtar == 'adres' and S.get('adres_eksik'):
+        # Yalnız ilçe ve il biliniyorsa açık adresin eksik olduğu görünür kalır
+        return esc(v) + ' ' + eksik('adres_acik')
     if anahtar == 'telefon':
         return f'<a href="tel:{esc(re.sub(r"[^0-9+]", "", str(v)))}">{esc(v)}</a>'
     return esc(v)
@@ -94,7 +97,7 @@ def satici_blok():
 
 def satici_satiri():
     parca = [deger('unvan'), deger('adres'), 'Tel: ' + deger('telefon'), deger('eposta'),
-             'Vergi: ' + deger('vergi_dairesi') + ' / ' + deger('vergi_no'), 'MERSİS: ' + deger('mersis')]
+             'Vergi: ' + deger('vergi_dairesi') + ' V.D. / ' + deger('vergi_no'), 'MERSİS: ' + deger('mersis')]
     return ' · '.join(parca)
 
 
@@ -281,7 +284,7 @@ def main():
     CIKTI.mkdir(exist_ok=True)
     sayfalar = oku_metinler()
     surum_kaynak = json.dumps(S, sort_keys=True) + json.dumps(URUNLER, sort_keys=True) + ''.join(s['ham'] for s in sayfalar)
-    surum = '2026-11-07.' + hashlib.sha1(surum_kaynak.encode()).hexdigest()[:8]
+    surum = '2026-11-09.' + hashlib.sha1(surum_kaynak.encode()).hexdigest()[:8]
     govdeler = {}
     for s in sayfalar:
         govde = md(s['govde'])

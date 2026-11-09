@@ -1,14 +1,16 @@
 {
-  "_not": "Satıcı ve satış koşulları; sözleşmeler, ödeme sayfası ve altbilgi buradan beslenir. null alanlar sitede sarı işaretle görünür. Değiştirince: python3 satis-kaynak/build.py",
-  "unvan": null,
+  "_not": "Satıcı ve satış koşulları; sözleşmeler, ödeme sayfası, altbilgi, akademinin giriş ekranı ve dil sayfalarındaki e-postayla sipariş buradan beslenir. null alanlar sitede sarı işaretle görünür; adres_eksik true iken adresin yanında açık adres işareti çıkar. Değiştirince: python3 satis-kaynak/build.py ve python3 akademi-kaynak/build.py",
+  "unvan": "BARIŞ KILIÇARSLAN KONGRE ORGANİZASYON DANIŞMANLIK TURİZM EĞİTİM HİZMETLERİ TİCARET LİMİTED ŞİRKETİ",
   "marka": "Barış Kılıçarslan",
-  "adres": null,
-  "vergi_dairesi": null,
-  "vergi_no": null,
+  "adres": "Urla / İzmir",
+  "adres_eksik": true,
+  "vergi_dairesi": "Urla",
+  "vergi_no": "1420596062",
   "mersis": null,
-  "telefon": null,
-  "eposta": "info@bariskilicarslan.com",
+  "telefon": "0532 513 94 71",
+  "eposta": "bariskilicarslan@gmail.com",
   "kep": null,
+  "yetkili": "Barış Kılıçarslan",
   "web": "www.bariskilicarslan.com",
   "yetkili_sehir": "İzmir",
   "dijital_teslim_saat": 24,
@@ -17,5 +19,5 @@
     "firma": null,
     "hazirlama_gun": 5
   },
-  "guncelleme": "7 Kasım 2026"
+  "guncelleme": "9 Kasım 2026"
 }

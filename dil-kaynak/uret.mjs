@@ -342,7 +342,7 @@ const SIPARIS = {
 function satinAlYabanci(html, kod) {
   const s = SIPARIS[kod];
   if (!s) return html;
-  const posta = 'info@bariskilicarslan.com';
+  const posta = JSON.parse(fs.readFileSync(path.join(KOK, 'satis-kaynak', 'satici.json'), 'utf8')).eposta;
   let n = 0;
   const say = (re, yeni) => { const once = html; html = html.replace(re, yeni); if (html !== once) n++; };
   say(/<a class="btn btn-k" href="\.\.\/odeme\.html\?urun=ss">[^<]*<\/a>/,
