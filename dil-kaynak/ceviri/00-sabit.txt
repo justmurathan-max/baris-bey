@@ -313,3 +313,7 @@ kod: <b>%97,4</b>
 en: <b>97.4%</b>
 es: <b>97,4 %</b>
 de: <b>97,4 %</b>
+
+# Açılıştaki bayrak şeridinin başlığı: Instagram biyografisindeki ifade, her dilde aynı
+tr: Global Speaker & Author
+=

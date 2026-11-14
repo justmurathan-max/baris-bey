@@ -191,6 +191,14 @@ button{cursor:pointer}
 .hs-c{position:absolute;z-index:2;left:clamp(24px,4vw,72px);bottom:clamp(36px,4.8vw,84px);width:min(900px,calc(100% - 560px));display:grid;gap:clamp(22px,2.4vw,34px)}
 .hs-c .h1{font-size:clamp(42px,4.9vw,90px)}
 .hs-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px}
+.hs-fl{position:absolute;z-index:4;left:calc(var(--edge) + clamp(24px,4vw,72px));bottom:clamp(16px,1.6vw,24px);display:flex;align-items:center;gap:16px}
+.hs-fl-l{font:600 12px/1 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.78);white-space:nowrap}
+.hs-fl-g{display:flex;gap:6px;margin:0;padding:0;list-style:none}
+.hs-fl-g li{display:block;line-height:0}
+.hs-fl-g img{display:block;width:24px;height:18px;border-radius:3px;object-fit:cover;box-shadow:0 0 0 1px rgba(255,255,255,.22),0 2px 6px rgba(0,0,0,.35)}
+@media (max-width:1399px){.hs-fl-l{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}
+@media (max-width:1180px){.hs-fl-g{gap:4px}.hs-fl-g img{width:20px;height:15px}}
+@media (max-width:1000px){.hs-fl{position:static;flex-wrap:wrap;gap:10px 14px;margin:16px 6px 0}.hs-fl-l{position:static;width:auto;height:auto;overflow:visible;clip:auto;color:var(--tx)}.hs-fl-g{flex-wrap:wrap;gap:6px}.hs-fl-g img{width:24px;height:18px;box-shadow:0 0 0 1px rgba(0,0,0,.14)}}
 .ply{display:inline-flex;align-items:center;gap:12px;color:#fff;text-decoration:none;font:600 15px/1 var(--fb);background:none;border:0;padding:0}
 .ply i{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.16);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);transition:background-color .2s}
 .ply:hover i{background:rgba(255,255,255,.28)}
@@ -866,10 +874,11 @@ html.ha:not(.hi) .hw .w>span{transform:translateY(112%)}
 html.ha .hs-k{transition:opacity .8s .15s,transform .9s .15s cubic-bezier(.16,1,.3,1)}
 html.ha .hs-cta{transition:opacity .8s .95s,transform .9s .95s cubic-bezier(.16,1,.3,1)}
 html.ha .nx{transition:opacity .8s 1.15s,transform .9s 1.15s cubic-bezier(.16,1,.3,1)}
-html.ha:not(.hi) .hs-k,html.ha:not(.hi) .hs-cta,html.ha:not(.hi) .nx{opacity:0;transform:translateY(18px)}
+html.ha .hs-fl{transition:opacity .8s 1.1s,transform .9s 1.1s cubic-bezier(.16,1,.3,1)}
+html.ha:not(.hi) .hs-k,html.ha:not(.hi) .hs-cta,html.ha:not(.hi) .hs-fl,html.ha:not(.hi) .nx{opacity:0;transform:translateY(18px)}
 html.ha .hd-in{transition:opacity .8s .1s}
 html.ha:not(.hi) .hd-in{opacity:0}
-html.ha:not(.hi) .hw .w>span,html.ha:not(.hi) .hs-k,html.ha:not(.hi) .hs-cta,html.ha:not(.hi) .nx,html.ha:not(.hi) .hd-in{animation:rvSafe .6s 6.5s forwards}
+html.ha:not(.hi) .hw .w>span,html.ha:not(.hi) .hs-k,html.ha:not(.hi) .hs-cta,html.ha:not(.hi) .hs-fl,html.ha:not(.hi) .nx,html.ha:not(.hi) .hd-in{animation:rvSafe .6s 6.5s forwards}
 
 /* Kaydırınca beliren yazılar */
 html.rv-on .rv:not(.rv-w){opacity:0;transform:translateY(28px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform 1.05s cubic-bezier(.16,1,.3,1);transition-delay:var(--d,0s)}
@@ -1034,6 +1043,34 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
         </div>
       </div>
     </article>
+  </div>
+  <!-- Bayraklar: flag-icons (MIT), img/bayrak/LICENSE.txt -->
+  <div class="hs-fl">
+    <span class="hs-fl-l" id="hs-fl-l">Global Speaker &amp; Author</span>
+    <ul class="hs-fl-g" aria-labelledby="hs-fl-l">
+      <li><img src="../img/bayrak/tr.webp" alt="Turquía" title="Turquía" width="24" height="18" decoding="async"></li>
+      <li><img src="../img/bayrak/us.webp" alt="Estados Unidos" title="Estados Unidos" width="24" height="18" decoding="async"></li>
+      <li><img src="../img/bayrak/ar.webp" alt="Argentina" title="Argentina" width="24" height="18" decoding="async"></li>
+      <li><img src="../img/bayrak/es.webp" alt="España" title="España" width="24" height="18" decoding="async"></li>
+      <li><img src="../img/bayrak/br.webp" alt="Brasil" title="Brasil" width="24" height="18" decoding="async"></li>
+      <li><img src="../img/bayrak/gb.webp" alt="Reino Unido" title="Reino Unido" width="24" height="18" decoding="async"></li>
+      <li><img src="../img/bayrak/do.webp" alt="República Dominicana" title="República Dominicana" width="24" height="18" decoding="async"></li>
+      <li><img src="../img/bayrak/uy.webp" alt="Uruguay" title="Uruguay" width="24" height="18" decoding="async"></li>
+      <li><img src="../img/bayrak/de.webp" alt="Alemania" title="Alemania" width="24" height="18" decoding="async"></li>
+      <li><img src="../img/bayrak/pl.webp" alt="Polonia" title="Polonia" width="24" height="18" decoding="async"></li>
+      <li><img src="../img/bayrak/ro.webp" alt="Rumanía" title="Rumanía" width="24" height="18" decoding="async"></li>
+      <li><img src="../img/bayrak/si.webp" alt="Eslovenia" title="Eslovenia" width="24" height="18" decoding="async"></li>
+      <li><img src="../img/bayrak/gr.webp" alt="Grecia" title="Grecia" width="24" height="18" decoding="async"></li>
+      <li><img src="../img/bayrak/hr.webp" alt="Croacia" title="Croacia" width="24" height="18" decoding="async"></li>
+      <li><img src="../img/bayrak/lu.webp" alt="Luxemburgo" title="Luxemburgo" width="24" height="18" decoding="async"></li>
+      <li><img src="../img/bayrak/fr.webp" alt="Francia" title="Francia" width="24" height="18" decoding="async"></li>
+      <li><img src="../img/bayrak/al.webp" alt="Albania" title="Albania" width="24" height="18" decoding="async"></li>
+      <li><img src="../img/bayrak/mt.webp" alt="Malta" title="Malta" width="24" height="18" decoding="async"></li>
+      <li><img src="../img/bayrak/sk.webp" alt="Eslovaquia" title="Eslovaquia" width="24" height="18" decoding="async"></li>
+      <li><img src="../img/bayrak/cz.webp" alt="Chequia" title="Chequia" width="24" height="18" decoding="async"></li>
+      <li><img src="../img/bayrak/ch.webp" alt="Suiza" title="Suiza" width="24" height="18" decoding="async"></li>
+      <li><img src="../img/bayrak/it.webp" alt="Italia" title="Italia" width="24" height="18" decoding="async"></li>
+    </ul>
   </div>
   <div class="nx">
     <span class="nx-l">Próximo evento</span>

@@ -361,3 +361,111 @@ tr: Barış’ı tanı
 en: Meet Barış
 es: Conoce a Barış
 de: Barış kennenlernen
+
+# Açılış: bayrak şeridi (Instagram biyografisindeki ülkeler); görsel adları ve imleç notu
+
+tr: Türkiye
+en: Türkiye
+es: Turquía
+de: Türkei
+
+tr: Amerika Birleşik Devletleri
+en: United States
+es: Estados Unidos
+de: Vereinigte Staaten
+
+tr: Arjantin
+en: Argentina
+es: Argentina
+de: Argentinien
+
+tr: İspanya
+en: Spain
+es: España
+de: Spanien
+
+tr: Brezilya
+en: Brazil
+es: Brasil
+de: Brasilien
+
+tr: Birleşik Krallık
+en: United Kingdom
+es: Reino Unido
+de: Vereinigtes Königreich
+
+tr: Dominik Cumhuriyeti
+en: Dominican Republic
+es: República Dominicana
+de: Dominikanische Republik
+
+tr: Uruguay
+=
+
+tr: Almanya
+en: Germany
+es: Alemania
+de: Deutschland
+
+tr: Polonya
+en: Poland
+es: Polonia
+de: Polen
+
+tr: Romanya
+en: Romania
+es: Rumanía
+de: Rumänien
+
+tr: Slovenya
+en: Slovenia
+es: Eslovenia
+de: Slowenien
+
+tr: Yunanistan
+en: Greece
+es: Grecia
+de: Griechenland
+
+tr: Hırvatistan
+en: Croatia
+es: Croacia
+de: Kroatien
+
+tr: Lüksemburg
+en: Luxembourg
+es: Luxemburgo
+de: Luxemburg
+
+tr: Fransa
+en: France
+es: Francia
+de: Frankreich
+
+tr: Arnavutluk
+en: Albania
+es: Albania
+de: Albanien
+
+tr: Malta
+=
+
+tr: Slovakya
+en: Slovakia
+es: Eslovaquia
+de: Slowakei
+
+tr: Çekya
+en: Czechia
+es: Chequia
+de: Tschechien
+
+tr: İsviçre
+en: Switzerland
+es: Suiza
+de: Schweiz
+
+tr: İtalya
+en: Italy
+es: Italia
+de: Italien
