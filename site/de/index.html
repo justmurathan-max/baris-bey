@@ -191,14 +191,19 @@ button{cursor:pointer}
 .hs-c{position:absolute;z-index:2;left:clamp(24px,4vw,72px);bottom:clamp(36px,4.8vw,84px);width:min(900px,calc(100% - 560px));display:grid;gap:clamp(22px,2.4vw,34px)}
 .hs-c .h1{font-size:clamp(42px,4.9vw,90px)}
 .hs-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px}
-.hs-fl{position:absolute;z-index:4;left:calc(var(--edge) + clamp(24px,4vw,72px));bottom:clamp(16px,1.6vw,24px);display:flex;align-items:center;gap:16px}
-.hs-fl-l{font:600 12px/1 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.78);white-space:nowrap}
-.hs-fl-g{display:flex;gap:6px;margin:0;padding:0;list-style:none}
+.hs-fl{position:absolute;z-index:4;left:calc(var(--edge) + clamp(24px,4vw,72px));right:calc(var(--edge) + clamp(16px,2.2vw,36px) + clamp(340px,28vw,430px) + 24px);bottom:clamp(14px,1.5vw,22px);display:flex;align-items:center;gap:16px}
+.hs-fl-l{flex:none;font:600 12px/1 var(--fb);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.78);white-space:nowrap}
+.hs-fl-v{flex:1;min-width:0;overflow:hidden;padding:4px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 28px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,transparent,#000 28px,#000 calc(100% - 28px),transparent)}
+.hs-fl-t{display:flex;width:max-content;animation:hsFl 34s linear infinite}
+.hs-fl-v:hover .hs-fl-t{animation-play-state:paused}
+@keyframes hsFl{to{transform:translate3d(-50%,0,0)}}
+.hs-fl-g{display:flex;gap:8px;margin:0;padding:0 8px 0 0;list-style:none}
 .hs-fl-g li{display:block;line-height:0}
 .hs-fl-g img{display:block;width:24px;height:18px;border-radius:3px;object-fit:cover;box-shadow:0 0 0 1px rgba(255,255,255,.22),0 2px 6px rgba(0,0,0,.35)}
-@media (max-width:1399px){.hs-fl-l{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}
-@media (max-width:1180px){.hs-fl-g{gap:4px}.hs-fl-g img{width:20px;height:15px}}
-@media (max-width:1000px){.hs-fl{position:static;flex-wrap:wrap;gap:10px 14px;margin:16px 6px 0}.hs-fl-l{position:static;width:auto;height:auto;overflow:visible;clip:auto;color:var(--tx)}.hs-fl-g{flex-wrap:wrap;gap:6px}.hs-fl-g img{width:24px;height:18px;box-shadow:0 0 0 1px rgba(0,0,0,.14)}}
+@media (min-width:1001px) and (max-width:1260px){.hs-c{bottom:62px}}
+@media (max-width:1000px){.hs-fl{position:static;flex-wrap:wrap;gap:10px;margin:16px 0 0}.hs-fl-l{width:100%;padding:0 6px;color:var(--tx)}.hs-fl-v{flex:1 1 100%}.hs-fl-t{animation-duration:28s}.hs-fl-g img{box-shadow:0 0 0 1px rgba(0,0,0,.14)}}
+@media (prefers-reduced-motion:reduce){.hs-fl-t{animation:none}.hs-fl-g[aria-hidden]{display:none}.hs-fl-v{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent)}}
+@media (prefers-reduced-motion:reduce) and (max-width:1000px){.hs-fl-t{width:auto}.hs-fl-g{flex-wrap:wrap;padding:0 6px}.hs-fl-v{-webkit-mask-image:none;mask-image:none}}
 .ply{display:inline-flex;align-items:center;gap:12px;color:#fff;text-decoration:none;font:600 15px/1 var(--fb);background:none;border:0;padding:0}
 .ply i{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.16);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);transition:background-color .2s}
 .ply:hover i{background:rgba(255,255,255,.28)}
@@ -1044,33 +1049,61 @@ document.addEventListener('DOMContentLoaded',function(){var im=document.querySel
       </div>
     </article>
   </div>
-  <!-- Bayraklar: flag-icons (MIT), img/bayrak/LICENSE.txt -->
+  <!-- Bayraklar: flag-icons (MIT), img/bayrak/LICENSE.txt. Şerit sürekli akar; ikinci liste döngü için kopyadır. -->
   <div class="hs-fl">
     <span class="hs-fl-l" id="hs-fl-l">Global Speaker &amp; Author</span>
-    <ul class="hs-fl-g" aria-labelledby="hs-fl-l">
-      <li><img src="../img/bayrak/tr.webp" alt="Türkei" title="Türkei" width="24" height="18" decoding="async"></li>
-      <li><img src="../img/bayrak/us.webp" alt="Vereinigte Staaten" title="Vereinigte Staaten" width="24" height="18" decoding="async"></li>
-      <li><img src="../img/bayrak/ar.webp" alt="Argentinien" title="Argentinien" width="24" height="18" decoding="async"></li>
-      <li><img src="../img/bayrak/es.webp" alt="Spanien" title="Spanien" width="24" height="18" decoding="async"></li>
-      <li><img src="../img/bayrak/br.webp" alt="Brasilien" title="Brasilien" width="24" height="18" decoding="async"></li>
-      <li><img src="../img/bayrak/gb.webp" alt="Vereinigtes Königreich" title="Vereinigtes Königreich" width="24" height="18" decoding="async"></li>
-      <li><img src="../img/bayrak/do.webp" alt="Dominikanische Republik" title="Dominikanische Republik" width="24" height="18" decoding="async"></li>
-      <li><img src="../img/bayrak/uy.webp" alt="Uruguay" title="Uruguay" width="24" height="18" decoding="async"></li>
-      <li><img src="../img/bayrak/de.webp" alt="Deutschland" title="Deutschland" width="24" height="18" decoding="async"></li>
-      <li><img src="../img/bayrak/pl.webp" alt="Polen" title="Polen" width="24" height="18" decoding="async"></li>
-      <li><img src="../img/bayrak/ro.webp" alt="Rumänien" title="Rumänien" width="24" height="18" decoding="async"></li>
-      <li><img src="../img/bayrak/si.webp" alt="Slowenien" title="Slowenien" width="24" height="18" decoding="async"></li>
-      <li><img src="../img/bayrak/gr.webp" alt="Griechenland" title="Griechenland" width="24" height="18" decoding="async"></li>
-      <li><img src="../img/bayrak/hr.webp" alt="Kroatien" title="Kroatien" width="24" height="18" decoding="async"></li>
-      <li><img src="../img/bayrak/lu.webp" alt="Luxemburg" title="Luxemburg" width="24" height="18" decoding="async"></li>
-      <li><img src="../img/bayrak/fr.webp" alt="Frankreich" title="Frankreich" width="24" height="18" decoding="async"></li>
-      <li><img src="../img/bayrak/al.webp" alt="Albanien" title="Albanien" width="24" height="18" decoding="async"></li>
-      <li><img src="../img/bayrak/mt.webp" alt="Malta" title="Malta" width="24" height="18" decoding="async"></li>
-      <li><img src="../img/bayrak/sk.webp" alt="Slowakei" title="Slowakei" width="24" height="18" decoding="async"></li>
-      <li><img src="../img/bayrak/cz.webp" alt="Tschechien" title="Tschechien" width="24" height="18" decoding="async"></li>
-      <li><img src="../img/bayrak/ch.webp" alt="Schweiz" title="Schweiz" width="24" height="18" decoding="async"></li>
-      <li><img src="../img/bayrak/it.webp" alt="Italien" title="Italien" width="24" height="18" decoding="async"></li>
-    </ul>
+    <div class="hs-fl-v">
+      <div class="hs-fl-t">
+        <ul class="hs-fl-g" aria-labelledby="hs-fl-l">
+          <li><img src="../img/bayrak/tr.webp" alt="Türkei" title="Türkei" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/us.webp" alt="Vereinigte Staaten" title="Vereinigte Staaten" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/ar.webp" alt="Argentinien" title="Argentinien" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/es.webp" alt="Spanien" title="Spanien" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/br.webp" alt="Brasilien" title="Brasilien" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/gb.webp" alt="Vereinigtes Königreich" title="Vereinigtes Königreich" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/do.webp" alt="Dominikanische Republik" title="Dominikanische Republik" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/uy.webp" alt="Uruguay" title="Uruguay" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/de.webp" alt="Deutschland" title="Deutschland" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/pl.webp" alt="Polen" title="Polen" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/ro.webp" alt="Rumänien" title="Rumänien" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/si.webp" alt="Slowenien" title="Slowenien" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/gr.webp" alt="Griechenland" title="Griechenland" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/hr.webp" alt="Kroatien" title="Kroatien" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/lu.webp" alt="Luxemburg" title="Luxemburg" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/fr.webp" alt="Frankreich" title="Frankreich" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/al.webp" alt="Albanien" title="Albanien" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/mt.webp" alt="Malta" title="Malta" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/sk.webp" alt="Slowakei" title="Slowakei" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/cz.webp" alt="Tschechien" title="Tschechien" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/ch.webp" alt="Schweiz" title="Schweiz" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/it.webp" alt="Italien" title="Italien" width="24" height="18" decoding="async"></li>
+        </ul>
+        <ul class="hs-fl-g" aria-hidden="true">
+          <li><img src="../img/bayrak/tr.webp" alt="" title="Türkei" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/us.webp" alt="" title="Vereinigte Staaten" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/ar.webp" alt="" title="Argentinien" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/es.webp" alt="" title="Spanien" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/br.webp" alt="" title="Brasilien" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/gb.webp" alt="" title="Vereinigtes Königreich" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/do.webp" alt="" title="Dominikanische Republik" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/uy.webp" alt="" title="Uruguay" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/de.webp" alt="" title="Deutschland" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/pl.webp" alt="" title="Polen" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/ro.webp" alt="" title="Rumänien" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/si.webp" alt="" title="Slowenien" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/gr.webp" alt="" title="Griechenland" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/hr.webp" alt="" title="Kroatien" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/lu.webp" alt="" title="Luxemburg" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/fr.webp" alt="" title="Frankreich" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/al.webp" alt="" title="Albanien" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/mt.webp" alt="" title="Malta" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/sk.webp" alt="" title="Slowakei" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/cz.webp" alt="" title="Tschechien" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/ch.webp" alt="" title="Schweiz" width="24" height="18" decoding="async"></li>
+          <li><img src="../img/bayrak/it.webp" alt="" title="Italien" width="24" height="18" decoding="async"></li>
+        </ul>
+      </div>
+    </div>
   </div>
   <div class="nx">
     <span class="nx-l">Nächstes Event</span>
