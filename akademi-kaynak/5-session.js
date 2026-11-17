@@ -188,8 +188,8 @@ function flowBlock(){
   return h('div',null,h('h3',null,'Akış',h('span',null,mode==='prev'?'%'+prevPct(SS.t.id):range.filter(i=>SS.done.has(i)).length+' / '+range.length)),ul);
 }
 function aiBlock(){
-  const k=Object.keys(SCN).find(x=>SCN[x].tr===SS.t.id)||'komisyon';
-  return h('div',{class:'stc'},h('div',{class:'stc-h'},h('div',{class:'t'},h('b',null,'Barış AI ile grup provası'),h('span',null,SCN[k].ad+'. Barış AI müşteriyi oynar, grup cevap verir.'))),h('div',null,btn('btn-ow btn-s',[ic('spark'),'Provayı aç'],()=>openProvaModal(k))));
+  const k=Object.keys(SCN).find(x=>SCN[x].tr===SS.t.id)||'komisyon',n=Object.keys(SCN).filter(x=>SCN[x].tr===SCN[k].tr).length;
+  return h('div',{class:'stc'},h('div',{class:'stc-h'},h('div',{class:'t'},h('b',null,'Barış AI ile grup provası'),h('span',null,(n>1?n+' senaryo arasından seçin':SCN[k].ad)+'. Barış AI müşteriyi oynar, grup cevap verir.'))),h('div',null,btn('btn-ow btn-s',[ic('spark'),'Provayı aç'],()=>openProvaModal(k))));
 }
 function exitSes(){
   if(SS&&SS.mode==='ses'&&SS.dirty){confirmBox('Oturumdan çıkılsın mı?','İşaretlemeler kaydedilmez. Kaydetmek için Oturumu bitir’i kullanın.','Kaydetmeden çık',endSesQuiet,true);return;}
