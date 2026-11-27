@@ -103,7 +103,7 @@ def satici_satiri():
 
 def yasal_altbilgi(onek=''):
     return (f'<footer class="yf"><p>{satici_satiri()}</p><p>© 2026 Barış Kılıçarslan · Ödemeler Türk lirası (TL) ile, lisanslı ödeme kuruluşunun '
-            f'3D Secure güvenli sayfasında alınır. <a href="{onek}index.html">Yasal metinler</a></p><p class="yf-k">{KARTLAR}</p></footer>')
+            f'3D Secure güvenli sayfasında alınır. <a href="{onek}index.html">Yasal metinler</a> · <a href="#cerez-ayarlari" data-cerez-ayar>Çerez ayarları</a></p><p class="yf-k">{KARTLAR}</p></footer>')
 
 
 def fiyat_metni(u):
@@ -167,11 +167,12 @@ def md(govde):
         if not s:
             bosalt()
             continue
-        m = re.match(r'^(#{2,3})\s+(.*)$', s)
+        m = re.match(r'^(#{2,3})\s+(.*?)(?:\s+\{#([a-z0-9-]+)\})?$', s)
         if m:
             bosalt()
             n = len(m.group(1))
-            out.append(f'<h{n}>{satir_ici(m.group(2))}</h{n}>')
+            kimlik = f' id="{m.group(3)}"' if m.group(3) else ''
+            out.append(f'<h{n}{kimlik}>{satir_ici(m.group(2))}</h{n}>')
             continue
         if s in BLOKLAR:
             bosalt()
@@ -204,7 +205,8 @@ def oku_metinler():
                 k, v = satir.split(':', 1)
                 meta[k.strip()] = v.strip()
         sayfalar.append({'ad': yol.stem, 'baslik': meta['baslik'], 'ozet': meta.get('ozet', ''),
-                         'sira': int(meta.get('sira', 99)), 'govde': govde, 'ham': ham_metin})
+                         'sira': int(meta.get('sira', 99)), 'guncelleme': meta.get('guncelleme') or S['guncelleme'],
+                         'govde': govde, 'ham': ham_metin})
     sayfalar.sort(key=lambda s: s['sira'])
     return sayfalar
 
@@ -237,7 +239,7 @@ mark.eksik{background:#FFF1B8;color:#6B5200;border-radius:4px;padding:0 5px;font
 @media print{.yh,.yl,.yf{display:none}.yw{display:block;padding:0}.ya{max-width:none}}"""
 
 
-def sayfa(baslik, ozet, govde, liste_html):
+def sayfa(baslik, ozet, govde, liste_html, guncelleme=None):
     return f"""<!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -249,9 +251,7 @@ def sayfa(baslik, ozet, govde, liste_html):
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <meta name="theme-color" content="#ffffff">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600&family=Inter:wght@400;500;600&family=Montserrat:wght@800&display=swap">
+<link rel="stylesheet" href="../fonts/yasal.css">
 <style>
 {CSS}
 </style>
@@ -262,12 +262,13 @@ def sayfa(baslik, ozet, govde, liste_html):
 <main class="yw">
 <aside class="yl" aria-label="Yasal metinler"><p class="lbl">Yasal metinler</p><ul>{liste_html}</ul></aside>
 <article class="ya">
-<p class="lbl">Son güncelleme: {esc(S['guncelleme'])}</p>
+<p class="lbl">Son güncelleme: {esc(guncelleme or S['guncelleme'])}</p>
 <h1>{esc(baslik)}</h1>
 {govde}
 </article>
 </main>
 {yasal_altbilgi()}
+<script src="../js/cerez.js" defer></script>
 </body>
 </html>
 """
@@ -289,7 +290,7 @@ def main():
     for s in sayfalar:
         govde = md(s['govde'])
         govdeler[s['ad']] = govde
-        (CIKTI / f'{s["ad"]}.html').write_text(sayfa(s['baslik'], s['ozet'], govde, sayfa_listesi(sayfalar, s['ad'])), encoding='utf-8')
+        (CIKTI / f'{s["ad"]}.html').write_text(sayfa(s['baslik'], s['ozet'], govde, sayfa_listesi(sayfalar, s['ad']), s['guncelleme']), encoding='utf-8')
     ix = '<p>Satın alma, teslimat, iade ve kişisel verilerle ilgili bütün metinler.</p><ul class="ix">' + ''.join(
         f'<li><a href="{s["ad"]}.html"><b>{esc(s["baslik"])}</b><span>{esc(s["ozet"])}</span></a></li>' for s in sayfalar) + '</ul>'
     (CIKTI / 'index.html').write_text(sayfa('Yasal metinler', 'Satın alma, teslimat, iade ve kişisel verilerle ilgili metinler.', ix, sayfa_listesi(sayfalar)), encoding='utf-8')
@@ -317,6 +318,7 @@ def main():
         ('iptal-ve-iade', 'İptal ve iade'), ('teslimat', 'Teslimat'), ('kvkk-aydinlatma-metni', 'KVKK aydınlatma metni'),
         ('gizlilik-ve-cerez-politikasi', 'Gizlilik ve çerezler'), ('uyelik-sozlesmesi', 'Üyelik sözleşmesi'),
         ('yasal-uyarilar', 'Yasal uyarılar'), ('hakkimizda', 'Hakkımızda'), ('iletisim', 'İletişim')])
+    linkler += '<a href="#cerez-ayarlari" data-cerez-ayar>Çerez ayarları</a>'
     altbilgi = (f'<div class="ft-leg"><span>© 2026 Barış Kılıçarslan</span>{linkler}</div>'
                 f'<p class="ft-sat"><span translate="no">{satici_satiri()}</span><br>'
                 f'<span>Ödemeler Türk lirası (TL) ile, lisanslı ödeme kuruluşunun 3D Secure güvenli sayfasında alınır. Kart bilgileri bu siteye ulaşmaz.</span>'

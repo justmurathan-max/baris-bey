@@ -14,9 +14,13 @@ Barış Kılıçarslan'ın tanıtım sitesi ve giriş sonrası Masterclass Akade
   - `dogrula.html`: herkese açık sertifika doğrulama; `/dogrula/<numara>` adresi buraya yönlenir (`vercel.json`).
   - `js/supabase.js`: Supabase'in tarayıcı kütüphanesi (2.118.0), npm'den olduğu gibi.
   - `js/qr.js`: sertifikalardaki QR için qrcode-generator (1.4.4, MIT), npm'den olduğu gibi.
-  - `vercel.json`, `robots.txt`: taslağı arama motorlarına kapatır.
+  - `js/cerez.js`: çerez bildirimi ve izne bağlı ziyaret istatistiği (aşağıda "KVKK, çerez ve formlar").
+  - `fonts/`: yazı tipleri ve sayfa gruplarının `@font-face` dosyaları. Elle düzenlenmez; `font-kaynak/` ile üretilir.
+  - `vercel.json`: güvenlik başlıkları, yönlendirmeler; `robots.txt` ile birlikte taslağı arama motorlarına kapatır.
 - `satis-kaynak/`: satıcı bilgileri (`satici.json`), ürün ve fiyatlar (`urunler.json`), yasal metinler (`metinler/*.md`) ve bunlardan sayfaları üreten `build.py`.
 - `dil-kaynak/`: dil sayfalarını üreten `uret.mjs` ve çeviriler (`ceviri/*.txt`).
+- `font-kaynak/`: yazı tiplerini `site/fonts/` içine yazan `uret.py` (Fontsource paketlerinden, Google Fonts'un aynı sürümleri).
+- `.github/workflows/veritabani-yedegi.yml`: veritabanının şifreli gece yedeği (aşağıda "Veritabanı yedeği").
 - `akademi-kaynak/`: akademinin parçaları.
   - `a.html` iskelet, `a.css` stiller, `1-core.js` … `7-init.js` uygulama.
   - `1-core.js` içindeki `VIM` listesi bölüm kodlarını Vimeo videolarına bağlar: `[video kimliği, süre (sn), sitede oynar mı]`.
@@ -127,3 +131,53 @@ Onay gelene kadar ödeme kapalıdır; sayfa "Kartla ödeme çok yakında" der. A
 - `site/js/tally-cal.js`: ofis başvurusu, kurumsal talep ve etkinlik pencerelerinde formu Tally'den açar; gönderilen kayıt `site_requests` tablosuna da yazılır, merkezdeki Başvurular sayfası değişmeden çalışır. Başvurudan ve kurumsal talepten sonra aynı pencerede Cal.com takvimi ad, e-posta, telefon ve notla dolu açılır. Tally açılmazsa sitenin kendi formu, Cal.com açılmazsa Cal.com bağlantısı kullanılır. Bülten sitenin kendi formunda kalır. `index.html` sonunda `<script src="js/tally-cal.js" defer></script>` ile yüklenir; yalnız Türkçe sayfada çalışır (Tally formları Türkçe), dil sürümlerinde sitenin çevrilmiş formları kalır.
 - Tally formları Barış Bey'in hesabında: ofis başvurusu `4aBNGk`, kurumsal talep `Eq5bAN`, etkinlik kaydı `aOerkq`. Gizli alanlar: `kaynak`, kurumsalda `konu`, etkinlikte `etkinlik` (lansman için `lansman`, webinar için adı). Formdaki soru başlıkları değişirse `tally-cal.js` içindeki eşleştirme de güncellenmeli.
 - Cal.com görüşmeleri: `baris-kilicarslan-yesokm/akademi-gorusmesi` ve `baris-kilicarslan-yesokm/kurumsal-gorusme`.
+
+## KVKK, çerez ve formlar
+
+- Metinler `satis-kaynak/metinler/kvkk-aydinlatma-metni.md` ve `gizlilik-ve-cerez-politikasi.md` dosyalarında; ön bilgideki `guncelleme:` o sayfanın "Son güncelleme" tarihidir (yoksa `satici.json`'daki). Başlığın sonuna `{#kimlik}` yazılırsa başlık o kimlikle bağlantı alır (`#cerezler`). Değişince `python3 satis-kaynak/build.py`.
+- Yeni bir dış hizmet, yeni bir tarayıcı kaydı (çerez, yerel depolama) ya da yeni bir veri işleme eklenince bu iki metin ve `vercel.json`'daki CSP birlikte güncellenir.
+- Çerez bildirimi (`site/js/cerez.js`): Türkçe, İngilizce, İspanyolca, Almanca sayfalar, ödeme, yasal metinler ve sertifika doğrulamada. "Kabul et" ile "Reddet" aynı görünür; tercih `bk-cerez` (yerel depolama) içinde 12 ay saklanır. Sayfadaki `data-cerez-ayar` taşıyan bağlantı bildirimi yeniden açar (altbilgilerdeki "Çerez ayarları"). Akademide bildirim ve istatistik yok; orada yalnız zorunlu kayıtlar var.
+- Ziyaret istatistiği: Vercel Web Analytics, yalnız "Kabul et" seçilirse `/_vercel/insights/script.js` yüklenir. Çerez kullanmaz. Gönderilmeden önce adres temizlenir (`/dogrula/<numara>` yalnız `/dogrula`; sorgudan yalnız `urun` ve `utm_*` kalır; `#` sonrası gitmez). Vercel'de projenin Analytics sayfasından bir kez "Enable" denmeli; açılmadan izin verenlerde betik 404 döner, site etkilenmez. Ücretsiz planda ayda 50.000 olay; dolunca ay sonuna kadar sayım durur.
+- Formlar: başvuru, kurumsal talep ve etkinlik pencerelerinde gönder düğmesinin üstünde aydınlatma notu (`.f-kvkk`); Tally formunun ve Cal.com takviminin altında da aynı not (`tally-cal.js`). Bu formlar için açık rıza istenmez (talebe cevap için gereken işleme). Bültende ad soyad ve önceden seçili olmayan, zorunlu onay kutusu var; kayıt `meta.onay = 'ticari-ileti'` ve onay metninin sürümüyle (`meta.onay_metni`) yazılır. Onay metni değişirse `index.html`'deki sürüm de değişmeli. Ödemedeki ileti onayı isteğe bağlı ve seçili gelmez. Akademinin giriş ekranında aydınlatma ve çerez politikası bağlantısı var.
+- Ticari ileti onaylarının gönderimden önce İleti Yönetim Sistemi'ne (İYS) kaydedilmesi ve ret bildirimlerinin işlenmesi bülten gönderimi başlamadan kurulmalı.
+
+## Güvenlik başlıkları
+
+`site/vercel.json` bütün adreslere şunları ekler: Content-Security-Policy (betik, stil, görsel, bağlantı ve çerçeve yalnız sitenin kendisinden ve listelenen hizmetlerden: Supabase, Tally, Cal.com, Vimeo, PayTR; `object-src 'none'`, `base-uri 'self'`, `form-action 'self'`, `frame-ancestors 'self'`), X-Content-Type-Options, Referrer-Policy, Permissions-Policy (kamera, mikrofon, konum kapalı), X-Frame-Options. HSTS'yi Vercel kendisi gönderir. Satır içi betikler ve stiller sayfaların yapısı gereği açık (`'unsafe-inline'`). Ödeme sayfasında çerçeve için her https adresine izin var: 3D Secure doğrulaması ödeme kuruluşunun çerçevesi içinde bankanın kendi adresinde açılır.
+
+- Yeni bir dış betik, çerçeve ya da bağlantı eklenince CSP'ye eklenmezse tarayıcı engeller; konsolda "Content Security Policy" hatası görünür.
+- Supabase projesi değişirse CSP'deki `xjbqesljonbbduldeesd.supabase.co` adresleri de değişmeli.
+- `/fonts/` altındaki dosyalar bir yıl önbellekte tutulur; yazı tipi dosyası değişirse adı da değişmeli.
+
+## Yazı tipleri
+
+Yazı tipleri sitenin kendi sunucusundan gelir (önceden Google Fonts'tan geliyordu ve her açılışta ziyaretçinin IP adresi Google'a gidiyordu). Dosyalar Google Fonts'un aynı sürümleri; yalnız latin ve latin-ext. Her sayfa grubu (`site.css`, `odeme.css`, `dogrula.css`, `yasal.css`) önceki bağlantısındaki kalınlıkları aynen alır, görünüm değişmez. Yeniden üretmek: `cd font-kaynak && npm install && python3 uret.py`. Lisans: SIL Open Font License 1.1 (`site/fonts/LICENSE-*.txt`).
+
+## Veritabanı yedeği
+
+Supabase'in ücretsiz planında otomatik yedek yok. `.github/workflows/veritabani-yedegi.yml` her gece 03:17'de (Türkiye) rolleri, şemayı ve veriyi (akademi hesapları dahil) alır, AES-256 ile şifreler ve GitHub'da çalıştırmanın "Artifacts" bölümüne koyar; 30 gün saklanır. Depo herkese açık: yedek şifrelenmeden hiçbir yere yazılmaz, günlüklere veri ya da sayı yazılmaz. Belgeler kovasındaki PDF'ler, fonksiyonların gizli anahtarları ve Supabase panelindeki ayarlar bu yedekte yok (PDF'lerin aslı merkezde, fonksiyon kodu depoda).
+
+Kurulum (bir kez):
+
+1. Supabase > Project Settings > Database'de veritabanı şifresi bilinmiyorsa "Reset database password" ile yenisi alınır (fonksiyonlar ve site bu şifreyi kullanmaz).
+2. Supabase'de üstteki "Connect" > "Session pooler" bağlantı adresi kopyalanır, `[YOUR-PASSWORD]` yerine şifre yazılır. Şifrede `@ : / ? #` varsa yüzde kodlamasıyla yazılmalı.
+3. Uzun bir yedek parolası üretilir (en az 24 karakter) ve parola yöneticisine kaydedilir. Kaybolursa yedekler açılamaz.
+4. GitHub > Settings > Secrets and variables > Actions > New repository secret: `SUPABASE_DB_URL` (2. adımdaki adres) ve `YEDEK_SIFRE` (3. adımdaki parola).
+5. Actions > Veritabanı yedeği > Run workflow, "geri yükleme denemesi" işaretli: yedek alınır, geçici bir Supabase veritabanına yüklenir ve her tablonun satır sayısı yedekle karşılaştırılır.
+
+Geri yükleme:
+
+1. Actions > Veritabanı yedeği > istenen gecenin çalıştırması > Artifacts'tan `yedek-....tar.gz.gpg` indirilir.
+2. Açmak: `gpg -d yedek-....tar.gz.gpg | tar -xzf -` (parola sorulur); `roles.sql`, `schema.sql`, `data.sql` çıkar.
+3. Boş bir Supabase projesine (ya da yerel `supabase db start` veritabanına):
+
+```
+psql --single-transaction --variable ON_ERROR_STOP=1 \
+  --file roles.sql --file schema.sql \
+  --command 'SET session_replication_role = replica' \
+  --file data.sql --dbname "<yeni projenin Session pooler adresi>"
+```
+
+4. Sonra fonksiyonlar (`supabase/functions`) yeniden yüklenir, gizli anahtarlar (`ANTHROPIC_API_KEY` vb.) girilir, Auth ayarları (Site URL, yönlendirme adresleri, SMTP, e-posta şablonları) ve belgeler kovasındaki PDF'ler yeniden kurulur; sitede ve CSP'de proje adresi değiştiyse güncellenir.
+
+Not: GitHub, herkese açık depoda 60 gün hiç değişiklik olmazsa zamanlanmış işleri durdurur; Actions sayfasında yeniden açılır. Gece yedeği başarısız olursa GitHub, iş dosyasını son değiştiren hesaba e-posta gönderir.

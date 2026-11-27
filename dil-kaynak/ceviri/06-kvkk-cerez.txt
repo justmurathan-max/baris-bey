@@ -1,0 +1,21 @@
+# Formlardaki aydınlatma notu, bülten onayı ve çerez ayarları (27 Kasım 2026)
+
+tr: Bilgileriniz talebinizi yanıtlamak için <0>KVKK Aydınlatma Metni</0> kapsamında işlenir.
+en: Your details are processed to answer your request, as described in our <0>privacy notice (KVKK, in Turkish)</0>.
+es: Tus datos se tratan para responder a tu solicitud, según nuestro <0>aviso de privacidad (KVKK, en turco)</0>.
+de: Ihre Angaben werden zur Beantwortung Ihrer Anfrage verarbeitet, wie in unserem <0>Datenschutzhinweis (KVKK, auf Türkisch)</0> beschrieben.
+
+tr: Adın soyadın
+en: Your full name
+es: Tu nombre y apellidos
+de: Ihr Vor- und Nachname
+
+tr: Barış Kılıçarslan’dan ayda bir e-posta bülteni ve etkinlik duyuruları almayı kabul ediyorum. Onayımı dilediğim zaman geri alabilirim. <0>Aydınlatma metni</0>
+en: I agree to receive a monthly email newsletter and event announcements from Barış Kılıçarslan. I can withdraw my consent at any time. <0>Privacy notice (in Turkish)</0>
+es: Acepto recibir de Barış Kılıçarslan un boletín mensual por correo electrónico y avisos de eventos. Puedo retirar mi consentimiento en cualquier momento. <0>Aviso de privacidad (en turco)</0>
+de: Ich bin damit einverstanden, von Barış Kılıçarslan einen monatlichen E-Mail-Newsletter und Veranstaltungshinweise zu erhalten. Ich kann meine Einwilligung jederzeit widerrufen. <0>Datenschutzhinweis (auf Türkisch)</0>
+
+tr: Çerez ayarları
+en: Cookie settings
+es: Configuración de cookies
+de: Cookie-Einstellungen

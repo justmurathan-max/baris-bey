@@ -6,6 +6,49 @@
         {
           "key": "X-Robots-Tag",
           "value": "noindex, nofollow"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), usb=(), browsing-topics=()"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        }
+      ]
+    },
+    {
+      "source": "/((?!odeme).*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://tally.so https://app.cal.com https://www.paytr.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://xjbqesljonbbduldeesd.supabase.co; font-src 'self'; connect-src 'self' https://xjbqesljonbbduldeesd.supabase.co wss://xjbqesljonbbduldeesd.supabase.co; frame-src https://tally.so https://app.cal.com https://cal.com https://player.vimeo.com https://www.paytr.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
+        }
+      ]
+    },
+    {
+      "source": "/odeme(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://tally.so https://app.cal.com https://www.paytr.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://xjbqesljonbbduldeesd.supabase.co; font-src 'self'; connect-src 'self' https://xjbqesljonbbduldeesd.supabase.co wss://xjbqesljonbbduldeesd.supabase.co; frame-src https:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
+        }
+      ]
+    },
+    {
+      "source": "/fonts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
         }
       ]
     }

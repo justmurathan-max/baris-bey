@@ -30,6 +30,13 @@
   var calSeq = 0;
 
   function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+  // Formun ve takvimin altındaki aydınlatma notu (sitenin kendi formlarındaki notun karşılığı)
+  function kvkkNot(on) {
+    var p = el('p', 'tc-kvkk'), a = el('a', null, 'KVKK Aydınlatma Metni');
+    a.href = '/sozlesmeler/kvkk-aydinlatma-metni.html'; a.target = '_blank'; a.rel = 'noopener';
+    p.append(document.createTextNode(on), a, document.createTextNode(' kapsamında işlenir.'));
+    return p;
+  }
   function cut(s, n) { s = s == null ? '' : String(s).trim(); return s.length > n ? s.slice(0, n) : s; }
 
   /* ---------- Stiller ---------- */
@@ -46,6 +53,8 @@
     '.tc-alt{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin:-4px 0 6px}' +
     '.tc-alt button,.tc-alt a{background:none;border:0;padding:6px 0;font:600 14px/1.4 var(--fb,system-ui);color:var(--mu,#5E5E66);text-decoration:underline;text-underline-offset:3px;cursor:pointer}' +
     '.tc-alt a.btn{color:#fff;text-decoration:none;padding:0 22px}' +
+    '.tc-kvkk{margin:10px 0 0;color:var(--mu,#5E5E66);font:400 13px/1.5 var(--fb,system-ui)}' +
+    '.tc-kvkk a{color:inherit;text-underline-offset:3px}' +
     '@media (prefers-reduced-motion:reduce){.tc-wait i{animation:none}}';
   document.head.appendChild(css);
 
@@ -121,7 +130,7 @@
     fr.setAttribute('width', '100%');
     fr.setAttribute('height', '440');
     fr.setAttribute('frameborder', '0');
-    box.append(wait, fr);
+    box.append(wait, fr, kvkkNot('Form Tally üzerinden alınır; bilgileriniz talebinizi yanıtlamak için '));
     f.parentNode.insertBefore(box, f);
     cur.wait = wait; cur.frame = fr;
     cur.timer = setTimeout(function () { fallback(m, cur); }, LOAD_MS);
@@ -252,7 +261,7 @@
     var skip = el('button', null, 'Şimdi değil, beni arayın'); skip.type = 'button';
     skip.addEventListener('click', function () { showDone(m); });
     alt.append(skip);
-    box.append(alt, wait, holder);
+    box.append(alt, wait, holder, kvkkNot('Görüşme saati Cal.com üzerinden seçilir; bilgileriniz '));
     try { m.scrollTop = 0; } catch (e) {}
     var ready = false, done = false;
     function booked() { if (done || mounts[m.id] !== cur) return; done = true; showDone(m, c.booked); }
